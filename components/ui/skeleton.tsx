@@ -73,7 +73,7 @@ export function ServicesSkeleton({ className }: { className?: string }) {
           className="group relative overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-900"
         >
           <div className="mb-4 flex items-center space-x-4">
-            <Skeleton variant="avatar" className="h-12 w-12" />
+            <Skeleton variant="circular" className="h-12 w-12" />
             <div className="flex-1 space-y-2">
               <Skeleton className="h-5 w-3/4" />
               <Skeleton className="h-3 w-1/2" />
@@ -85,8 +85,8 @@ export function ServicesSkeleton({ className }: { className?: string }) {
             <Skeleton className="h-4 w-4/6" />
           </div>
           <div className="mt-4 flex gap-2">
-            <Skeleton variant="button" />
-            <Skeleton variant="button" />
+            <Skeleton variant="rounded" className="h-8 w-20" />
+            <Skeleton variant="rounded" className="h-8 w-20" />
           </div>
         </div>
       ))}
@@ -104,7 +104,7 @@ export function TestimonialsSkeleton({ className }: { className?: string }) {
           className="rounded-xl border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-900"
         >
           <div className="mb-4 flex items-center space-x-4">
-            <Skeleton variant="avatar" className="h-12 w-12" />
+            <Skeleton variant="circular" className="h-12 w-12" />
             <div className="flex-1 space-y-2">
               <Skeleton className="h-4 w-3/4" />
               <Skeleton className="h-3 w-1/2" />
@@ -133,7 +133,7 @@ export function TeamSkeleton({ className }: { className?: string }) {
       {Array.from({ length: 6 }).map((_, i) => (
         <div key={i} className="group text-center">
           <div className="relative mx-auto mb-4">
-            <Skeleton variant="image" className="h-48 w-48 rounded-full" />
+            <Skeleton variant="circular" className="h-48 w-48" />
             <div className="absolute inset-0 rounded-full bg-gradient-to-t from-gray-300/50 to-transparent dark:from-gray-600/50" />
           </div>
           <div className="space-y-2">
