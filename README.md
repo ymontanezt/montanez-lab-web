@@ -1,6 +1,6 @@
 # 🦷 Gata Viejis - Laboratorio Dental
 
-Sitio web moderno y profesional para laboratorio dental con tecnología de vanguardia, diseño responsive, optimizaciones de performance y despliegue automático en staging.
+Sitio web moderno y profesional para laboratorio dental con tecnología de vanguardia, diseño responsive, optimizaciones de performance y despliegue automático en Vercel.
 
 ## ✨ Características Principales
 
