@@ -17,6 +17,7 @@ let auth: Auth | null = null
 let db: Firestore | null = null
 
 function initializeFirebase() {
+  // Only initialize on client side
   if (typeof window === 'undefined') {
     return { app: null, auth: null, db: null }
   }
@@ -30,6 +31,7 @@ function initializeFirebase() {
     const hasAllVars = Object.values(firebaseConfig).every(value => value)
 
     if (!hasAllVars) {
+      console.warn('Firebase: Missing environment variables')
       return { app: null, auth: null, db: null }
     }
 
@@ -39,6 +41,7 @@ function initializeFirebase() {
 
     return { app, auth, db }
   } catch (error) {
+    console.error('Firebase initialization error:', error)
     return { app: null, auth: null, db: null }
   }
 }
