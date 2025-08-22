@@ -3,7 +3,7 @@
 import { useEffect, Suspense } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import Script from 'next/script'
-import { trackPageView, GA_TRACKING_ID } from '@/lib/analytics'
+import { pageview, GA_TRACKING_ID } from '@/lib/analytics'
 
 export function GoogleAnalytics() {
   const pathname = usePathname()
@@ -13,9 +13,9 @@ export function GoogleAnalytics() {
     if (GA_TRACKING_ID && pathname) {
       if (searchParams) {
         const url = pathname + searchParams.toString()
-        trackPageView(url)
+        pageview(url)
       } else {
-        trackPageView(pathname)
+        pageview(pathname)
       }
     }
   }, [pathname, searchParams])
