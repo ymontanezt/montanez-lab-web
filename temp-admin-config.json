@@ -1,0 +1,18 @@
+{
+  "admin@montanez-lab.com": {
+    "uid": "admin_principal",
+    "email": "admin@montanez-lab.com",
+    "role": "super_admin",
+    "permissions": ["all"],
+    "createdAt": "2025-08-21T18:33:13.000Z",
+    "active": true
+  },
+  "yuri@montanez-lab.com": {
+    "uid": "admin_secundario",
+    "email": "yuri@montanez-lab.com",
+    "role": "admin",
+    "permissions": ["contacts", "appointments", "reports", "settings"],
+    "createdAt": "2025-08-21T18:33:13.000Z",
+    "active": true
+  }
+}

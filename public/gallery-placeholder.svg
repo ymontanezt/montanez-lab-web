@@ -1,0 +1,37 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo con gradiente -->
+  <defs>
+    <linearGradient id="galleryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rectángulo de fondo -->
+  <rect width="400" height="300" fill="url(#galleryGradient)" rx="8"/>
+  
+  <!-- Icono de imagen -->
+  <rect x="150" y="80" width="100" height="80" rx="4" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
+  
+  <!-- Líneas representando una imagen -->
+  <rect x="160" y="90" width="80" height="60" rx="2" fill="white"/>
+  <circle cx="180" cy="110" r="8" fill="#22c55e"/>
+  <rect x="190" y="105" width="40" height="4" rx="2" fill="#22c55e"/>
+  <rect x="190" y="115" width="30" height="4" rx="2" fill="#22c55e"/>
+  <rect x="190" y="125" width="35" height="4" rx="2" fill="#22c55e"/>
+  
+  <!-- Símbolo de cámara -->
+  <circle cx="200" cy="140" r="12" fill="#22c55e"/>
+  <circle cx="200" cy="140" r="8" fill="white"/>
+  <circle cx="200" cy="140" r="4" fill="#22c55e"/>
+  
+  <!-- Texto descriptivo -->
+  <text x="200" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="600" fill="#475569">Imagen de Galería</text>
+  <text x="200" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#64748b">Trabajo Dental</text>
+  
+  <!-- Elementos decorativos -->
+  <circle cx="80" cy="60" r="3" fill="#22c55e" opacity="0.6"/>
+  <circle cx="320" cy="80" r="2" fill="#22c55e" opacity="0.4"/>
+  <circle cx="90" cy="240" r="2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="310" cy="220" r="3" fill="#22c55e" opacity="0.3"/>
+</svg>

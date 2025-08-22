@@ -1,0 +1,39 @@
+<svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo con gradiente -->
+  <defs>
+    <linearGradient id="serviceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdf4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dcfce7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rectángulo de fondo -->
+  <rect width="300" height="200" fill="url(#serviceGradient)" rx="8"/>
+  
+  <!-- Icono de servicio dental -->
+  <circle cx="150" cy="80" r="25" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
+  
+  <!-- Diente estilizado en el centro -->
+  <path d="M140 70 L160 70 L160 80 L155 85 L155 95 L150 100 L145 100 L140 95 L140 85 L140 80 Z" fill="white"/>
+  <rect x="142" y="72" width="16" height="6" rx="2" fill="#22c55e"/>
+  <rect x="145" y="78" width="10" height="12" rx="2" fill="#22c55e"/>
+  
+  <!-- Símbolo de engranaje -->
+  <circle cx="150" cy="130" r="15" fill="#22c55e"/>
+  <circle cx="150" cy="130" r="8" fill="white"/>
+  
+  <!-- Dientes del engranaje -->
+  <rect x="150" y="115" width="2" height="8" fill="#22c55e"/>
+  <rect x="150" y="147" width="2" height="8" fill="#22c55e"/>
+  <rect x="135" y="130" width="8" height="2" fill="#22c55e"/>
+  <rect x="157" y="130" width="8" height="2" fill="#22c55e"/>
+  
+  <!-- Texto descriptivo -->
+  <text x="150" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#16a34a">Servicio Dental</text>
+  
+  <!-- Elementos decorativos -->
+  <circle cx="60" cy="50" r="2" fill="#22c55e" opacity="0.4"/>
+  <circle cx="240" cy="60" r="2" fill="#22c55e" opacity="0.3"/>
+  <circle cx="70" cy="150" r="2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="230" cy="140" r="2" fill="#22c55e" opacity="0.4"/>
+</svg>

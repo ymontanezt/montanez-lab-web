@@ -1,0 +1,41 @@
+# Robots.txt para Gata viejis - Laboratorio Dental
+# https://dentallabpro.com
+
+User-agent: *
+Allow: /
+
+# Bloquear acceso a archivos sensibles
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /sitemap.xml
+
+# Permitir acceso a recursos importantes
+Allow: /sitemap.xml
+Allow: /robots.txt
+Allow: /manifest.json
+
+# Crawl-delay para respetar el servidor
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://dentallabpro.com/sitemap.xml
+
+# Host preferido
+Host: https://dentallabpro.com
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Allow important pages
+Allow: /servicios/
+Allow: /contacto/
+
+# Crawl delay (optional)
+Crawl-delay: 1

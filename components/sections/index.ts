@@ -1,0 +1,7 @@
+export { Hero } from './hero'
+export { Services } from './services'
+export { Testimonials } from './testimonials'
+export { Gallery } from './gallery'
+export { Team } from './team'
+export { Stats } from './stats'
+export { Contact } from './contact'

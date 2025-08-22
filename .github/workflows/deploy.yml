@@ -1,0 +1,131 @@
+name: 🚀 Deploy Dental Lab
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+        - staging
+        - production
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  # Job de testing y build
+  test-and-build:
+    name: 🧪 Test & Build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        
+    - name: 📦 Install dependencies
+      run: npm ci
+      
+    - name: 🔍 Run linting
+      run: npm run lint
+      
+    - name: ✅ Run type checking
+      run: npm run type-check
+      
+    - name: 🏗️ Build application
+      run: npm run build
+      
+    - name: 📦 Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-files
+        path: .next/
+        retention-days: 1
+
+  # Job de deploy a staging
+  deploy-staging:
+    name: 🚀 Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: test-and-build
+    if: github.ref == 'refs/heads/develop' || github.event.inputs.environment == 'staging'
+    environment: staging
+    
+    steps:
+    - name: 📥 Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build-files
+        path: .next/
+        
+    - name: 🔐 Setup environment variables
+      run: |
+        echo "NODE_ENV=staging" >> $GITHUB_ENV
+        echo "NEXT_PUBLIC_SITE_URL=${{ secrets.STAGING_SITE_URL }}" >> $GITHUB_ENV
+        echo "NEXT_PUBLIC_DEBUG=false" >> $GITHUB_ENV
+        echo "NEXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.STAGING_FIREBASE_API_KEY }}" >> $GITHUB_ENV
+        echo "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${{ secrets.STAGING_FIREBASE_AUTH_DOMAIN }}" >> $GITHUB_ENV
+        echo "NEXT_PUBLIC_FIREBASE_PROJECT_ID=${{ secrets.STAGING_FIREBASE_PROJECT_ID }}" >> $GITHUB_ENV
+        
+    - name: 🚀 Deploy to staging
+      run: |
+        echo "Deploying to staging environment..."
+        # Aquí irían los comandos específicos de tu hosting
+        # Por ejemplo: vercel --prod, netlify deploy, etc.
+        
+    - name: ✅ Notify deployment success
+      run: |
+        echo "✅ Successfully deployed to staging!"
+        echo "🌐 URL: ${{ secrets.STAGING_SITE_URL }}"
+
+  # Job de deploy a producción
+  deploy-production:
+    name: 🚀 Deploy to Production
+    runs-on: ubuntu-latest
+    needs: test-and-build
+    if: github.ref == 'refs/heads/main' || github.event.inputs.environment == 'production'
+    environment: production
+    
+    steps:
+    - name: 📥 Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build-files
+        path: .next/
+        
+    - name: 🔐 Setup environment variables
+      run: |
+        echo "NODE_ENV=production" >> $GITHUB_ENV
+        echo "NEXT_PUBLIC_SITE_URL=${{ secrets.PROD_SITE_URL }}" >> $GITHUB_ENV
+        echo "NEXT_PUBLIC_DEBUG=false" >> $GITHUB_ENV
+        echo "NEXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.PROD_FIREBASE_API_KEY }}" >> $GITHUB_ENV
+        echo "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${{ secrets.PROD_FIREBASE_AUTH_DOMAIN }}" >> $GITHUB_ENV
+        echo "NEXT_PUBLIC_FIREBASE_PROJECT_ID=${{ secrets.PROD_FIREBASE_PROJECT_ID }}" >> $GITHUB_ENV
+        
+    - name: 🚀 Deploy to production
+      run: |
+        echo "Deploying to production environment..."
+        # Aquí irían los comandos específicos de tu hosting
+        # Por ejemplo: vercel --prod, netlify deploy, etc.
+        
+    - name: ✅ Notify deployment success
+      run: |
+        echo "✅ Successfully deployed to production!"
+        echo "🌐 URL: ${{ secrets.PROD_SITE_URL }}"
+        
+    - name: 📱 Notify team
+      run: |
+        echo "🎉 Production deployment completed successfully!"
+        echo "🔗 Production URL: ${{ secrets.PROD_SITE_URL }}"
+        # Aquí podrías agregar notificaciones a Slack, Discord, etc.
