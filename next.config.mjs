@@ -22,8 +22,8 @@ const nextConfig = {
 
   poweredByHeader: false,
 
-  // Solución específica para el error de prerendering de página 404
-  output: 'standalone',
+  // Configuración para export estático (Firebase Hosting)
+  output: 'export',
   
   // Deshabilitar linting temporalmente para identificar el problema
   eslint: {

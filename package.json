@@ -21,7 +21,10 @@
     "clean": "rm -rf .next out",
     "analyze": "ANALYZE=true bunx --bun next build",
     "validate:env": "bunx --bun tsc --noEmit lib/config/environments.ts",
-    "setup:github-secrets": "./scripts/setup-github-secrets.sh"
+    "setup:github-secrets": "./scripts/setup-github-secrets.sh",
+    "export": "next build",
+    "deploy:firebase": "bun run export && firebase deploy --only hosting",
+    "deploy:firebase:preview": "bun run export && firebase hosting:channel:deploy preview"
   },
   "dependencies": {
     "@hookform/resolvers": "latest",
@@ -85,6 +88,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "15.2.4",
+    "firebase-tools": "^14.14.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.4.1",

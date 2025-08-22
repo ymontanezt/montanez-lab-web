@@ -1,20 +1,9 @@
-// Firebase configuration and initialization
+// Firebase configuration and initialization - Client-side only
+'use client'
+
 import { initializeApp, type FirebaseApp } from 'firebase/app'
 import { getAuth, type Auth } from 'firebase/auth'
 import { getFirestore, type Firestore } from 'firebase/firestore'
-
-// Only load Firebase config on client side
-const firebaseConfig =
-  typeof window !== 'undefined'
-    ? {
-        apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-        authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-        storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-        messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-        appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-      }
-    : null
 
 let app: FirebaseApp | null = null
 let auth: Auth | null = null
@@ -26,17 +15,20 @@ function initializeFirebase() {
     return { app: null, auth: null, db: null }
   }
 
-  // Check if Firebase config is available
-  if (!firebaseConfig) {
-    console.warn('Firebase: Config not available during SSR')
-    return { app: null, auth: null, db: null }
-  }
-
   if (app && auth && db) {
     return { app, auth, db }
   }
 
   try {
+    const firebaseConfig = {
+      apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+      authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+      storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+      appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    }
+
     // Check if all required env vars are present
     const hasAllVars = Object.values(firebaseConfig).every(value => value)
 
@@ -57,16 +49,19 @@ function initializeFirebase() {
 }
 
 export function getFirebaseAuth(): Auth | null {
+  if (typeof window === 'undefined') return null
   const { auth } = initializeFirebase()
   return auth
 }
 
 export function getFirebaseDb(): Firestore | null {
+  if (typeof window === 'undefined') return null
   const { db } = initializeFirebase()
   return db
 }
 
 export function getFirebaseApp(): FirebaseApp | null {
+  if (typeof window === 'undefined') return null
   const { app } = initializeFirebase()
   return app
 }
