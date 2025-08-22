@@ -24,7 +24,8 @@
     "setup:github-secrets": "./scripts/setup-github-secrets.sh",
     "export": "next build",
     "deploy:firebase": "bun run export && firebase deploy --only hosting",
-    "deploy:firebase:preview": "bun run export && firebase hosting:channel:deploy preview"
+    "deploy:firebase:preview": "bun run export && firebase hosting:channel:deploy preview",
+    "analyze": "ANALYZE=true bun run build"
   },
   "dependencies": {
     "@hookform/resolvers": "latest",
@@ -82,6 +83,7 @@
     "zod": "3.25.67"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^15.5.0",
     "@tailwindcss/postcss": "^4.1.9",
     "@types/node": "^20",
     "@types/react": "^18",

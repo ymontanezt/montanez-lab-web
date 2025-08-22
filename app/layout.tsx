@@ -13,6 +13,8 @@ const montserrat = Montserrat({
   display: 'swap',
   variable: '--font-montserrat',
   weight: ['400', '600', '700', '900'],
+  preload: true,
+  fallback: ['system-ui', 'arial'],
 })
 
 const openSans = Open_Sans({
@@ -20,6 +22,8 @@ const openSans = Open_Sans({
   display: 'swap',
   variable: '--font-open-sans',
   weight: ['400', '500', '600'],
+  preload: true,
+  fallback: ['system-ui', 'arial'],
 })
 
 export const metadata: Metadata = {
