@@ -11,7 +11,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { useToast } from '@/hooks/use-toast'
 import { MessageCircle, X, Send, Phone, Clock } from 'lucide-react'
-import { trackWhatsAppClick } from '@/lib/analytics'
+import { trackingEvents } from '@/lib/analytics'
 import { env } from '@/lib/config/env'
 
 export function WhatsAppWidget() {
@@ -39,7 +39,7 @@ export function WhatsAppWidget() {
     setIsSubmitting(true)
 
     try {
-      trackWhatsAppClick(message.trim(), 'widget_form')
+      trackingEvents.whatsappClick()
 
       // Format the WhatsApp message
       const whatsappMessage = `Hola, soy ${name.trim()}. ${message.trim()}`
@@ -218,12 +218,12 @@ export function WhatsAppWidget() {
                           key={index}
                           onClick={() => {
                             setMessage(msg)
-                            trackWhatsAppClick(msg, 'quick_message')
+                            trackingEvents.whatsappClick()
                           }}
                           onKeyDown={e =>
                             handleKeyDown(e, () => {
                               setMessage(msg)
-                              trackWhatsAppClick(msg, 'quick_message')
+                              trackingEvents.whatsappClick()
                             })
                           }
                           className="block w-full rounded-lg border border-green-100 bg-white p-2 text-left text-xs transition-colors hover:bg-green-50 focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:outline-none"

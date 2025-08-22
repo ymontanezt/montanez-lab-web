@@ -16,7 +16,7 @@ import { addContactSubmission } from '@/lib/firestore'
 import { sendContactNotification, sendContactConfirmation } from '@/lib/email'
 import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
-import { trackFormSubmission, trackPhoneCall, trackEmailClick } from '@/lib/analytics'
+import { trackingEvents } from '@/lib/analytics'
 import { env } from '@/lib/config/env'
 
 const contactSchema = z.object({
@@ -66,7 +66,7 @@ export function ContactForm() {
     setIsSubmitting(true)
 
     try {
-      trackFormSubmission('contact_form', data.service, data.urgency)
+      trackingEvents.contactFormSubmit()
 
       // Save to Firebase
       const contactId = await addContactSubmission(data)
@@ -421,7 +421,7 @@ export function ContactInfo() {
                   <a
                     href={`tel:${detail.replace(/\s/g, '')}`}
                     className="hover:text-primary transition-colors"
-                    onClick={() => trackPhoneCall(detail, 'contact_info')}
+                    onClick={() => trackingEvents.phoneClick()}
                   >
                     {detail}
                   </a>
@@ -429,7 +429,7 @@ export function ContactInfo() {
                   <a
                     href={`mailto:${detail}`}
                     className="hover:text-primary transition-colors"
-                    onClick={() => trackEmailClick(detail, 'contact_info')}
+                    onClick={() => trackingEvents.emailClick()}
                   >
                     {detail}
                   </a>

@@ -1,5 +1,4 @@
-// Forzar renderizado dinámico para evitar problemas de prerendering
-export const dynamic = 'force-dynamic'
+// Página estática para export
 
 export default function NotFound() {
   return (

@@ -284,7 +284,7 @@ export const Header: React.FC<HeaderProps> = ({
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             {/* Theme Toggle */}
-            <ThemeToggle variant="icon-only" />
+            <ThemeToggle />
 
             <Button
               size="sm"

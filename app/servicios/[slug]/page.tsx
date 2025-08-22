@@ -3,8 +3,14 @@ import { Card, CardContent } from '@/components/ui/card'
 import { ArrowLeft, Phone, Calendar, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getServiceBySlug } from '../../../data'
+import { getServiceBySlug, services } from '../../../data'
 import { notFound } from 'next/navigation'
+
+export async function generateStaticParams() {
+  return services.map(service => ({
+    slug: service.slug,
+  }))
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params

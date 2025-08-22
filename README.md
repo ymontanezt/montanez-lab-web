@@ -1,34 +1,36 @@
-# 🦷 Gata Viejis - Laboratorio Dental
+# 🦷 Montañez Lab - Laboratorio Dental
 
-Sitio web moderno y profesional para laboratorio dental con tecnología de vanguardia, diseño responsive y optimizaciones de performance.
+Sitio web moderno y profesional para laboratorio dental con tecnología de vanguardia, diseño responsive, optimizaciones de performance y despliegue en Firebase Hosting.
 
 ## ✨ Características Principales
 
 ### 🎨 **Diseño y UX**
 
 - **Diseño Responsive**: Optimizado para todos los dispositivos
-- **Tema Dual**: Light y Dark mode con transiciones suaves
+- **Tema Dual**: Light, Dark y System mode con transiciones suaves
 - **Animaciones**: Framer Motion para micro-interacciones elegantes
 - **Accesibilidad**: Cumple estándares WCAG 2.1 AA
-- **Performance**: Lazy loading, skeleton loaders y optimizaciones
+- **Performance**: Lazy loading, skeleton loaders y optimizaciones avanzadas
 
 ### 🚀 **Funcionalidades**
 
 - **Hero Carousel**: Presentación dinámica de servicios
-- **Galería Interactiva**: Modal con filtros por categorías
-- **Formularios Inteligentes**: Validación en tiempo real
+- **Galería Interactiva**: Modal con filtros por categorías y touch gestures
+- **Formularios Inteligentes**: Validación en tiempo real con analytics
 - **WhatsApp Integration**: Chat directo con prioridades
 - **Sistema de Citas**: Agendamiento online inteligente
 - **Panel Admin**: Dashboard para gestión de consultas
+- **PWA**: Instalable como aplicación móvil
 
 ### 🛠️ **Tecnologías**
 
-- **Next.js 15**: Framework React con App Router
+- **Next.js 15**: Framework React con App Router y export estático
 - **TypeScript**: Tipado estático completo
 - **Tailwind CSS**: Sistema de diseño utility-first
 - **Framer Motion**: Animaciones fluidas
-- **Firebase**: Backend y autenticación
+- **Firebase**: Backend, autenticación y hosting
 - **Bun**: Runtime y package manager
+- **PWA**: Service Worker y manifest optimizado
 
 ## 📁 Estructura del Proyecto
 
@@ -37,21 +39,25 @@ montanez-lab-web/
 ├── app/                    # App Router de Next.js
 │   ├── admin/             # Panel administrativo
 │   ├── api/               # API routes
+│   ├── servicios/         # Páginas de servicios
 │   └── globals.css        # Estilos globales
 ├── components/             # Componentes React
 │   ├── layout/            # Header, Footer, Navigation
 │   ├── sections/          # Secciones principales
 │   ├── ui/                # Componentes base (Radix UI)
-│   └── admin/             # Componentes del dashboard
+│   ├── admin/             # Componentes del dashboard
+│   └── error-boundary.tsx # Manejo de errores
+├── hooks/                 # Custom React hooks
+│   ├── use-scroll-animation.ts
+│   ├── use-touch-gestures.ts
+│   └── use-web-vitals.ts
 ├── data/                  # Datos estáticos y mock
 ├── lib/                   # Utilidades y configuración
-│   ├── design-system/     # Sistema de diseño
-│   ├── config/            # Configuración del sitio
-│   └── firebase/          # Servicios de Firebase
-├── hooks/                 # Custom React hooks
-├── contexts/              # Context providers
-├── types/                 # Definiciones de TypeScript
-└── public/                # Assets estáticos
+│   ├── analytics.ts       # Google Analytics y tracking
+│   ├── firebase/          # Servicios de Firebase
+│   └── config/            # Configuración del sitio
+├── public/                # Assets estáticos y PWA
+└── docs/                  # Documentación completa
 ```
 
 ## 🎨 Sistema de Diseño
@@ -80,8 +86,8 @@ gray: {
 ```typescript
 // Fuentes principales
 fontFamily: {
-  sans: ['Inter', 'system-ui', 'sans-serif'],
-  serif: ['Playfair Display', 'Georgia', 'serif'],
+  sans: ['Open Sans', 'system-ui', 'sans-serif'],
+  serif: ['Montserrat', 'Georgia', 'serif'],
 }
 
 // Escala de tamaños
@@ -90,17 +96,6 @@ fontSize: {
   base: '1rem',     // 16px
   xl: '1.25rem',    // 20px
   '4xl': '2.25rem', // 36px
-}
-```
-
-### **Espaciado**
-
-```typescript
-// Sistema de espaciado consistente
-spacing: {
-  'section-padding': 'py-16 md:py-20 lg:py-24',
-  'container-padding': 'px-4 md:px-6 lg:px-8',
-  'card-padding': 'p-6 md:p-8',
 }
 ```
 
@@ -167,19 +162,17 @@ const gridCols = {
 ### **Requisitos**
 
 - Node.js 18+ o Bun 1.0+
-- npm, yarn, pnpm o bun
+- Firebase CLI para deploy
 
 ### **Instalación**
 
 ```bash
 # Clonar repositorio
-git clone https://github.com/username/montanez-lab-web.git
+git clone https://github.com/ymontanezt/montanez-lab-web.git
 cd montanez-lab-web
 
 # Instalar dependencias
 bun install
-# o
-npm install
 
 # Variables de entorno
 cp env.local.example .env.local
@@ -187,56 +180,43 @@ cp env.local.example .env.local
 
 # Desarrollo
 bun run dev
-# o
-npm run dev
+
+# Build para producción
+bun run build
+
+# Deploy a Firebase
+bun run deploy:firebase
 ```
 
 ### **Variables de Entorno**
 
 ```bash
-# Información del sitio
-NEXT_PUBLIC_SITE_NAME=Gata viejis
-NEXT_PUBLIC_SITE_DESCRIPTION=Laboratorio Dental
-NEXT_PUBLIC_SITE_URL=https://dentallabpro.com
-
-# Información de contacto
-NEXT_PUBLIC_CONTACT_PHONE=+51 1 234 5678
-NEXT_PUBLIC_CONTACT_WHATSAPP=+51 1 234 5678
-NEXT_PUBLIC_CONTACT_EMAIL=info@dentallabpro.com
-NEXT_PUBLIC_CONTACT_ADDRESS_STREET=Av. Javier Prado Este 1234
-NEXT_PUBLIC_CONTACT_ADDRESS_CITY=Lima
-NEXT_PUBLIC_CONTACT_ADDRESS_COUNTRY=Perú
-
-# WhatsApp
-NEXT_PUBLIC_WHATSAPP_NUMBER=51912345678
-
 # Firebase
 NEXT_PUBLIC_FIREBASE_API_KEY=
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
 
-# Analytics
+# Google Analytics
 NEXT_PUBLIC_GA_ID=
-
-# Email (Resend)
-RESEND_API_KEY=
 ```
-
-**📋 Archivos de configuración disponibles:**
-
-- `env.example` - Variables de entorno para producción
-- `env.local.example` - Variables de entorno para desarrollo local
 
 ## 🚀 Scripts Disponibles
 
 ```bash
 # Desarrollo
-bun run dev          # Servidor de desarrollo
-bun run build        # Build de producción
-bun run start        # Servidor de producción
-bun run lint         # Linting con ESLint
-bun run type-check   # Verificación de tipos
-bun run analyze      # Análisis del bundle
+bun run dev              # Servidor de desarrollo
+bun run build            # Build de producción
+bun run start            # Servidor de producción
+bun run lint             # Linting con ESLint
+bun run type-check       # Verificación de tipos
+bun run analyze          # Análisis del bundle
+
+# Deploy
+bun run export           # Build estático
+bun run deploy:firebase  # Deploy a Firebase Hosting
 ```
 
 ## 📊 Performance y Optimizaciones
@@ -244,7 +224,7 @@ bun run analyze      # Análisis del bundle
 ### **Lazy Loading**
 
 - **Componentes**: React.lazy() para secciones pesadas
-- **Imágenes**: Intersection Observer API
+- **Imágenes**: Intersection Observer API con OptimizedImage
 - **Skeleton Loaders**: Placeholders elegantes durante carga
 
 ### **Bundle Optimization**
@@ -292,14 +272,42 @@ const securityHeaders = [
 ### **Google Analytics 4**
 
 - **Page Views**: Tracking automático de navegación
-- **Custom Events**: Formularios, clicks en WhatsApp
+- **Custom Events**: Formularios, clicks en WhatsApp, servicios
 - **Conversion Tracking**: Objetivos de negocio
 
 ### **Performance Monitoring**
 
-- **Core Web Vitals**: LCP, FID, CLS
+- **Core Web Vitals**: LCP, INP, CLS, FCP, TTFB
 - **User Experience**: Métricas de engagement
-- **Error Tracking**: Monitoreo de errores
+- **Error Tracking**: Monitoreo de errores con Error Boundaries
+
+## 🚀 PWA (Progressive Web App)
+
+### **Características PWA**
+
+- **Instalable**: Se puede instalar en dispositivos móviles
+- **Offline**: Funcionamiento básico sin conexión
+- **Service Worker**: Cache inteligente de recursos
+- **Manifest**: Configuración para instalación
+
+### **Service Worker**
+
+```typescript
+// Cache strategies implementadas
+- Fonts: Cache First (365 días)
+- Images: Stale While Revalidate (24 horas)
+- JS/CSS: Stale While Revalidate (24 horas)
+- API: Stale While Revalidate (24 horas)
+```
+
+## 🎯 Touch Gestures
+
+### **Gestos Soportados**
+
+- **Swipe**: Navegación en galería y carruseles
+- **Pinch**: Zoom en imágenes
+- **Double Tap**: Reset de zoom
+- **Touch Navigation**: Navegación táctil optimizada
 
 ## 🧪 Testing
 
@@ -310,47 +318,40 @@ const securityHeaders = [
 - **E2E Tests**: Playwright para flujos completos
 - **Visual Regression**: Comparación de UI
 
-### **Coverage Goals**
-
-- **Components**: >90% coverage
-- **Hooks**: >95% coverage
-- **Utils**: >100% coverage
-
 ## 🚀 Deployment
 
-### **Plataformas Soportadas**
+### **Firebase Hosting**
 
-- **Vercel**: Deploy automático con Git
-- **Netlify**: Build y deploy automático
-- **AWS Amplify**: CI/CD completo
-- **Docker**: Containerización
+- **Build Estático**: Export optimizado de Next.js
+- **CDN Global**: Distribución de contenido mundial
+- **HTTPS Automático**: Seguridad por defecto
+- **Deploy Automático**: Con GitHub Actions
 
 ### **CI/CD Pipeline**
 
 ```yaml
 # .github/workflows/deploy.yml
-name: Deploy
+name: Deploy to Firebase
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - run: npm ci
-      - run: npm run build
-      - run: npm run test
-      - run: npm run deploy
+      - uses: oven-sh/setup-bun@v1
+      - run: bun install
+      - run: bun run build
+      - run: firebase deploy --only hosting
 ```
 
 ## 📚 Documentación Adicional
 
 - **Design System**: `/docs/design-system.md`
-- **API Reference**: `/docs/api.md`
-- **Component Library**: `/docs/components.md`
-- **Performance Guide**: `/docs/performance.md`
+- **Environment Setup**: `/docs/environment-setup.md`
+- **Firebase Deployment**: `/docs/firebase-hosting-deploy.md`
+- **Performance Guide**: `/docs/performance-optimizations.md`
 
 ## 🤝 Contribución
 
@@ -375,11 +376,13 @@ Este proyecto está bajo la licencia MIT. Ver [LICENSE](LICENSE) para más detal
 
 ## 📞 Contacto
 
-- **Desarrollador**: [Tu Nombre]
-- **Email**: [tu-email@ejemplo.com]
-- **Website**: [tu-website.com]
-- **LinkedIn**: [tu-linkedin]
+- **Desarrollador**: michcode
+- **Email**: ymontanezt@gmail.com
+- **GitHub**: [ymontanezt](https://github.com/ymontanezt)
+- **Proyecto**: [montanez-lab-web](https://github.com/ymontanezt/montanez-lab-web)
 
 ---
 
-**Gata Viejis** - Laboratorio Dental de Vanguardia 🦷✨
+**Montañez Lab** - Laboratorio Dental de Vanguardia 🦷✨
+
+_Construido con Next.js 15, TypeScript, Tailwind CSS y Firebase_

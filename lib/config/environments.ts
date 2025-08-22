@@ -40,8 +40,8 @@ export interface EnvironmentConfig {
 // Configuración por defecto para desarrollo
 const developmentConfig: EnvironmentConfig = {
   site: {
-    name: 'Gata Viejis Dental Lab',
-    description: 'Laboratorio Dental de Excelencia',
+    name: 'Montañez Lab',
+    description: 'Laboratorio Dental de Vanguardia',
     url: 'http://localhost:3000',
     debug: true,
   },
@@ -65,9 +65,9 @@ const developmentConfig: EnvironmentConfig = {
 // Configuración para staging
 const stagingConfig: EnvironmentConfig = {
   site: {
-    name: 'Gata Viejis Dental Lab (Staging)',
-    description: 'Laboratorio Dental de Excelencia - Entorno de Pruebas',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://staging.gataviejis.com',
+    name: 'Montañez Lab (Staging)',
+    description: 'Laboratorio Dental de Vanguardia - Entorno de Pruebas',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://staging.montanezlab.com',
     debug: false,
   },
   firebase: {
@@ -90,9 +90,9 @@ const stagingConfig: EnvironmentConfig = {
 // Configuración para producción
 const productionConfig: EnvironmentConfig = {
   site: {
-    name: 'Gata Viejis Dental Lab',
-    description: 'Laboratorio Dental de Excelencia',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://gataviejis.com',
+    name: 'Montañez Lab',
+    description: 'Laboratorio Dental de Vanguardia',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://montanezlab.com',
     debug: false,
   },
   firebase: {
@@ -115,7 +115,8 @@ const productionConfig: EnvironmentConfig = {
 // Función para obtener la configuración según el ambiente
 export function getEnvironmentConfig(): EnvironmentConfig {
   const nodeEnv = process.env.NODE_ENV || 'development'
-  const isStaging = process.env.NEXT_PUBLIC_ENV === 'staging'
+  const isStaging =
+    process.env.VERCEL_ENV === 'preview' || process.env.NEXT_PUBLIC_ENV === 'staging'
 
   // Si es staging, usar configuración de staging
   if (isStaging) {
@@ -161,7 +162,8 @@ export function validateEnvironmentConfig(): boolean {
 // Exportar configuraciones individuales para uso directo
 export const config = getEnvironmentConfig()
 export const isDevelopment = process.env.NODE_ENV === 'development'
-export const isStaging = process.env.NEXT_PUBLIC_ENV === 'staging'
+export const isStaging =
+  process.env.VERCEL_ENV === 'preview' || process.env.NEXT_PUBLIC_ENV === 'staging'
 export const isProduction =
-  process.env.NODE_ENV === 'production' && process.env.NEXT_PUBLIC_ENV !== 'staging'
+  process.env.NODE_ENV === 'production' && !(process.env.VERCEL_ENV === 'preview')
 export const isTest = process.env.NODE_ENV === 'test'

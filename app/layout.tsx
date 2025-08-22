@@ -7,12 +7,17 @@ import { AuthProvider } from '@/contexts/auth-context'
 import { Toaster } from '@/components/ui/toaster'
 import { ThemeProvider } from '@/contexts/theme-context'
 import { Suspense } from 'react'
+import { ErrorBoundary } from '@/components/error-boundary'
+import { PWAInstallPrompt } from '@/components/pwa-install-prompt'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const montserrat = Montserrat({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-montserrat',
   weight: ['400', '600', '700', '900'],
+  preload: true,
+  fallback: ['system-ui', 'arial'],
 })
 
 const openSans = Open_Sans({
@@ -20,6 +25,8 @@ const openSans = Open_Sans({
   display: 'swap',
   variable: '--font-open-sans',
   weight: ['400', '500', '600'],
+  preload: true,
+  fallback: ['system-ui', 'arial'],
 })
 
 export const metadata: Metadata = {
@@ -142,14 +149,18 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
       </head>
       <body className="font-sans antialiased">
-        <Suspense fallback={null}>
-          <AuthProvider>
-            <ThemeProvider>
-              {children}
-              <Toaster />
-            </ThemeProvider>
-          </AuthProvider>
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={null}>
+            <AuthProvider>
+              <ThemeProvider>
+                {children}
+                <Toaster />
+                <PWAInstallPrompt />
+              </ThemeProvider>
+            </AuthProvider>
+          </Suspense>
+        </ErrorBoundary>
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
       </body>
     </html>
   )
