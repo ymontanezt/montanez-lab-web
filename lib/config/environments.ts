@@ -115,12 +115,17 @@ const productionConfig: EnvironmentConfig = {
 // Función para obtener la configuración según el ambiente
 export function getEnvironmentConfig(): EnvironmentConfig {
   const nodeEnv = process.env.NODE_ENV || 'development'
+  const isStaging =
+    process.env.VERCEL_ENV === 'preview' || process.env.NEXT_PUBLIC_ENV === 'staging'
+
+  // Si es staging, usar configuración de staging
+  if (isStaging) {
+    return stagingConfig
+  }
 
   switch (nodeEnv) {
     case 'production':
       return productionConfig
-    case 'staging':
-      return stagingConfig
     case 'development':
     default:
       return developmentConfig
@@ -156,5 +161,7 @@ export function validateEnvironmentConfig(): boolean {
 // Exportar configuraciones individuales para uso directo
 export const config = getEnvironmentConfig()
 export const isDevelopment = process.env.NODE_ENV === 'development'
-export const isStaging = process.env.NODE_ENV === 'staging'
-export const isProduction = process.env.NODE_ENV === 'production'
+export const isStaging =
+  process.env.VERCEL_ENV === 'preview' || process.env.NEXT_PUBLIC_ENV === 'staging'
+export const isProduction =
+  process.env.NODE_ENV === 'production' && !(process.env.VERCEL_ENV === 'preview')
