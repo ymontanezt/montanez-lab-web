@@ -2,18 +2,5 @@
   "version": 2,
   "buildCommand": "bun run build",
   "installCommand": "bun install",
-  "framework": "nextjs",
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "functions": {
-    "app/api/**/*.ts": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "regions": ["iad1"],
-  "github": {
-    "enabled": true,
-    "silent": true
-  }
+  "framework": "nextjs"
 }
