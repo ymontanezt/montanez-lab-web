@@ -51,6 +51,7 @@ export { Footer } from './layout/footer'
 // Componentes de secciones
 export { Hero } from './sections/hero'
 export { Services } from './sections/services'
+export { ServicesCarousel } from './ui/services-carousel'
 export { Team } from './sections/team'
 export { Testimonials } from './sections/testimonials'
 export { Contact } from './sections/contact'

@@ -14,13 +14,13 @@ import {
 } from '@/components/icons/dental-icons'
 import {
   LazyHeroWrapper,
-  LazyServicesWrapper,
   LazyStatsWrapper,
   LazyGalleryWrapper,
   LazyTestimonialsWrapper,
   LazyTeamWrapper,
   LazyContactWrapper,
 } from '@/components/lazy-components'
+import { ServicesCarousel } from '@/components/ui/services-carousel'
 import { LazyAppointmentSchedulerWrapper } from '@/components/lazy-components'
 import { LazyWhatsAppChatWrapper } from '@/components/lazy-components'
 import { colorTokens, utilityClasses } from '@/lib/design-system/color-tokens'
@@ -129,12 +129,12 @@ export default function HomePage() {
 
         {/* Services Section */}
         <section id="servicios">
-          <LazyServicesWrapper
+          <ServicesCarousel
             services={services}
             showBadge={true}
             showFeatures={true}
             showBenefits={true}
-            maxDisplayed={6}
+            maxDisplayed={7}
           />
         </section>
 
