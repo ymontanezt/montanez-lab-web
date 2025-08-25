@@ -159,7 +159,7 @@ export function WhatsAppWidget() {
                   </div>
                   <div className="flex-1">
                     <h3 id="whatsapp-title" className="font-semibold">
-                      Gata viejis
+                      Montañez Lab
                     </h3>
                     <div className="flex items-center gap-1 text-xs opacity-90">
                       <div className="h-2 w-2 rounded-full bg-green-300" aria-hidden="true"></div>
@@ -195,7 +195,7 @@ export function WhatsAppWidget() {
                     </div>
                     <div className="max-w-[80%] rounded-lg bg-white p-3 shadow-sm">
                       <p className="text-sm">
-                        ¡Hola! 👋 Bienvenido a DentalLab Pro. ¿En qué podemos ayudarte hoy?
+                        ¡Hola! 👋 Bienvenido a Montañez Lab. ¿En qué podemos ayudarte hoy?
                       </p>
                       <div className="text-muted-foreground mt-2 flex items-center gap-1 text-xs">
                         <Clock className="h-3 w-3" aria-hidden="true" />

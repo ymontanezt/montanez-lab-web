@@ -125,7 +125,7 @@ export const optimizeNavigation = (href: string): void => {
     if (link) {
       const title = link.getAttribute('title') || link.textContent
       if (title) {
-        document.title = `${title} - DentalLab Pro`
+        document.title = `${title} - Montañez Lab`
       }
     }
   }

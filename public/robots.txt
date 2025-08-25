@@ -1,4 +1,4 @@
-# Robots.txt para Gata viejis - Laboratorio Dental
+# Robots.txt para Montañez Lab - Laboratorio Dental
 # https://dentallabpro.com
 
 User-agent: *

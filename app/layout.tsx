@@ -30,14 +30,14 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'DentalLab Pro - Laboratorio Dental Moderno | Lima, Perú',
+  title: 'Montañez Lab - Laboratorio Dental | Huancayo, Perú',
   description:
-    'Laboratorio dental profesional en Lima, Perú con tecnología CAD/CAM avanzada. Prótesis dentales, coronas, implantes y servicios especializados con 15+ años de experiencia.',
+    'Laboratorio dental en Huancayo, Perú con tecnología CAD/CAM avanzada. Prótesis dentales, coronas, implantes y servicios especializados con 15+ años de experiencia.',
   generator: 'Next.js',
-  applicationName: 'DentalLab Pro',
+  applicationName: 'Montañez Lab',
   keywords: [
-    'laboratorio dental Lima',
-    'prótesis dental Lima',
+    'laboratorio dental Huancayo',
+    'prótesis dental Huancayo',
     'coronas dentales Perú',
     'implantes dentales profesionales',
     'tecnología CAD CAM dental',
@@ -45,13 +45,13 @@ export const metadata: Metadata = {
     'salud bucal Perú',
     'odontología avanzada',
     'escáner intraoral 3D',
-    'prótesis digitales Lima',
+    'prótesis digitales Huancayo',
     'laboratorio dental cerca de mí',
-    'dentistas profesionales Lima',
+    'dentistas profesionales Huancayo',
   ],
-  authors: [{ name: 'DentalLab Pro', url: 'https://dentallab-pro.com' }],
-  creator: 'DentalLab Pro',
-  publisher: 'DentalLab Pro',
+  authors: [{ name: 'Montañez Lab', url: 'https://montanez-lab.com' }],
+  creator: 'Montañez Lab',
+  publisher: 'Montañez Lab',
   robots: {
     index: true,
     follow: true,
@@ -66,32 +66,32 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_PE',
-    url: 'https://dentallab-pro.com',
-    siteName: 'DentalLab Pro',
-    title: 'DentalLab Pro - Laboratorio Dental Profesional | Lima, Perú',
+    url: 'https://montanez-lab.com',
+    siteName: 'Montañez Lab',
+    title: 'Montañez Lab - Laboratorio Dental | Huancayo, Perú',
     description:
-      'Laboratorio dental líder en Lima, Perú con tecnología de vanguardia. Especialistas en prótesis dentales, coronas, implantes y soluciones odontológicas avanzadas.',
+      'Laboratorio dental líder en Huancayo, Perú con tecnología de vanguardia. Especialistas en prótesis dentales, coronas, implantes y soluciones odontológicas avanzadas.',
     images: [
       {
         url: '/modern-dental-lab.png',
         width: 1200,
         height: 630,
-        alt: 'DentalLab Pro - Laboratorio Dental Moderno en Lima, Perú',
+        alt: 'Montañez Lab - Laboratorio Dental Moderno en Huancayo, Perú',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DentalLab Pro - Laboratorio Dental Profesional Lima',
+    title: 'Montañez Lab - Laboratorio Dental Huancayo',
     description:
-      'Laboratorio dental con tecnología CAD/CAM avanzada en Lima, Perú. Prótesis de alta calidad y servicios especializados.',
+      'Laboratorio dental con tecnología CAD/CAM avanzada en Huancayo, Perú. Prótesis de alta calidad y servicios especializados.',
     images: ['/modern-dental-lab.png'],
   },
   verification: {
     google: 'google-site-verification-code',
   },
   category: 'healthcare',
-  metadataBase: new URL('https://dentallab-pro.com'),
+  metadataBase: new URL('https://montanez-lab.com'),
   alternates: {
     canonical: '/',
     languages: {
@@ -110,26 +110,26 @@ export default function RootLayout({
     <html lang="es" className={`${montserrat.variable} ${openSans.variable}`}>
       <head>
         {/* SEO y Meta Tags */}
-        <meta name="geo.region" content="PE-LIM" />
-        <meta name="geo.placename" content="Lima" />
-        <meta name="geo.position" content="-12.0464;-77.0428" />
-        <meta name="ICBM" content="-12.0464, -77.0428" />
+        <meta name="geo.region" content="PE-JUN" />
+        <meta name="geo.placename" content="Huancayo" />
+        <meta name="geo.position" content="-12.0667;-75.2167" />
+        <meta name="ICBM" content="-12.0667, -75.2167" />
 
         {/* Mobile y PWA */}
         <meta name="format-detection" content="telephone=yes" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="DentalLab Pro" />
-        <meta name="application-name" content="DentalLab Pro" />
+        <meta name="apple-mobile-web-app-title" content="Montañez Lab" />
+        <meta name="application-name" content="Montañez Lab" />
         <meta name="msapplication-TileColor" content="#22c55e" />
         <meta name="theme-color" content="#22c55e" />
 
         {/* Canonical y Alternates */}
-        <link rel="canonical" href="https://dentallab-pro.com" />
-        <link rel="alternate" hrefLang="es-pe" href="https://dentallab-pro.com" />
-        <link rel="alternate" hrefLang="es" href="https://dentallab-pro.com/es" />
-        <link rel="alternate" hrefLang="x-default" href="https://dentallab-pro.com" />
+        <link rel="canonical" href="https://montanez-lab.com" />
+        <link rel="alternate" hrefLang="es-pe" href="https://montanez-lab.com" />
+        <link rel="alternate" hrefLang="es" href="https://montanez-lab.com/es" />
+        <link rel="alternate" hrefLang="x-default" href="https://montanez-lab.com" />
 
         {/* Preconnect para performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

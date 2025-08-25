@@ -103,7 +103,7 @@ export function WhatsAppChat() {
     setIsSubmitting(true)
 
     // Crear mensaje para WhatsApp más compacto
-    const message = `🦷 *Consulta Dental - Gata viejis*
+    const message = `🦷 *Consulta Dental - Montañez Lab*
 
 Hola, me interesa el servicio de *${formData.service}*
 
@@ -111,7 +111,7 @@ Hola, me interesa el servicio de *${formData.service}*
 *💬 Consulta:* ${formData.message}
 
 ---
-*Enviado desde la web Gata viejis*`
+*Enviado desde la web Montañez Lab*`
 
     // Codificar mensaje para URL
     const encodedMessage = encodeURIComponent(message)

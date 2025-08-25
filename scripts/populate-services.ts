@@ -61,7 +61,7 @@ const services = [
       },
     ],
     testimonial: {
-      text: 'La precisión de las prótesis digitales de DentalLab Pro ha revolucionado mi práctica. Mis pacientes están encantados con los resultados.',
+      text: 'La precisión de las prótesis digitales de Montañez Lab ha revolucionado mi práctica. Mis pacientes están encantados con los resultados.',
       author: 'Dr. María González',
       role: 'Odontóloga Especialista',
       rating: 5,
@@ -129,7 +129,7 @@ const services = [
       },
     ],
     testimonial: {
-      text: 'Los implantes de DentalLab Pro ofrecen la mejor predictibilidad quirúrgica que he experimentado en 20 años de práctica.',
+      text: 'Los implantes de Montañez Lab ofrecen la mejor predictibilidad quirúrgica que he experimentado en 20 años de práctica.',
       author: 'Dr. Roberto Silva',
       role: 'Implantólogo Certificado',
       rating: 5,
@@ -197,7 +197,7 @@ const services = [
       },
     ],
     testimonial: {
-      text: 'Los alineadores de DentalLab Pro son los más cómodos y efectivos que he usado. Mis pacientes adolescentes los prefieren.',
+      text: 'Los alineadores de Montañez Lab son los más cómodos y efectivos que he usado. Mis pacientes adolescentes los prefieren.',
       author: 'Dra. Ana Rodríguez',
       role: 'Ortodoncista Certificada',
       rating: 5,
@@ -265,7 +265,7 @@ const services = [
       },
     ],
     testimonial: {
-      text: 'Las carillas de DentalLab Pro han transformado completamente la confianza de mis pacientes. La calidad estética es excepcional.',
+      text: 'Las carillas de Montañez Lab han transformado completamente la confianza de mis pacientes. La calidad estética es excepcional.',
       author: 'Dr. Carlos Mendoza',
       role: 'Especialista en Estética Dental',
       rating: 5,
@@ -333,7 +333,7 @@ const services = [
       },
     ],
     testimonial: {
-      text: 'Mi hija ahora ama ir al dentista gracias al equipo de DentalLab Pro. Su enfoque con niños es excepcional.',
+      text: 'Mi hija ahora ama ir al dentista gracias al equipo de Montañez Lab. Su enfoque con niños es excepcional.',
       author: 'María Fernández',
       role: 'Madre de Paciente',
       rating: 5,
@@ -401,7 +401,7 @@ const services = [
       },
     ],
     testimonial: {
-      text: 'A las 2 AM con un dolor insoportable, DentalLab Pro me atendió inmediatamente. Su servicio de urgencias es invaluable.',
+      text: 'A las 2 AM con un dolor insoportable, Montañez Lab me atendió inmediatamente. Su servicio de urgencias es invaluable.',
       author: 'Jorge Martínez',
       role: 'Paciente de Urgencias',
       rating: 5,

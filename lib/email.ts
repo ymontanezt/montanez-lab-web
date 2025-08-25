@@ -161,7 +161,7 @@ export const sendContactNotification = async (
         
         <div class="footer">
           <p style="margin: 0; color: #6b7280; font-size: 14px;">
-            Esta notificación fue generada automáticamente por el sistema de Gata viejis
+            Esta notificación fue generada automáticamente por el sistema de Montañez Lab
           </p>
           <p style="margin: 5px 0 0 0; color: #9ca3af; font-size: 12px;">
             Para gestionar estas notificaciones, accede al panel administrativo
@@ -173,7 +173,7 @@ export const sendContactNotification = async (
   `
 
   const textContent = `
-Nueva Consulta Recibida - Gata viejis
+Nueva Consulta Recibida - Montañez Lab
 
 URGENCIA: ${urgencyLabels[contactData.urgency]}
 
@@ -210,7 +210,7 @@ export const sendContactConfirmation = async (
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Consulta Recibida - DentalLab Pro</title>
+      <title>Consulta Recibida - Montañez Lab</title>
       <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
@@ -225,13 +225,13 @@ export const sendContactConfirmation = async (
       <div class="container">
         <div class="header">
           <h1 style="margin: 0; font-size: 24px;">¡Gracias por contactarnos!</h1>
-          <p style="margin: 10px 0 0 0; opacity: 0.9;">DentalLab Pro - Tecnología Dental del Futuro</p>
+          <p style="margin: 10px 0 0 0; opacity: 0.9;">Montañez Lab - Tecnología Dental del Futuro</p>
         </div>
         
         <div class="content">
           <h2 style="color: #059669;">Hola ${contactData.name},</h2>
           
-          <p>Hemos recibido tu consulta sobre <strong>${contactData.service}</strong> y queremos agradecerte por confiar en DentalLab Pro.</p>
+          <p>Hemos recibido tu consulta sobre <strong>${contactData.service}</strong> y queremos agradecerte por confiar en Montañez Lab.</p>
           
           <div class="highlight-box">
             <h3 style="margin-top: 0; color: #0ea5e9;">📋 Resumen de tu consulta</h3>
@@ -256,12 +256,12 @@ export const sendContactConfirmation = async (
             <p><strong>Urgencias 24/7:</strong> +52 55 URGENCIA</p>
           </div>
           
-          <p>Gracias por elegir DentalLab Pro. Estamos comprometidos con brindarte la mejor tecnología dental y un servicio excepcional.</p>
+          <p>Gracias por elegir Montañez Lab. Estamos comprometidos con brindarte la mejor tecnología dental y un servicio excepcional.</p>
         </div>
         
         <div class="footer">
           <p style="margin: 0; color: #6b7280; font-size: 14px;">
-            <strong>DentalLab Pro</strong> - Av. Javier Prado Este 1234, Lima, Perú
+            <strong>Montañez Lab</strong> - Av. Javier Prado Este 1234, Huancayo, Perú
           </p>
           <p style="margin: 5px 0 0 0; color: #9ca3af; font-size: 12px;">
             Este es un email automático, por favor no respondas a esta dirección
@@ -273,11 +273,11 @@ export const sendContactConfirmation = async (
   `
 
   const textContent = `
-¡Gracias por contactarnos! - Gata viejis
+¡Gracias por contactarnos! - Montañez Lab
 
 Hola ${contactData.name},
 
-Hemos recibido tu consulta sobre ${contactData.service} y queremos agradecerte por confiar en DentalLab Pro.
+Hemos recibido tu consulta sobre ${contactData.service} y queremos agradecerte por confiar en Montañez Lab.
 
 Resumen de tu consulta:
 - Servicio: ${contactData.service}
@@ -296,14 +296,14 @@ Contacto:
 - Email: info@dentallabpro.com
 - Urgencias 24/7: +51 1 999 8888
 
-Gracias por elegir DentalLab Pro.
+Gracias por elegir Montañez Lab.
 
-DentalLab Pro - Av. Javier Prado Este 1234, Lima, Perú
+Montañez Lab - Av. Javier Prado Este 1234, Huancayo, Perú
   `
 
   return await sendEmail({
     to: contactData.email,
-    subject: '✅ Consulta recibida - DentalLab Pro te contactará pronto',
+    subject: '✅ Consulta recibida - Montañez Lab te contactará pronto',
     html: htmlContent,
     text: textContent,
   })
@@ -331,7 +331,7 @@ export const sendAppointmentConfirmation = async (
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Cita Confirmada - DentalLab Pro</title>
+      <title>Cita Confirmada - Montañez Lab</title>
       <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
@@ -355,7 +355,7 @@ export const sendAppointmentConfirmation = async (
       <div class="container">
         <div class="header">
           <h1 style="margin: 0; font-size: 28px;">🎉 ¡Cita Confirmada!</h1>
-          <p style="margin: 10px 0 0 0; opacity: 0.9;">DentalLab Pro - Tu cita ha sido agendada exitosamente</p>
+          <p style="margin: 10px 0 0 0; opacity: 0.9;">Montañez Lab - Tu cita ha sido agendada exitosamente</p>
         </div>
         
         <div class="content">
@@ -399,7 +399,7 @@ export const sendAppointmentConfirmation = async (
           }
           
           <h3 style="color: #059669;">📍 Ubicación</h3>
-          <p><strong>Dirección:</strong> Av. Javier Prado Este 1234, Lima, Perú</p>
+          <p><strong>Dirección:</strong> Av. Javier Prado Este 1234, Huancayo, Perú</p>
           <p><strong>Referencia:</strong> Entre la Av. Arequipa y la Av. Javier Prado</p>
           
           <h3 style="color: #059669;">⏰ Instrucciones para el día de tu cita</h3>
@@ -420,14 +420,14 @@ export const sendAppointmentConfirmation = async (
           </div>
           
           <div style="text-align: center; margin-top: 30px;">
-            <a href="https://maps.google.com/?q=Av.%20Javier%20Prado%20Este%201234,+Lima,+Perú" target="_blank" class="btn">📍 Ver en Google Maps</a>
+            <a href="https://maps.google.com/?q=Av.%20Javier%20Prado%20Este%201234,+Huancayo,+Perú" target="_blank" class="btn">📍 Ver en Google Maps</a>
             <a href="https://wa.me/51912345678" target="_blank" class="btn" style="background: #25d366;">💬 WhatsApp</a>
           </div>
         </div>
         
         <div class="footer">
           <p style="margin: 0; color: #6b7280; font-size: 14px;">
-            <strong>DentalLab Pro</strong> - Av. Javier Prado Este 1234, Lima, Perú
+            <strong>Montañez Lab</strong> - Av. Javier Prado Este 1234, Huancayo, Perú
           </p>
           <p style="margin: 5px 0 0 0; color: #9ca3af; font-size: 12px;">
             Para cambios o cancelaciones: +51 1 234 5678 | info@dentallabpro.com
@@ -439,7 +439,7 @@ export const sendAppointmentConfirmation = async (
   `
 
   const textContent = `
-🎉 ¡Cita Confirmada! - DentalLab Pro
+🎉 ¡Cita Confirmada! - Montañez Lab
 
 Hola ${appointmentData.name},
 
@@ -455,7 +455,7 @@ Tu cita ha sido confirmada exitosamente.
 ${appointmentData.notes ? `📝 NOTAS ADICIONALES: ${appointmentData.notes}` : ''}
 
 📍 UBICACIÓN:
-Av. Javier Prado Este 1234, Lima, Perú
+Av. Javier Prado Este 1234, Huancayo, Perú
 Entre la Av. Arequipa y la Av. Javier Prado
 
 ⏰ INSTRUCCIONES:
@@ -474,9 +474,9 @@ Entre la Av. Arequipa y la Av. Javier Prado
 - WhatsApp: +51 1 234 5678
 - Email: info@dentallabpro.com
 
-Gracias por elegir DentalLab Pro.
+Gracias por elegir Montañez Lab.
 
-DentalLab Pro - Av. Javier Prado Este 1234, Lima, Perú
+Montañez Lab - Av. Javier Prado Este 1234, Huancayo, Perú
   `
 
   return await sendEmail({
@@ -497,7 +497,7 @@ export const sendAppointmentNotification = async (
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Nueva Cita Agendada - DentalLab Pro</title>
+      <title>Nueva Cita Agendada - Montañez Lab</title>
       <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
@@ -521,7 +521,7 @@ export const sendAppointmentNotification = async (
       <div class="container">
         <div class="header">
           <h1 style="margin: 0; font-size: 28px;">🦷 Nueva Cita Agendada</h1>
-          <p style="margin: 10px 0 0 0; opacity: 0.9;">DentalLab Pro - Sistema de Gestión de Citas</p>
+          <p style="margin: 10px 0 0 0; opacity: 0.9;">Montañez Lab - Sistema de Gestión de Citas</p>
         </div>
         
         <div class="content">
@@ -589,7 +589,7 @@ export const sendAppointmentNotification = async (
         
         <div class="footer">
           <p style="margin: 0; color: #6b7280; font-size: 14px;">
-            Esta notificación fue generada automáticamente por el sistema de Gata viejis
+            Esta notificación fue generada automáticamente por el sistema de Montañez Lab
           </p>
           <p style="margin: 5px 0 0 0; color: #9ca3af; font-size: 12px;">
             Para gestionar citas, accede al panel administrativo
@@ -601,7 +601,7 @@ export const sendAppointmentNotification = async (
   `
 
   const textContent = `
-🦷 Nueva Cita Agendada - DentalLab Pro
+🦷 Nueva Cita Agendada - Montañez Lab
 
 Nueva cita registrada en el sistema:
 
@@ -629,7 +629,7 @@ Contacto del cliente:
 - Email: ${appointmentData.email}
 - Teléfono: ${appointmentData.phone}
 
-Esta notificación fue generada automáticamente por el sistema de Gata viejis
+Esta notificación fue generada automáticamente por el sistema de Montañez Lab
   `
 
   return await sendEmail({

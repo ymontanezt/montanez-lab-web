@@ -4,7 +4,7 @@
 export const env = {
   // Site information
   site: {
-    name: process.env.NEXT_PUBLIC_SITE_NAME || 'Gata viejis',
+    name: process.env.NEXT_PUBLIC_SITE_NAME || 'Montañez Lab',
     description: process.env.NEXT_PUBLIC_SITE_DESCRIPTION || 'Laboratorio Dental',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://dentallabpro.com',
     ogImage: process.env.NEXT_PUBLIC_OG_IMAGE || '/og-image.jpg',
@@ -12,8 +12,8 @@ export const env = {
 
   // Company information
   company: {
-    name: process.env.NEXT_PUBLIC_COMPANY_NAME || 'Gata viejis',
-    legalName: process.env.NEXT_PUBLIC_COMPANY_LEGAL_NAME || 'Gata viejis S.A.C.',
+    name: process.env.NEXT_PUBLIC_COMPANY_NAME || 'Montañez Lab',
+    legalName: process.env.NEXT_PUBLIC_COMPANY_LEGAL_NAME || 'Montañez Lab S.A.C.',
     founded: parseInt(process.env.NEXT_PUBLIC_COMPANY_FOUNDED || '2008'),
     industry: process.env.NEXT_PUBLIC_COMPANY_INDUSTRY || 'Odontología y Laboratorio Dental',
     type: process.env.NEXT_PUBLIC_COMPANY_TYPE || 'Privada',
@@ -31,8 +31,8 @@ export const env = {
 
     address: {
       street: process.env.NEXT_PUBLIC_CONTACT_ADDRESS_STREET || 'Av. Javier Prado Este 1234',
-      city: process.env.NEXT_PUBLIC_CONTACT_ADDRESS_CITY || 'Lima',
-      state: process.env.NEXT_PUBLIC_CONTACT_ADDRESS_STATE || 'Lima',
+      city: process.env.NEXT_PUBLIC_CONTACT_ADDRESS_CITY || 'Huancayo',
+      state: process.env.NEXT_PUBLIC_CONTACT_ADDRESS_STATE || 'Junín',
       zipCode: process.env.NEXT_PUBLIC_CONTACT_ADDRESS_ZIPCODE || '15001',
       country: process.env.NEXT_PUBLIC_CONTACT_ADDRESS_COUNTRY || 'Perú',
       coordinates: {

@@ -6,7 +6,7 @@ export default function Loading() {
         <div className="mx-auto mb-4 h-16 w-16 animate-spin rounded-full border-4 border-emerald-200 border-t-emerald-600" />
 
         {/* Loading Text */}
-        <p className="text-lg font-medium text-gray-600">Cargando DentalLab Pro...</p>
+        <p className="text-lg font-medium text-gray-600">Cargando Montañez Lab...</p>
 
         {/* Dental Icon */}
         <div className="mt-6 text-2xl opacity-60">🦷</div>

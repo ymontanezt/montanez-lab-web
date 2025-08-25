@@ -4,9 +4,9 @@
 export const seoConfig = {
   // Configuración básica del sitio
   site: {
-    name: 'Gata viejis - Laboratorio Dental',
+    name: 'Montañez Lab - Laboratorio Dental',
     description:
-      'Laboratorio dental profesional en Lima, Perú con tecnología CAD/CAM avanzada. Prótesis dentales, coronas, implantes y servicios especializados con 15+ años de experiencia.',
+      'Laboratorio dental profesional en Huancayo, Perú con tecnología CAD/CAM avanzada. Prótesis dentales, coronas, implantes y servicios especializados con 15+ años de experiencia.',
     url: 'https://dentallabpro.com',
     language: 'es-PE',
     locale: 'es_PE',
@@ -24,12 +24,12 @@ export const seoConfig = {
     robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
     googlebot: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
     bingbot: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
-    author: 'Gata viejis',
+    author: 'Montañez Lab',
     generator: 'Next.js',
     themeColor: '#22c55e',
     msapplicationTileColor: '#22c55e',
-    appleMobileWebAppTitle: 'Gata viejis',
-    applicationName: 'Gata viejis',
+    appleMobileWebAppTitle: 'Montañez Lab',
+    applicationName: 'Montañez Lab',
     formatDetection: 'telephone=yes',
     mobileWebAppCapable: 'yes',
     appleMobileWebAppCapable: 'yes',
@@ -40,10 +40,10 @@ export const seoConfig = {
   openGraph: {
     enabled: true,
     type: 'website',
-    siteName: 'Gata viejis - Laboratorio Dental',
-    title: 'Gata viejis - Laboratorio Dental de Vanguardia',
+    siteName: 'Montañez Lab - Laboratorio Dental',
+    title: 'Montañez Lab - Laboratorio Dental de Vanguardia',
     description:
-      'Laboratorio dental profesional en Lima, Perú con tecnología CAD/CAM avanzada. Prótesis, implantes y tratamientos estéticos de alta calidad.',
+      'Laboratorio dental profesional en Huancayo, Perú con tecnología CAD/CAM avanzada. Prótesis, implantes y tratamientos estéticos de alta calidad.',
     url: 'https://dentallabpro.com',
     image: '/og-image.jpg',
     imageWidth: 1200,
@@ -58,10 +58,11 @@ export const seoConfig = {
     card: 'summary_large_image',
     site: '@dentallabpro',
     creator: '@dentallabpro',
-    title: 'Gata viejis - Laboratorio Dental de Vanguardia',
-    description: 'Laboratorio dental profesional en Lima, Perú con tecnología CAD/CAM avanzada.',
+    title: 'Montañez Lab - Laboratorio Dental de Vanguardia',
+    description:
+      'Laboratorio dental profesional en Huancayo, Perú con tecnología CAD/CAM avanzada.',
     image: '/og-image.jpg',
-    imageAlt: 'Gata viejis - Laboratorio Dental Moderno',
+    imageAlt: 'Montañez Lab - Laboratorio Dental Moderno',
   },
 
   // Configuración de JSON-LD
@@ -69,8 +70,8 @@ export const seoConfig = {
     enabled: true,
     organization: {
       '@type': 'DentalClinic',
-      name: 'Gata viejis',
-      legalName: 'Gata viejis S.A.C.',
+      name: 'Montañez Lab',
+      legalName: 'Montañez Lab S.A.C.',
       description: 'Laboratorio dental profesional con tecnología CAD/CAM avanzada',
       url: 'https://dentallabpro.com',
       logo: 'https://dentallabpro.com/logo.png',
@@ -80,8 +81,8 @@ export const seoConfig = {
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Av. Javier Prado Este 1234',
-        addressLocality: 'Lima',
-        addressRegion: 'Lima',
+        addressLocality: 'Huancayo',
+        addressRegion: 'Junín',
         postalCode: '15001',
         addressCountry: 'PE',
       },
@@ -94,8 +95,8 @@ export const seoConfig = {
       priceRange: '$$',
       paymentAccepted: ['Cash', 'Credit Card', 'Debit Card', 'Bank Transfer'],
       currenciesAccepted: 'PEN',
-      areaServed: 'Lima',
-      serviceArea: ['Lima', 'Callao', 'San Isidro', 'Miraflores'],
+      areaServed: 'Huancayo',
+      serviceArea: ['Huancayo', 'Chupaca', 'Jauja', 'Concepción'],
       medicalSpecialty: [
         'Prosthodontics',
         'Dental Implantology',
@@ -121,7 +122,7 @@ export const seoConfig = {
     website: {
       '@type': 'WebSite',
       url: 'https://dentallabpro.com',
-      name: 'Gata viejis',
+      name: 'Montañez Lab',
       description: 'Laboratorio dental profesional con tecnología avanzada',
       publisher: {
         '@id': 'https://dentallabpro.com/#organization',
@@ -143,7 +144,7 @@ export const seoConfig = {
         description:
           'Fabricación de prótesis dentales utilizando tecnología CAD/CAM de última generación',
         serviceType: 'Dental Prosthetics',
-        areaServed: 'Lima',
+        areaServed: 'Huancayo',
       },
       {
         '@type': 'Service',
@@ -154,7 +155,7 @@ export const seoConfig = {
         description:
           'Servicios especializados en implantes dentales con materiales de alta calidad',
         serviceType: 'Dental Implantology',
-        areaServed: 'Lima',
+        areaServed: 'Huancayo',
       },
     ],
   },
@@ -200,7 +201,7 @@ export const seoConfig = {
     'cirugía dental',
     'odontopediatría',
     'urgencias dentales',
-    'Lima',
+    'Huancayo',
     'Perú',
   ],
 

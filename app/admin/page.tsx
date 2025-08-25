@@ -195,7 +195,7 @@ export default function AdminPage() {
                   <Microscope className="h-6 w-6 text-white" />
                 </div>
                 <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text font-serif text-lg font-bold text-transparent">
-                  DentalLab Pro
+                  Montañez Lab
                 </span>
               </div>
               <Badge

@@ -12,7 +12,6 @@ import {
   ScannerIcon,
   ToothIcon,
 } from '@/components/icons/dental-icons'
-import { Hero, Services, Stats, Gallery, Testimonials, Team, Contact } from '@/components/sections'
 import {
   LazyHeroWrapper,
   LazyServicesWrapper,

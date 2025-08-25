@@ -118,7 +118,7 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
             </div>
             <div className="text-left">
               <h3 className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-xl font-bold text-transparent dark:from-white dark:to-gray-200">
-                DentalLab Pro
+                Montañez Lab
               </h3>
               <p className="text-xs font-medium text-gray-600 dark:text-gray-400">
                 Laboratorio Dental Moderno
@@ -218,9 +218,9 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
         <div className="border-t border-gray-200 pt-6 text-center dark:border-gray-700">
           <div className="flex flex-col items-center justify-between gap-4 text-sm text-gray-600 sm:flex-row dark:text-gray-400">
             <div className="flex items-center gap-2">
-              <span>© {currentYear} DentalLab Pro. Todos los derechos reservados.</span>
+              <span>© {currentYear} Montañez Lab. Todos los derechos reservados.</span>
               <span className="hidden sm:inline">|</span>
-              <span className="hidden sm:inline">Laboratorio Dental Profesional.</span>
+              <span className="hidden sm:inline">Laboratorio Dental.</span>
             </div>
 
             {/* Developed by @michcode */}

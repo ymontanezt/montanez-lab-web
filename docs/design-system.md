@@ -1,4 +1,4 @@
-# Sistema de Diseño - Gata viejis
+# Sistema de Diseño - Montañez Lab
 
 Una guía completa del sistema de diseño unificado para garantizar consistencia visual y funcional en ambos temas (claro/oscuro).
 

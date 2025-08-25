@@ -178,7 +178,7 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
     '2024-06-29', // San Pedro y San Pablo
     '2024-07-28', // Día de la Independencia
     '2024-07-29', // Día de la Independencia
-    '2024-08-30', // Santa Rosa de Lima
+    '2024-08-30', // Santa Rosa de Huancayo
     '2024-10-08', // Combate de Angamos
     '2024-11-01', // Día de Todos los Santos
     '2024-12-08', // Inmaculada Concepción

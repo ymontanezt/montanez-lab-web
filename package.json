@@ -24,8 +24,7 @@
     "setup:github-secrets": "./scripts/setup-github-secrets.sh",
     "export": "next build",
     "deploy:firebase": "bun run export && firebase deploy --only hosting",
-    "deploy:firebase:preview": "bun run export && firebase hosting:channel:deploy preview",
-    "analyze": "ANALYZE=true bun run build"
+    "deploy:firebase:preview": "bun run export && firebase hosting:channel:deploy preview"
   },
   "dependencies": {
     "@hookform/resolvers": "latest",
@@ -83,6 +82,7 @@
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.9",
+    "web-push": "^3.6.7",
     "web-vitals": "^5.1.0",
     "xlsx": "^0.18.5",
     "zod": "3.25.67"
@@ -117,6 +117,6 @@
     "typescript",
     "tailwindcss"
   ],
-  "author": "Gata Viejis",
+  "author": "Montañez Lab",
   "license": "MIT"
 }

@@ -20,7 +20,7 @@ export function TodoManager() {
     <Card className="mx-auto max-w-2xl p-6">
       <div className="mb-6 text-center">
         <h2 className="heading-secondary mb-2">Estado del Proyecto</h2>
-        <p className="text-muted-foreground">Sitio Web DentalLab Pro - Completado</p>
+        <p className="text-muted-foreground">Sitio Web Montañez Lab - Completado</p>
       </div>
 
       <div className="space-y-3">

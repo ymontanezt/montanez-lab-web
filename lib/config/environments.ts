@@ -40,7 +40,7 @@ export interface EnvironmentConfig {
 // Configuración por defecto para desarrollo
 const developmentConfig: EnvironmentConfig = {
   site: {
-    name: 'Gata Viejis Dental Lab',
+    name: 'Montañez Lab Dental Lab',
     description: 'Laboratorio Dental de Excelencia',
     url: 'http://localhost:3000',
     debug: true,
@@ -65,9 +65,9 @@ const developmentConfig: EnvironmentConfig = {
 // Configuración para staging
 const stagingConfig: EnvironmentConfig = {
   site: {
-    name: 'Gata Viejis Dental Lab (Staging)',
+    name: 'Montañez Lab Dental Lab (Staging)',
     description: 'Laboratorio Dental de Excelencia - Entorno de Pruebas',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://staging.gataviejis.com',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://staging.montanez-lab.com',
     debug: false,
   },
   firebase: {
@@ -90,9 +90,9 @@ const stagingConfig: EnvironmentConfig = {
 // Configuración para producción
 const productionConfig: EnvironmentConfig = {
   site: {
-    name: 'Gata Viejis Dental Lab',
+    name: 'Montañez Lab Dental Lab',
     description: 'Laboratorio Dental de Excelencia',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://gataviejis.com',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://montanez-lab.com',
     debug: false,
   },
   firebase: {

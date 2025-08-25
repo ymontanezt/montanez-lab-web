@@ -1,4 +1,4 @@
-# Optimizaciones de Rendimiento - DentalLab Pro
+# Optimizaciones de Rendimiento - Montañez Lab
 
 ## Resumen de Optimizaciones Implementadas
 
@@ -158,7 +158,6 @@ export const dataLoadingConfig = {
 
 ```tsx
 import { ServiceLink } from '@/components/ui/optimized-link'
-
 ;<ServiceLink href="/servicios/protesis-digitales">Ver Detalles</ServiceLink>
 ```
 
@@ -166,7 +165,6 @@ import { ServiceLink } from '@/components/ui/optimized-link'
 
 ```tsx
 import { AnimatedSection } from '@/components/animated-components'
-
 ;<AnimatedSection delay={0.1} direction="up">
   <Card>Contenido animado</Card>
 </AnimatedSection>

@@ -81,7 +81,7 @@ interface SystemConfig {
 export function SystemSettings() {
   const [config, setConfig] = useState<SystemConfig>({
     siteName: 'Dental Lab Pro',
-    siteDescription: 'Laboratorio dental profesional',
+    siteDescription: 'Laboratorio dental',
     siteUrl: 'https://montanez-lab.com',
     timezone: 'America/Lima',
     contactPhone: '+51 987 654 321',
@@ -265,7 +265,7 @@ export function SystemSettings() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="America/Lima">Lima (GMT-5)</SelectItem>
+                    <SelectItem value="America/Lima">Huancayo (GMT-5)</SelectItem>
                     <SelectItem value="America/New_York">Nueva York (GMT-5/-4)</SelectItem>
                     <SelectItem value="Europe/Madrid">Madrid (GMT+1/+2)</SelectItem>
                     <SelectItem value="UTC">UTC</SelectItem>

@@ -110,9 +110,9 @@ const nextConfig = {
 
   compress: true,
   
-  // Configuración de imágenes para export estático
+  // Configuración de imágenes
   images: {
-    unoptimized: true, // Deshabilitar optimización para export estático
+    unoptimized: process.env.NODE_ENV === 'production', // Solo para producción
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
@@ -123,8 +123,8 @@ const nextConfig = {
 
   poweredByHeader: false,
 
-  // Configuración para export estático (Firebase Hosting)
-  output: 'export',
+  // Configuración condicional para export estático
+  ...(process.env.NODE_ENV === 'production' && { output: 'export' }),
   
   // Deshabilitar linting temporalmente para identificar el problema
   eslint: {

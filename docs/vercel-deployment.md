@@ -43,9 +43,9 @@ vercel
 
 ```bash
 # Configuración del Sitio
-NEXT_PUBLIC_SITE_NAME=Gata viejis
-NEXT_PUBLIC_SITE_DESCRIPTION=Laboratorio Dental Profesional
-NEXT_PUBLIC_SITE_URL=https://gataviejis.com
+NEXT_PUBLIC_SITE_NAME=Montañez Lab
+NEXT_PUBLIC_SITE_DESCRIPTION=Laboratorio Dental
+NEXT_PUBLIC_SITE_URL=https://montanez-lab.com
 NEXT_PUBLIC_DEBUG=false
 
 # Firebase - Producción
@@ -58,8 +58,8 @@ NEXT_PUBLIC_FIREBASE_APP_ID=tu_app_id
 
 # Email
 RESEND_API_KEY=tu_resend_api_key
-RESEND_FROM_EMAIL=info@gataviejis.com
-RESEND_FROM_NAME=Gata viejis
+RESEND_FROM_EMAIL=info@montanez-lab.com
+RESEND_FROM_NAME=Montañez Lab
 
 # Entorno
 NODE_ENV=production
@@ -71,9 +71,9 @@ NODE_ENV=production
 
 ```bash
 # Configuración del Sitio
-NEXT_PUBLIC_SITE_NAME=Gata viejis (Staging)
-NEXT_PUBLIC_SITE_DESCRIPTION=Laboratorio Dental Profesional - Entorno de Pruebas
-NEXT_PUBLIC_SITE_URL=https://staging.gataviejis.com
+NEXT_PUBLIC_SITE_NAME=Montañez Lab (Staging)
+NEXT_PUBLIC_SITE_DESCRIPTION=Laboratorio Dental - Entorno de Pruebas
+NEXT_PUBLIC_SITE_URL=https://staging.montanez-lab.com
 NEXT_PUBLIC_DEBUG=true
 
 # Firebase - Staging (mismo proyecto, diferentes configuraciones)
@@ -86,8 +86,8 @@ NEXT_PUBLIC_FIREBASE_APP_ID=tu_app_id
 
 # Email
 RESEND_API_KEY=tu_resend_api_key_staging
-RESEND_FROM_EMAIL=staging@gataviejis.com
-RESEND_FROM_NAME=Gata viejis (Staging)
+RESEND_FROM_EMAIL=staging@montanez-lab.com
+RESEND_FROM_NAME=Montañez Lab (Staging)
 
 # Entorno
 NODE_ENV=staging
@@ -105,13 +105,13 @@ NODE_ENV=staging
 
 - **Environment**: Production
 - **Variable**: `NEXT_PUBLIC_SITE_URL`
-- **Value**: `https://gataviejis.com`
+- **Value**: `https://montanez-lab.com`
 
 #### **Para Staging (develop):**
 
 - **Environment**: Preview
 - **Variable**: `NEXT_PUBLIC_SITE_URL`
-- **Value**: `https://staging.gataviejis.com`
+- **Value**: `https://staging.montanez-lab.com`
 
 ### **Desde CLI:**
 
