@@ -124,7 +124,11 @@ const nextConfig = {
   poweredByHeader: false,
 
   // Configuración condicional para export estático
-  ...(process.env.NODE_ENV === 'production' && { output: 'export' }),
+  ...(process.env.NODE_ENV === 'production' && { 
+    output: 'export',
+    trailingSlash: true,
+    distDir: 'out',
+  }),
   
   // Deshabilitar linting temporalmente para identificar el problema
   eslint: {
@@ -136,6 +140,9 @@ const nextConfig = {
     optimizePackageImports: ['framer-motion', 'lucide-react'],
     // Deshabilitar prerendering de páginas de error para evitar conflictos
     typedRoutes: false,
+    // Deshabilitar prerendering para evitar errores
+    workerThreads: false,
+    cpus: 1,
   },
 }
 
