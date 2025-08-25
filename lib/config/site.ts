@@ -59,7 +59,6 @@ export const siteConfig = {
       { id: 'galeria', label: 'Galería', href: '#galeria' },
       { id: 'testimonios', label: 'Testimonios', href: '#testimonios' },
       { id: 'team', label: 'Equipo', href: '#team' },
-      { id: 'contacto', label: 'Contacto', href: '#contacto' },
     ],
     footer: [
       { label: 'Servicios', href: '/servicios' },

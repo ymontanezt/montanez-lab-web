@@ -42,7 +42,7 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
 
   const variants = {
     default: 'bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800',
-    minimal: 'bg-white dark:bg-gray-900',
+    minimal: `${colorTokens.background.primary} dark:${colorTokens.background.secondary}`,
   }
 
   const services = [
@@ -103,12 +103,16 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
               <h3 className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-lg font-bold text-transparent md:text-xl dark:from-white dark:to-gray-200">
                 Montañez Lab
               </h3>
-              <p className="text-xs font-medium text-gray-600 dark:text-gray-400">
+              <p
+                className={`text-xs font-medium ${colorTokens.text.muted} dark:${colorTokens.text.muted}`}
+              >
                 Laboratorio Dental Moderno
               </p>
             </div>
           </div>
-          <p className="mx-auto max-w-xl text-xs leading-relaxed text-gray-600 md:text-sm dark:text-gray-300">
+          <p
+            className={`mx-auto max-w-xl text-xs leading-relaxed ${colorTokens.text.muted} md:text-sm dark:${colorTokens.text.tertiary}`}
+          >
             Especialistas en prótesis dentales de alta calidad con tecnología avanzada y materiales
             premium para restaurar tu sonrisa.
           </p>
@@ -118,8 +122,12 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
         <div className="mb-6 grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
           {/* Servicios */}
           <div className="text-center md:text-left">
-            <h4 className="mb-3 flex items-center justify-center gap-2 text-sm font-semibold text-gray-900 md:justify-start dark:text-white">
-              <div className="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400"></div>
+            <h4
+              className={`mb-3 flex items-center justify-center gap-2 text-sm font-semibold ${colorTokens.text.primary} md:justify-start dark:${colorTokens.text.inverse}`}
+            >
+              <div
+                className={`h-2 w-2 rounded-full ${colorTokens.text.brand.primary} dark:${colorTokens.text.brand.primary}`}
+              ></div>
               Servicios
             </h4>
             <ul className="space-y-1.5">
@@ -127,7 +135,7 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
                 <li key={index}>
                   <Link
                     href={service.href}
-                    className="block text-xs text-gray-600 transition-all duration-200 hover:translate-x-1 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+                    className={`block text-xs ${colorTokens.text.muted} transition-all duration-200 hover:translate-x-1 hover:${colorTokens.hover.text.accent} dark:${colorTokens.text.tertiary} dark:hover:${colorTokens.hover.text.accent}`}
                   >
                     {service.name}
                   </Link>
@@ -138,17 +146,23 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
 
           {/* Contacto */}
           <div className="text-center md:text-left">
-            <h4 className="mb-3 flex items-center justify-center gap-2 text-sm font-semibold text-gray-900 md:justify-start dark:text-white">
-              <div className="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400"></div>
+            <h4
+              className={`mb-3 flex items-center justify-center gap-2 text-sm font-semibold ${colorTokens.text.primary} md:justify-start dark:${colorTokens.text.inverse}`}
+            >
+              <div
+                className={`h-2 w-2 rounded-full ${colorTokens.text.brand.primary} dark:${colorTokens.text.brand.primary}`}
+              ></div>
               Contacto
             </h4>
             <ul className="space-y-1.5">
               {contactInfo.map((info, index) => (
                 <li key={index} className="flex items-center justify-center gap-2 md:justify-start">
-                  <info.icon className="h-3 w-3 text-blue-600 dark:text-blue-400" />
+                  <info.icon
+                    className={`h-3 w-3 ${colorTokens.text.brand.primary} dark:${colorTokens.text.brand.primary}`}
+                  />
                   <Link
                     href={info.href}
-                    className="text-xs text-gray-600 transition-all duration-200 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+                    className={`text-xs ${colorTokens.text.muted} transition-all duration-200 hover:${colorTokens.hover.text.accent} dark:${colorTokens.text.tertiary} dark:hover:${colorTokens.hover.text.accent}`}
                   >
                     {info.value}
                   </Link>
@@ -159,15 +173,23 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
 
           {/* Horarios */}
           <div className="text-center md:text-left">
-            <h4 className="mb-3 flex items-center justify-center gap-2 text-sm font-semibold text-gray-900 md:justify-start dark:text-white">
-              <div className="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400"></div>
+            <h4
+              className={`mb-3 flex items-center justify-center gap-2 text-sm font-semibold ${colorTokens.text.primary} md:justify-start dark:${colorTokens.text.inverse}`}
+            >
+              <div
+                className={`h-2 w-2 rounded-full ${colorTokens.text.brand.primary} dark:${colorTokens.text.brand.primary}`}
+              ></div>
               Horarios
             </h4>
             <ul className="space-y-1.5">
               {schedule.map((item, index) => (
                 <li key={index} className="flex items-center justify-center gap-2 md:justify-start">
-                  <Clock className="h-3 w-3 text-blue-600 dark:text-blue-400" />
-                  <span className="text-xs text-gray-600 dark:text-gray-300">
+                  <Clock
+                    className={`h-3 w-3 ${colorTokens.text.brand.primary} dark:${colorTokens.text.brand.primary}`}
+                  />
+                  <span
+                    className={`text-xs ${colorTokens.text.muted} dark:${colorTokens.text.tertiary}`}
+                  >
                     {item.day}: {item.hours}
                   </span>
                 </li>
@@ -177,8 +199,12 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
 
           {/* Redes Sociales */}
           <div className="text-center md:text-left">
-            <h4 className="mb-3 flex items-center justify-center gap-2 text-sm font-semibold text-gray-900 md:justify-start dark:text-white">
-              <div className="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400"></div>
+            <h4
+              className={`mb-3 flex items-center justify-center gap-2 text-sm font-semibold ${colorTokens.text.primary} md:justify-start dark:${colorTokens.text.inverse}`}
+            >
+              <div
+                className={`h-2 w-2 rounded-full ${colorTokens.text.brand.primary} dark:${colorTokens.text.brand.primary}`}
+              ></div>
               Síguenos
             </h4>
             <div className="flex justify-center gap-2 md:justify-start md:gap-3">
@@ -198,8 +224,12 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
         </div>
 
         {/* Barra Inferior */}
-        <div className="border-t border-blue-200 pt-4 text-center dark:border-blue-800">
-          <div className="flex flex-col items-center justify-between gap-3 text-xs text-gray-600 sm:flex-row md:text-sm dark:text-gray-400">
+        <div
+          className={`border-t-2 ${colorTokens.border.brand.light} pt-4 text-center dark:${colorTokens.border.brand.light}`}
+        >
+          <div
+            className={`flex flex-col items-center justify-between gap-3 text-xs ${colorTokens.text.muted} sm:flex-row md:text-sm dark:${colorTokens.text.muted}`}
+          >
             <div className="flex flex-col items-center gap-1 sm:flex-row sm:gap-2">
               <span>© {currentYear} Montañez Lab. Todos los derechos reservados.</span>
               <span className="hidden sm:inline">|</span>
@@ -208,12 +238,14 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
 
             {/* Developed by @michcode */}
             <div className="flex items-center gap-2 text-xs">
-              <span className="text-gray-500 dark:text-gray-500">Desarrollado por</span>
+              <span className={`${colorTokens.text.muted} dark:${colorTokens.text.muted}`}>
+                Desarrollado por
+              </span>
               <Link
                 href="https://www.linkedin.com/in/yuri-michael-monta%C3%B1ez-tuncar-39744496/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                className={`flex items-center gap-1 font-semibold ${colorTokens.text.brand.primary} transition-colors hover:${colorTokens.hover.text.brand.primary} dark:${colorTokens.text.brand.primary} dark:hover:${colorTokens.hover.text.brand.primary}`}
               >
                 <span>@michcode</span>
                 <ExternalLink className="h-3 w-3" />

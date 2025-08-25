@@ -35,16 +35,30 @@ export function ThemeToggle() {
   if (!mounted) {
     return (
       <div className="flex items-center space-x-2">
-        <Button variant="outline" size="sm" disabled>
-          <Sun className="h-4 w-4" />
+        <Button
+          variant="outline"
+          size="sm"
+          disabled
+          className="h-8 w-8 border-slate-300 bg-white p-0 dark:border-slate-600 dark:bg-slate-800"
+        >
+          <Sun className="h-4 w-4 text-slate-400 dark:text-slate-500" />
         </Button>
       </div>
     )
   }
 
   return (
-    <Button variant="outline" size="sm" onClick={toggleTheme} className="h-8 w-8 p-0">
-      {theme === 'light' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={toggleTheme}
+      className="h-8 w-8 border-slate-300 bg-white p-0 hover:border-slate-400 hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:hover:border-slate-500 dark:hover:bg-slate-700"
+    >
+      {theme === 'light' ? (
+        <Sun className="h-4 w-4 text-slate-700 dark:text-slate-300" />
+      ) : (
+        <Moon className="h-4 w-4 text-slate-700 dark:text-slate-300" />
+      )}
       <span className="sr-only">
         {theme === 'light' ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro'}
       </span>
