@@ -227,16 +227,9 @@ export const Hero: React.FC<HeroProps> = ({
           contentVariants[variant],
           isMobile && 'cursor-grab select-none active:cursor-grabbing'
         )}
-        style={isMobile ? carouselStyle : undefined}
       >
         <div className="relative flex w-full flex-col items-center gap-2 text-center md:w-auto md:gap-4">
-          <div
-            className="relative flex w-full flex-col items-center gap-2 px-4 py-4 text-center md:w-auto md:gap-3 md:px-6 md:py-8"
-            style={{
-              transform: isMobile ? `translateX(${carouselStyle.x?.get() || 0}px)` : undefined,
-              transition: isMobile ? 'transform 0.3s ease-out' : undefined,
-            }}
-          >
+          <div className="relative flex w-full flex-col items-center gap-2 px-4 py-4 text-center md:w-auto md:gap-3 md:px-6 md:py-8">
             <AnimatePresence>
               <motion.h2
                 key={`title-${currentSlide}`}

@@ -81,7 +81,7 @@ export default function NotFound() {
             Si crees que esto es un error, puedes contactarnos directamente.
           </p>
           <a
-            href={`tel:${process.env.NEXT_PUBLIC_CONTACT_SUPPORT || '+51969960969'}`}
+            href="tel:+51969960969"
             className="inline-flex items-center gap-2 font-medium text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
           >
             <ArrowLeft className="h-4 w-4" />
