@@ -292,7 +292,7 @@ export interface AnalyticsEvent {
 }
 
 // Theme types
-export type Theme = 'light' | 'dark' | 'system'
+export type Theme = 'light' | 'dark'
 
 // Accessibility types
 export interface AccessibilitySettings {
