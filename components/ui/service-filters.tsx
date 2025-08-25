@@ -111,10 +111,10 @@ export function ServiceFilters({ services, onFilterChange, className }: ServiceF
                 size="sm"
                 onClick={() => setSelectedCategory(category)}
                 className={cn(
-                  'capitalize',
+                  'capitalize transition-colors duration-200',
                   selectedCategory === category
-                    ? 'bg-primary-600 dark:bg-primary-500 text-white'
-                    : colorTokens.text.secondary
+                    ? 'bg-blue-800 text-white hover:bg-blue-700 dark:bg-blue-200 dark:text-blue-900 dark:hover:bg-blue-300'
+                    : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100'
                 )}
               >
                 {category === 'all' ? 'Todas' : category}
@@ -141,9 +141,10 @@ export function ServiceFilters({ services, onFilterChange, className }: ServiceF
                 size="sm"
                 onClick={() => setPriceRange(range.value)}
                 className={cn(
+                  'transition-colors duration-200',
                   priceRange === range.value
-                    ? 'bg-primary-600 dark:bg-primary-500 text-white'
-                    : colorTokens.text.secondary
+                    ? 'bg-blue-800 text-white hover:bg-blue-700 dark:bg-blue-200 dark:text-blue-900 dark:hover:bg-blue-300'
+                    : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100'
                 )}
               >
                 {range.label}
@@ -164,7 +165,7 @@ export function ServiceFilters({ services, onFilterChange, className }: ServiceF
             variant="outline"
             size="sm"
             onClick={clearFilters}
-            className={`${colorTokens.text.tertiary} ${colorTokens.hover.text.secondary}`}
+            className="text-gray-600 transition-colors duration-200 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-100"
           >
             Limpiar filtros
           </Button>
@@ -181,7 +182,12 @@ export function ServiceFilters({ services, onFilterChange, className }: ServiceF
             className="rounded-lg border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-900/20"
           >
             <div className="flex items-center gap-2 text-sm text-blue-800 dark:text-blue-200">
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="h-4 w-4 text-blue-600 dark:text-blue-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

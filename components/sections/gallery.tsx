@@ -5,6 +5,7 @@ import { useState, useMemo, useEffect } from 'react'
 import Image from 'next/image'
 import { GalleryImage } from '@/types'
 import { cn } from '@/lib/design-system/utilities'
+import { colorTokens, componentColors } from '@/lib/design-system/color-tokens'
 import { Filter, X, ChevronLeft, ChevronRight, Calendar, Tag, Eye } from 'lucide-react'
 import { GallerySkeleton } from '@/components/ui/skeleton'
 
@@ -168,7 +169,7 @@ export function Gallery({
         {/* Filtros por categorías */}
         <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
           <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-            <Filter className="h-4 w-4" />
+            <Filter className="h-4 w-4 text-gray-600 dark:text-gray-400" />
             <span className="text-sm font-semibold">Filtrar por:</span>
           </div>
           {categories.map(category => (
@@ -176,13 +177,13 @@ export function Gallery({
               key={`filter-${category}`}
               onClick={() => setSelectedCategory(category)}
               className={cn(
-                'flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200',
-                selectedCategory === category
-                  ? 'bg-green-600 text-white shadow-lg shadow-green-600/25 hover:bg-green-700'
-                  : 'bg-gray-100 text-gray-800 hover:bg-gray-200 hover:shadow-md dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700'
+                'gallery-filter-button',
+                selectedCategory === category ? 'selected' : ''
               )}
             >
-              <span className="text-base">{getCategoryIcon(category)}</span>
+              <span className="text-base text-gray-700 dark:text-gray-300">
+                {getCategoryIcon(category)}
+              </span>
               <span>{category === 'all' ? 'Todos' : getCategoryLabel(category)}</span>
             </button>
           ))}
@@ -199,7 +200,7 @@ export function Gallery({
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative cursor-pointer overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-green-500/20"
+                className={`group relative cursor-pointer overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20`}
                 onClick={() => handleImageSelect(image)}
               >
                 <div className="relative aspect-square">
@@ -246,9 +247,9 @@ export function Gallery({
                         {image.tags.slice(0, 3).map((tag, tagIndex) => (
                           <span
                             key={tagIndex}
-                            className="inline-flex items-center gap-1 rounded-full border border-green-400/40 bg-green-500/98 px-2.5 py-1 text-xs font-semibold text-white shadow-lg backdrop-blur-sm"
+                            className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-semibold text-white shadow-lg backdrop-blur-sm ${colorTokens.border.brand.accent}/40 ${colorTokens.background.brand.accent}/98`}
                           >
-                            <Tag className="h-3 w-3" />
+                            <Tag className="h-3 w-3 text-blue-600 dark:text-blue-400" />
                             {tag}
                           </span>
                         ))}
@@ -288,11 +289,13 @@ export function Gallery({
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.8, opacity: 0, y: 20 }}
                 transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                className="relative my-8 max-h-[95vh] w-full max-w-7xl overflow-hidden rounded-2xl border border-green-200 bg-white shadow-2xl dark:border-gray-600 dark:bg-gray-900"
+                className={`relative my-8 max-h-[95vh] w-full max-w-7xl overflow-hidden rounded-2xl border bg-white shadow-2xl dark:border-gray-600 dark:bg-gray-900 ${colorTokens.border.brand.light}`}
                 onClick={e => e.stopPropagation()}
               >
                 {/* Header del modal */}
-                <div className="sticky top-0 z-20 border-b border-green-200 bg-gradient-to-r from-gray-50 to-white p-4 md:p-6 dark:border-gray-600 dark:from-gray-800 dark:to-gray-900">
+                <div
+                  className={`sticky top-0 z-20 border-b bg-gradient-to-r from-gray-50 to-white p-4 md:p-6 dark:border-gray-600 dark:from-gray-800 dark:to-gray-900 ${colorTokens.border.brand.light}`}
+                >
                   <div className="flex items-start justify-between">
                     <div className="min-w-0 flex-1">
                       <h2 className="mb-2 line-clamp-2 text-xl font-bold text-gray-900 md:text-2xl dark:text-white">
@@ -300,7 +303,7 @@ export function Gallery({
                       </h2>
                       <div className="flex flex-wrap items-center gap-3 text-sm">
                         <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                          <Calendar className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                          <Calendar className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                           <span className="font-medium">
                             {selectedImage.createdAt.toLocaleDateString('es-ES', {
                               year: 'numeric',
@@ -310,7 +313,9 @@ export function Gallery({
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="rounded-full border border-green-200 bg-green-50 px-2 py-1 text-xs font-semibold text-green-700 dark:border-green-700 dark:bg-green-900/20 dark:text-green-300">
+                          <span
+                            className={`rounded-full border px-2 py-1 text-xs font-semibold dark:border-gray-700 dark:bg-gray-900/20 ${colorTokens.border.brand.light} ${colorTokens.background.brand.light} ${colorTokens.text.brand.primary} dark:${colorTokens.text.brand.accent}`}
+                          >
                             {getCategoryLabel(selectedImage.category)}
                           </span>
                         </div>
@@ -319,7 +324,7 @@ export function Gallery({
 
                     <button
                       onClick={() => setSelectedImage(null)}
-                      className="ml-4 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-green-200 bg-gray-100 text-gray-600 shadow-sm transition-all duration-200 hover:scale-110 hover:bg-gray-200 hover:text-gray-800 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
+                      className={`ml-4 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border bg-gray-100 text-gray-600 shadow-sm transition-all duration-200 hover:scale-110 hover:bg-gray-200 hover:text-gray-800 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 ${colorTokens.border.brand.light}`}
                       aria-label="Cerrar modal"
                     >
                       <X className="h-5 w-5" />
@@ -337,7 +342,7 @@ export function Gallery({
                         alt={selectedImage.alt}
                         width={1200}
                         height={800}
-                        className="h-auto max-w-full rounded-lg border border-green-200 object-contain shadow-lg dark:border-gray-600"
+                        className={`h-auto max-w-full rounded-lg border object-contain shadow-lg dark:border-gray-600 ${colorTokens.border.brand.light}`}
                         onError={e => {
                           const target = e.target as HTMLImageElement
                           target.src = '/gallery-placeholder.svg'
@@ -352,20 +357,22 @@ export function Gallery({
                     <>
                       <button
                         onClick={handlePreviousImage}
-                        className="absolute top-1/2 left-4 z-10 -translate-y-1/2 rounded-full border border-green-500/50 bg-green-600/95 p-3 text-white shadow-xl backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-green-700"
+                        className={`absolute top-1/2 left-4 z-10 -translate-y-1/2 rounded-full border p-3 text-white shadow-xl backdrop-blur-sm transition-all duration-200 hover:scale-110 ${colorTokens.border.brand.accent}/50 ${colorTokens.background.brand.primary}/95 hover:${colorTokens.hover.background.brand.primary}`}
                         aria-label="Imagen anterior"
                       >
                         <ChevronLeft className="h-6 w-6" />
                       </button>
                       <button
                         onClick={handleNextImage}
-                        className="absolute top-1/2 right-4 z-10 -translate-y-1/2 rounded-full border border-green-500/50 bg-green-600/95 p-3 text-white shadow-xl backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-green-700"
+                        className={`absolute top-1/2 right-4 z-10 -translate-y-1/2 rounded-full border p-3 text-white shadow-xl backdrop-blur-sm transition-all duration-200 hover:scale-110 ${colorTokens.border.brand.accent}/50 ${colorTokens.background.brand.primary}/95 hover:${colorTokens.hover.background.brand.primary}`}
                         aria-label="Siguiente imagen"
                       >
                         <ChevronRight className="h-6 w-6" />
                       </button>
 
-                      <div className="absolute top-4 left-4 z-10 rounded-full border border-green-500/50 bg-green-600/95 px-4 py-2 text-sm font-bold text-white shadow-xl backdrop-blur-sm">
+                      <div
+                        className={`absolute top-4 left-4 z-10 rounded-full border px-4 py-2 text-sm font-bold text-white shadow-xl backdrop-blur-sm ${colorTokens.border.brand.accent}/50 ${colorTokens.background.brand.primary}/95`}
+                      >
                         {currentImageIndex + 1} de {filteredImages.length}
                       </div>
                     </>
@@ -376,7 +383,9 @@ export function Gallery({
                     {selectedImage.description && (
                       <div className="mb-6">
                         <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
-                          <span className="h-2 w-2 rounded-full bg-green-500"></span>
+                          <span
+                            className={`h-2 w-2 rounded-full ${colorTokens.background.brand.accent}`}
+                          ></span>
                           Descripción del Trabajo
                         </h3>
                         <p className="text-base leading-relaxed text-gray-700 dark:text-gray-200">
@@ -388,14 +397,16 @@ export function Gallery({
                     {selectedImage.tags && selectedImage.tags.length > 0 && (
                       <div className="mb-6">
                         <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
-                          <Tag className="h-5 w-5 text-green-600 dark:text-green-400" />
+                          <Tag
+                            className={`h-5 w-5 ${colorTokens.text.brand.accent} dark:${colorTokens.text.brand.accent}`}
+                          />
                           Características y Tecnologías
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {selectedImage.tags.map((tag, tagIndex) => (
                             <span
                               key={tagIndex}
-                              className="inline-flex items-center gap-2 rounded-full border border-green-200 bg-gradient-to-r from-green-50 to-emerald-50 px-4 py-2 text-sm font-medium text-green-800 shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md dark:border-green-700/50 dark:from-green-900/30 dark:to-emerald-900/30 dark:text-green-200"
+                              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md ${colorTokens.border.brand.light} bg-gradient-to-r from-blue-50 to-teal-50 ${colorTokens.text.brand.primary} dark:${colorTokens.border.brand.primary}/50 dark:from-blue-900/30 dark:to-teal-900/30 dark:${colorTokens.text.brand.accent}`}
                             >
                               {tag}
                             </span>
@@ -405,9 +416,13 @@ export function Gallery({
                     )}
 
                     {/* Información técnica */}
-                    <div className="grid grid-cols-1 gap-4 rounded-xl border border-green-200 bg-gray-50 p-4 md:grid-cols-2 dark:border-gray-600 dark:bg-gray-800">
+                    <div
+                      className={`grid grid-cols-1 gap-4 rounded-xl border bg-gray-50 p-4 md:grid-cols-2 dark:border-gray-600 dark:bg-gray-800 ${colorTokens.border.brand.light}`}
+                    >
                       <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-green-200 bg-green-100 dark:border-green-700 dark:bg-green-900/30">
+                        <div
+                          className={`flex h-10 w-10 items-center justify-center rounded-full border dark:border-gray-700 dark:bg-gray-900/30 ${colorTokens.border.brand.light} ${colorTokens.background.brand.light}`}
+                        >
                           <span className="text-lg">{getCategoryIcon(selectedImage.category)}</span>
                         </div>
                         <div>

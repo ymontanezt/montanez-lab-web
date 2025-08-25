@@ -144,6 +144,7 @@ export interface HeroSlide extends BaseEntity {
   cta: string
   image: string
   alt: string
+  videoUrl?: string
   stats?: Record<string, string>
   isActive: boolean
   order: number

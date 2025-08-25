@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getServiceBySlug, services } from '../../../data'
 import { notFound } from 'next/navigation'
+import { colorTokens, componentColors } from '@/lib/design-system/color-tokens'
 
 export async function generateStaticParams() {
   return services.map(service => ({
@@ -39,9 +40,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       {/* Header Simple */}
       <div className="border-b bg-white shadow-sm">
         <div className="container mx-auto px-4 py-4">
-          <Link href="/" className="inline-flex items-center text-green-600 hover:text-green-700">
+          <Link
+            href="/#servicios"
+            className={`inline-flex items-center ${colorTokens.text.brand.accent} hover:${colorTokens.hover.text.brand.accent}`}
+          >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Volver al Inicio
+            Volver a Servicios
           </Link>
         </div>
       </div>
@@ -56,7 +60,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             {/* Botones de Acción */}
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <a href="/#citas" className="inline-block">
-                <Button size="lg" className="bg-green-600 px-8 py-3 text-white hover:bg-green-700">
+                <Button
+                  size="lg"
+                  className={`px-8 py-3 ${componentColors.button.primary.background} ${componentColors.button.primary.text} ${componentColors.button.primary.border} ${componentColors.button.primary.focus}`}
+                >
                   <Calendar className="mr-2 h-5 w-5" />
                   Agendar Consulta
                 </Button>
@@ -65,7 +72,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-green-600 px-8 py-3 text-green-600 hover:bg-green-50"
+                  className={`px-8 py-3 ${componentColors.button.outline.background} ${componentColors.button.outline.text} ${componentColors.button.outline.border} ${componentColors.button.outline.focus} hover:bg-blue-100 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-100`}
                 >
                   <Phone className="mr-2 h-5 w-5" />
                   Llamar Ahora
@@ -102,11 +109,15 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </h3>
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
-                        <CheckCircle className="h-5 w-5 flex-shrink-0 text-green-600" />
+                        <CheckCircle
+                          className={`h-5 w-5 flex-shrink-0 ${colorTokens.text.brand.accent}`}
+                        />
                         <span className="text-gray-700">Precio: {service.price}</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <CheckCircle className="h-5 w-5 flex-shrink-0 text-green-600" />
+                        <CheckCircle
+                          className={`h-5 w-5 flex-shrink-0 ${colorTokens.text.brand.accent}`}
+                        />
                         <span className="text-gray-700">Duración: {service.duration}</span>
                       </div>
                     </div>
@@ -120,7 +131,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <div className="space-y-3">
                       {service.benefits?.slice(0, 4).map((benefit, index) => (
                         <div key={index} className="flex items-center gap-3">
-                          <CheckCircle className="h-5 w-5 flex-shrink-0 text-green-600" />
+                          <CheckCircle
+                            className={`h-5 w-5 flex-shrink-0 ${colorTokens.text.brand.accent}`}
+                          />
                           <span className="text-gray-700">{benefit}</span>
                         </div>
                       ))}
@@ -147,7 +160,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <h3 className="mb-4 text-xl font-semibold text-gray-900">Nuestro Proceso</h3>
                     <div className="space-y-4">
                       <div className="flex items-start gap-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-sm font-semibold text-green-600">
+                        <div
+                          className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold ${colorTokens.background.brand.light} ${colorTokens.text.brand.accent}`}
+                        >
                           1
                         </div>
                         <div>
@@ -158,7 +173,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-sm font-semibold text-green-600">
+                        <div
+                          className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold ${colorTokens.background.brand.light} ${colorTokens.text.brand.accent}`}
+                        >
                           2
                         </div>
                         <div>
@@ -169,7 +186,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-sm font-semibold text-green-600">
+                        <div
+                          className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold ${colorTokens.background.brand.light} ${colorTokens.text.brand.accent}`}
+                        >
                           3
                         </div>
                         <div>
@@ -184,7 +203,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </Card>
 
                 {/* CTA Final */}
-                <Card className="border-0 bg-green-50 shadow-sm">
+                <Card className={`border-0 shadow-sm ${colorTokens.background.brand.light}`}>
                   <CardContent className="p-6 text-center">
                     <h3 className="mb-3 text-xl font-semibold text-gray-900">
                       ¿Listo para comenzar?
@@ -194,7 +213,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </p>
                     <div className="flex flex-col justify-center gap-3 sm:flex-row">
                       <a href="/#citas">
-                        <Button className="bg-green-600 text-white hover:bg-green-700">
+                        <Button
+                          className={`${componentColors.button.primary.background} ${componentColors.button.primary.text} ${componentColors.button.primary.border} ${componentColors.button.primary.focus}`}
+                        >
                           <Calendar className="mr-2 h-4 w-4" />
                           Agendar Ahora
                         </Button>
@@ -202,7 +223,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <a href="tel:+1234567890">
                         <Button
                           variant="outline"
-                          className="border-green-600 text-green-600 hover:bg-green-100"
+                          className={`${componentColors.button.outline.background} ${componentColors.button.outline.text} ${componentColors.button.outline.border} ${componentColors.button.outline.focus} hover:bg-blue-100 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-100`}
                         >
                           <Phone className="mr-2 h-4 w-4" />
                           Llamar

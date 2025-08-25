@@ -8,22 +8,22 @@ export const stats: Stat[] = [
   {
     value: '500+',
     label: 'Casos exitosos',
-    icon: '✅',
+    icon: 'success',
   },
   {
     value: '50+',
     label: 'Clientes satisfechos',
-    icon: '😊',
+    icon: 'clients',
   },
   {
     value: '10+',
     label: 'Años de experiencia',
-    icon: '🎯',
+    icon: 'experience',
   },
   {
     value: '24/7',
     label: 'Soporte disponible',
-    icon: '🕒',
+    icon: 'support',
   },
 ]
 

@@ -13,6 +13,8 @@ import { colorTokens, componentColors } from '@/lib/design-system/color-tokens'
 import { utilityClasses } from '@/lib/design-system/utilities'
 import { ChevronLeft, ChevronRight, Play, ExternalLink, ArrowRight, Sparkles } from 'lucide-react'
 import { VideoModal } from '@/components/ui/video-modal'
+import { useIsMobile } from '@/hooks/use-mobile'
+import { useCarouselGestures } from '@/hooks/use-touch-gestures'
 
 interface HeroProps {
   slides: HeroSlide[]
@@ -36,6 +38,23 @@ export const Hero: React.FC<HeroProps> = ({
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
+  const isMobile = useIsMobile()
+
+  // Touch gestures for mobile carousel navigation
+  // Permite navegación por gestos táctiles en dispositivos móviles
+  const { bind: carouselBind, style: carouselStyle } = useCarouselGestures(
+    slides.length,
+    index => {
+      setCurrentSlide(index)
+      setIsPlaying(false)
+      // Resume auto-play after manual navigation
+      setTimeout(() => setIsPlaying(autoPlay), 3000)
+    },
+    autoPlay ? autoPlayInterval : undefined
+  )
+
+  // State for swipe feedback
+  const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null)
 
   // Auto-advance carousel
   useEffect(() => {
@@ -61,10 +80,20 @@ export const Hero: React.FC<HeroProps> = ({
   }
 
   const goToNext = () => {
+    if (isMobile) {
+      setSwipeDirection('left')
+      setTimeout(() => setSwipeDirection(null), 1000)
+      triggerHapticFeedback()
+    }
     setCurrentSlide(prev => (prev + 1) % slides.length)
   }
 
   const goToPrevious = () => {
+    if (isMobile) {
+      setSwipeDirection('right')
+      setTimeout(() => setSwipeDirection(null), 1000)
+      triggerHapticFeedback()
+    }
     setCurrentSlide(prev => (prev === 0 ? slides.length - 1 : prev - 1))
   }
 
@@ -87,6 +116,13 @@ export const Hero: React.FC<HeroProps> = ({
   // Open YouTube video modal
   const openYouTubeVideo = () => {
     setIsVideoModalOpen(true)
+  }
+
+  // Haptic feedback for mobile devices
+  const triggerHapticFeedback = () => {
+    if (isMobile && 'vibrate' in navigator) {
+      navigator.vibrate(50) // Short vibration for feedback
+    }
   }
 
   // Hero variants
@@ -119,6 +155,32 @@ export const Hero: React.FC<HeroProps> = ({
     >
       {/* Background Images */}
       <div className="absolute inset-0" aria-hidden="true">
+        {/* Swipe Direction Indicator */}
+        {isMobile && swipeDirection && (
+          <motion.div
+            className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div
+              className={cn(
+                'flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-white backdrop-blur-sm',
+                swipeDirection === 'left' ? 'mr-8 ml-auto' : 'mr-auto ml-8'
+              )}
+            >
+              <span className="text-sm font-medium">
+                {swipeDirection === 'left' ? 'Siguiente' : 'Anterior'}
+              </span>
+              {swipeDirection === 'left' ? (
+                <ChevronRight className="h-4 w-4" />
+              ) : (
+                <ChevronLeft className="h-4 w-4" />
+              )}
+            </div>
+          </motion.div>
+        )}
         <AnimatePresence>
           <motion.div
             key={currentSlide}
@@ -159,13 +221,22 @@ export const Hero: React.FC<HeroProps> = ({
 
       {/* Hero Content */}
       <div
+        {...(isMobile ? carouselBind() : {})}
         className={cn(
           'relative z-10 mx-auto flex w-full flex-col items-center px-4 py-6 text-center md:py-12',
-          contentVariants[variant]
+          contentVariants[variant],
+          isMobile && 'cursor-grab select-none active:cursor-grabbing'
         )}
+        style={isMobile ? carouselStyle : undefined}
       >
         <div className="relative flex w-full flex-col items-center gap-2 text-center md:w-auto md:gap-4">
-          <div className="relative flex w-full flex-col items-center gap-2 px-4 py-4 text-center md:w-auto md:gap-3 md:px-6 md:py-8">
+          <div
+            className="relative flex w-full flex-col items-center gap-2 px-4 py-4 text-center md:w-auto md:gap-3 md:px-6 md:py-8"
+            style={{
+              transform: isMobile ? `translateX(${carouselStyle.x?.get() || 0}px)` : undefined,
+              transition: isMobile ? 'transform 0.3s ease-out' : undefined,
+            }}
+          >
             <AnimatePresence>
               <motion.h2
                 key={`title-${currentSlide}`}
@@ -231,16 +302,20 @@ export const Hero: React.FC<HeroProps> = ({
               </Button>
 
               {/* Botón de video mejorado con mejor contraste */}
-              {showPlayButton && (
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="group h-14 w-14 rounded-full border-2 border-white/60 bg-transparent p-0 text-white shadow-lg backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white/30 focus:ring-2 focus:ring-white focus:ring-offset-2"
-                  onClick={openYouTubeVideo}
-                  aria-label="Ver video en YouTube"
-                >
-                  <Play className="ml-1 h-6 w-6 transition-transform duration-200 group-hover:scale-110" />
-                </Button>
+              {showPlayButton && slides[currentSlide].videoUrl && (
+                <div className="flex flex-col items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="group h-14 w-14 rounded-full border-2 border-white/60 bg-transparent p-0 text-white shadow-lg backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white/30 focus:ring-2 focus:ring-white focus:ring-offset-2"
+                    onClick={openYouTubeVideo}
+                    aria-label="Ver video en YouTube"
+                    title="Ver video promocional"
+                  >
+                    <Play className="ml-1 h-6 w-6 transition-transform duration-200 group-hover:scale-110" />
+                  </Button>
+                  <span className="text-center text-xs text-white/80">Ver video promocional</span>
+                </div>
               )}
             </motion.div>
 
@@ -281,34 +356,64 @@ export const Hero: React.FC<HeroProps> = ({
             aria-label={`Ir al slide ${idx + 1}`}
           />
         ))}
+
+        {/* Mobile hint for touch gestures */}
+        {/* 
+          En móvil se muestra un indicador de que se puede deslizar
+          para navegar entre slides, ya que los botones están ocultos
+        */}
+        {isMobile && slides.length > 1 && (
+          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
+            <div className="flex items-center gap-2">
+              <ChevronLeft className="h-3 w-3 text-white/50" />
+              <div className="flex gap-1">
+                <div className="h-1 w-1 rounded-full bg-white/50"></div>
+                <div className="h-1 w-1 rounded-full bg-white/50"></div>
+                <div className="h-1 w-1 rounded-full bg-white/50"></div>
+              </div>
+              <ChevronRight className="h-3 w-3 text-white/50" />
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* Navigation buttons */}
-      <button
-        onClick={goToPrevious}
-        onKeyDown={e => handleKeyDown(e, goToPrevious)}
-        className="absolute top-1/2 left-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-colors hover:bg-white/30 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
-        aria-label="Slide anterior"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </button>
+      {/* Navigation buttons - Hidden on mobile for touch gestures */}
+      {/* 
+        Los botones de navegación se ocultan en móvil para permitir:
+        1. Scroll horizontal nativo por gestos táctiles
+        2. Mejor experiencia de usuario en dispositivos móviles
+        3. Evitar superposición con controles táctiles
+        4. Navegación por swipe con feedback visual y háptico
+      */}
+      {!isMobile && (
+        <>
+          <button
+            onClick={goToPrevious}
+            onKeyDown={e => handleKeyDown(e, goToPrevious)}
+            className="absolute top-1/2 left-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-colors hover:bg-white/30 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
+            aria-label="Slide anterior"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
 
-      <button
-        onClick={goToNext}
-        onKeyDown={e => handleKeyDown(e, goToNext)}
-        className="absolute top-1/2 right-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-colors hover:bg-white/30 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
-        aria-label="Slide siguiente"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </button>
+          <button
+            onClick={goToNext}
+            onKeyDown={e => handleKeyDown(e, goToNext)}
+            className="absolute top-1/2 right-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-colors hover:bg-white/30 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
+            aria-label="Slide siguiente"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+        </>
+      )}
 
       {/* Video Modal */}
       <VideoModal
         isOpen={isVideoModalOpen}
         onClose={() => setIsVideoModalOpen(false)}
-        videoUrl="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-        title="Montañez Lab - Laboratorio Dental de Vanguardia"
-        description="Descubre nuestro laboratorio dental moderno y la tecnología que utilizamos para crear prótesis dentales de alta calidad"
+        videoUrl={slides[currentSlide].videoUrl || 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'}
+        title={`${slides[currentSlide].title} - Montañez Lab`}
+        description={slides[currentSlide].description}
       />
     </section>
   )

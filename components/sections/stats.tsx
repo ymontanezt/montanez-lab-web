@@ -2,13 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/design-system/utilities'
-import { colorTokens } from '@/lib/design-system/color-tokens'
+import { colorTokens, componentColors } from '@/lib/design-system/color-tokens'
 import { utilityClasses } from '@/lib/design-system/utilities'
+import { StatsIcon } from '@/components/ui/stats-icons'
 
 interface Stat {
   value: string
   label: string
-  icon?: string
+  icon?: 'success' | 'clients' | 'experience' | 'support'
 }
 
 interface StatsProps {
@@ -26,15 +27,9 @@ export function Stats({ stats, className, variant = 'default', columns = 4 }: St
   }
 
   const variants = {
-    default: `${utilityClasses.container.card} shadow-lg`,
-    primary: `${colorTokens.background.secondary} ${colorTokens.border.accent} border`,
+    default: `${utilityClasses.container.card} shadow-lg hover:shadow-xl`,
+    primary: `${colorTokens.background.brand.light} ${colorTokens.border.brand.light} border-2 hover:${colorTokens.border.brand.accent} hover:${colorTokens.background.brand.muted}`,
     minimal: 'bg-transparent',
-  }
-
-  const iconVariants = {
-    default: colorTokens.text.accent,
-    primary: colorTokens.text.accent,
-    minimal: colorTokens.text.secondary,
   }
 
   return (
@@ -48,17 +43,37 @@ export function Stats({ stats, className, variant = 'default', columns = 4 }: St
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={cn(
-                'rounded-xl p-6 text-center transition-all duration-300 hover:scale-105',
+                'group relative overflow-hidden rounded-2xl p-8 text-center transition-all duration-500 hover:scale-105',
                 variants[variant]
               )}
             >
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-5 transition-opacity duration-500 group-hover:opacity-10">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-teal-400" />
+              </div>
+
+              {/* Icon Container */}
               {stat.icon && (
-                <div className={cn('mb-4 text-3xl', iconVariants[variant])}>{stat.icon}</div>
+                <div className="relative mb-6 flex justify-center">
+                  <div
+                    className={`rounded-2xl p-4 ${colorTokens.background.brand.light} group-hover:${colorTokens.background.brand.muted} transition-colors duration-300`}
+                  >
+                    <StatsIcon type={stat.icon} className="h-10 w-10 md:h-12 md:w-12" />
+                  </div>
+                </div>
               )}
-              <div className={`mb-2 text-3xl font-bold md:text-4xl ${colorTokens.text.primary}`}>
+
+              {/* Value */}
+              <div
+                className={`relative mb-3 text-4xl font-bold md:text-5xl lg:text-6xl ${colorTokens.text.brand.primary} group-hover:${colorTokens.text.brand.accent} transition-colors duration-300`}
+              >
                 {stat.value}
               </div>
-              <div className={`text-sm md:text-base ${colorTokens.text.secondary}`}>
+
+              {/* Label */}
+              <div
+                className={`relative text-sm font-medium md:text-base ${colorTokens.text.secondary} group-hover:${colorTokens.text.primary} transition-colors duration-300`}
+              >
                 {stat.label}
               </div>
             </motion.div>

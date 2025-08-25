@@ -6,7 +6,7 @@ import { Button } from './button'
 import { Input } from './input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select'
 import { cn } from '@/lib/design-system/utilities'
-import { colorTokens } from '@/lib/design-system/color-tokens'
+import { colorTokens, componentColors } from '@/lib/design-system/color-tokens'
 import { utilityClasses } from '@/lib/design-system/utilities'
 import {
   Calendar,
@@ -506,7 +506,7 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           <div>
             <label className="mb-1.5 flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300">
-              <User className="h-4 w-4" />
+              <User className={`h-4 w-4 ${colorTokens.text.brand.accent}`} />
               Nombre completo *
             </label>
             <Input
@@ -515,7 +515,7 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
               onChange={e => handleInputChange('name', e.target.value)}
               placeholder="Tu nombre completo"
               className={cn(
-                'rounded-lg border-green-200 bg-white px-3 py-2 text-gray-900 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:focus:border-green-400 dark:focus:ring-green-400/30',
+                `rounded-lg bg-white px-3 py-2 text-gray-900 ${colorTokens.border.brand.light} focus:${colorTokens.border.brand.accent} focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:focus:${colorTokens.border.brand.accent} dark:focus:ring-blue-400/30`,
                 errors.name && 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
               )}
               required
@@ -530,7 +530,7 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
 
           <div>
             <label className="mb-1.5 flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300">
-              <Mail className="h-4 w-4" />
+              <Mail className={`h-4 w-4 ${colorTokens.text.brand.accent}`} />
               Email *
             </label>
             <Input
@@ -539,7 +539,7 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
               onChange={e => handleInputChange('email', e.target.value)}
               placeholder="tu@email.com"
               className={cn(
-                'rounded-lg border-green-200 bg-white px-3 py-2 text-gray-900 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:focus:border-green-400 dark:focus:ring-green-400/30',
+                `rounded-lg bg-white px-3 py-2 text-gray-900 ${colorTokens.border.brand.light} focus:${colorTokens.border.brand.accent} focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:focus:${colorTokens.border.brand.accent} dark:focus:ring-blue-400/30`,
                 errors.email && 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
               )}
               required
@@ -556,7 +556,7 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           <div>
             <label className="mb-1.5 flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300">
-              <Phone className="h-4 w-4" />
+              <Phone className={`h-4 w-4 ${colorTokens.text.brand.accent}`} />
               Teléfono
             </label>
             <Input
@@ -565,7 +565,7 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
               onChange={e => handleInputChange('phone', e.target.value)}
               placeholder="+51 999 999 999"
               className={cn(
-                'rounded-lg border-green-200 bg-white px-3 py-2 text-gray-900 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:focus:border-green-400 dark:focus:ring-green-400/30',
+                `rounded-lg bg-white px-3 py-2 text-gray-900 ${colorTokens.border.brand.light} focus:${colorTokens.border.brand.accent} focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:focus:${colorTokens.border.brand.accent} dark:focus:ring-blue-400/30`,
                 errors.phone && 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
               )}
             />
@@ -579,7 +579,7 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
 
           <div className="md:col-span-1">
             <label className="mb-1.5 flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300">
-              <FileText className="h-4 w-4" />
+              <FileText className={`h-4 w-4 ${colorTokens.text.brand.accent}`} />
               Servicio *
             </label>
             <Select
@@ -588,7 +588,7 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
             >
               <SelectTrigger
                 className={cn(
-                  'w-full rounded-lg border-green-200 bg-white px-3 py-2 text-gray-900 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:focus:border-green-400 dark:focus:ring-green-400/30',
+                  `w-full rounded-lg bg-white px-3 py-2 text-gray-900 ${colorTokens.border.brand.light} focus:${colorTokens.border.brand.accent} focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:focus:${colorTokens.border.brand.accent} dark:focus:ring-blue-400/30`,
                   errors.service && 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
                 )}
               >
@@ -619,10 +619,12 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
         {/* Selección de fecha */}
         <div>
           <label className="mb-2 flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300">
-            <Calendar className="h-4 w-4" />
+            <Calendar className={`h-4 w-4 ${colorTokens.text.brand.accent}`} />
             Selecciona fecha *
           </label>
-          <div className="grid max-h-40 grid-cols-7 gap-1.5 overflow-y-auto rounded-lg border border-green-200 p-2 dark:border-gray-600">
+          <div
+            className={`grid max-h-40 grid-cols-7 gap-1.5 overflow-y-auto rounded-lg border p-2 ${colorTokens.border.brand.light} dark:border-gray-600`}
+          >
             {availableDates.map(date => {
               const dateObj = new Date(date)
               const isSelected = selectedDate === date
@@ -638,11 +640,11 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
                   className={cn(
                     'rounded-md border p-2 text-center transition-all hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50',
                     isSelected
-                      ? 'border-green-600 bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300'
+                      ? `${colorTokens.border.brand.primary} ${colorTokens.background.brand.light} ${colorTokens.text.brand.primary} dark:${colorTokens.background.brand.muted} dark:${colorTokens.text.brand.accent}`
                       : isHoliday
                         ? 'border-red-200 bg-red-50 text-red-400 dark:border-red-800 dark:bg-red-900/20 dark:text-red-500'
-                        : 'border-green-200 hover:border-green-300 hover:bg-green-50 dark:border-gray-600 dark:hover:border-green-600 dark:hover:bg-green-900/10',
-                    isToday && 'ring-2 ring-green-300 dark:ring-green-600'
+                        : `${colorTokens.border.brand.light} hover:${colorTokens.border.brand.accent} hover:${colorTokens.background.brand.light} dark:border-gray-600 dark:hover:${colorTokens.border.brand.accent} dark:hover:${colorTokens.background.brand.muted}`,
+                    isToday && `ring-2 ring-blue-300 dark:ring-blue-600`
                   )}
                   title={isHoliday ? 'Feriado - No disponible' : undefined}
                 >
@@ -674,9 +676,11 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
             className="space-y-2"
           >
             <label className="flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300">
-              <Clock className="h-4 w-4" />
+              <Clock className={`h-4 w-4 ${colorTokens.text.brand.accent}`} />
               Selecciona horario *
-              {loadingSlots && <Loader2 className="h-4 w-4 animate-spin text-green-600" />}
+              {loadingSlots && (
+                <Loader2 className={`h-4 w-4 animate-spin ${colorTokens.text.brand.accent}`} />
+              )}
             </label>
 
             {loadingSlots ? (
@@ -708,8 +712,8 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
                       className={cn(
                         'rounded-md border p-2 text-center text-sm transition-all hover:scale-105',
                         isSelected
-                          ? 'border-green-600 bg-green-50 text-green-700 shadow-md dark:bg-green-900/20 dark:text-green-300'
-                          : 'border-green-200 text-gray-700 hover:border-green-300 hover:bg-green-50 dark:border-gray-600 dark:text-gray-300 dark:hover:border-green-600 dark:hover:bg-gray-800'
+                          ? `${colorTokens.border.brand.primary} ${colorTokens.background.brand.light} ${colorTokens.text.brand.primary} shadow-md dark:${colorTokens.background.brand.muted} dark:${colorTokens.text.brand.accent}`
+                          : `${colorTokens.border.brand.light} text-gray-700 hover:${colorTokens.border.brand.accent} hover:${colorTokens.background.brand.light} dark:border-gray-600 dark:text-gray-300 dark:hover:${colorTokens.border.brand.accent} dark:hover:bg-gray-800`
                       )}
                     >
                       {time}
@@ -739,7 +743,7 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
             onChange={e => handleInputChange('notes', e.target.value)}
             placeholder="Información adicional sobre tu consulta..."
             rows={2}
-            className={`w-full resize-none rounded-lg border-green-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:focus:border-green-400 dark:focus:ring-green-400/30`}
+            className={`w-full resize-none rounded-lg bg-white px-3 py-2 text-sm text-gray-900 ${colorTokens.border.brand.light} focus:${colorTokens.border.brand.accent} focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:focus:${colorTokens.border.brand.accent} dark:focus:ring-blue-400/30`}
           />
         </div>
 
@@ -769,7 +773,7 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
             !formData.time ||
             loadingSlots
           }
-          className="group w-full bg-green-800 font-semibold text-white shadow-md transition-all duration-200 hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-green-700 dark:hover:bg-green-600"
+          className={`group w-full font-semibold text-white shadow-md transition-all duration-200 focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${componentColors.button.primary.background} ${componentColors.button.primary.text} ${componentColors.button.primary.border} ${componentColors.button.primary.focus}`}
         >
           {isSubmitting ? (
             <div className="flex items-center gap-2">

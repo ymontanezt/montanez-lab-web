@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Testimonial } from '@/types'
 import { cn } from '@/lib/design-system/utilities'
-import { colorTokens } from '@/lib/design-system/color-tokens'
+import { colorTokens, componentColors } from '@/lib/design-system/color-tokens'
 import { utilityClasses } from '@/lib/design-system/utilities'
 import { Star, Quote, ChevronLeft, ChevronRight, CheckCircle } from 'lucide-react'
 import { TestimonialsSkeleton } from '@/components/ui/skeleton'
@@ -92,12 +92,14 @@ export function Testimonials({
                 {/* Card principal */}
                 <div className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-xl md:p-12 dark:bg-gray-900">
                   {/* Fondo decorativo */}
-                  <div className="absolute -top-4 -right-4 h-32 w-32 rounded-full bg-gradient-to-br from-green-100 to-green-200 opacity-50 dark:from-green-900/20 dark:to-green-800/20" />
+                  <div className="absolute -top-4 -right-4 h-32 w-32 rounded-full bg-gradient-to-br from-blue-100 to-teal-200 opacity-50 dark:from-blue-900/20 dark:to-teal-800/20" />
                   <div className="absolute -bottom-4 -left-4 h-24 w-24 rounded-full bg-gradient-to-tr from-blue-100 to-blue-200 opacity-50 dark:from-blue-900/20 dark:to-blue-800/20" />
 
                   {/* Icono de comillas */}
                   <div className="relative mb-6 flex justify-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg">
+                    <div
+                      className={`flex h-16 w-16 items-center justify-center rounded-full text-white shadow-lg ${colorTokens.gradient.brand.primary}`}
+                    >
                       <Quote className="h-8 w-8" />
                     </div>
                   </div>
@@ -131,7 +133,9 @@ export function Testimonials({
                     {/* Avatar */}
                     <div className="relative">
                       {currentTestimonial.image ? (
-                        <div className="h-16 w-16 overflow-hidden rounded-full border-4 border-green-200 dark:border-green-800">
+                        <div
+                          className={`h-16 w-16 overflow-hidden rounded-full border-4 ${colorTokens.border.brand.light} dark:${colorTokens.border.brand.primary}`}
+                        >
                           <img
                             src={currentTestimonial.image}
                             alt={currentTestimonial.name}
@@ -139,7 +143,9 @@ export function Testimonials({
                           />
                         </div>
                       ) : (
-                        <div className="flex h-16 w-16 items-center justify-center rounded-full border-4 border-green-200 bg-green-100 text-green-600 dark:border-green-800 dark:bg-green-900/30 dark:text-green-400">
+                        <div
+                          className={`flex h-16 w-16 items-center justify-center rounded-full border-4 ${colorTokens.border.brand.light} ${colorTokens.background.brand.light} ${colorTokens.text.brand.accent} dark:${colorTokens.border.brand.primary} dark:${colorTokens.background.brand.muted} dark:${colorTokens.text.brand.accent}`}
+                        >
                           <span className="text-xl font-bold">
                             {currentTestimonial.name?.charAt(0) || 'C'}
                           </span>
@@ -148,7 +154,9 @@ export function Testimonials({
 
                       {/* Badge de verificado */}
                       {currentTestimonial.isVerified && (
-                        <div className="absolute -right-1 -bottom-1 flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-white">
+                        <div
+                          className={`absolute -right-1 -bottom-1 flex h-6 w-6 items-center justify-center rounded-full text-white ${colorTokens.background.brand.accent}`}
+                        >
                           <CheckCircle className="h-4 w-4" />
                         </div>
                       )}
@@ -159,7 +167,9 @@ export function Testimonials({
                       <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
                         {currentTestimonial.name}
                       </h4>
-                      <p className="text-sm font-medium text-green-600 dark:text-green-400">
+                      <p
+                        className={`text-sm font-medium ${colorTokens.text.brand.accent} dark:${colorTokens.text.brand.accent}`}
+                      >
                         {currentTestimonial.role}
                       </p>
                       {currentTestimonial.clinic && (
@@ -181,7 +191,7 @@ export function Testimonials({
               <div className="mt-8 flex items-center justify-center gap-4">
                 <button
                   onClick={goToPrevious}
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg transition-all hover:scale-110 hover:bg-green-50 dark:bg-gray-800 dark:hover:bg-gray-700"
+                  className={`flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg transition-all hover:scale-110 dark:bg-gray-800 dark:hover:bg-gray-700 ${colorTokens.hover.background.brand.light}`}
                   aria-label="Testimonio anterior"
                 >
                   <ChevronLeft className="h-6 w-6 text-gray-600 dark:text-gray-300" />
@@ -196,7 +206,7 @@ export function Testimonials({
                       className={cn(
                         'h-3 w-3 rounded-full transition-all duration-300',
                         index === currentIndex
-                          ? 'scale-125 bg-green-600 dark:bg-green-400'
+                          ? `scale-125 ${colorTokens.background.brand.primary} dark:${colorTokens.background.brand.accent}`
                           : 'bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500'
                       )}
                       aria-label={`Ir al testimonio ${index + 1}`}
@@ -206,7 +216,7 @@ export function Testimonials({
 
                 <button
                   onClick={goToNext}
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg transition-all hover:scale-110 hover:bg-green-50 dark:bg-gray-800 dark:hover:bg-gray-700"
+                  className={`flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg transition-all hover:scale-110 dark:bg-gray-800 dark:hover:bg-gray-700 ${colorTokens.hover.background.brand.light}`}
                   aria-label="Testimonio siguiente"
                 >
                   <ChevronRight className="h-6 w-6 text-gray-600 dark:text-gray-300" />

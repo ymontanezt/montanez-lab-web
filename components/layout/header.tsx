@@ -177,9 +177,9 @@ export const Header: React.FC<HeaderProps> = ({
   // Header variants mejorados con mejor contraste
   const headerVariants = {
     default:
-      'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200/80 dark:border-gray-700/80 shadow-sm',
+      'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-blue-200/80 dark:border-blue-800/80 shadow-sm',
     transparent: 'bg-transparent',
-    solid: 'bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-md',
+    solid: 'bg-white dark:bg-gray-900 border-b border-blue-200 dark:border-blue-800 shadow-md',
   }
 
   const isTransparent = variant === 'transparent' && !isScrolled
@@ -201,16 +201,16 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <div className="container mx-auto flex items-center justify-between px-4">
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 transition-colors hover:text-green-100">
+              <div className="flex items-center gap-2 transition-colors hover:text-blue-100">
                 <Phone className="h-4 w-4" />
                 <span>{siteConfig.contact.phone}</span>
               </div>
-              <div className="flex items-center gap-2 transition-colors hover:text-green-100">
+              <div className="flex items-center gap-2 transition-colors hover:text-blue-100">
                 <Mail className="h-4 w-4" />
                 <span>{siteConfig.contact.email}</span>
               </div>
             </div>
-            <div className="flex items-center gap-2 transition-colors hover:text-green-100">
+            <div className="flex items-center gap-2 transition-colors hover:text-blue-100">
               <MapPin className="h-4 w-4" />
               <span>
                 {siteConfig.contact.address.city}, {siteConfig.contact.address.state}
@@ -261,7 +261,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={() => scrollToSection(item.id)}
                 onKeyDown={e => handleKeyDown(e, () => scrollToSection(item.id))}
                 className={cn(
-                  'relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2',
+                  'relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
                   activeSection === item.id
                     ? `${colorTokens.active.background.brand.primary} font-semibold ${colorTokens.active.text.brand.primary}`
                     : `text-gray-700 hover:bg-gray-50 hover:${colorTokens.hover.text.brand.primary} dark:text-gray-300 dark:hover:bg-gray-800/50 dark:hover:${colorTokens.hover.text.brand.primary}`
@@ -272,7 +272,7 @@ export const Header: React.FC<HeaderProps> = ({
                 {item.label}
                 {activeSection === item.id && (
                   <motion.div
-                    className="absolute inset-0 -z-10 rounded-lg bg-green-100 dark:bg-green-800/50"
+                    className="absolute inset-0 -z-10 rounded-lg bg-blue-100 dark:bg-blue-800/50"
                     layoutId="activeSection"
                     initial={false}
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
@@ -305,7 +305,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Mobile menu button mejorado */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="rounded-lg p-2 text-gray-700 transition-colors hover:text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 lg:hidden dark:text-gray-300 dark:hover:text-green-400"
+              className="rounded-lg p-2 text-gray-700 transition-colors hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 lg:hidden dark:text-gray-300 dark:hover:text-blue-400"
               aria-label="Abrir menú de navegación"
               aria-expanded={isMenuOpen}
             >
@@ -319,7 +319,7 @@ export const Header: React.FC<HeaderProps> = ({
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="border-t border-gray-200/80 bg-white/95 shadow-lg backdrop-blur-md lg:hidden dark:border-gray-700/80 dark:bg-gray-900/95"
+            className="border-t border-blue-200/80 bg-white/95 shadow-lg backdrop-blur-md lg:hidden dark:border-blue-800/80 dark:bg-gray-900/95"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -336,10 +336,10 @@ export const Header: React.FC<HeaderProps> = ({
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
                     className={cn(
-                      'w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2',
+                      'w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
                       activeSection === item.id
-                        ? 'bg-green-50 font-semibold text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-green-600 dark:text-gray-300 dark:hover:bg-gray-800/50 dark:hover:text-green-400'
+                        ? 'bg-blue-50 font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600 dark:text-gray-300 dark:hover:bg-gray-800/50 dark:hover:text-blue-400'
                     )}
                     aria-current={activeSection === item.id ? 'page' : undefined}
                   >
@@ -349,11 +349,11 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
 
               {/* Mobile CTA mejorado */}
-              <div className="mt-6 border-t border-gray-200 pt-4 dark:border-gray-700">
+              <div className="mt-6 border-t border-blue-200 pt-4 dark:border-blue-800">
                 <Button
                   size="sm"
                   onClick={() => scrollToSection('contacto')}
-                  className="group w-full rounded-lg bg-gradient-to-r from-green-600 to-green-700 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:from-green-700 hover:to-green-800 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 active:scale-95 dark:from-green-500 dark:to-green-600 dark:hover:from-green-600 dark:hover:to-green-700"
+                  className="group w-full rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:from-blue-700 hover:to-blue-800 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 active:scale-95 dark:from-blue-500 dark:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-700"
                 >
                   <MessageCircle className="mr-2 h-4 w-4 transition-transform duration-200 group-hover:scale-110" />
                   Contactar

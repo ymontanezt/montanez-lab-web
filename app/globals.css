@@ -2,6 +2,27 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Estilos específicos para los filtros de la galería */
+.gallery-filter-button {
+  @apply flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200;
+}
+
+.gallery-filter-button:not(.selected) {
+  @apply bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200;
+}
+
+.gallery-filter-button:not(.selected):hover {
+  @apply bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-gray-100;
+}
+
+.gallery-filter-button.selected {
+  @apply bg-blue-800 text-white shadow-lg shadow-blue-600/25 dark:bg-blue-200 dark:text-blue-900;
+}
+
+.gallery-filter-button.selected:hover {
+  @apply bg-blue-700 dark:bg-blue-300;
+}
+
 :root {
   /* Updated color tokens for dental laboratory theme with health-inspired greens and professional neutrals */
   --background: oklch(1 0 0); /* Pure white for clean, medical aesthetic */

@@ -317,18 +317,18 @@ export function ContactForm({ className, onSubmit, variant = 'default' }: Contac
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="rounded-xl border border-green-200 bg-green-50 p-8 text-center dark:border-green-700/50 dark:bg-green-900/20"
+        className="rounded-xl border border-blue-200 bg-blue-50 p-8 text-center dark:border-blue-700/50 dark:bg-blue-900/20"
       >
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-green-200 bg-green-100 dark:border-green-600 dark:bg-green-800/50">
-          <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-blue-200 bg-blue-100 dark:border-blue-600 dark:bg-blue-800/50">
+          <CheckCircle className="h-8 w-8 text-blue-600 dark:text-blue-400" />
         </div>
-        <h3 className="mb-2 text-xl font-semibold text-green-800 dark:text-green-200">
+        <h3 className="mb-2 text-xl font-semibold text-blue-800 dark:text-blue-200">
           ¡Mensaje enviado exitosamente!
         </h3>
-        <p className="text-green-600 dark:text-green-300">
+        <p className="text-blue-600 dark:text-blue-300">
           Hemos recibido tu consulta. Nos pondremos en contacto contigo en las próximas 24 horas.
         </p>
-        <p className="mt-2 text-sm text-green-500 dark:text-green-400">Gracias por contactarnos</p>
+        <p className="mt-2 text-sm text-blue-500 dark:text-blue-400">Gracias por contactarnos</p>
       </motion.div>
     )
   }
@@ -355,7 +355,7 @@ export function ContactForm({ className, onSubmit, variant = 'default' }: Contac
             htmlFor="name"
             className="mb-2 block flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white"
           >
-            <User className="h-4 w-4 text-green-600 dark:text-green-400" />
+            <User className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             Nombre completo *
           </label>
           <Input
@@ -365,7 +365,7 @@ export function ContactForm({ className, onSubmit, variant = 'default' }: Contac
             onChange={e => handleInputChange('name', e.target.value)}
             placeholder="Tu nombre completo"
             className={cn(
-              'border-green-200 focus:border-green-500 focus:ring-green-500/20 dark:border-gray-600',
+              'border-blue-200 focus:border-blue-500 focus:ring-blue-500/20 dark:border-gray-600',
               errors.name && 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
             )}
             aria-describedby={errors.name ? 'name-error' : undefined}
@@ -387,7 +387,7 @@ export function ContactForm({ className, onSubmit, variant = 'default' }: Contac
             htmlFor="email"
             className="mb-2 block flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white"
           >
-            <Mail className="h-4 w-4 text-green-600 dark:text-green-400" />
+            <Mail className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             Email *
           </label>
           <Input
@@ -397,7 +397,7 @@ export function ContactForm({ className, onSubmit, variant = 'default' }: Contac
             onChange={e => handleInputChange('email', e.target.value)}
             placeholder="tu@email.com"
             className={cn(
-              'border-green-200 focus:border-green-500 focus:ring-green-500/20 dark:border-gray-600',
+              'border-blue-200 focus:border-blue-500 focus:ring-blue-500/20 dark:border-gray-600',
               errors.email && 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
             )}
             aria-describedby={errors.email ? 'email-error' : undefined}
@@ -421,7 +421,7 @@ export function ContactForm({ className, onSubmit, variant = 'default' }: Contac
             htmlFor="phone"
             className="mb-2 block flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white"
           >
-            <Phone className="h-4 w-4 text-green-600 dark:text-green-400" />
+            <Phone className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             Teléfono (Perú) *
           </label>
           <Input
@@ -431,7 +431,7 @@ export function ContactForm({ className, onSubmit, variant = 'default' }: Contac
             onChange={e => handleInputChange('phone', e.target.value)}
             placeholder="999999999"
             className={cn(
-              'border-green-200 focus:border-green-500 focus:ring-green-500/20 dark:border-gray-600',
+              'border-blue-200 focus:border-blue-500 focus:ring-blue-500/20 dark:border-gray-600',
               errors.phone && 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
             )}
             aria-describedby={errors.phone ? 'phone-error' : undefined}
@@ -456,7 +456,7 @@ export function ContactForm({ className, onSubmit, variant = 'default' }: Contac
             htmlFor="subject"
             className="mb-2 block flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white"
           >
-            <FileText className="h-4 w-4 text-green-600 dark:text-green-400" />
+            <FileText className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             Asunto *
           </label>
           <Input
@@ -466,7 +466,7 @@ export function ContactForm({ className, onSubmit, variant = 'default' }: Contac
             onChange={e => handleInputChange('subject', e.target.value)}
             placeholder="Asunto de tu consulta"
             className={cn(
-              'border-green-200 focus:border-green-500 focus:ring-green-500/20 dark:border-gray-600',
+              'border-blue-200 focus:border-blue-500 focus:ring-blue-500/20 dark:border-gray-600',
               errors.subject && 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
             )}
             aria-describedby={errors.subject ? 'subject-error' : undefined}
@@ -489,7 +489,7 @@ export function ContactForm({ className, onSubmit, variant = 'default' }: Contac
           htmlFor="message"
           className="mb-2 block flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white"
         >
-          <MessageSquare className="h-4 w-4 text-green-600 dark:text-green-400" />
+          <MessageSquare className="h-4 w-4 text-blue-600 dark:text-blue-400" />
           Mensaje *
         </label>
         <Textarea
@@ -499,7 +499,7 @@ export function ContactForm({ className, onSubmit, variant = 'default' }: Contac
           onChange={e => handleInputChange('message', e.target.value)}
           placeholder="Escribe tu mensaje o consulta aquí..."
           className={cn(
-            'border-green-200 focus:border-green-500 focus:ring-green-500/20 dark:border-gray-600',
+            'border-blue-200 focus:border-blue-500 focus:ring-blue-500/20 dark:border-gray-600',
             errors.message && 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
           )}
           aria-describedby={errors.message ? 'message-error' : undefined}
@@ -522,7 +522,7 @@ export function ContactForm({ className, onSubmit, variant = 'default' }: Contac
       <Button
         type="submit"
         disabled={isSubmitting || !isFormComplete()}
-        className="w-full rounded-lg bg-green-600 px-6 py-3 font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100 dark:bg-green-700 dark:hover:bg-green-600"
+        className="w-full rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100 dark:bg-blue-700 dark:hover:bg-blue-600"
       >
         {isSubmitting ? (
           <div className="flex items-center gap-2">
