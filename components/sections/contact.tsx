@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion'
 import { ContactForm } from '@/components/ui/contact-form'
 import { cn } from '@/lib/design-system/utilities'
-import { colorTokens, utilityClasses } from '@/lib/design-system/color-tokens'
+import { colorTokens } from '@/lib/design-system/color-tokens'
+import { utilityClasses } from '@/lib/design-system/utilities'
 import { env } from '@/lib/config/env'
 import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react'
 
@@ -15,8 +16,7 @@ interface ContactProps {
 
 export function Contact({ className, showTitle = true, variant = 'default' }: ContactProps) {
   const variants = {
-    default:
-      'bg-gradient-to-br from-green-50 to-emerald-50 dark:from-gray-900 dark:to-gray-800 border border-green-200 dark:border-gray-600',
+    default: `bg-gradient-to-br ${colorTokens.gradient.background} border ${colorTokens.border.primary}`,
     minimal: 'bg-gray-50 dark:bg-gray-900',
   }
 
@@ -55,9 +55,15 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
             >
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {/* Teléfono */}
-                <div className="flex flex-col items-center rounded-xl border border-green-200 bg-white p-4 text-center shadow-sm transition-all duration-200 hover:shadow-md dark:border-gray-600 dark:bg-gray-800">
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-green-200 bg-green-100 dark:border-green-700/50 dark:bg-green-900/30">
-                    <Phone className="h-6 w-6 text-green-600 dark:text-green-400" />
+                <div
+                  className={`flex flex-col items-center rounded-xl border ${colorTokens.border.brand.light} bg-white p-4 text-center shadow-sm transition-all duration-200 hover:shadow-md dark:border-gray-600 dark:bg-gray-800`}
+                >
+                  <div
+                    className={`mb-3 flex h-12 w-12 items-center justify-center rounded-full border ${colorTokens.border.brand.light} ${colorTokens.background.brand.light} dark:${colorTokens.border.brand.primary} dark:${colorTokens.background.brand.muted}`}
+                  >
+                    <Phone
+                      className={`h-6 w-6 ${colorTokens.text.brand.accent} dark:${colorTokens.text.brand.accent}`}
+                    />
                   </div>
                   <h3 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
                     Teléfono
@@ -71,9 +77,15 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                 </div>
 
                 {/* Email */}
-                <div className="flex flex-col items-center rounded-xl border border-green-200 bg-white p-4 text-center shadow-sm transition-all duration-200 hover:shadow-md dark:border-gray-600 dark:bg-gray-800">
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-green-200 bg-green-100 dark:border-green-700/50 dark:bg-green-900/30">
-                    <Mail className="h-6 w-6 text-green-600 dark:text-green-400" />
+                <div
+                  className={`flex flex-col items-center rounded-xl border ${colorTokens.border.brand.light} bg-white p-4 text-center shadow-sm transition-all duration-200 hover:shadow-md dark:border-gray-600 dark:bg-gray-800`}
+                >
+                  <div
+                    className={`mb-3 flex h-12 w-12 items-center justify-center rounded-full border ${colorTokens.border.brand.light} ${colorTokens.background.brand.light} dark:${colorTokens.border.brand.primary} dark:${colorTokens.background.brand.muted}`}
+                  >
+                    <Mail
+                      className={`h-6 w-6 ${colorTokens.text.brand.accent} dark:${colorTokens.text.brand.accent}`}
+                    />
                   </div>
                   <h3 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
                     Email
@@ -85,9 +97,15 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                 </div>
 
                 {/* Dirección con enlace a Maps */}
-                <div className="flex flex-col items-center rounded-xl border border-green-200 bg-white p-4 text-center shadow-sm transition-all duration-200 hover:shadow-md dark:border-gray-600 dark:bg-gray-800">
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-green-200 bg-green-100 dark:border-green-700/50 dark:bg-green-900/30">
-                    <MapPin className="h-6 w-6 text-green-600 dark:text-green-400" />
+                <div
+                  className={`flex flex-col items-center rounded-xl border ${colorTokens.border.brand.light} bg-white p-4 text-center shadow-sm transition-all duration-200 hover:shadow-md dark:border-gray-600 dark:bg-gray-800`}
+                >
+                  <div
+                    className={`mb-3 flex h-12 w-12 items-center justify-center rounded-full border ${colorTokens.border.brand.light} ${colorTokens.background.brand.light} dark:${colorTokens.border.brand.primary} dark:${colorTokens.background.brand.muted}`}
+                  >
+                    <MapPin
+                      className={`h-6 w-6 ${colorTokens.text.brand.accent} dark:${colorTokens.text.brand.accent}`}
+                    />
                   </div>
                   <h3 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
                     Dirección
@@ -102,7 +120,7 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                     href={`https://maps.google.com/?q=${encodeURIComponent(env.contact.address.street)},+${encodeURIComponent(env.contact.address.city)},+${encodeURIComponent(env.contact.address.country)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-medium text-green-600 transition-colors hover:text-green-700 dark:text-green-400 dark:hover:text-green-300"
+                    className={`inline-flex items-center gap-1 text-xs font-medium ${colorTokens.text.brand.accent} transition-colors hover:${colorTokens.hover.text.brand.accent}`}
                   >
                     <MapPin className="h-3 w-3" />
                     Ver en Maps
@@ -110,9 +128,15 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                 </div>
 
                 {/* Horarios */}
-                <div className="flex flex-col items-center rounded-xl border border-green-200 bg-white p-4 text-center shadow-sm transition-all duration-200 hover:shadow-md dark:border-gray-600 dark:bg-gray-800">
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-green-200 bg-green-100 dark:border-green-700/50 dark:bg-green-900/30">
-                    <Clock className="h-6 w-6 text-green-600 dark:text-green-400" />
+                <div
+                  className={`flex flex-col items-center rounded-xl border ${colorTokens.border.brand.light} bg-white p-4 text-center shadow-sm transition-all duration-200 hover:shadow-md dark:border-gray-600 dark:bg-gray-800`}
+                >
+                  <div
+                    className={`mb-3 flex h-12 w-12 items-center justify-center rounded-full border ${colorTokens.border.brand.light} ${colorTokens.background.brand.light} dark:${colorTokens.border.brand.primary} dark:${colorTokens.background.brand.muted}`}
+                  >
+                    <Clock
+                      className={`h-6 w-6 ${colorTokens.text.brand.accent} dark:${colorTokens.text.brand.accent}`}
+                    />
                   </div>
                   <h3 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
                     Horarios
@@ -123,7 +147,9 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                   <p className="mb-1 text-sm text-gray-600 dark:text-gray-400">
                     Sáb: 9:00 AM - 2:00 PM
                   </p>
-                  <p className="text-xs font-medium text-green-600 dark:text-green-400">
+                  <p
+                    className={`text-xs font-medium ${colorTokens.text.brand.accent} dark:${colorTokens.text.brand.accent}`}
+                  >
                     Urgencias 24/7
                   </p>
                 </div>
@@ -137,10 +163,16 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
               transition={{ duration: 0.6, delay: 0.4 }}
               className="w-full"
             >
-              <div className="mx-auto max-w-4xl rounded-xl border border-green-200 bg-white p-6 shadow-xl md:p-8 dark:border-gray-600 dark:bg-gray-900">
+              <div
+                className={`mx-auto max-w-4xl rounded-xl border ${colorTokens.border.brand.light} bg-white p-6 shadow-xl md:p-8 dark:border-gray-600 dark:bg-gray-900`}
+              >
                 <div className="mb-6 text-center">
-                  <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full border border-green-200 bg-green-100 dark:border-green-700/50 dark:bg-green-900/30">
-                    <MessageCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
+                  <div
+                    className={`mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full border ${colorTokens.border.brand.light} ${colorTokens.background.brand.light} dark:${colorTokens.border.brand.primary} dark:${colorTokens.background.brand.muted}`}
+                  >
+                    <MessageCircle
+                      className={`h-8 w-8 ${colorTokens.text.brand.accent} dark:${colorTokens.text.brand.accent}`}
+                    />
                   </div>
                   <h3 className="mb-2 text-xl font-bold text-gray-900 md:text-2xl dark:text-white">
                     Envíanos un mensaje

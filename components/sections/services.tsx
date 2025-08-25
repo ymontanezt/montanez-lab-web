@@ -12,7 +12,8 @@ import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import { Service } from '@/types'
 import { cn } from '@/lib/design-system/utilities'
-import { colorTokens, utilityClasses } from '@/lib/design-system/color-tokens'
+import { colorTokens, componentColors } from '@/lib/design-system/color-tokens'
+import { utilityClasses } from '@/lib/design-system/utilities'
 import {
   Microscope,
   Shield,
@@ -187,7 +188,7 @@ export const Services: React.FC<ServicesProps> = ({
                         <div className="mb-4 space-y-2">
                           {service.features.slice(0, 3).map((feature, featureIndex) => (
                             <div key={featureIndex} className="flex items-center gap-2">
-                              <CheckCircle className="h-4 w-4 text-green-500" />
+                              <CheckCircle className={`h-4 w-4 ${colorTokens.text.brand.accent}`} />
                               <span className={cn('text-xs', colorTokens.text.muted)}>
                                 {feature}
                               </span>
@@ -201,7 +202,7 @@ export const Services: React.FC<ServicesProps> = ({
                         <div className="mb-4 space-y-2">
                           {service.benefits.slice(0, 2).map((benefit, benefitIndex) => (
                             <div key={benefitIndex} className="flex items-center gap-2">
-                              <Star className="h-4 w-4 text-yellow-500" />
+                              <Star className={`h-4 w-4 ${colorTokens.text.brand.accent}`} />
                               <span className={cn('text-xs', colorTokens.text.muted)}>
                                 {benefit}
                               </span>
@@ -212,7 +213,11 @@ export const Services: React.FC<ServicesProps> = ({
 
                       {/* Action Button */}
                       <div className="mt-auto">
-                        <Button asChild className="group-hover:bg-primary-600 w-full" size="sm">
+                        <Button
+                          asChild
+                          className={`w-full ${componentColors.button.primary.background} ${componentColors.button.primary.text} ${componentColors.button.primary.border} ${componentColors.button.primary.focus}`}
+                          size="sm"
+                        >
                           <Link
                             href={`/servicios/${service.slug}`}
                             className="flex items-center justify-center gap-2"

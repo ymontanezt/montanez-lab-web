@@ -11,7 +11,8 @@ import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { siteConfig } from '@/lib/config/site'
 import { cn } from '@/lib/design-system/utilities'
-import { colorTokens, utilityClasses } from '@/lib/design-system/color-tokens'
+import { colorTokens } from '@/lib/design-system/color-tokens'
+import { utilityClasses } from '@/lib/design-system/utilities'
 import {
   Sparkles,
   Menu,
@@ -195,7 +196,9 @@ export const Header: React.FC<HeaderProps> = ({
     >
       {/* Top contact bar mejorado */}
       {showContactInfo && (
-        <div className="bg-gradient-to-r from-green-600 to-green-700 py-2 text-sm text-white dark:from-green-700 dark:to-green-800">
+        <div
+          className={`bg-gradient-to-r ${colorTokens.gradient.brand.primary} py-2 text-sm text-white`}
+        >
           <div className="container mx-auto flex items-center justify-between px-4">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 transition-colors hover:text-green-100">
@@ -228,11 +231,15 @@ export const Header: React.FC<HeaderProps> = ({
             transition={{ duration: 0.5 }}
           >
             <Link href="/" className="group flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-600 to-green-700 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl dark:from-green-500 dark:to-green-600">
+              <div
+                className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${colorTokens.gradient.brand.primary} shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl`}
+              >
                 <span className="text-2xl">🦷</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900 transition-colors group-hover:text-green-600 dark:text-white dark:group-hover:text-green-400">
+                <h1
+                  className={`text-xl font-bold text-gray-900 transition-colors group-hover:${colorTokens.text.brand.primary} dark:text-white dark:group-hover:${colorTokens.text.brand.primary}`}
+                >
                   {siteConfig.name}
                 </h1>
                 <p className="text-xs font-medium text-gray-600 dark:text-gray-300">
@@ -256,8 +263,8 @@ export const Header: React.FC<HeaderProps> = ({
                 className={cn(
                   'relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2',
                   activeSection === item.id
-                    ? 'bg-green-50 font-semibold text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                    : 'text-gray-700 hover:bg-gray-50 hover:text-green-600 dark:text-gray-300 dark:hover:bg-gray-800/50 dark:hover:text-green-400'
+                    ? `${colorTokens.active.background.brand.primary} font-semibold ${colorTokens.active.text.brand.primary}`
+                    : `text-gray-700 hover:bg-gray-50 hover:${colorTokens.hover.text.brand.primary} dark:text-gray-300 dark:hover:bg-gray-800/50 dark:hover:${colorTokens.hover.text.brand.primary}`
                 )}
                 aria-current={activeSection === item.id ? 'page' : undefined}
                 aria-label={`Ir a sección ${item.label}`}
@@ -289,7 +296,7 @@ export const Header: React.FC<HeaderProps> = ({
             <Button
               size="sm"
               onClick={() => scrollToSection('contacto')}
-              className="group hidden rounded-full bg-gradient-to-r from-green-600 to-green-700 px-6 py-2.5 font-semibold text-white shadow-lg transition-all duration-300 hover:from-green-700 hover:to-green-800 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 active:scale-95 md:flex dark:from-green-500 dark:to-green-600 dark:hover:from-green-600 dark:hover:to-green-700"
+              className={`group hidden rounded-full bg-gradient-to-r ${colorTokens.gradient.brand.primary} px-6 py-2.5 font-semibold text-white shadow-lg transition-all duration-300 hover:${colorTokens.hover.background.brand.primary} hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 active:scale-95 md:flex`}
             >
               Contactar
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />

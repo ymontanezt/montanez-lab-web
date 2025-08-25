@@ -4,7 +4,8 @@ import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from './button'
 import { cn } from '@/lib/design-system/utilities'
-import { colorTokens, utilityClasses } from '@/lib/design-system/color-tokens'
+import { colorTokens } from '@/lib/design-system/color-tokens'
+import { utilityClasses } from '@/lib/design-system/utilities'
 
 // Interfaces base para botones
 interface BaseButtonProps {
@@ -74,7 +75,7 @@ export const FloatingButton = forwardRef<HTMLButtonElement, FloatingButtonProps>
           ref={ref}
           className={cn(
             'h-14 w-14 rounded-full shadow-lg hover:shadow-xl',
-            utilityClasses.button.accent,
+            utilityClasses.button.primary,
             className
           )}
           {...props}

@@ -9,8 +9,10 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { HeroSlide } from '@/types'
 import { cn } from '@/lib/design-system/utilities'
-import { colorTokens, utilityClasses } from '@/lib/design-system/color-tokens'
+import { colorTokens, componentColors } from '@/lib/design-system/color-tokens'
+import { utilityClasses } from '@/lib/design-system/utilities'
 import { ChevronLeft, ChevronRight, Play, ExternalLink, ArrowRight, Sparkles } from 'lucide-react'
+import { VideoModal } from '@/components/ui/video-modal'
 
 interface HeroProps {
   slides: HeroSlide[]
@@ -33,6 +35,7 @@ export const Hero: React.FC<HeroProps> = ({
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isPlaying, setIsPlaying] = useState(autoPlay)
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
 
   // Auto-advance carousel
   useEffect(() => {
@@ -81,9 +84,9 @@ export const Hero: React.FC<HeroProps> = ({
     }
   }
 
-  // Open YouTube video
+  // Open YouTube video modal
   const openYouTubeVideo = () => {
-    window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank', 'noopener,noreferrer')
+    setIsVideoModalOpen(true)
   }
 
   // Hero variants
@@ -219,7 +222,7 @@ export const Hero: React.FC<HeroProps> = ({
             >
               <Button
                 size="lg"
-                className="group bg-green-800 px-8 py-3 text-base font-bold text-white shadow-lg transition-all duration-200 hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 md:text-lg dark:bg-green-700 dark:hover:bg-green-600"
+                className={`group px-8 py-3 text-base font-bold text-white shadow-lg transition-all duration-200 md:text-lg ${componentColors.button.primary.background} ${componentColors.button.primary.text} ${componentColors.button.primary.border} ${componentColors.button.primary.focus}`}
                 onClick={scrollToServices}
               >
                 <Sparkles className="mr-2 h-5 w-5 transition-transform duration-200 group-hover:rotate-12" />
@@ -298,6 +301,15 @@ export const Hero: React.FC<HeroProps> = ({
       >
         <ChevronRight className="h-6 w-6" />
       </button>
+
+      {/* Video Modal */}
+      <VideoModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        videoUrl="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        title="Montañez Lab - Laboratorio Dental de Vanguardia"
+        description="Descubre nuestro laboratorio dental moderno y la tecnología que utilizamos para crear prótesis dentales de alta calidad"
+      />
     </section>
   )
 }

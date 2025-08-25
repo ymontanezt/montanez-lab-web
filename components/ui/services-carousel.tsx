@@ -7,7 +7,8 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Service } from '@/types'
 import { cn } from '@/lib/design-system/utilities'
-import { colorTokens, utilityClasses } from '@/lib/design-system/color-tokens'
+import { colorTokens, componentColors } from '@/lib/design-system/color-tokens'
+import { utilityClasses } from '@/lib/design-system/utilities'
 import {
   Microscope,
   Shield,
@@ -145,7 +146,9 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="bg-primary/10 text-primary mb-4 inline-flex items-center rounded-full px-4 py-2 text-sm">
+            <div
+              className={`${colorTokens.active.background.brand.primary} ${colorTokens.text.brand.primary} mb-4 inline-flex items-center rounded-full px-4 py-2 text-sm`}
+            >
               <Microscope className="mr-2 h-4 w-4" />
               Servicios Especializados
             </div>
@@ -172,7 +175,7 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
               <Button
                 variant="outline"
                 size="icon"
-                className="bg-background/80 hover:bg-background absolute top-1/2 left-4 z-10 -translate-y-1/2 rounded-full border-2 border-gray-200 shadow-lg backdrop-blur-sm hover:border-gray-300"
+                className={`${colorTokens.background.primary}/80 hover:${colorTokens.hover.background.primary} absolute top-1/2 left-4 z-10 -translate-y-1/2 rounded-full border-2 ${colorTokens.border.primary} shadow-lg backdrop-blur-sm hover:${colorTokens.hover.border.primary}`}
                 onClick={goToPrevious}
                 disabled={currentIndex === 0}
               >
@@ -182,7 +185,7 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
               <Button
                 variant="outline"
                 size="icon"
-                className="bg-background/80 hover:bg-background absolute top-1/2 right-4 z-10 -translate-y-1/2 rounded-full border-2 border-gray-200 shadow-lg backdrop-blur-sm hover:border-gray-300"
+                className={`${colorTokens.background.primary}/80 hover:${colorTokens.hover.background.primary} absolute top-1/2 right-4 z-10 -translate-y-1/2 rounded-full border-2 ${colorTokens.border.primary} shadow-lg backdrop-blur-sm hover:${colorTokens.hover.border.primary}`}
                 onClick={goToNext}
                 disabled={currentIndex >= maxIndex}
               >
@@ -243,7 +246,9 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
                           <div className="mb-4 space-y-2">
                             {service.features.slice(0, 3).map((feature, featureIndex) => (
                               <div key={featureIndex} className="flex items-center gap-2">
-                                <CheckCircle className="h-4 w-4 text-green-500" />
+                                <CheckCircle
+                                  className={`h-4 w-4 ${colorTokens.text.brand.accent}`}
+                                />
                                 <span className={cn('text-xs', colorTokens.text.muted)}>
                                   {feature}
                                 </span>
@@ -268,7 +273,11 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
 
                         {/* Action Button */}
                         <div className="mt-auto">
-                          <Button asChild className="group-hover:bg-primary-600 w-full" size="sm">
+                          <Button
+                            asChild
+                            className={`w-full ${componentColors.button.primary.background} ${componentColors.button.primary.text} ${componentColors.button.primary.border} ${componentColors.button.primary.focus}`}
+                            size="sm"
+                          >
                             <Link
                               href={`/servicios/${service.slug}`}
                               className="flex items-center justify-center gap-2"
@@ -296,8 +305,8 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
                   className={cn(
                     'h-3 w-3 rounded-full transition-all duration-300',
                     index === currentIndex
-                      ? 'bg-primary scale-125'
-                      : 'bg-muted hover:bg-muted-foreground/50'
+                      ? `${colorTokens.background.brand.primary} scale-125`
+                      : `${colorTokens.background.muted} hover:${colorTokens.hover.background.secondary}`
                   )}
                   aria-label={`Ir al servicio ${index + 1}`}
                 />

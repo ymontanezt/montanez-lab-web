@@ -23,7 +23,8 @@ import {
 import { ServicesCarousel } from '@/components/ui/services-carousel'
 import { LazyAppointmentSchedulerWrapper } from '@/components/lazy-components'
 import { LazyWhatsAppChatWrapper } from '@/components/lazy-components'
-import { colorTokens, utilityClasses } from '@/lib/design-system/color-tokens'
+import { colorTokens } from '@/lib/design-system/color-tokens'
+import { utilityClasses } from '@/lib/design-system/utilities'
 import {
   getActiveGalleryImages,
   getActiveHeroSlides,
@@ -115,7 +116,7 @@ export default function HomePage() {
                   className={`rounded-xl p-6 text-center transition-shadow ${utilityClasses.container.card} hover:shadow-lg`}
                 >
                   <div className="mb-4 flex justify-center">
-                    <item.icon size={48} color="#22c55e" />
+                    <item.icon size={48} className={`${colorTokens.text.brand.accent}`} />
                   </div>
                   <h3 className={`mb-2 text-xl font-semibold ${colorTokens.text.primary}`}>
                     {item.title}
@@ -141,7 +142,7 @@ export default function HomePage() {
         {/* Appointment Section */}
         <section
           id="citas"
-          className={`bg-gradient-to-br py-16 md:py-20 ${colorTokens.gradient.primary}`}
+          className={`bg-gradient-to-br py-16 md:py-20 ${colorTokens.gradient.background}`}
         >
           <div className="container mx-auto px-4">
             <motion.div

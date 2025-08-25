@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { cn } from '@/lib/design-system/utilities'
+import { colorTokens } from '@/lib/design-system/color-tokens'
 import { Mail, Phone, MapPin, Clock, ExternalLink } from 'lucide-react'
 import { env } from '@/lib/config/env'
 
@@ -93,7 +94,9 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
         {/* Header del Footer */}
         <div className="mb-6 border-b border-gray-200 pb-4 text-center dark:border-gray-700">
           <div className="mb-2 inline-flex items-center gap-2 md:gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-green-600 to-green-700 shadow-lg md:h-10 md:w-10 dark:from-green-500 dark:to-green-600">
+            <div
+              className={`flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br ${colorTokens.gradient.brand.primary} shadow-lg md:h-10 md:w-10`}
+            >
               <span className="text-lg md:text-xl">🦷</span>
             </div>
             <div className="text-left">
@@ -116,7 +119,7 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
           {/* Servicios */}
           <div className="text-center md:text-left">
             <h4 className="mb-3 flex items-center justify-center gap-2 text-sm font-semibold text-gray-900 md:justify-start dark:text-white">
-              <div className="h-2 w-2 rounded-full bg-green-500"></div>
+              <div className={`h-2 w-2 rounded-full ${colorTokens.background.brand.accent}`}></div>
               Servicios
             </h4>
             <ul className="space-y-1.5">
@@ -124,7 +127,7 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
                 <li key={index}>
                   <Link
                     href={service.href}
-                    className="block text-xs text-gray-600 transition-all duration-200 hover:translate-x-1 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400"
+                    className={`block text-xs text-gray-600 transition-all duration-200 hover:translate-x-1 hover:${colorTokens.text.brand.accent} dark:text-gray-300 dark:hover:${colorTokens.text.brand.accent}`}
                   >
                     {service.name}
                   </Link>
@@ -136,16 +139,16 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
           {/* Contacto */}
           <div className="text-center md:text-left">
             <h4 className="mb-3 flex items-center justify-center gap-2 text-sm font-semibold text-gray-900 md:justify-start dark:text-white">
-              <div className="h-2 w-2 rounded-full bg-green-500"></div>
+              <div className={`h-2 w-2 rounded-full ${colorTokens.background.brand.accent}`}></div>
               Contacto
             </h4>
             <ul className="space-y-1.5">
               {contactInfo.map((info, index) => (
                 <li key={index} className="flex items-center justify-center gap-2 md:justify-start">
-                  <info.icon className="h-3 w-3 text-green-500" />
+                  <info.icon className={`h-3 w-3 ${colorTokens.text.brand.accent}`} />
                   <Link
                     href={info.href}
-                    className="text-xs text-gray-600 transition-all duration-200 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400"
+                    className={`text-xs text-gray-600 transition-all duration-200 hover:${colorTokens.text.brand.accent} dark:text-gray-300 dark:hover:${colorTokens.text.brand.accent}`}
                   >
                     {info.value}
                   </Link>
@@ -157,13 +160,13 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
           {/* Horarios */}
           <div className="text-center md:text-left">
             <h4 className="mb-3 flex items-center justify-center gap-2 text-sm font-semibold text-gray-900 md:justify-start dark:text-white">
-              <div className="h-2 w-2 rounded-full bg-green-500"></div>
+              <div className={`h-2 w-2 rounded-full ${colorTokens.background.brand.accent}`}></div>
               Horarios
             </h4>
             <ul className="space-y-1.5">
               {schedule.map((item, index) => (
                 <li key={index} className="flex items-center justify-center gap-2 md:justify-start">
-                  <Clock className="h-3 w-3 text-green-500" />
+                  <Clock className={`h-3 w-3 ${colorTokens.text.brand.accent}`} />
                   <span className="text-xs text-gray-600 dark:text-gray-300">
                     {item.day}: {item.hours}
                   </span>
@@ -175,7 +178,7 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
           {/* Redes Sociales */}
           <div className="text-center md:text-left">
             <h4 className="mb-3 flex items-center justify-center gap-2 text-sm font-semibold text-gray-900 md:justify-start dark:text-white">
-              <div className="h-2 w-2 rounded-full bg-green-500"></div>
+              <div className={`h-2 w-2 rounded-full ${colorTokens.background.brand.accent}`}></div>
               Síguenos
             </h4>
             <div className="flex justify-center gap-2 md:justify-start md:gap-3">
@@ -185,7 +188,7 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group rounded-lg border border-green-200 bg-green-50 p-1.5 shadow-sm transition-all duration-200 hover:scale-110 hover:bg-green-100 hover:shadow-md md:p-2 dark:border-green-700 dark:bg-green-900/20 dark:hover:bg-green-900/30"
+                  className={`group rounded-lg border ${colorTokens.border.brand.light} ${colorTokens.background.brand.light} p-1.5 shadow-sm transition-all duration-200 hover:scale-110 ${colorTokens.hover.background.brand.light} hover:shadow-md md:p-2 dark:${colorTokens.border.brand.primary} dark:${colorTokens.background.brand.muted} dark:${colorTokens.hover.background.brand.light}`}
                 >
                   <social.icon />
                 </Link>
@@ -210,7 +213,7 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
                 href="https://www.linkedin.com/in/yuri-michael-monta%C3%B1ez-tuncar-39744496/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 font-semibold text-green-600 transition-colors hover:text-green-700 dark:text-green-400 dark:hover:text-green-300"
+                className={`flex items-center gap-1 font-semibold ${colorTokens.text.brand.accent} transition-colors hover:${colorTokens.hover.text.brand.accent}`}
               >
                 <span>@michcode</span>
                 <ExternalLink className="h-3 w-3" />

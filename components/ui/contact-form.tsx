@@ -6,7 +6,8 @@ import { Button } from './button'
 import { Input } from './input'
 import { Textarea } from './textarea'
 import { cn } from '@/lib/design-system/utilities'
-import { colorTokens, utilityClasses } from '@/lib/design-system/color-tokens'
+import { colorTokens } from '@/lib/design-system/color-tokens'
+import { utilityClasses } from '@/lib/design-system/utilities'
 import {
   User,
   Mail,
