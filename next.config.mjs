@@ -106,13 +106,16 @@ const withPWAConfig = withPWA({
 const nextConfig = {
   experimental: {
     optimizePackageImports: ['framer-motion', 'lucide-react'],
+    typedRoutes: false,
+    workerThreads: false,
+    cpus: 1,
   },
 
   compress: true,
   
   // Configuración de imágenes
   images: {
-    unoptimized: process.env.NODE_ENV === 'production', // Solo para producción
+    unoptimized: process.env.NODE_ENV === 'production',
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
@@ -130,19 +133,35 @@ const nextConfig = {
     distDir: 'out',
   }),
   
-  // Deshabilitar linting temporalmente para identificar el problema
+  // Linting
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: process.env.NODE_ENV === 'production',
   },
 
-  // Configuración experimental para evitar errores de prerendering
-  experimental: {
-    optimizePackageImports: ['framer-motion', 'lucide-react'],
-    // Deshabilitar prerendering de páginas de error para evitar conflictos
-    typedRoutes: false,
-    // Deshabilitar prerendering para evitar errores
-    workerThreads: false,
-    cpus: 1,
+  // Optimizaciones de performance
+  swcMinify: true,
+  
+  // Headers de seguridad
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+        ],
+      },
+    ]
   },
 }
 

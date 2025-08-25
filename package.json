@@ -12,7 +12,6 @@
     "start": "bunx --bun next start",
     "start:dev": "NODE_ENV=development bunx --bun next start",
     "start:staging": "NODE_ENV=staging bunx --bun next start",
-    "start:prod": "NODE_ENV=production bunx --bun next start",
     "lint": "bunx --bun next lint",
     "lint:fix": "bunx --bun next lint --fix",
     "format": "prettier --write .",
@@ -20,8 +19,6 @@
     "type-check": "bunx --bun tsc --noEmit",
     "clean": "rm -rf .next out",
     "analyze": "ANALYZE=true bunx --bun next build",
-    "validate:env": "bunx --bun tsc --noEmit lib/config/environments.ts",
-    "setup:github-secrets": "./scripts/setup-github-secrets.sh",
     "export": "next build",
     "deploy:firebase": "bun run export && firebase deploy --only hosting",
     "deploy:firebase:preview": "bun run export && firebase hosting:channel:deploy preview"
