@@ -16,6 +16,28 @@ import { VideoModal } from '@/components/ui/video-modal'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { useCarouselGestures } from '@/hooks/use-touch-gestures'
 
+// Estilos CSS para el carrusel horizontal móvil
+const mobileCarouselStyles = `
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hero-carousel-mobile {
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .hero-slide-mobile {
+    scroll-snap-align: start;
+  }
+`
+
 interface HeroProps {
   slides: HeroSlide[]
   className?: string
@@ -50,8 +72,39 @@ export const Hero: React.FC<HeroProps> = ({
       // Resume auto-play after manual navigation
       setTimeout(() => setIsPlaying(autoPlay), 3000)
     },
-    autoPlay ? autoPlayInterval : undefined
+    undefined // Deshabilitar auto-play del hook para evitar conflictos
   )
+
+  // Función para sincronizar scroll horizontal con slide actual
+  const handleScrollSync = (event: React.UIEvent<HTMLDivElement>) => {
+    if (!isMobile) return
+
+    const target = event.target as HTMLDivElement
+    const scrollLeft = target.scrollLeft
+    const slideWidth = target.clientWidth
+    const newSlideIndex = Math.round(scrollLeft / slideWidth)
+
+    if (newSlideIndex !== currentSlide && newSlideIndex >= 0 && newSlideIndex < slides.length) {
+      setCurrentSlide(newSlideIndex)
+      setIsPlaying(false)
+      // Resume auto-play after manual navigation
+      setTimeout(() => setIsPlaying(autoPlay), 3000)
+    }
+  }
+
+  // Función para sincronizar el carrusel móvil con el auto-play
+  const syncMobileCarousel = (slideIndex: number) => {
+    if (!isMobile || typeof window === 'undefined') return
+
+    const carousel = document.querySelector('.hero-carousel-mobile') as HTMLElement
+    if (carousel) {
+      const slideWidth = carousel.clientWidth
+      carousel.scrollTo({
+        left: slideIndex * slideWidth,
+        behavior: 'smooth',
+      })
+    }
+  }
 
   // State for swipe feedback
   const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null)
@@ -61,11 +114,21 @@ export const Hero: React.FC<HeroProps> = ({
     if (!autoPlay || !isPlaying) return
 
     const interval = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % slides.length)
+      const newSlideIndex = (currentSlide + 1) % slides.length
+      setCurrentSlide(newSlideIndex)
+      // Sincronizar con el carrusel móvil
+      syncMobileCarousel(newSlideIndex)
     }, autoPlayInterval)
 
     return () => clearInterval(interval)
-  }, [autoPlay, autoPlayInterval, isPlaying, slides.length])
+  }, [autoPlay, autoPlayInterval, isPlaying, slides.length, currentSlide])
+
+  // Sincronizar carrusel móvil cuando cambie currentSlide
+  useEffect(() => {
+    if (isMobile) {
+      syncMobileCarousel(currentSlide)
+    }
+  }, [currentSlide, isMobile])
 
   // Pause auto-play on hover
   const handleMouseEnter = () => setIsPlaying(false)
@@ -77,6 +140,8 @@ export const Hero: React.FC<HeroProps> = ({
     setIsPlaying(false)
     // Resume auto-play after manual navigation
     setTimeout(() => setIsPlaying(autoPlay), 3000)
+    // Sincronizar carrusel móvil
+    syncMobileCarousel(index)
   }
 
   const goToNext = () => {
@@ -85,7 +150,10 @@ export const Hero: React.FC<HeroProps> = ({
       setTimeout(() => setSwipeDirection(null), 1000)
       triggerHapticFeedback()
     }
-    setCurrentSlide(prev => (prev + 1) % slides.length)
+    const newSlideIndex = (currentSlide + 1) % slides.length
+    setCurrentSlide(newSlideIndex)
+    // Sincronizar carrusel móvil
+    syncMobileCarousel(newSlideIndex)
   }
 
   const goToPrevious = () => {
@@ -94,7 +162,10 @@ export const Hero: React.FC<HeroProps> = ({
       setTimeout(() => setSwipeDirection(null), 1000)
       triggerHapticFeedback()
     }
-    setCurrentSlide(prev => (prev === 0 ? slides.length - 1 : prev - 1))
+    const newSlideIndex = currentSlide === 0 ? slides.length - 1 : currentSlide - 1
+    setCurrentSlide(newSlideIndex)
+    // Sincronizar carrusel móvil
+    syncMobileCarousel(newSlideIndex)
   }
 
   // Handle keyboard navigation
@@ -153,6 +224,8 @@ export const Hero: React.FC<HeroProps> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      {/* Estilos CSS para el carrusel móvil */}
+      <style jsx>{mobileCarouselStyles}</style>
       {/* Background Images */}
       <div className="absolute inset-0" aria-hidden="true">
         {/* Swipe Direction Indicator */}
@@ -181,42 +254,86 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
           </motion.div>
         )}
-        <AnimatePresence>
-          <motion.div
-            key={currentSlide}
-            className="absolute inset-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.7, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-          >
-            {slides[currentSlide].image ? (
-              <Image
-                src={slides[currentSlide].image}
-                alt={slides[currentSlide].alt}
-                fill
-                className="object-cover"
-                priority={currentSlide === 0}
-                quality={85}
-                sizes="100vw"
-                onError={e => {
-                  const target = e.target as HTMLImageElement
-                  target.src = '/logo-placeholder.svg'
-                }}
-              />
-            ) : (
-              <div className="from-primary-100 to-primary-200 flex h-full w-full items-center justify-center bg-gradient-to-r">
-                <span className="text-primary-400 text-8xl">🦷</span>
-              </div>
-            )}
 
-            {/* Fondo oscuro mejorado para mayor contraste de textos */}
-            <div
-              className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"
-              aria-hidden="true"
-            />
-          </motion.div>
-        </AnimatePresence>
+        {/* Carrusel horizontal para móvil */}
+        {isMobile ? (
+          <div
+            className="hero-carousel-mobile scrollbar-hide flex h-full w-full overflow-x-auto"
+            onScroll={handleScrollSync}
+          >
+            {slides.map((slide, index) => (
+              <div
+                key={slide.id}
+                className="hero-slide-mobile relative h-full w-full flex-shrink-0"
+                style={{ width: '100vw' }}
+              >
+                {slide.image ? (
+                  <Image
+                    src={slide.image}
+                    alt={slide.alt}
+                    fill
+                    className="object-cover"
+                    priority={index === 0}
+                    quality={85}
+                    sizes="100vw"
+                    onError={e => {
+                      const target = e.target as HTMLImageElement
+                      target.src = '/logo-placeholder.svg'
+                    }}
+                  />
+                ) : (
+                  <div className="from-primary-100 to-primary-200 flex h-full w-full items-center justify-center bg-gradient-to-r">
+                    <span className="text-primary-400 text-8xl">🦷</span>
+                  </div>
+                )}
+
+                {/* Fondo oscuro mejorado para mayor contraste de textos */}
+                <div
+                  className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"
+                  aria-hidden="true"
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          /* Versión desktop con AnimatePresence */
+          <AnimatePresence>
+            <motion.div
+              key={currentSlide}
+              className="absolute inset-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+            >
+              {slides[currentSlide].image ? (
+                <Image
+                  src={slides[currentSlide].image}
+                  alt={slides[currentSlide].alt}
+                  fill
+                  className="object-cover"
+                  priority={currentSlide === 0}
+                  quality={85}
+                  sizes="100vw"
+                  onError={e => {
+                    const target = e.target as HTMLImageElement
+                    target.src = '/logo-placeholder.svg'
+                  }}
+                />
+              ) : (
+                <div className="from-primary-100 to-primary-200 flex h-full w-full items-center justify-center bg-gradient-to-r">
+                  <span className="text-primary-400 text-8xl">🦷</span>
+                </div>
+              )}
+
+              {/* Fondo oscuro mejorado para mayor contraste de textos */}
+              <div
+                className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"
+                aria-hidden="true"
+              />
+            </motion.div>
+          </AnimatePresence>
+        )}
       </div>
 
       {/* Hero Content */}
@@ -296,19 +413,16 @@ export const Hero: React.FC<HeroProps> = ({
 
               {/* Botón de video mejorado con mejor contraste */}
               {showPlayButton && slides[currentSlide].videoUrl && (
-                <div className="flex flex-col items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="group h-14 w-14 rounded-full border-2 border-white/60 bg-transparent p-0 text-white shadow-lg backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white/30 focus:ring-2 focus:ring-white focus:ring-offset-2"
-                    onClick={openYouTubeVideo}
-                    aria-label="Ver video en YouTube"
-                    title="Ver video promocional"
-                  >
-                    <Play className="ml-1 h-6 w-6 transition-transform duration-200 group-hover:scale-110" />
-                  </Button>
-                  <span className="text-center text-xs text-white/80">Ver video promocional</span>
-                </div>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="group h-14 w-14 rounded-full border-2 border-white/60 bg-transparent p-0 text-white shadow-lg backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white/30 focus:ring-2 focus:ring-white focus:ring-offset-2"
+                  onClick={openYouTubeVideo}
+                  aria-label="Ver video en YouTube"
+                  title="Ver video promocional"
+                >
+                  <Play className="ml-1 h-6 w-6 transition-transform duration-200 group-hover:scale-110" />
+                </Button>
               )}
             </motion.div>
 
@@ -341,7 +455,19 @@ export const Hero: React.FC<HeroProps> = ({
         {slides.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => goToSlide(idx)}
+            onClick={() => {
+              goToSlide(idx)
+              // En móvil, también hacer scroll al slide correspondiente
+              if (isMobile) {
+                const carousel = document.querySelector('.hero-carousel-mobile') as HTMLElement
+                if (carousel) {
+                  carousel.scrollTo({
+                    left: idx * carousel.clientWidth,
+                    behavior: 'smooth',
+                  })
+                }
+              }
+            }}
             className={cn(
               'h-3 w-3 rounded-full border-2 border-white transition-all duration-200',
               currentSlide === idx ? 'bg-white' : 'bg-white/40 hover:bg-white/60'
@@ -349,25 +475,6 @@ export const Hero: React.FC<HeroProps> = ({
             aria-label={`Ir al slide ${idx + 1}`}
           />
         ))}
-
-        {/* Mobile hint for touch gestures */}
-        {/* 
-          En móvil se muestra un indicador de que se puede deslizar
-          para navegar entre slides, ya que los botones están ocultos
-        */}
-        {isMobile && slides.length > 1 && (
-          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
-            <div className="flex items-center gap-2">
-              <ChevronLeft className="h-3 w-3 text-white/50" />
-              <div className="flex gap-1">
-                <div className="h-1 w-1 rounded-full bg-white/50"></div>
-                <div className="h-1 w-1 rounded-full bg-white/50"></div>
-                <div className="h-1 w-1 rounded-full bg-white/50"></div>
-              </div>
-              <ChevronRight className="h-3 w-3 text-white/50" />
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Navigation buttons - Hidden on mobile for touch gestures */}

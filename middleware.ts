@@ -21,12 +21,12 @@ export function middleware(request: NextRequest) {
     // Content Security Policy
     'Content-Security-Policy': [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.gstatic.com https://www.google.com https://firebase.googleapis.com https://firebaseinstallations.googleapis.com",
+      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.gstatic.com https://www.google.com https://firebase.googleapis.com https://firebaseinstallations.googleapis.com https://apis.google.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: https: blob:",
-      "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.googleapis.com https://www.google.com https://google.com https://firebase.googleapis.com https://firebaseinstallations.googleapis.com https://*.firebaseapp.com https://*.firebaseio.com https://*.firebase.com",
-      "frame-src 'self' https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com",
+      "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.googleapis.com https://www.google.com https://google.com https://firebase.googleapis.com https://firebaseinstallations.googleapis.com https://*.firebaseapp.com https://*.firebaseio.com https://*.firebase.com https://apis.google.com",
+      "frame-src 'self' https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com https://*.firebaseapp.com https://*.firebaseio.com",
       "media-src 'self' https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com",
       "object-src 'none'",
       "base-uri 'self'",

@@ -15,7 +15,7 @@ export const heroSlides: HeroSlide[] = [
     cta: 'Conoce Nuestros Servicios',
     image: '/modern-dental-lab.png',
     alt: 'Laboratorio dental moderno con tecnología avanzada',
-    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/watch?v=KFUqAYvMW7w&list=RDKFUqAYvMW7w&start_radio=1',
     isActive: true,
     order: 1,
     stats: {
@@ -36,7 +36,7 @@ export const heroSlides: HeroSlide[] = [
     cta: 'Consulta Gratuita',
     image: '/dental-scanner-workflow.png',
     alt: 'Escáner dental 3D y planificación de implantes',
-    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/watch?v=KFUqAYvMW7w&list=RDKFUqAYvMW7w&start_radio=1',
     isActive: true,
     order: 2,
     stats: {
@@ -57,7 +57,7 @@ export const heroSlides: HeroSlide[] = [
     cta: 'Evaluación Personalizada',
     image: '/female-orthodontist-portrait.png',
     alt: 'Aparatos ortodónticos personalizados y alineadores invisibles',
-    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/watch?v=KFUqAYvMW7w&list=RDKFUqAYvMW7w&start_radio=1',
     isActive: true,
     order: 3,
     stats: {
@@ -78,7 +78,7 @@ export const heroSlides: HeroSlide[] = [
     cta: 'Transforma tu Sonrisa',
     image: '/professional-female-dentist.png',
     alt: 'Carillas de porcelana y sonrisas transformadas',
-    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/watch?v=KFUqAYvMW7w&list=RDKFUqAYvMW7w&start_radio=1',
     isActive: true,
     order: 4,
     stats: {

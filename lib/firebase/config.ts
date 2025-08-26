@@ -38,7 +38,11 @@ if (missingVars.length > 0) {
 let app: any
 try {
   if (getApps().length === 0) {
-    app = initializeApp(firebaseConfig)
+    app = initializeApp({
+      ...firebaseConfig,
+      // Configuración adicional para evitar cargar scripts innecesarios
+      measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+    })
     console.log('✅ Firebase inicializado correctamente')
   } else {
     app = getApp()

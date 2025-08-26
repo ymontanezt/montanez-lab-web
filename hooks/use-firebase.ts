@@ -1,13 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { getFirebaseAuth, getFirebaseDb, getFirebaseApp } from '@/lib/firebase'
+import { auth, db, app } from '@/lib/firebase/config'
 
 export function useFirebase() {
   const [isInitialized, setIsInitialized] = useState(false)
-  const [auth, setAuth] = useState(getFirebaseAuth())
-  const [db, setDb] = useState(getFirebaseDb())
-  const [app, setApp] = useState(getFirebaseApp())
 
   useEffect(() => {
     // Only initialize on client side
@@ -15,14 +12,7 @@ export function useFirebase() {
 
     const initFirebase = () => {
       try {
-        const newAuth = getFirebaseAuth()
-        const newDb = getFirebaseDb()
-        const newApp = getFirebaseApp()
-
-        if (newAuth && newDb && newApp) {
-          setAuth(newAuth)
-          setDb(newDb)
-          setApp(newApp)
+        if (auth && db && app) {
           setIsInitialized(true)
         }
       } catch (error) {

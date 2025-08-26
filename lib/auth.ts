@@ -1,6 +1,6 @@
 // Authentication service functions
 import { signInWithEmailAndPassword, signOut, onAuthStateChanged, type User } from 'firebase/auth'
-import { getFirebaseAuth } from './firebase'
+import { auth } from './firebase/config'
 
 export interface AuthUser {
   uid: string
@@ -9,7 +9,6 @@ export interface AuthUser {
 }
 
 export const signIn = async (email: string, password: string): Promise<AuthUser> => {
-  const auth = getFirebaseAuth()
   if (!auth) {
     throw new Error('Firebase no está configurado')
   }
@@ -25,7 +24,6 @@ export const signIn = async (email: string, password: string): Promise<AuthUser>
 }
 
 export const signOutUser = async (): Promise<void> => {
-  const auth = getFirebaseAuth()
   if (!auth) {
     throw new Error('Firebase no está configurado')
   }
@@ -34,7 +32,6 @@ export const signOutUser = async (): Promise<void> => {
 }
 
 export const onAuthStateChange = (callback: (user: AuthUser | null) => void) => {
-  const auth = getFirebaseAuth()
   if (!auth) {
     callback(null)
     return () => {}
@@ -54,7 +51,6 @@ export const onAuthStateChange = (callback: (user: AuthUser | null) => void) => 
 }
 
 export const getCurrentUser = (): AuthUser | null => {
-  const auth = getFirebaseAuth()
   if (!auth) {
     return null
   }

@@ -25,6 +25,29 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 
+// Estilos CSS para el carrusel móvil
+const mobileCarouselStyles = `
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .services-carousel-mobile {
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding: 0 20px;
+  }
+  
+  .services-card-mobile {
+    scroll-snap-align: center;
+  }
+`
+
 interface ServicesCarouselProps {
   services: Service[]
   className?: string
@@ -70,7 +93,12 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
   useEffect(() => {
     if (isAutoPlaying && totalServices > 1) {
       autoPlayRef.current = setInterval(() => {
-        setCurrentIndex(prev => (prev + 1) % totalServices)
+        setCurrentIndex(prev => {
+          const newIndex = (prev + 1) % totalServices
+          // Sincronizar con el carrusel móvil
+          setTimeout(() => syncMobileCarousel(newIndex), 100)
+          return newIndex
+        })
       }, 5000) // Change every 5 seconds
     }
 
@@ -80,6 +108,14 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
       }
     }
   }, [isAutoPlaying, totalServices])
+
+  // Sincronizar carrusel móvil cuando cambie currentIndex (solo por auto-play)
+  useEffect(() => {
+    if (window.innerWidth < 640 && isAutoPlaying) {
+      // Solo sincronizar si es por auto-play, no por scroll manual
+      syncMobileCarousel(currentIndex)
+    }
+  }, [currentIndex, isAutoPlaying])
 
   // Handle window resize
   useEffect(() => {
@@ -104,6 +140,63 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
   // Pause auto-play on hover
   const handleMouseEnter = () => setIsAutoPlaying(false)
   const handleMouseLeave = () => setIsAutoPlaying(true)
+
+  // Función para sincronizar scroll horizontal con índice actual (móvil)
+  const handleScrollSync = (event: React.UIEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLDivElement
+    const scrollLeft = target.scrollLeft
+    const cardWidth = 280 + 16 // 280px + 16px gap
+    const newIndex = Math.round(scrollLeft / cardWidth)
+
+    if (newIndex !== currentIndex && newIndex >= 0 && newIndex < totalServices) {
+      setCurrentIndex(newIndex)
+      // Pausar auto-play temporalmente cuando el usuario hace scroll manual
+      setIsAutoPlaying(false)
+      setTimeout(() => setIsAutoPlaying(true), 3000)
+    }
+  }
+
+  // Función para sincronizar el auto-play con el carrusel móvil
+  const syncMobileCarousel = (index: number) => {
+    // Verificar que el componente esté montado
+    if (typeof window === 'undefined') return
+
+    const carousel = document.querySelector('.services-carousel-mobile') as HTMLElement
+    if (carousel && window.innerWidth < 640) {
+      const cardWidth = 280 + 16 // 280px + 16px gap
+      const targetScrollLeft = index * cardWidth
+
+      // Solo hacer scroll si es necesario
+      if (Math.abs(carousel.scrollLeft - targetScrollLeft) > 5) {
+        carousel.scrollTo({
+          left: targetScrollLeft,
+          behavior: 'smooth',
+        })
+      }
+    }
+  }
+
+  // Función para hacer scroll a un servicio específico (móvil)
+  const scrollToService = (index: number) => {
+    // Verificar que el componente esté montado
+    if (typeof window === 'undefined') return
+
+    const carousel = document.querySelector('.services-carousel-mobile') as HTMLElement
+    if (carousel) {
+      const cardWidth = 280 + 16 // 16px gap
+      const targetScrollLeft = index * cardWidth
+
+      carousel.scrollTo({
+        left: targetScrollLeft,
+        behavior: 'smooth',
+      })
+
+      // Actualizar índice y pausar auto-play temporalmente
+      setCurrentIndex(index)
+      setIsAutoPlaying(false)
+      setTimeout(() => setIsAutoPlaying(true), 3000)
+    }
+  }
 
   // Navigation functions
   const goToNext = () => {
@@ -136,6 +229,9 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      {/* Estilos CSS para el carrusel móvil */}
+      <style jsx>{mobileCarouselStyles}</style>
+
       <div className="container mx-auto px-4">
         {/* Section Header */}
         {showBadge && (
@@ -169,9 +265,9 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
 
         {/* Carousel Container */}
         <div className="relative">
-          {/* Navigation Arrows */}
+          {/* Navigation Arrows - Solo en desktop */}
           {totalServices > visibleCount && (
-            <>
+            <div className="hidden md:block">
               <Button
                 variant="outline"
                 size="icon"
@@ -191,113 +287,236 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
               >
                 <ChevronRight className="h-5 w-5" />
               </Button>
-            </>
+            </div>
           )}
 
           {/* Services Carousel */}
           <div ref={carouselRef} className="overflow-hidden">
-            <motion.div
-              className="flex gap-6 transition-transform duration-500 ease-in-out"
-              style={{
-                transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
-              }}
-            >
-              {displayServices.map((service, index) => {
-                const IconComponent = iconMap[service.icon] || Microscope
+            {/* Carrusel horizontal para móvil, transform para desktop */}
+            <div className="block md:hidden">
+              <div
+                className="services-carousel-mobile scrollbar-hide flex gap-4 overflow-x-auto pb-4"
+                onScroll={handleScrollSync}
+              >
+                {displayServices.map((service, index) => {
+                  const IconComponent = iconMap[service.icon] || Microscope
 
-                return (
-                  <motion.div
-                    key={service.id}
-                    className="w-full flex-shrink-0"
-                    style={{ width: `${100 / visibleCount}%` }}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <Card
-                      className={cn(
-                        'group h-full border-0 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl',
-                        colorTokens.background.card
-                      )}
+                  return (
+                    <motion.div
+                      key={service.id}
+                      className="services-card-mobile w-full flex-shrink-0"
+                      style={{ width: '280px' }}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                      <div className="p-6">
-                        {/* Service Icon */}
-                        <div
-                          className={cn(
-                            'mb-4 flex h-16 w-16 items-center justify-center rounded-xl',
-                            service.color
-                          )}
-                        >
-                          <IconComponent className="h-8 w-8 text-white" />
-                        </div>
-
-                        {/* Service Title */}
-                        <h3 className={cn('mb-3 text-xl font-semibold', colorTokens.text.primary)}>
-                          {service.title}
-                        </h3>
-
-                        {/* Service Description */}
-                        <p className={cn('mb-4 text-sm leading-relaxed', colorTokens.text.muted)}>
-                          {service.shortDescription}
-                        </p>
-
-                        {/* Features */}
-                        {showFeatures && service.features && (
-                          <div className="mb-4 space-y-2">
-                            {service.features.slice(0, 3).map((feature, featureIndex) => (
-                              <div key={featureIndex} className="flex items-center gap-2">
-                                <CheckCircle
-                                  className={`h-4 w-4 ${colorTokens.text.brand.accent}`}
-                                />
-                                <span className={cn('text-xs', colorTokens.text.muted)}>
-                                  {feature}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
+                      <Card
+                        className={cn(
+                          'group h-full border-0 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl',
+                          colorTokens.background.card
                         )}
-
-                        {/* Benefits */}
-                        {showBenefits && service.benefits && (
-                          <div className="mb-4 space-y-2">
-                            {service.benefits.slice(0, 2).map((benefit, benefitIndex) => (
-                              <div key={benefitIndex} className="flex items-center gap-2">
-                                <Star className={`h-4 w-4 ${colorTokens.text.brand.accent}`} />
-                                <span className={cn('text-xs', colorTokens.text.muted)}>
-                                  {benefit}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-
-                        {/* Action Button */}
-                        <div className="mt-auto">
-                          <Button
-                            asChild
-                            className={`w-full ${componentColors.button.primary.background} ${componentColors.button.primary.text} ${componentColors.button.primary.border} ${componentColors.button.primary.focus}`}
-                            size="sm"
+                      >
+                        <div className="flex h-full flex-col p-6">
+                          {/* Service Icon */}
+                          <div
+                            className={cn(
+                              'mb-4 flex h-16 w-16 items-center justify-center rounded-xl',
+                              service.color
+                            )}
                           >
-                            <Link
-                              href={`/servicios/${service.slug}`}
-                              className="flex items-center justify-center gap-2"
+                            <IconComponent className="h-8 w-8 text-white" />
+                          </div>
+
+                          {/* Service Title */}
+                          <h3
+                            className={cn('mb-3 text-xl font-semibold', colorTokens.text.primary)}
+                          >
+                            {service.title}
+                          </h3>
+
+                          {/* Service Description */}
+                          <p className={cn('mb-4 text-sm leading-relaxed', colorTokens.text.muted)}>
+                            {service.shortDescription}
+                          </p>
+
+                          {/* Features */}
+                          {showFeatures && service.features && (
+                            <div className="mb-4 space-y-2">
+                              {service.features.slice(0, 3).map((feature, featureIndex) => (
+                                <div key={featureIndex} className="flex items-center gap-2">
+                                  <CheckCircle
+                                    className={`h-4 w-4 ${colorTokens.text.brand.accent}`}
+                                  />
+                                  <span className={cn('text-xs', colorTokens.text.muted)}>
+                                    {feature}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* Benefits */}
+                          {showBenefits && service.benefits && (
+                            <div className="mb-4 space-y-2">
+                              {service.benefits.slice(0, 2).map((benefit, benefitIndex) => (
+                                <div key={benefitIndex} className="flex items-center gap-2">
+                                  <Star className={`h-4 w-4 ${colorTokens.text.brand.accent}`} />
+                                  <span className={cn('text-xs', colorTokens.text.muted)}>
+                                    {benefit}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* Action Button */}
+                          <div className="mt-auto pt-4">
+                            <Button
+                              asChild
+                              className={`w-full ${componentColors.button.primary.background} ${componentColors.button.primary.text} ${componentColors.button.primary.border} ${componentColors.button.primary.focus}`}
+                              size="sm"
                             >
-                              Ver Detalles
-                              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            </Link>
-                          </Button>
+                              <Link
+                                href={`/servicios/${service.slug}`}
+                                className="flex items-center justify-center gap-2"
+                              >
+                                Ver Detalles
+                                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                              </Link>
+                            </Button>
+                          </div>
                         </div>
-                      </div>
-                    </Card>
-                  </motion.div>
-                )
-              })}
-            </motion.div>
+                      </Card>
+                    </motion.div>
+                  )
+                })}
+              </div>
+
+              {/* Indicadores de scroll para móvil */}
+              <div className="mt-8 flex justify-center gap-3">
+                {displayServices.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => scrollToService(index)}
+                    className={cn(
+                      'h-3 w-3 cursor-pointer rounded-full border-2 transition-all duration-300 hover:scale-125',
+                      index === currentIndex
+                        ? `${colorTokens.background.brand.primary} ${colorTokens.border.brand.primary} scale-125 shadow-lg`
+                        : `bg-white ${colorTokens.border.brand.primary} hover:${colorTokens.background.brand.accent} hover:${colorTokens.border.brand.accent}`
+                    )}
+                    aria-label={`Ir al servicio ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Carrusel desktop con transform */}
+            <div className="hidden md:block">
+              <motion.div
+                className="flex gap-6 transition-transform duration-500 ease-in-out"
+                style={{
+                  transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
+                }}
+              >
+                {displayServices.map((service, index) => {
+                  const IconComponent = iconMap[service.icon] || Microscope
+
+                  return (
+                    <motion.div
+                      key={service.id}
+                      className="w-full flex-shrink-0"
+                      style={{ width: `${100 / visibleCount}%` }}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                    >
+                      <Card
+                        className={cn(
+                          'group h-full border-0 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl',
+                          colorTokens.background.card
+                        )}
+                      >
+                        <div className="flex h-full flex-col p-6">
+                          {/* Service Icon */}
+                          <div
+                            className={cn(
+                              'mb-4 flex h-16 w-16 items-center justify-center rounded-xl',
+                              service.color
+                            )}
+                          >
+                            <IconComponent className="h-8 w-8 text-white" />
+                          </div>
+
+                          {/* Service Title */}
+                          <h3
+                            className={cn('mb-3 text-xl font-semibold', colorTokens.text.primary)}
+                          >
+                            {service.title}
+                          </h3>
+
+                          {/* Service Description */}
+                          <p className={cn('mb-4 text-sm leading-relaxed', colorTokens.text.muted)}>
+                            {service.shortDescription}
+                          </p>
+
+                          {/* Features */}
+                          {showFeatures && service.features && (
+                            <div className="mb-4 space-y-2">
+                              {service.features.slice(0, 3).map((feature, featureIndex) => (
+                                <div key={featureIndex} className="flex items-center gap-2">
+                                  <CheckCircle
+                                    className={`h-4 w-4 ${colorTokens.text.brand.accent}`}
+                                  />
+                                  <span className={cn('text-xs', colorTokens.text.muted)}>
+                                    {feature}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* Benefits */}
+                          {showBenefits && service.benefits && (
+                            <div className="mb-4 space-y-2">
+                              {service.benefits.slice(0, 2).map((benefit, benefitIndex) => (
+                                <div key={benefitIndex} className="flex items-center gap-2">
+                                  <Star className={`h-4 w-4 ${colorTokens.text.brand.accent}`} />
+                                  <span className={cn('text-xs', colorTokens.text.muted)}>
+                                    {benefit}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* Action Button */}
+                          <div className="mt-auto pt-4">
+                            <Button
+                              asChild
+                              className={`w-full ${componentColors.button.primary.background} ${componentColors.button.primary.text} ${componentColors.button.primary.border} ${componentColors.button.primary.focus}`}
+                              size="sm"
+                            >
+                              <Link
+                                href={`/servicios/${service.slug}`}
+                                className="flex items-center justify-center gap-2"
+                              >
+                                Ver Detalles
+                                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                              </Link>
+                            </Button>
+                          </div>
+                        </div>
+                      </Card>
+                    </motion.div>
+                  )
+                })}
+              </motion.div>
+            </div>
           </div>
 
-          {/* Dots Indicators */}
+          {/* Dots Indicators - Solo en desktop */}
           {totalServices > visibleCount && (
-            <div className="mt-8 flex justify-center space-x-3">
+            <div className="mt-8 hidden justify-center space-x-3 md:flex">
               {Array.from({ length: maxIndex + 1 }, (_, index) => (
                 <button
                   key={index}

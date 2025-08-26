@@ -2,7 +2,7 @@
 
 import { useGesture } from '@use-gesture/react'
 import { useSpring, animated } from '@react-spring/web'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 
 interface UseTouchGesturesOptions {
   onSwipeLeft?: () => void
@@ -146,7 +146,7 @@ export function useCarouselGestures(
   })
 
   // Auto-play logic
-  useState(() => {
+  useEffect(() => {
     if (!autoPlayInterval || isPaused) return
 
     const interval = setInterval(() => {
@@ -156,7 +156,7 @@ export function useCarouselGestures(
     }, autoPlayInterval)
 
     return () => clearInterval(interval)
-  })
+  }, [autoPlayInterval, isPaused, next])
 
   return {
     ...gestures,

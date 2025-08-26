@@ -11,7 +11,7 @@ import {
   where,
   Timestamp,
 } from 'firebase/firestore'
-import { db } from './firebase'
+import { db } from './firebase/config'
 
 export interface ContactSubmission {
   id?: string

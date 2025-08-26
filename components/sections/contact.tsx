@@ -53,16 +53,16 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
               transition={{ duration: 0.6, delay: 0.2 }}
               className="w-full"
             >
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {/* Teléfono */}
-                <div className="flex flex-col items-center rounded-xl border border-blue-200 bg-white p-4 text-center shadow-sm transition-all duration-200 hover:shadow-md dark:border-blue-800 dark:bg-gray-800">
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-900/30">
-                    <Phone className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                <div className="flex flex-col items-center rounded-xl border border-blue-200 bg-white p-3 text-center shadow-sm transition-all duration-200 hover:shadow-md md:p-4 dark:border-blue-800 dark:bg-gray-800">
+                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-blue-200 bg-blue-50 md:mb-3 md:h-12 md:w-12 dark:border-blue-800 dark:bg-blue-900/30">
+                    <Phone className="h-5 w-5 text-blue-600 md:h-6 md:w-6 dark:text-blue-400" />
                   </div>
-                  <h3 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+                  <h3 className="mb-1 text-xs font-semibold text-gray-900 md:text-sm dark:text-white">
                     Teléfono
                   </h3>
-                  <p className="mb-1 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="mb-1 text-xs text-gray-600 md:text-sm dark:text-gray-400">
                     {env.contact.phone}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-500">
@@ -71,31 +71,31 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                 </div>
 
                 {/* Email */}
-                <div className="flex flex-col items-center rounded-xl border border-blue-200 bg-white p-4 text-center shadow-sm transition-all duration-200 hover:shadow-md dark:border-blue-800 dark:bg-gray-800">
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-900/30">
-                    <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                <div className="flex flex-col items-center rounded-xl border border-blue-200 bg-white p-3 text-center shadow-sm transition-all duration-200 hover:shadow-md md:p-4 dark:border-blue-800 dark:bg-gray-800">
+                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-blue-200 bg-blue-50 md:mb-3 md:h-12 md:w-12 dark:border-blue-800 dark:bg-blue-900/30">
+                    <Mail className="h-5 w-5 text-blue-600 md:h-6 md:w-6 dark:text-blue-400" />
                   </div>
-                  <h3 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+                  <h3 className="mb-1 text-xs font-semibold text-gray-900 md:text-sm dark:text-white">
                     Email
                   </h3>
-                  <p className="mb-1 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="mb-1 text-xs text-gray-600 md:text-sm dark:text-gray-400">
                     info@dentallabpro.com
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-500">Respuesta en 24 horas</p>
                 </div>
 
                 {/* Dirección con enlace a Maps */}
-                <div className="flex flex-col items-center rounded-xl border border-blue-200 bg-white p-4 text-center shadow-sm transition-all duration-200 hover:shadow-md dark:border-blue-800 dark:bg-gray-800">
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-900/30">
-                    <MapPin className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                <div className="flex flex-col items-center rounded-xl border border-blue-200 bg-white p-3 text-center shadow-sm transition-all duration-200 hover:shadow-md md:p-4 dark:border-blue-800 dark:bg-gray-800">
+                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-blue-200 bg-blue-50 md:mb-3 md:h-12 md:w-12 dark:border-blue-800 dark:bg-blue-900/30">
+                    <MapPin className="h-5 w-5 text-blue-600 md:h-6 md:w-6 dark:text-blue-400" />
                   </div>
-                  <h3 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+                  <h3 className="mb-1 text-xs font-semibold text-gray-900 md:text-sm dark:text-white">
                     Dirección
                   </h3>
-                  <p className="mb-1 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="mb-1 text-xs text-gray-600 md:text-sm dark:text-gray-400">
                     Av. Javier Prado Este 1234
                   </p>
-                  <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="mb-2 text-xs text-gray-600 md:text-sm dark:text-gray-400">
                     {env.contact.address.city}, {env.contact.address.country}
                   </p>
                   <a
@@ -110,17 +110,17 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                 </div>
 
                 {/* Horarios */}
-                <div className="flex flex-col items-center rounded-xl border border-blue-200 bg-white p-4 text-center shadow-sm transition-all duration-200 hover:shadow-md dark:border-blue-800 dark:bg-gray-800">
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-900/30">
-                    <Clock className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                <div className="flex flex-col items-center rounded-xl border border-blue-200 bg-white p-3 text-center shadow-sm transition-all duration-200 hover:shadow-md md:p-4 dark:border-blue-800 dark:bg-gray-800">
+                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-blue-200 bg-blue-50 md:mb-3 md:h-12 md:w-12 dark:border-blue-800 dark:bg-blue-900/30">
+                    <Clock className="h-5 w-5 text-blue-600 md:h-6 md:w-6 dark:text-blue-400" />
                   </div>
-                  <h3 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+                  <h3 className="mb-1 text-xs font-semibold text-gray-900 md:text-sm dark:text-white">
                     Horarios
                   </h3>
-                  <p className="mb-1 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="mb-1 text-xs text-gray-600 md:text-sm dark:text-gray-400">
                     Lun - Vie: 8:00 AM - 8:00 PM
                   </p>
-                  <p className="mb-1 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="mb-1 text-xs text-gray-600 md:text-sm dark:text-gray-400">
                     Sáb: 9:00 AM - 2:00 PM
                   </p>
                   <p className="text-xs font-medium text-blue-600 dark:text-blue-400">
