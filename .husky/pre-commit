@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx lint-staged
+# Validar formato de commits
+echo "🔍 Validando formato del commit..."
+npx --no -- commitlint --edit $1
+
+echo "✅ Pre-commit checks completados exitosamente!"
