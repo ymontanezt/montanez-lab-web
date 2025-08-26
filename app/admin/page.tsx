@@ -33,7 +33,7 @@ import { getAllAppointments } from '@/lib/firebase/appointments'
 
 import { ExcelExporter } from '@/lib/excel-export'
 
-type ActiveTab = 'dashboard' | 'contacts' | 'appointments' | 'reports' | 'settings'
+type ActiveTab = 'dashboard' | 'contacts' | 'appointments' | 'reports' | 'settings' | 'manual'
 
 export default function AdminPage() {
   const { user, loading, isAuthenticated } = useAuth()
@@ -142,7 +142,6 @@ export default function AdminPage() {
       description: 'Gestionar citas',
       badge: stats?.appointments?.pending || 0,
     },
-
     {
       id: 'reports' as ActiveTab,
       label: 'Reportes',
@@ -154,6 +153,12 @@ export default function AdminPage() {
       label: 'Configuración',
       icon: Settings,
       description: 'Ajustes del sistema',
+    },
+    {
+      id: 'manual' as ActiveTab,
+      label: 'Manual de Usuario',
+      icon: FileText,
+      description: 'Guía del sistema',
     },
   ]
 
@@ -362,6 +367,44 @@ export default function AdminPage() {
               {activeTab === 'settings' && (
                 <div className="space-y-6">
                   <SystemSettings />
+                </div>
+              )}
+
+              {activeTab === 'manual' && (
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <h1 className="heading-secondary">Manual de Usuario</h1>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => window.open('/admin/manual', '_blank')}
+                    >
+                      <FileText className="mr-2 h-4 w-4" />
+                      Abrir Manual
+                    </Button>
+                  </div>
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3">
+                      📖 Manual Completo del Sistema
+                    </h3>
+                    <p className="text-blue-700 mb-4">
+                      Accede a la guía completa del sistema Montañez Lab. El manual incluye:
+                    </p>
+                    <ul className="list-disc list-inside space-y-2 text-blue-700 mb-4">
+                      <li>Instalación y configuración</li>
+                      <li>Uso del sistema y funcionalidades</li>
+                      <li>Panel de administración</li>
+                      <li>Deployment y producción</li>
+                      <li>Soporte y contacto</li>
+                    </ul>
+                    <Button
+                      onClick={() => window.open('/admin/manual', '_blank')}
+                      className="bg-blue-600 hover:bg-blue-700 text-white"
+                    >
+                      <FileText className="mr-2 h-4 w-4" />
+                      Abrir Manual Completo
+                    </Button>
+                  </div>
                 </div>
               )}
             </motion.div>
