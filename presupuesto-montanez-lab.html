@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto - Montañez Lab</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #ffffff;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .project-info {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .project-info h2 {
+            color: #1e40af;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-item strong {
+            color: #374151;
+            min-width: 120px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section h3 {
+            color: #1e40af;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .cost-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cost-description {
+            flex: 1;
+        }
+        
+        .cost-amount {
+            font-weight: 600;
+            color: #059669;
+            min-width: 100px;
+            text-align: right;
+        }
+        
+        .subtotal {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #bbf7d0;
+        }
+        
+        .total-section {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .total-section h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .discount-section {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .final-total {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .final-total h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .feature-item h4 {
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+        
+        .timeline {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border-left: 3px solid #10b981;
+        }
+        
+        .timeline-phase {
+            background: #10b981;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .personal-message {
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 30px 0;
+            font-style: italic;
+        }
+        
+        .signatures {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+        
+        .signature-box {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+        }
+        
+        .signature-line {
+            border-top: 2px solid #374151;
+            margin-top: 40px;
+            padding-top: 10px;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        @media print {
+            body {
+                font-size: 12px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .header {
+                background: #667eea !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            
+            .total-section, .discount-section, .final-total, .personal-message {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📋 PRESUPUESTO PROFESIONAL</h1>
+            <p>Sistema Web Completo de Gestión Dental</p>
+        </div>
+
+        <!-- Información del Proyecto -->
+        <div class="project-info">
+            <h2>📊 Información del Proyecto</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Cliente:</strong>
+                    <span>Montañez Lab</span>
+                </div>
+                <div class="info-item">
+                    <strong>Proyecto:</strong>
+                    <span>Sistema Web de Gestión Dental</span>
+                </div>
+                <div class="info-item">
+                    <strong>Desarrollador:</strong>
+                    <span>@michcode</span>
+                </div>
+                <div class="info-item">
+                    <strong>Fecha:</strong>
+                    <span>Agosto 2025</span>
+                </div>
+                <div class="info-item">
+                    <strong>Tipo:</strong>
+                    <span>Regalo de Cumpleaños (100% Descuento)</span>
+                </div>
+                <div class="info-item">
+                    <strong>Estado:</strong>
+                    <span>✅ COMPLETADO</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desglose de Costos -->
+        <div class="section">
+            <h3>💰 DESGLOSE DETALLADO DE COSTOS</h3>
+            
+            <h4>1. 🎨 FRONTEND & UI/UX</h4>
+            <div class="cost-item">
+                <div class="cost-description">Next.js 15 + React 19</div>
+                <div class="cost-amount">S/ 1,800</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Diseño Responsive Premium</div>
+                <div class="cost-amount">S/ 1,400</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Componentes UI Personalizados</div>
+                <div class="cost-amount">S/ 1,200</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Animaciones & Transiciones</div>
+                <div class="cost-amount">S/ 800</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">PWA & Mobile Optimization</div>
+                <div class="cost-amount">S/ 900</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Performance & Web Vitals</div>
+                <div class="cost-amount">S/ 700</div>
+            </div>
+            
+            <h4>2. ⚙️ BACKEND & FIREBASE</h4>
+            <div class="cost-item">
+                <div class="cost-description">Arquitectura Firebase Enterprise</div>
+                <div class="cost-amount">S/ 1,600</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Base de Datos Firestore</div>
+                <div class="cost-amount">S/ 1,000</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Sistema de Autenticación</div>
+                <div class="cost-amount">S/ 800</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Storage & File Management</div>
+                <div class="cost-amount">S/ 600</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">API Routes & Middleware</div>
+                <div class="cost-amount">S/ 800</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Seguridad & Middleware</div>
+                <div class="cost-amount">S/ 700</div>
+            </div>
+            
+            <h4>3. 🔧 FUNCIONALIDADES ESPECÍFICAS</h4>
+            <div class="cost-item">
+                <div class="cost-description">Sistema de Citas Avanzado</div>
+                <div class="cost-amount">S/ 1,400</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Panel de Administración</div>
+                <div class="cost-amount">S/ 1,600</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Gestión de Contactos</div>
+                <div class="cost-amount">S/ 1,000</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Sistema de Reportes</div>
+                <div class="cost-amount">S/ 1,200</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Manual de Usuario Interactivo</div>
+                <div class="cost-amount">S/ 600</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Dashboard con Estadísticas</div>
+                <div class="cost-amount">S/ 1,000</div>
+            </div>
+            
+            <h4>4. 🚀 DEPLOYMENT & DEVOPS</h4>
+            <div class="cost-item">
+                <div class="cost-description">Configuración Firebase Hosting</div>
+                <div class="cost-amount">S/ 600</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">CI/CD Pipeline</div>
+                <div class="cost-amount">S/ 800</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Optimización de Performance</div>
+                <div class="cost-amount">S/ 800</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Testing & QA</div>
+                <div class="cost-amount">S/ 1,000</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Backup & Seguridad</div>
+                <div class="cost-amount">S/ 600</div>
+            </div>
+            
+            <h4>5. 📚 DOCUMENTACIÓN & SOPORTE</h4>
+            <div class="cost-item">
+                <div class="cost-description">Documentación Técnica</div>
+                <div class="cost-amount">S/ 800</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Manual de Usuario</div>
+                <div class="cost-amount">S/ 700</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Capacitación del Equipo</div>
+                <div class="cost-amount">S/ 1,000</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Soporte Post-Launch</div>
+                <div class="cost-amount">S/ 1,200</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-description">Mantenimiento Inicial</div>
+                <div class="cost-amount">S/ 800</div>
+            </div>
+        </div>
+
+        <!-- Cálculo del Presupuesto -->
+        <div class="section">
+            <h3>🧮 CÁLCULO DEL PRESUPUESTO</h3>
+            
+            <div class="subtotal">
+                <h4>📊 SUBTOTAL POR CATEGORÍAS:</h4>
+                <div class="cost-item">
+                    <div class="cost-description">Frontend & UI/UX</div>
+                    <div class="cost-amount">S/ 6,800</div>
+                </div>
+                <div class="cost-item">
+                    <div class="cost-description">Backend & Firebase</div>
+                    <div class="cost-amount">S/ 5,500</div>
+                </div>
+                <div class="cost-item">
+                    <div class="cost-description">Funcionalidades</div>
+                    <div class="cost-amount">S/ 6,800</div>
+                </div>
+                <div class="cost-item">
+                    <div class="cost-description">Deployment & DevOps</div>
+                    <div class="cost-amount">S/ 3,800</div>
+                </div>
+                <div class="cost-item">
+                    <div class="cost-description">Documentación & Soporte</div>
+                    <div class="cost-amount">S/ 4,500</div>
+                </div>
+            </div>
+            
+            <div class="total-section">
+                <h2>💰 TOTAL CON IGV</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 10px;">Subtotal: S/ 27,400</p>
+                <p style="font-size: 1.2rem; margin-bottom: 10px;">IGV (18%): S/ 4,932</p>
+                <p style="font-size: 1.5rem; font-weight: 700;">Total: S/ 32,332</div>
+            </div>
+        </div>
+
+        <!-- Descuento Familiar -->
+        <div class="discount-section">
+            <h2>💝 REGALO DE CUMPLEAÑOS</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 10px;">¡FELIZ CUMPLEAÑOS HERMANITA GATA! 🎂🐱</p>
+            <p style="font-size: 1.1rem;">Descuento: 100% (Regalo especial de hermano)</p>
+            <p style="font-size: 1.1rem;">Monto del Descuento: S/ 32,332</p>
+            <p style="font-size: 1.1rem; margin-top: 10px;">Fecha: 30 de Agosto, 2025</p>
+        </div>
+
+        <!-- Total Final -->
+        <div class="final-total">
+            <h2>🎁 REGALO DE CUMPLEAÑOS</h2>
+            <p style="font-size: 2rem; font-weight: 700;">S/ 0.00</p>
+            <p style="font-size: 1.1rem; margin-top: 10px;">¡COMPLETAMENTE GRATIS COMO REGALO!</p>
+            <p style="font-size: 1.1rem; margin-top: 10px;">🎂 ¡Feliz cumpleaños, hermanita gata! 🎂🐱</p>
+        </div>
+
+        <!-- Características Técnicas -->
+        <div class="section">
+            <h3>✅ CARACTERÍSTICAS TÉCNICAS INCLUIDAS</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h4>Framework</h4>
+                    <p>Next.js 15 (App Router)</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Frontend</h4>
+                    <p>React 19 + TypeScript</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Styling</h4>
+                    <p>Tailwind CSS + Componentes</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Backend</h4>
+                    <p>Firebase (Auth, Firestore, Storage)</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Base de Datos</h4>
+                    <p>Firestore NoSQL</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Performance</h4>
+                    <p>Lazy loading, PWA, Web Vitals</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Funcionalidades -->
+        <div class="section">
+            <h3>🔧 FUNCIONALIDADES IMPLEMENTADAS</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h4>Sistema de Citas</h4>
+                    <p>Reservas online, gestión de estados</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Panel Admin</h4>
+                    <p>Dashboard, gestión de usuarios, reportes</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Gestión de Contactos</h4>
+                    <p>Formularios, seguimiento</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Sistema de Reportes</h4>
+                    <p>Estadísticas, exportación Excel</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Manual de Usuario</h4>
+                    <p>Interactivo, accesible desde admin</p>
+                </div>
+                <div class="feature-item">
+                    <h4>PWA</h4>
+                    <p>Instalable como app móvil</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cronograma -->
+        <div class="section">
+            <h3>⏱️ CRONOGRAMA DEL PROYECTO</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-phase">Fase 1</div>
+                    <div>
+                        <strong>Semanas 1-3:</strong> Arquitectura y Frontend base
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">Fase 2</div>
+                    <div>
+                        <strong>Semanas 4-6:</strong> Backend y funcionalidades core
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">Fase 3</div>
+                    <div>
+                        <strong>Semanas 7-8:</strong> Panel admin y reportes
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">Fase 4</div>
+                    <div>
+                        <strong>Semanas 9-10:</strong> Testing y optimización
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">Fase 5</div>
+                    <div>
+                        <strong>Semanas 11-12:</strong> Deploy y capacitación
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Valor Real -->
+        <div class="section">
+            <h3>⭐ VALOR REAL DEL PROYECTO</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h4>Agencia de desarrollo</h4>
+                    <p>S/ 25,000 - S/ 40,000</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Desarrollador senior (yo)</h4>
+                    <p>S/ 20,000 - S/ 35,000</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Freelancer experto</h4>
+                    <p>S/ 18,000 - S/ 30,000</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Calidad</h4>
+                    <p>Enterprise juntando mis años de experiencia</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje Personal -->
+        <div class="personal-message">
+            <h3>💝 MENSAJE PERSONAL</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                "¡Hermanita gata! 🐱✨ Cada día me llenas de orgullo viendo tu perseverancia y esa lucha constante que mantienes por lograr tus sueños. Tu determinación es inspiradora y quiero que este detalle tecnológico sea un apoyo real en tu emprendimiento. Que este sistema web sea como una extensión de mi apoyo, ayudándote a crecer y brillar. ¡Feliz cumpleaños, mi guerrera! 🎂💪"
+            </p>
+        </div>
+
+        <!-- Firmas -->
+        <div class="signatures">
+            <div class="signature-box">
+                <h4>Desarrollador</h4>
+                <p style="margin: 20px 0;">@michcode</p>
+                <div class="signature-line">
+                    <p>Firma</p>
+                </div>
+                <p style="margin-top: 10px;">Fecha: 30-08-2025</p>
+            </div>
+            <div class="signature-box">
+                <h4>Cliente</h4>
+                <p style="margin: 20px 0;">Montañez Lab</p>
+                <div class="signature-line">
+                    <p>Firma</p>
+                </div>
+                <p style="margin-top: 10px;">Fecha: 30-08-2025</p>
+            </div>
+        </div>
+
+        <!-- Resumen Final -->
+        <div class="final-total">
+            <h2>📋 RESUMEN FINAL</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 10px;">VALOR TOTAL DEL PROYECTO: S/ 32,332</p>
+            <p style="font-size: 1.3rem; margin-bottom: 10px;">REGALO DE CUMPLEAÑOS: 100%</p>
+            <p style="font-size: 2rem; font-weight: 700; margin-top: 20px;">TOTAL A PAGAR: S/ 0.00</p>
+            <p style="font-size: 1.1rem; margin-top: 10px;">🎁 ¡ESPERO QUE LA SORPRESA HAYA SIDO DE TU AGRADO!</p>
+            <p style="font-size: 1.1rem; margin-top: 10px;">🎂 ¡Feliz cumpleaños, hermana! 30 de Agosto, 2025 🎂</p>
+        </div>
+    </div>
+</body>
+</html>
