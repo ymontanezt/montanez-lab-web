@@ -28,6 +28,11 @@ export function Gallery({
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [isExpanded, setIsExpanded] = useState(false)
+
+  // Configuración del accordion
+  const initialItems = 4
+  const expandedItems = 12
 
   // Filtrar solo imágenes válidas (con src válido y que existan)
   const validImages = useMemo(() => {
@@ -50,10 +55,20 @@ export function Gallery({
   // Filtrar imágenes por categoría
   const filteredImages = useMemo(() => {
     if (selectedCategory === 'all') {
-      return validImages.slice(0, maxItems)
+      return validImages
     }
-    return validImages.filter(img => img.category === selectedCategory).slice(0, maxItems)
-  }, [validImages, selectedCategory, maxItems])
+    return validImages.filter(img => img.category === selectedCategory)
+  }, [validImages, selectedCategory])
+
+  // Aplicar límite del accordion
+  const displayedImages = useMemo(() => {
+    const limit = isExpanded ? expandedItems : initialItems
+    return filteredImages.slice(0, limit)
+  }, [filteredImages, isExpanded, expandedItems, initialItems])
+
+  // Verificar si se pueden mostrar más imágenes
+  const canShowMore = filteredImages.length > initialItems
+  const canShowLess = isExpanded && filteredImages.length > initialItems
 
   // Encontrar índice de la imagen seleccionada
   const selectedImageIndex = useMemo(() => {
@@ -90,6 +105,11 @@ export function Gallery({
   const handleImageSelect = (image: GalleryImage) => {
     setSelectedImage(image)
     setCurrentImageIndex(selectedImageIndex)
+  }
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category)
+    setIsExpanded(false) // Resetear accordion al cambiar categoría
   }
 
   const handlePreviousImage = () => {
@@ -175,7 +195,7 @@ export function Gallery({
           {categories.map(category => (
             <button
               key={`filter-${category}`}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => handleCategoryChange(category)}
               className={cn(
                 'gallery-filter-button',
                 selectedCategory === category ? 'selected' : ''
@@ -194,7 +214,7 @@ export function Gallery({
           {isLoading ? (
             <GallerySkeleton />
           ) : (
-            filteredImages.map((image, index) => (
+            displayedImages.map((image, index) => (
               <motion.div
                 key={image.id}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -273,6 +293,42 @@ export function Gallery({
             ))
           )}
         </div>
+
+        {/* Botones de Accordion */}
+        {canShowMore && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mt-8 flex justify-center"
+          >
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className={cn(
+                'group inline-flex items-center gap-3 rounded-xl px-8 py-4 text-lg font-semibold transition-all duration-300',
+                isExpanded
+                  ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
+                  : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg hover:scale-105 hover:from-blue-700 hover:to-blue-800 hover:shadow-xl'
+              )}
+            >
+              {isExpanded ? (
+                <>
+                  <span>Ver menos galería</span>
+                  <motion.div animate={{ rotate: 180 }} transition={{ duration: 0.3 }}>
+                    ↑
+                  </motion.div>
+                </>
+              ) : (
+                <>
+                  <span>Ver más galería</span>
+                  <motion.div animate={{ rotate: 0 }} transition={{ duration: 0.3 }}>
+                    ↓
+                  </motion.div>
+                </>
+              )}
+            </button>
+          </motion.div>
+        )}
 
         {/* Modal para imagen seleccionada */}
         <AnimatePresence>
