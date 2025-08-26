@@ -1,388 +1,364 @@
-# 🦷 Montañez Lab - Laboratorio Dental
+# 🦷 Montañez Lab - Laboratorio Dental de Excelencia
 
-Sitio web moderno y profesional para laboratorio dental con tecnología de vanguardia, diseño responsive, optimizaciones de performance y despliegue en Firebase Hosting.
+> **Sitio web profesional y moderno para laboratorio dental con panel de administración completo**
 
-## ✨ Características Principales
+[![Next.js](https://img.shields.io/badge/Next.js-13+-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-10.0-orange?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
 
-### 🎨 **Diseño y UX**
+## 🚀 **Características Principales**
 
-- **Diseño Responsive**: Optimizado para todos los dispositivos
-- **Tema Dual**: Light, Dark y System mode con transiciones suaves
-- **Animaciones**: Framer Motion para micro-interacciones elegantes
-- **Accesibilidad**: Cumple estándares WCAG 2.1 AA
-- **Performance**: Lazy loading, skeleton loaders y optimizaciones avanzadas
+### **🎨 Frontend Moderno**
 
-### 🚀 **Funcionalidades**
+- **Next.js 13+** con App Router para máxima performance
+- **TypeScript** para código tipo-seguro y mantenible
+- **Tailwind CSS** para diseño responsive y moderno
+- **Framer Motion** para animaciones fluidas
+- **PWA** con service worker y funcionalidad offline
 
-- **Hero Carousel**: Presentación dinámica de servicios
-- **Galería Interactiva**: Modal con filtros por categorías y touch gestures
-- **Formularios Inteligentes**: Validación en tiempo real con analytics
-- **WhatsApp Integration**: Chat directo con prioridades
-- **Sistema de Citas**: Agendamiento online inteligente
-- **Panel Admin**: Dashboard para gestión de consultas
-- **PWA**: Instalable como aplicación móvil
+### **🔥 Backend Robusto**
 
-### 🛠️ **Tecnologías**
+- **Firebase Firestore** para base de datos NoSQL
+- **Firebase Auth** para autenticación segura
+- **Firebase Storage** para gestión de archivos
+- **Firebase Hosting** para deployment automático
 
-- **Next.js 15**: Framework React con App Router y export estático
-- **TypeScript**: Tipado estático completo
-- **Tailwind CSS**: Sistema de diseño utility-first
-- **Framer Motion**: Animaciones fluidas
-- **Firebase**: Backend, autenticación y hosting
-- **Bun**: Runtime y package manager
-- **PWA**: Service Worker y manifest optimizado
+### **📱 Experiencia Mobile-First**
 
-## 📁 Estructura del Proyecto
+- **Diseño responsive** optimizado para todos los dispositivos
+- **Touch gestures** para navegación intuitiva
+- **Carousels horizontales** con scroll snap
+- **Optimización de performance** para dispositivos móviles
+
+### **👨‍💼 Panel de Administración**
+
+- **Dashboard** con estadísticas en tiempo real
+- **Gestión de citas** y contactos
+- **Sistema de slides** para el hero principal
+- **Configuración del sistema** centralizada
+
+## 🏗️ **Arquitectura del Proyecto**
 
 ```
 montanez-lab-web/
-├── app/                    # App Router de Next.js
-│   ├── admin/             # Panel administrativo
-│   ├── api/               # API routes
+├── app/                    # App Router de Next.js 13+
+│   ├── admin/             # Panel de administración
+│   ├── api/               # API Routes
 │   ├── servicios/         # Páginas de servicios
 │   └── globals.css        # Estilos globales
-├── components/             # Componentes React
-│   ├── layout/            # Header, Footer, Navigation
-│   ├── sections/          # Secciones principales
-│   ├── ui/                # Componentes base (Radix UI)
-│   ├── admin/             # Componentes del dashboard
-│   └── error-boundary.tsx # Manejo de errores
-├── hooks/                 # Custom React hooks
-│   ├── use-scroll-animation.ts
-│   ├── use-touch-gestures.ts
-│   └── use-web-vitals.ts
-├── data/                  # Datos estáticos y mock
-├── lib/                   # Utilidades y configuración
-│   ├── analytics.ts       # Google Analytics y tracking
-│   ├── firebase/          # Servicios de Firebase
-│   └── config/            # Configuración del sitio
-├── public/                # Assets estáticos y PWA
-└── docs/                  # Documentación completa
+├── components/            # Componentes React reutilizables
+│   ├── admin/            # Componentes del panel admin
+│   ├── sections/         # Secciones principales
+│   ├── ui/               # Componentes de UI base
+│   └── layout/           # Componentes de layout
+├── lib/                  # Utilidades y configuraciones
+│   ├── config/           # Configuraciones centralizadas
+│   ├── firebase/         # Configuración de Firebase
+│   └── utils/            # Utilidades generales
+├── hooks/                # Custom React Hooks
+├── contexts/             # Contextos de React
+├── data/                 # Datos estáticos
+├── types/                # Definiciones de TypeScript
+└── docs/                 # Documentación del proyecto
 ```
 
-## 🎨 Sistema de Diseño
+## ⚙️ **Configuración y Entornos**
 
-### **Paleta de Colores**
+### **Entornos Disponibles**
 
-```typescript
-// Colores primarios (verde dental)
-primary: {
-  50: '#f0fdf4',   // Verde muy claro
-  500: '#22c55e',  // Verde principal
-  600: '#16a34a',  // Verde oscuro
-  900: '#14532d',  // Verde muy oscuro
-}
+El proyecto mantiene **solo 2 entornos** para simplificar la gestión:
 
-// Escala de grises
-gray: {
-  50: '#f9fafb',   // Blanco suave
-  900: '#111827',  // Negro suave
-  950: '#030712',  // Negro puro
-}
-```
+- **🔄 Desarrollo:** `http://localhost:3000` - Debug habilitado
+- **🚀 Producción:** `https://montanez-website.web.app` - Optimizado
 
-### **Tipografía**
+### **Tecnologías Principales**
 
-```typescript
-// Fuentes principales
-fontFamily: {
-  sans: ['Open Sans', 'system-ui', 'sans-serif'],
-  serif: ['Montserrat', 'Georgia', 'serif'],
-}
+- **Frontend:** Next.js 13+ con App Router
+- **Styling:** Tailwind CSS + CSS Modules
+- **Backend:** Firebase (Firestore, Auth, Storage)
+- **Base de Datos:** Firestore (NoSQL)
+- **Autenticación:** Firebase Auth
+- **Deployment:** Firebase Hosting
+- **Lenguaje:** TypeScript
+- **Gestión de Estado:** React Context + Hooks
 
-// Escala de tamaños
-fontSize: {
-  xs: '0.75rem',    // 12px
-  base: '1rem',     // 16px
-  xl: '1.25rem',    // 20px
-  '4xl': '2.25rem', // 36px
-}
-```
+## 🔧 **Instalación y Desarrollo**
 
-## 🚀 Componentes Principales
+### **Requisitos Previos**
 
-### **Hero Section**
+- **Node.js:** 18.0.0 o superior
+- **Bun:** 1.0.0 o superior (recomendado)
+- **Git:** Para control de versiones
+- **Cuenta Firebase:** Para backend
 
-```tsx
-<Hero
-  slides={heroSlides}
-  autoPlay={true}
-  autoPlayInterval={6000}
-  showStats={true}
-  showPlayButton={true}
-  variant="default"
-/>
-```
-
-### **Services Grid**
-
-```tsx
-<Services
-  services={services}
-  showBadge={true}
-  showFeatures={true}
-  showBenefits={false}
-  maxDisplayed={6}
-  columns={3}
-/>
-```
-
-### **Gallery with Filters**
-
-```tsx
-<Gallery images={galleryImages} maxItems={8} columns={4} showTitle={true} showFilters={true} />
-```
-
-### **Contact Form**
-
-```tsx
-<ContactForm onSubmit={handleSubmit} variant="default" showTitle={true} />
-```
-
-## 📱 Responsive Design
-
-### **Breakpoints**
-
-- **Mobile**: `< 768px` - Espaciado compacto
-- **Tablet**: `768px - 1024px` - Espaciado medio
-- **Desktop**: `> 1024px` - Espaciado generoso
-
-### **Grid System**
-
-```typescript
-const gridCols = {
-  2: 'grid-cols-1 md:grid-cols-2',
-  3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
-  4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
-}
-```
-
-## 🔧 Configuración y Setup
-
-### **Requisitos**
-
-- Node.js 18+ o Bun 1.0+
-- Firebase CLI para deploy
-
-### **Instalación**
+### **Instalación Inicial**
 
 ```bash
-# Clonar repositorio
+# 1. Clonar el repositorio
 git clone https://github.com/ymontanezt/montanez-lab-web.git
 cd montanez-lab-web
 
-# Instalar dependencias
+# 2. Instalar dependencias
 bun install
+# o
+npm install
 
-# Variables de entorno
+# 3. Configurar variables de entorno
 cp env.local.example .env.local
-# Configurar variables de Firebase y otros servicios
+# Editar .env.local con tus credenciales
 
-# Desarrollo
+# 4. Iniciar servidor de desarrollo
 bun run dev
+# o
+npm run dev
+```
 
-# Build para producción
+### **Scripts Disponibles**
+
+```bash
+# Desarrollo
+bun run dev          # Servidor de desarrollo
+bun run build        # Build de producción
+bun run start        # Servidor de producción
+bun run lint         # Linting con ESLint
+bun run type-check   # Verificación de tipos TypeScript
+
+# Testing
+bun run test         # Ejecutar tests
+bun run test:watch   # Tests en modo watch
+
+# Utilidades
+bun run clean        # Limpiar build
+bun run analyze      # Análisis de bundle
+```
+
+## 📋 **Flujo de Trabajo Git**
+
+### **Reglas Estrictas**
+
+- **🚫 Solo Admin puede hacer merge** a ramas principales
+- **🚫 No hay push automático** a ninguna rama principal
+- **✅ Feature branches** para desarrollo individual
+- **✅ Pull Requests** obligatorios para todos los merges
+
+### **Estructura de Ramas**
+
+```
+main (producción)
+├── develop (desarrollo)
+│   ├── feature/nueva-funcionalidad
+│   ├── bugfix/correccion-error
+│   └── hotfix/urgencia-produccion
+└── release/v1.0.0
+```
+
+### **Flujo de Trabajo**
+
+1. **Crear feature branch** desde `develop`
+2. **Desarrollo y commits** en la rama feature
+3. **Push solo a feature branch** (NO a develop)
+4. **Crear Pull Request** a `develop`
+5. **Admin revisa y hace merge**
+6. **Admin hace merge** de `develop` a `main`
+
+## 🔥 **Firebase y Base de Datos**
+
+### **Servicios Utilizados**
+
+- **Firestore:** Base de datos NoSQL para citas, contactos y contenido
+- **Firebase Auth:** Autenticación de usuarios y admins
+- **Firebase Storage:** Almacenamiento de imágenes y archivos
+- **Firebase Hosting:** Deployment y hosting del sitio web
+
+### **Colecciones Principales**
+
+- **`appointments`:** Sistema de citas y reservas
+- **`contacts`:** Mensajes de contacto de clientes
+- **`hero-slides`:** Slides dinámicos del hero principal
+- **`users`:** Usuarios administradores del sistema
+
+## 📱 **Funcionalidades Principales**
+
+### **Para Clientes**
+
+- **🌐 Sitio web responsive** con diseño moderno
+- **📅 Sistema de citas** online con confirmación
+- **📞 Formulario de contacto** con notificaciones
+- **🖼️ Galería de trabajos** con filtros por categoría
+- **👥 Información del equipo** especializado
+- **📱 PWA** instalable como aplicación móvil
+
+### **Para Administradores**
+
+- **📊 Dashboard** con estadísticas en tiempo real
+- **📋 Gestión de citas** con estados y seguimiento
+- **💬 Gestión de contactos** con sistema de respuestas
+- **🖼️ Gestión de slides** del hero principal
+- **⚙️ Configuración del sistema** centralizada
+- **📊 Reportes y exportación** de datos
+
+## 🚀 **Deployment y Producción**
+
+### **Plataforma de Hosting**
+
+- **Firebase Hosting** para deployment automático
+- **CDN global** con HTTPS automático
+- **Build estático** optimizado de Next.js
+- **Dominio personalizado** configurable
+
+### **Proceso de Deploy**
+
+```bash
+# Build de producción
 bun run build
 
 # Deploy a Firebase
-bun run deploy:firebase
+firebase deploy --only hosting
+
+# Deploy completo
+firebase deploy
 ```
 
-### **Variables de Entorno**
+## 📊 **Performance y Optimización**
+
+### **Core Web Vitals**
+
+- **LCP:** < 2.5s (Largest Contentful Paint)
+- **FID:** < 100ms (First Input Delay)
+- **CLS:** < 0.1 (Cumulative Layout Shift)
+
+### **Lighthouse Score**
+
+- **Performance:** 90+
+- **Accessibility:** 95+
+- **Best Practices:** 90+
+- **SEO:** 95+
+
+### **Optimizaciones Implementadas**
+
+- **Lazy loading** de componentes y imágenes
+- **Code splitting** automático de Next.js
+- **Image optimization** con formatos modernos
+- **Bundle analysis** y optimización
+- **Service worker** para cache inteligente
+
+## 🔒 **Seguridad y Autenticación**
+
+### **Medidas de Seguridad**
+
+- **Firebase Security Rules** para Firestore y Storage
+- **Content Security Policy** configurado
+- **Headers de seguridad** implementados
+- **Validación de datos** en frontend y backend
+- **Rate limiting** para APIs
+
+### **Sistema de Autenticación**
+
+- **Firebase Auth** con proveedores múltiples
+- **Roles de usuario** (Usuario, Admin)
+- **Tokens JWT** para sesiones seguras
+- **Protección de rutas** administrativas
+
+## 📚 **Documentación**
+
+### **Documentación Disponible**
+
+- **[📚 Documentación Completa](./docs/README.md)** - Guía técnica completa
+- **[📋 Flujo de Trabajo Git](./docs/git-workflow.md)** - Reglas y procesos Git
+- **[👥 Guía de Usuario](./docs/user-guide.md)** - Manual para usuarios finales
+- **[🔌 API Reference](./docs/api-reference.md)** - Documentación de APIs
+- **[🎨 Design System](./docs/design-system.md)** - Sistema de diseño
+- **[🔥 Firebase Setup](./docs/firebase-setup.md)** - Configuración de Firebase
+
+## 🐛 **Troubleshooting**
+
+### **Problemas Comunes**
+
+- **Firebase not initialized:** Verificar variables de entorno
+- **Permission denied:** Verificar reglas de Firestore
+- **Build errors:** Ejecutar `npm run type-check`
+- **Performance issues:** Usar `npm run analyze`
+
+### **Logs y Debugging**
 
 ```bash
-# Firebase
-NEXT_PUBLIC_FIREBASE_API_KEY=
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
-NEXT_PUBLIC_FIREBASE_APP_ID=
+# Habilitar debug en desarrollo
+NEXT_PUBLIC_DEBUG=true
 
-# Google Analytics
-NEXT_PUBLIC_GA_ID=
+# Ver logs de Firebase
+firebase functions:log
+firebase hosting:log
 ```
 
-## 🚀 Scripts Disponibles
+## 📞 **Soporte y Contacto**
 
-```bash
-# Desarrollo
-bun run dev              # Servidor de desarrollo
-bun run build            # Build de producción
-bun run start            # Servidor de producción
-bun run lint             # Linting con ESLint
-bun run type-check       # Verificación de tipos
-bun run analyze          # Análisis del bundle
+### **Equipo de Desarrollo**
 
-# Deploy
-bun run export           # Build estático
-bun run deploy:firebase  # Deploy a Firebase Hosting
-```
+- **Desarrollador Principal:** [Tu Nombre]
+- **Email:** montzavy@gmail.com
+- **Admin Email:** mmontanezt@gmail.com
 
-## 📊 Performance y Optimizaciones
+### **Información de Contacto**
 
-### **Lazy Loading**
+- **📧 Email:** montzavy@gmail.com
+- **📞 Teléfono:** +51 989 253 275
+- **🆘 Soporte:** +51 969 960 969
+- **📍 Dirección:** Av. Catalina de Wanka 1234, Huancayo, Perú
 
-- **Componentes**: React.lazy() para secciones pesadas
-- **Imágenes**: Intersection Observer API con OptimizedImage
-- **Skeleton Loaders**: Placeholders elegantes durante carga
+### **Recursos Útiles**
 
-### **Bundle Optimization**
+- **GitHub Issues:** [Reportar problemas](https://github.com/ymontanezt/montanez-lab-web/issues)
+- **GitHub Discussions:** [Discusiones](https://github.com/ymontanezt/montanez-lab-web/discussions)
+- **Documentación Next.js:** [nextjs.org/docs](https://nextjs.org/docs)
+- **Documentación Firebase:** [firebase.google.com/docs](https://firebase.google.com/docs)
 
-- **Code Splitting**: División automática por rutas
-- **Tree Shaking**: Eliminación de código no utilizado
-- **Dynamic Imports**: Carga bajo demanda
+## 🤝 **Contribución**
 
-### **Image Optimization**
+### **Cómo Contribuir**
 
-- **Formatos Modernos**: WebP, AVIF con fallbacks
-- **Responsive Images**: srcset para diferentes dispositivos
-- **Lazy Loading**: Carga solo cuando es visible
+1. **Fork** del repositorio
+2. **Crear feature branch** desde `develop`
+3. **Desarrollo** con commits descriptivos
+4. **Crear Pull Request** a `develop`
+5. **Esperar revisión** del admin
+6. **Merge** después de aprobación
 
-## 🔒 Seguridad
+### **Convenciones de Código**
 
-### **Headers de Seguridad**
+- **Commits:** Conventional Commits
+- **Naming:** camelCase para variables, PascalCase para componentes
+- **Code Style:** ESLint + Prettier
+- **TypeScript:** Tipado estricto
 
-```typescript
-// next.config.mjs
-const securityHeaders = [
-  {
-    key: 'X-Content-Type-Options',
-    value: 'nosniff',
-  },
-  {
-    key: 'X-Frame-Options',
-    value: 'DENY',
-  },
-  {
-    key: 'X-XSS-Protection',
-    value: '1; mode=block',
-  },
-]
-```
+## 📝 **Changelog**
 
-### **Validación de Formularios**
+### **v1.0.0** - _Fecha_
 
-- **Client-side**: Validación en tiempo real
-- **Server-side**: Sanitización de inputs
-- **Rate Limiting**: Protección contra spam
+- ✅ **Implementación inicial** del sitio web completo
+- ✅ **Panel de administración** con todas las funcionalidades
+- ✅ **Sistema de citas y contactos** integrado
+- ✅ **Integración completa** con Firebase
+- ✅ **Optimización mobile** con carousels horizontales
+- ✅ **Actualización de marca** a Montañez Lab
+- ✅ **Limpieza de entornos** (solo develop y production)
+- ✅ **Eliminación de Vercel y GitHub Actions**
+- ✅ **Documentación consolidada** y mejorada
 
-## 📈 Analytics y Tracking
+## 📄 **Licencia**
 
-### **Google Analytics 4**
-
-- **Page Views**: Tracking automático de navegación
-- **Custom Events**: Formularios, clicks en WhatsApp, servicios
-- **Conversion Tracking**: Objetivos de negocio
-
-### **Performance Monitoring**
-
-- **Core Web Vitals**: LCP, INP, CLS, FCP, TTFB
-- **User Experience**: Métricas de engagement
-- **Error Tracking**: Monitoreo de errores con Error Boundaries
-
-## 🚀 PWA (Progressive Web App)
-
-### **Características PWA**
-
-- **Instalable**: Se puede instalar en dispositivos móviles
-- **Offline**: Funcionamiento básico sin conexión
-- **Service Worker**: Cache inteligente de recursos
-- **Manifest**: Configuración para instalación
-
-### **Service Worker**
-
-```typescript
-// Cache strategies implementadas
-- Fonts: Cache First (365 días)
-- Images: Stale While Revalidate (24 horas)
-- JS/CSS: Stale While Revalidate (24 horas)
-- API: Stale While Revalidate (24 horas)
-```
-
-## 🎯 Touch Gestures
-
-### **Gestos Soportados**
-
-- **Swipe**: Navegación en galería y carruseles
-- **Pinch**: Zoom en imágenes
-- **Double Tap**: Reset de zoom
-- **Touch Navigation**: Navegación táctil optimizada
-
-## 🧪 Testing
-
-### **Estrategia de Testing**
-
-- **Unit Tests**: Jest + Testing Library
-- **Integration Tests**: Componentes y hooks
-- **E2E Tests**: Playwright para flujos completos
-- **Visual Regression**: Comparación de UI
-
-## 🚀 Deployment
-
-### **Firebase Hosting**
-
-- **Build Estático**: Export optimizado de Next.js
-- **CDN Global**: Distribución de contenido mundial
-- **HTTPS Automático**: Seguridad por defecto
-- **Deploy Automático**: Con GitHub Actions
-
-### **CI/CD Pipeline**
-
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy to Firebase
-on:
-  push:
-    branches: [main, develop]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: oven-sh/setup-bun@v1
-      - run: bun install
-      - run: bun run build
-      - run: firebase deploy --only hosting
-```
-
-## 📚 Documentación Adicional
-
-- **Design System**: `/docs/design-system.md`
-- **Environment Setup**: `/docs/environment-setup.md`
-- **Firebase Deployment**: `/docs/firebase-hosting-deploy.md`
-- **Performance Guide**: `/docs/performance-optimizations.md`
-
-## 🤝 Contribución
-
-### **Guidelines**
-
-1. Fork el repositorio
-2. Crea una rama para tu feature
-3. Commit tus cambios
-4. Push a la rama
-5. Abre un Pull Request
-
-### **Code Style**
-
-- **TypeScript**: Tipado estricto
-- **ESLint**: Reglas de código
-- **Prettier**: Formateo automático
-- **Husky**: Pre-commit hooks
-
-## 📄 Licencia
-
-Este proyecto está bajo la licencia MIT. Ver [LICENSE](LICENSE) para más detalles.
-
-## 📞 Contacto
-
-- **Desarrollador**: michcode
-- **Email**: ymontanezt@gmail.com
-- **GitHub**: [ymontanezt](https://github.com/ymontanezt)
-- **Proyecto**: [montanez-lab-web](https://github.com/ymontanezt/montanez-lab-web)
+Este proyecto es privado y propiedad de **Montañez Lab**. Todos los derechos reservados.
 
 ---
 
-**Montañez Lab** - Laboratorio Dental de Vanguardia 🦷✨
+## 🎉 **¡Gracias por usar Montañez Lab!**
 
-_Construido con Next.js 15, TypeScript, Tailwind CSS y Firebase_
+Este proyecto representa la excelencia en desarrollo web para laboratorios dentales, con un enfoque en **performance**, **usabilidad** y **profesionalismo**.
+
+**⭐ Si te gusta el proyecto, ¡dale una estrella en GitHub!**
+
+---
+
+**🔄 Última actualización:** [Fecha]  
+**📚 Documentación:** [docs/README.md](./docs/README.md)  
+**🌐 Sitio web:** [https://montanez-website.web.app](https://montanez-website.web.app)

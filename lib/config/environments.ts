@@ -1,167 +1,82 @@
-// Configuración de entornos para el proyecto Montañez Lab
-// Este archivo maneja las variables de entorno según el ambiente
+/**
+ * Configuración de entornos para el proyecto Montañez Lab
+ * Solo mantenemos develop y production
+ */
 
-export interface EnvironmentConfig {
-  // Configuración del sitio
-  site: {
+export interface Environment {
+  name: string
+  description: string
+  url: string
+  debug: boolean
+  database: {
     name: string
-    description: string
     url: string
-    debug: boolean
   }
-
-  // Configuración de Firebase
   firebase: {
+    projectId: string
     apiKey: string
     authDomain: string
-    projectId: string
-    storageBucket?: string
-    messagingSenderId?: string
-    appId?: string
-  }
-
-  // Configuración de base de datos
-  database: {
-    url: string
-  }
-
-  // Configuración de autenticación
-  auth: {
-    jwtSecret: string
-  }
-
-  // Configuración de analytics
-  analytics: {
-    googleAnalyticsId?: string
-    googleTagManagerId?: string
+    storageBucket: string
+    messagingSenderId: string
+    appId: string
+    measurementId: string
   }
 }
 
-// Configuración por defecto para desarrollo
-const developmentConfig: EnvironmentConfig = {
-  site: {
-    name: 'Montañez Lab',
-    description: 'Laboratorio Dental de Excelencia',
-    url: 'http://localhost:3000',
+export const environments: Record<string, Environment> = {
+  development: {
+    name: 'Montañez Lab (Desarrollo)',
+    description: 'Laboratorio Dental de Excelencia - Entorno de Desarrollo',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     debug: true,
+    database: {
+      name: 'montanez_lab_dev',
+      url: process.env.DATABASE_URL || 'mongodb://localhost:27017/montanez_lab_dev',
+    },
+    firebase: {
+      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'montanez-website',
+      apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || '',
+      authDomain:
+        process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'montanez-website.firebaseapp.com',
+      storageBucket:
+        process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || 'montanez-website.appspot.com',
+      messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || '',
+      appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || '',
+      measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID || '',
+    },
   },
-  firebase: {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || 'dev_api_key',
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'dev-project.firebaseapp.com',
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'dev-project-id',
-  },
-  database: {
-    url: process.env.DATABASE_URL || 'postgresql://localhost:5432/montanez_lab_dev',
-  },
-  auth: {
-    jwtSecret: process.env.JWT_SECRET || 'dev_jwt_secret',
-  },
-  analytics: {
-    googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID,
-    googleTagManagerId: process.env.NEXT_PUBLIC_GTM_ID,
-  },
-}
-
-// Configuración para staging
-const stagingConfig: EnvironmentConfig = {
-  site: {
-    name: 'Montañez Lab (Staging)',
-    description: 'Laboratorio Dental de Excelencia - Entorno de Pruebas',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://staging.montanez-website.web.app',
-    debug: false,
-  },
-  firebase: {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || '',
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || '',
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || '',
-  },
-  database: {
-    url: process.env.DATABASE_URL || '',
-  },
-  auth: {
-    jwtSecret: process.env.JWT_SECRET || '',
-  },
-  analytics: {
-    googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID,
-    googleTagManagerId: process.env.NEXT_PUBLIC_GTM_ID,
-  },
-}
-
-// Configuración para producción
-const productionConfig: EnvironmentConfig = {
-  site: {
+  production: {
     name: 'Montañez Lab',
     description: 'Laboratorio Dental de Excelencia',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://montanez-website.web.app',
     debug: false,
-  },
-  firebase: {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || '',
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || '',
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || '',
-  },
-  database: {
-    url: process.env.DATABASE_URL || '',
-  },
-  auth: {
-    jwtSecret: process.env.JWT_SECRET || '',
-  },
-  analytics: {
-    googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID,
-    googleTagManagerId: process.env.NEXT_PUBLIC_GTM_ID,
+    database: {
+      name: 'montanez_lab_prod',
+      url: process.env.DATABASE_URL || 'mongodb://localhost:27017/montanez_lab_prod',
+    },
+    firebase: {
+      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'montanez-website',
+      apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || '',
+      authDomain:
+        process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'montanez-website.firebaseapp.com',
+      storageBucket:
+        process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || 'montanez-website.appspot.com',
+      messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || '',
+      appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || '',
+      measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID || '',
+    },
   },
 }
 
-// Función para obtener la configuración según el ambiente
-export function getEnvironmentConfig(): EnvironmentConfig {
-  const nodeEnv = process.env.NODE_ENV || 'development'
-  const isStaging =
-    process.env.VERCEL_ENV === 'preview' || process.env.NEXT_PUBLIC_ENV === 'staging'
-
-  // Si es staging, usar configuración de staging
-  if (isStaging) {
-    return stagingConfig
-  }
-
-  switch (nodeEnv) {
-    case 'production':
-      return productionConfig
-    case 'development':
-    default:
-      return developmentConfig
-  }
+export const getCurrentEnvironment = (): Environment => {
+  const env = process.env.NODE_ENV || 'development'
+  return environments[env] || environments.development
 }
 
-// Función para validar que todas las variables requeridas estén presentes
-export function validateEnvironmentConfig(): boolean {
-  const config = getEnvironmentConfig()
-
-  // Validar Firebase
-  if (!config.firebase.apiKey || !config.firebase.authDomain || !config.firebase.projectId) {
-    console.error('❌ Firebase configuration is incomplete')
-    return false
-  }
-
-  // Validar base de datos
-  if (!config.database.url) {
-    console.error('❌ Database URL is missing')
-    return false
-  }
-
-  // Validar JWT secret
-  if (!config.auth.jwtSecret) {
-    console.error('❌ JWT secret is missing')
-    return false
-  }
-
-  console.log('✅ Environment configuration is valid')
-  return true
+export const isDevelopment = (): boolean => {
+  return process.env.NODE_ENV === 'development'
 }
 
-// Exportar configuraciones individuales para uso directo
-export const config = getEnvironmentConfig()
-export const isDevelopment = process.env.NODE_ENV === 'development'
-export const isStaging =
-  process.env.VERCEL_ENV === 'preview' || process.env.NEXT_PUBLIC_ENV === 'staging'
-export const isProduction =
-  process.env.NODE_ENV === 'production' && !(process.env.VERCEL_ENV === 'preview')
+export const isProduction = (): boolean => {
+  return process.env.NODE_ENV === 'production'
+}
