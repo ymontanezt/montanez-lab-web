@@ -6,7 +6,7 @@
   
   <!-- Página principal -->
   <url>
-    <loc>https://dentallabpro.com/</loc>
+    <loc>https://montanez-lab.com/</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,35 +14,35 @@
   
   <!-- Secciones principales -->
   <url>
-    <loc>https://dentallabpro.com/#servicios</loc>
+    <loc>https://montanez-lab.com/#servicios</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://dentallabpro.com/#galeria</loc>
+    <loc>https://montanez-lab.com/#galeria</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://dentallabpro.com/#testimonios</loc>
+    <loc>https://montanez-lab.com/#testimonios</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://dentallabpro.com/#team</loc>
+    <loc>https://montanez-lab.com/#team</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://dentallabpro.com/#contacto</loc>
+    <loc>https://montanez-lab.com/#contacto</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -50,42 +50,42 @@
   
   <!-- Páginas de servicios -->
   <url>
-    <loc>https://dentallabpro.com/servicios/protesis-digitales</loc>
+    <loc>https://montanez-lab.com/servicios/protesis-digitales</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://dentallabpro.com/servicios/implantologia-avanzada</loc>
+    <loc>https://montanez-lab.com/servicios/implantologia-avanzada</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://dentallabpro.com/servicios/ortodoncia-personalizada</loc>
+    <loc>https://montanez-lab.com/servicios/ortodoncia-personalizada</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://dentallabpro.com/servicios/estetica-dental</loc>
+    <loc>https://montanez-lab.com/servicios/estetica-dental</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://dentallabpro.com/servicios/odontopediatria</loc>
+    <loc>https://montanez-lab.com/servicios/odontopediatria</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://dentallabpro.com/servicios/urgencias-24-7</loc>
+    <loc>https://montanez-lab.com/servicios/urgencias-24-7</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -93,7 +93,7 @@
   
   <!-- Páginas administrativas -->
   <url>
-    <loc>https://dentallabpro.com/admin</loc>
+    <loc>https://montanez-lab.com/admin</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>

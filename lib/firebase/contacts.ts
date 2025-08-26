@@ -75,7 +75,7 @@ export const sendContactEmail = async (contactData: ContactEmailData): Promise<b
   try {
     // Email para el admin
     const adminEmailPromise = sendEmail({
-      to: process.env.NEXT_PUBLIC_CONTACT_ADMIN_EMAIL || 'admin@dentallabpro.com',
+      to: process.env.NEXT_PUBLIC_CONTACT_ADMIN_EMAIL || 'mmontanezt@gmail.com',
       subject: `Nuevo mensaje de contacto: ${contactData.subject}`,
       text: `
 Nuevo mensaje de contacto recibido:
@@ -119,7 +119,7 @@ Nos pondremos en contacto contigo en las próximas 24 horas.
 Gracias por contactarnos.
 
 Saludos,
-Equipo Dental Lab Pro
+Equipo Montañez Lab
       `.trim(),
       html: `
         <h2>Confirmación de mensaje recibido</h2>
@@ -130,7 +130,7 @@ Equipo Dental Lab Pro
         <p>Nos pondremos en contacto contigo en las próximas 24 horas.</p>
         <p>Gracias por contactarnos.</p>
         <br>
-        <p>Saludos,<br><strong>Equipo Dental Lab Pro</strong></p>
+        <p>Saludos,<br><strong>Equipo Montañez Lab</strong></p>
       `,
     })
 

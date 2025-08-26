@@ -116,7 +116,7 @@ export class ErrorBoundary extends Component<Props, State> {
                       const body = encodeURIComponent(
                         `Ha ocurrido un error en el sitio web.\n\nDetalles:\n${this.state.error?.message || 'Error desconocido'}\n\nURL: ${window.location.href}`
                       )
-                      window.open(`mailto:support@montanezlab.com?subject=${subject}&body=${body}`)
+                      window.open(`mailto:montzavy@gmail.com?subject=${subject}&body=${body}`)
                     }}
                   >
                     <Bug className="mr-1 h-3 w-3" />

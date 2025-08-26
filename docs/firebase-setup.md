@@ -40,7 +40,7 @@ Esta guía te llevará paso a paso para configurar Firebase en tu proyecto de la
 - Ve a la pestaña **"Users"**
 - Haz clic en **"Add user"**
 - Crea un usuario admin:
-  - **Email**: `admin@dentallabpro.com`
+  - **Email**: `montzavy@gmail.com`
   - **Password**: `Admin123!` (cambia por una contraseña segura)
 - Haz clic en **"Add user"**
 

@@ -30,7 +30,7 @@ export const event = ({ action, category, label, value }: GtagEvent) => {
   }
 }
 
-// Predefined tracking events for dental lab
+// Predefined tracking events for montanez lab
 export const trackingEvents = {
   // Navigation events
   navClick: (section: string) =>

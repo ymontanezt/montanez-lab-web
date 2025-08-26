@@ -648,7 +648,7 @@ export function UserManagement() {
                   id="create-phone"
                   value={createData.phone}
                   onChange={e => setCreateData(prev => ({ ...prev, phone: e.target.value }))}
-                  placeholder="+51 987 654 321"
+                  placeholder="+51 989 253 275"
                 />
               </div>
               <div>
@@ -713,7 +713,7 @@ export function UserManagement() {
                   id="edit-phone"
                   value={editData.phone || ''}
                   onChange={e => setEditData(prev => ({ ...prev, phone: e.target.value }))}
-                  placeholder="+51 987 654 321"
+                  placeholder="+51 989 253 275"
                 />
               </div>
               <div>

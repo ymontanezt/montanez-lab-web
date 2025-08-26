@@ -1,4 +1,4 @@
-// Configuración de entornos para el proyecto Dental Lab
+// Configuración de entornos para el proyecto Montañez Lab
 // Este archivo maneja las variables de entorno según el ambiente
 
 export interface EnvironmentConfig {
@@ -40,7 +40,7 @@ export interface EnvironmentConfig {
 // Configuración por defecto para desarrollo
 const developmentConfig: EnvironmentConfig = {
   site: {
-    name: 'Montañez Lab Dental Lab',
+    name: 'Montañez Lab',
     description: 'Laboratorio Dental de Excelencia',
     url: 'http://localhost:3000',
     debug: true,
@@ -51,7 +51,7 @@ const developmentConfig: EnvironmentConfig = {
     projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'dev-project-id',
   },
   database: {
-    url: process.env.DATABASE_URL || 'postgresql://localhost:5432/dental_lab_dev',
+    url: process.env.DATABASE_URL || 'postgresql://localhost:5432/montanez_lab_dev',
   },
   auth: {
     jwtSecret: process.env.JWT_SECRET || 'dev_jwt_secret',
@@ -65,9 +65,9 @@ const developmentConfig: EnvironmentConfig = {
 // Configuración para staging
 const stagingConfig: EnvironmentConfig = {
   site: {
-    name: 'Montañez Lab Dental Lab (Staging)',
+    name: 'Montañez Lab (Staging)',
     description: 'Laboratorio Dental de Excelencia - Entorno de Pruebas',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://staging.montanez-lab.com',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://staging.montanez-website.web.app',
     debug: false,
   },
   firebase: {
@@ -90,9 +90,9 @@ const stagingConfig: EnvironmentConfig = {
 // Configuración para producción
 const productionConfig: EnvironmentConfig = {
   site: {
-    name: 'Montañez Lab Dental Lab',
+    name: 'Montañez Lab',
     description: 'Laboratorio Dental de Excelencia',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://montanez-lab.com',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://montanez-website.web.app',
     debug: false,
   },
   firebase: {

@@ -49,7 +49,7 @@ export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
     //     'Content-Type': 'application/json',
     //   },
     //   body: JSON.stringify({
-    //     from: 'DentalLab Pro <noreply@dentallabpro.com>',
+    //     from: 'Montañez Lab <montzavy@gmail.com>',
     //     to: emailData.to,
     //     subject: emailData.subject,
     //     html: emailData.html,
@@ -89,7 +89,7 @@ export const sendContactNotification = async (
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Nueva Consulta - DentalLab Pro</title>
+      <title>Nueva Consulta - Montañez Lab</title>
       <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
@@ -111,7 +111,7 @@ export const sendContactNotification = async (
       <div class="container">
         <div class="header">
           <h1 style="margin: 0; font-size: 24px;">🦷 Nueva Consulta Recibida</h1>
-          <p style="margin: 10px 0 0 0; opacity: 0.9;">DentalLab Pro - Sistema de Gestión</p>
+          <p style="margin: 10px 0 0 0; opacity: 0.9;">Montañez Lab - Sistema de Gestión</p>
         </div>
         
         <div class="content">
@@ -154,7 +154,7 @@ export const sendContactNotification = async (
           </div>
           
           <div style="text-align: center; margin-top: 30px;">
-            <a href="https://dentallabpro.com/admin" class="btn">Ver en Panel Admin</a>
+            <a href="https://montanez-lab/admin" class="btn">Ver en Panel Admin</a>
             <a href="mailto:${contactData.email}" class="btn" style="background: #6b7280;">Responder por Email</a>
           </div>
         </div>
@@ -189,11 +189,11 @@ Mensaje:
 ${contactData.message}
 
 Accede al panel administrativo para gestionar esta consulta:
-https://dentallabpro.com/admin
+https://montanez-lab/admin
   `
 
   return await sendEmail({
-    to: 'admin@dentallabpro.com', // Admin email
+    to: 'montzavy@gmail.com', // Admin email
     subject: `🦷 Nueva Consulta ${contactData.urgency === 'alta' ? 'URGENTE' : ''} - ${contactData.name}`,
     html: htmlContent,
     text: textContent,
@@ -250,10 +250,10 @@ export const sendContactConfirmation = async (
           
           <div class="contact-info">
             <h3 style="margin-top: 0; color: #059669;">📞 ¿Necesitas contactarnos?</h3>
-            <p><strong>Teléfono:</strong> +52 55 1234 5678</p>
-            <p><strong>WhatsApp:</strong> +52 55 1234 5678</p>
-            <p><strong>Email:</strong> info@dentallabpro.com</p>
-            <p><strong>Urgencias 24/7:</strong> +52 55 URGENCIA</p>
+            <p><strong>Teléfono:</strong> 989 253 275</p>
+            <p><strong>WhatsApp:</strong> 989 253 275</p>
+            <p><strong>Email:</strong> montzavy@gmail.com</p>
+            <p><strong>Urgencias 24/7:</strong> 989 253 275</p>
           </div>
           
           <p>Gracias por elegir Montañez Lab. Estamos comprometidos con brindarte la mejor tecnología dental y un servicio excepcional.</p>
@@ -261,7 +261,7 @@ export const sendContactConfirmation = async (
         
         <div class="footer">
           <p style="margin: 0; color: #6b7280; font-size: 14px;">
-            <strong>Montañez Lab</strong> - Av. Javier Prado Este 1234, Huancayo, Perú
+            <strong>Montañez Lab</strong> - Av. Catalina de Wanka 1234, Huancayo, Perú
           </p>
           <p style="margin: 5px 0 0 0; color: #9ca3af; font-size: 12px;">
             Este es un email automático, por favor no respondas a esta dirección
@@ -291,14 +291,14 @@ Resumen de tu consulta:
 4. Propuesta: Te presentaremos una propuesta personalizada
 
 Contacto:
-- Teléfono: +51 1 234 5678
-- WhatsApp: +51 1 234 5678
-- Email: info@dentallabpro.com
-- Urgencias 24/7: +51 1 999 8888
+- Teléfono: 989 253 275
+- WhatsApp: 989 253 275
+- Email: montzavy@gmail.com
+- Urgencias 24/7: 989 253 275
 
 Gracias por elegir Montañez Lab.
 
-Montañez Lab - Av. Javier Prado Este 1234, Huancayo, Perú
+Montañez Lab - Av. Catalina de Wanka, Huancayo, Perú
   `
 
   return await sendEmail({
@@ -399,8 +399,8 @@ export const sendAppointmentConfirmation = async (
           }
           
           <h3 style="color: #059669;">📍 Ubicación</h3>
-          <p><strong>Dirección:</strong> Av. Javier Prado Este 1234, Huancayo, Perú</p>
-          <p><strong>Referencia:</strong> Entre la Av. Arequipa y la Av. Javier Prado</p>
+          <p><strong>Dirección:</strong> Av. Catalina de Wanka 1234, Huancayo, Perú</p>
+          <p><strong>Referencia:</strong> Entre la Av. Catalina Wanka y Jr. Loreto</p>
           
           <h3 style="color: #059669;">⏰ Instrucciones para el día de tu cita</h3>
           <ul>
@@ -414,23 +414,23 @@ export const sendAppointmentConfirmation = async (
             <h4 style="margin-top: 0; color: #dc2626;">⚠️ Políticas importantes</h4>
             <ul style="margin: 10px 0; padding-left: 20px;">
               <li>Cancelar con al menos 24 horas de anticipación</li>
-              <li>Reprogramar llamando al +51 1 234 5678</li>
+              <li>Reprogramar llamando al 989 253 275</li>
               <li>Llegar tarde puede resultar en reprogramación</li>
             </ul>
           </div>
           
           <div style="text-align: center; margin-top: 30px;">
-            <a href="https://maps.google.com/?q=Av.%20Javier%20Prado%20Este%201234,+Huancayo,+Perú" target="_blank" class="btn">📍 Ver en Google Maps</a>
-            <a href="https://wa.me/51912345678" target="_blank" class="btn" style="background: #25d366;">💬 WhatsApp</a>
+            <a href="https://maps.google.com/?q=Av.%20Catalina%20de%20Wanka%201234,+Huancayo,+Perú" target="_blank" class="btn">📍 Ver en Google Maps</a>
+            <a href="https://wa.me/51989253275" target="_blank" class="btn" style="background: #25d366;">💬 WhatsApp</a>
           </div>
         </div>
         
         <div class="footer">
           <p style="margin: 0; color: #6b7280; font-size: 14px;">
-            <strong>Montañez Lab</strong> - Av. Javier Prado Este 1234, Huancayo, Perú
+            <strong>Montañez Lab</strong> - Av. Catalina de Wanka 1234, Huancayo, Perú
           </p>
           <p style="margin: 5px 0 0 0; color: #9ca3af; font-size: 12px;">
-            Para cambios o cancelaciones: +51 1 234 5678 | info@dentallabpro.com
+            Para cambios o cancelaciones: +51 989 253 275 | montzavy@gmail.com
           </p>
         </div>
       </div>
@@ -455,7 +455,7 @@ Tu cita ha sido confirmada exitosamente.
 ${appointmentData.notes ? `📝 NOTAS ADICIONALES: ${appointmentData.notes}` : ''}
 
 📍 UBICACIÓN:
-Av. Javier Prado Este 1234, Huancayo, Perú
+Av. Catalina de Wanka 1234, Huancayo, Perú
 Entre la Av. Arequipa y la Av. Javier Prado
 
 ⏰ INSTRUCCIONES:
@@ -466,17 +466,17 @@ Entre la Av. Arequipa y la Av. Javier Prado
 
 ⚠️ POLÍTICAS:
 - Cancelar con 24h de anticipación
-- Reprogramar: +51 1 234 5678
+- Reprogramar: +51 989 253 275
 - Llegar tarde puede resultar en reprogramación
 
 📞 CONTACTO:
-- Teléfono: +51 1 234 5678
-- WhatsApp: +51 1 234 5678
-- Email: info@dentallabpro.com
+- Teléfono: +51 989 253 275
+- WhatsApp: +51 989 253 275
+- Email: montzavy@gmail.com
 
 Gracias por elegir Montañez Lab.
 
-Montañez Lab - Av. Javier Prado Este 1234, Huancayo, Perú
+Montañez Lab - Av. Catalina de Wanka 1234, Huancayo, Perú
   `
 
   return await sendEmail({
@@ -581,7 +581,7 @@ export const sendAppointmentNotification = async (
           </div>
           
           <div style="text-align: center; margin-top: 30px;">
-            <a href="https://dentallabpro.com/admin/appointments/${appointmentData.appointmentId}" class="btn">👨‍💼 Ver en Panel Admin</a>
+            <a href="https://montanez-website.web.app/admin/appointments/${appointmentData.appointmentId}" class="btn">👨‍💼 Ver en Panel Admin</a>
             <a href="mailto:${appointmentData.email}" class="btn" style="background: #6b7280;">📧 Contactar Cliente</a>
             <a href="tel:${appointmentData.phone}" class="btn" style="background: #059669;">📞 Llamar Cliente</a>
           </div>
@@ -623,7 +623,7 @@ ${appointmentData.notes ? `📝 NOTAS DEL CLIENTE: ${appointmentData.notes}` : '
 4. Preparar consultorio
 
 👨‍💼 ACCESO DIRECTO:
-Panel Admin: https://dentallabpro.com/admin/appointments/${appointmentData.appointmentId}
+Panel Admin: https://montanez-website.web.app/admin/appointments/${appointmentData.appointmentId}
 
 Contacto del cliente:
 - Email: ${appointmentData.email}
@@ -633,7 +633,7 @@ Esta notificación fue generada automáticamente por el sistema de Montañez Lab
   `
 
   return await sendEmail({
-    to: 'admin@dentallabpro.com', // Admin email
+    to: 'mmontanezt@gmail.com', // Admin email
     subject: `🦷 Nueva cita agendada - ${appointmentData.name} - ${appointmentData.date} ${appointmentData.time}`,
     html: htmlContent,
     text: textContent,

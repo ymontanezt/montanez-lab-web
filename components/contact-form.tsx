@@ -197,7 +197,7 @@ export function ContactForm() {
           <Input
             id="phone"
             {...register('phone')}
-            placeholder="+52 55 1234 5678"
+            placeholder="912345678"
             className={`mt-2 ${errors.phone ? 'border-destructive' : ''}`}
           />
           {errors.phone && (
@@ -373,7 +373,7 @@ export function ContactInfo() {
     {
       icon: Phone,
       title: 'Teléfono',
-      details: ['+52 55 1234 5678', '+52 55 8765 4321'],
+      details: ['989 253 275'],
       description: 'Lunes a Viernes: 8:00 AM - 8:00 PM',
     },
     {

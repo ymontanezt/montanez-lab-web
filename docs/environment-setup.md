@@ -1,6 +1,6 @@
-# 🌍 Configuración de Entornos - Dental Lab
+# 🌍 Configuración de Entornos - Montañez Lab
 
-Esta documentación explica cómo configurar y gestionar los diferentes entornos (desarrollo, staging, producción) para el proyecto Dental Lab.
+Esta documentación explica cómo configurar y gestionar los diferentes entornos (desarrollo, staging, producción) para el proyecto Montañez Lab.
 
 ## 📋 Entornos Disponibles
 
@@ -13,14 +13,14 @@ Esta documentación explica cómo configurar y gestionar los diferentes entornos
 
 ### 2. **Staging** (`staging`)
 
-- **URL**: `https://staging.gataviejis.com`
+- **URL**: `https://staging.montanez-website.web.app`
 - **Debug**: `false`
 - **Base de datos**: Staging
 - **Firebase**: Proyecto de staging
 
 ### 3. **Production** (`production`)
 
-- **URL**: `https://gataviejis.com`
+- **URL**: `https://montanez-website.web.app`
 - **Debug**: `false`
 - **Base de datos**: Producción
 - **Firebase**: Proyecto de producción
@@ -30,22 +30,22 @@ Esta documentación explica cómo configurar y gestionar los diferentes entornos
 ### Variables Requeridas para Staging:
 
 ```
-STAGING_SITE_URL=https://staging.gataviejis.com
+STAGING_SITE_URL=https://staging.montanez-website.web.app
 STAGING_FIREBASE_API_KEY=your_staging_firebase_api_key
 STAGING_FIREBASE_AUTH_DOMAIN=staging-project.firebaseapp.com
 STAGING_FIREBASE_PROJECT_ID=staging-project-id
-STAGING_DATABASE_URL=postgresql://staging-server:5432/dental_lab_staging
+STAGING_DATABASE_URL=postgresql://staging-server:5432/montanez_lab_staging
 STAGING_JWT_SECRET=your_staging_jwt_secret
 ```
 
 ### Variables Requeridas para Producción:
 
 ```
-PROD_SITE_URL=https://gataviejis.com
+PROD_SITE_URL=https://montanez-website.web.app
 PROD_FIREBASE_API_KEY=your_prod_firebase_api_key
 PROD_FIREBASE_AUTH_DOMAIN=prod-project.firebaseapp.com
 PROD_FIREBASE_PROJECT_ID=prod-project-id
-PROD_DATABASE_URL=postgresql://prod-server:5432/dental_lab_prod
+PROD_DATABASE_URL=postgresql://prod-server:5432/montanez_lab_prod
 PROD_JWT_SECRET=your_prod_jwt_secret
 ```
 
@@ -124,7 +124,7 @@ NEXT_PUBLIC_DEBUG=true
 NEXT_PUBLIC_FIREBASE_API_KEY=dev_api_key
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=dev-project.firebaseapp.com
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=dev-project-id
-DATABASE_URL=postgresql://localhost:5432/dental_lab_dev
+DATABASE_URL=postgresql://localhost:5432/montanez_lab_dev
 JWT_SECRET=dev_jwt_secret
 ```
 
@@ -132,7 +132,7 @@ JWT_SECRET=dev_jwt_secret
 
 ```bash
 NODE_ENV=staging
-NEXT_PUBLIC_SITE_URL=https://staging.gataviejis.com
+NEXT_PUBLIC_SITE_URL=https://staging.montanez-website.web.app
 NEXT_PUBLIC_DEBUG=false
 # Otras variables se toman de GitHub Secrets
 ```
@@ -141,7 +141,7 @@ NEXT_PUBLIC_DEBUG=false
 
 ```bash
 NODE_ENV=production
-NEXT_PUBLIC_SITE_URL=https://gataviejis.com
+NEXT_PUBLIC_SITE_URL=https://montanez-website.web.app
 NEXT_PUBLIC_DEBUG=false
 # Otras variables se toman de GitHub Secrets
 ```
@@ -163,7 +163,7 @@ NEXT_PUBLIC_DEBUG=false
 ### 3. **Deploy Manual**:
 
 - Ir a Actions en GitHub
-- Seleccionar "Deploy Dental Lab"
+- Seleccionar "Deploy Montañez Lab"
 - Elegir ambiente (staging/production)
 - Ejecutar workflow
 

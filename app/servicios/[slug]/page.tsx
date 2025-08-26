@@ -68,7 +68,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   Agendar Consulta
                 </Button>
               </a>
-              <a href="tel:+1234567890" className="inline-block">
+              <a href="tel:+51989253275" className="inline-block">
                 <Button
                   size="lg"
                   variant="outline"
@@ -220,7 +220,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                           Agendar Ahora
                         </Button>
                       </a>
-                      <a href="tel:+1234567890">
+                      <a href="tel:+51989253275">
                         <Button
                           variant="outline"
                           className={`${componentColors.button.outline.background} ${componentColors.button.outline.text} ${componentColors.button.outline.border} ${componentColors.button.outline.focus} hover:bg-blue-100 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-100`}

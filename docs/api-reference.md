@@ -54,7 +54,7 @@ const response = await fetch('/api/send-email', {
   body: JSON.stringify({
     name: 'Dr. Juan Pérez',
     email: 'juan@clinica.com',
-    phone: '+51 123 456 789',
+    phone: '+51 989 253 275',
     clinic: 'Clínica Dental Pérez',
     service: 'Prótesis Digitales',
     urgency: 'medium',

@@ -563,7 +563,7 @@ export function AppointmentScheduler({ className, onSubmit }: AppointmentSchedul
               type="tel"
               value={formData.phone}
               onChange={e => handleInputChange('phone', e.target.value)}
-              placeholder="+51 999 999 999"
+              placeholder="+51 989 253 275"
               className={cn(
                 `rounded-lg bg-white px-3 py-2 text-gray-900 ${colorTokens.border.brand.light} focus:${colorTokens.border.brand.accent} focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:focus:${colorTokens.border.brand.accent} dark:focus:ring-blue-400/30`,
                 errors.phone && 'border-red-300 focus:border-red-500 focus:ring-red-500/20'

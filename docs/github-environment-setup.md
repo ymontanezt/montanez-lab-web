@@ -1,4 +1,4 @@
-# 🔐 Configuración de Entornos desde GitHub - Dental Lab
+# 🔐 Configuración de Entornos desde GitHub - Montañez Lab
 
 Esta guía explica **exactamente** dónde y cómo configurar las variables de entorno para **staging** y **producción** directamente desde GitHub.
 
@@ -22,20 +22,20 @@ https://github.com/ymontanezt/montanez-lab-web/settings/secrets/actions
 
 ### **Configurar estas variables para staging:**
 
-| **Variable**                   | **Valor**                                             | **Descripción**                      |
-| ------------------------------ | ----------------------------------------------------- | ------------------------------------ |
-| `STAGING_SITE_URL`             | `https://staging.gataviejis.com`                      | URL del entorno de staging           |
-| `STAGING_FIREBASE_API_KEY`     | `AIzaSyCxK9AygHIEIujQiyO5y_sSlflhaKqGbH8`             | API Key de Firebase para staging     |
-| `STAGING_FIREBASE_AUTH_DOMAIN` | `montanez-website.firebaseapp.com`                    | Dominio de autenticación de Firebase |
-| `STAGING_FIREBASE_PROJECT_ID`  | `montanez-website`                                    | ID del proyecto de Firebase          |
-| `STAGING_DATABASE_URL`         | `postgresql://staging-server:5432/dental_lab_staging` | URL de base de datos de staging      |
-| `STAGING_JWT_SECRET`           | `staging_jwt_secret_2024`                             | Secret JWT para staging              |
+| **Variable**                   | **Valor**                                               | **Descripción**                      |
+| ------------------------------ | ------------------------------------------------------- | ------------------------------------ |
+| `STAGING_SITE_URL`             | `https://staging.montanez-website.web.app`              | URL del entorno de staging           |
+| `STAGING_FIREBASE_API_KEY`     | `AIzaSyCxK9AygHIEIujQiyO5y_sSlflhaKqGbH8`               | API Key de Firebase para staging     |
+| `STAGING_FIREBASE_AUTH_DOMAIN` | `montanez-website.firebaseapp.com`                      | Dominio de autenticación de Firebase |
+| `STAGING_FIREBASE_PROJECT_ID`  | `montanez-website`                                      | ID del proyecto de Firebase          |
+| `STAGING_DATABASE_URL`         | `postgresql://staging-server:5432/montanez_lab_staging` | URL de base de datos de staging      |
+| `STAGING_JWT_SECRET`           | `staging_jwt_secret_2024`                               | Secret JWT para staging              |
 
 ### **Cómo Configurar:**
 
 1. **Hacer clic en "New repository secret"**
 2. **Name**: `STAGING_SITE_URL`
-3. **Value**: `https://staging.gataviejis.com`
+3. **Value**: `https://staging.montanez-website.web.app`
 4. **Hacer clic en "Add secret"**
 5. **Repetir** para cada variable
 
@@ -43,14 +43,14 @@ https://github.com/ymontanezt/montanez-lab-web/settings/secrets/actions
 
 ### **Configurar estas variables para producción:**
 
-| **Variable**                | **Valor**                                       | **Descripción**                      |
-| --------------------------- | ----------------------------------------------- | ------------------------------------ |
-| `PROD_SITE_URL`             | `https://gataviejis.com`                        | URL del entorno de producción        |
-| `PROD_FIREBASE_API_KEY`     | `AIzaSyCxK9AygHIEIujQiyO5y_sSlflhaKqGbH8`       | API Key de Firebase para producción  |
-| `PROD_FIREBASE_AUTH_DOMAIN` | `montanez-website.firebaseapp.com`              | Dominio de autenticación de Firebase |
-| `PROD_FIREBASE_PROJECT_ID`  | `montanez-website`                              | ID del proyecto de Firebase          |
-| `PROD_DATABASE_URL`         | `postgresql://prod-server:5432/dental_lab_prod` | URL de base de datos de producción   |
-| `PROD_JWT_SECRET`           | `prod_jwt_secret_2024`                          | Secret JWT para producción           |
+| **Variable**                | **Valor**                                         | **Descripción**                      |
+| --------------------------- | ------------------------------------------------- | ------------------------------------ |
+| `PROD_SITE_URL`             | `https://montanez-website.web.app`                | URL del entorno de producción        |
+| `PROD_FIREBASE_API_KEY`     | `AIzaSyCxK9AygHIEIujQiyO5y_sSlflhaKqGbH8`         | API Key de Firebase para producción  |
+| `PROD_FIREBASE_AUTH_DOMAIN` | `montanez-website.firebaseapp.com`                | Dominio de autenticación de Firebase |
+| `PROD_FIREBASE_PROJECT_ID`  | `montanez-website`                                | ID del proyecto de Firebase          |
+| `PROD_DATABASE_URL`         | `postgresql://prod-server:5432/montanez_lab_prod` | URL de base de datos de producción   |
+| `PROD_JWT_SECRET`           | `prod_jwt_secret_2024`                            | Secret JWT para producción           |
 
 ## 🚀 **Configuración Automática con GitHub CLI**
 
@@ -58,19 +58,19 @@ https://github.com/ymontanezt/montanez-lab-web/settings/secrets/actions
 
 ```bash
 # Configurar variables de staging
-gh secret set STAGING_SITE_URL --body "https://staging.gataviejis.com"
+gh secret set STAGING_SITE_URL --body "https://staging.montanez-website.web.app"
 gh secret set STAGING_FIREBASE_API_KEY --body "AIzaSyCxK9AygHIEIujQiyO5y_sSlflhaKqGbH8"
 gh secret set STAGING_FIREBASE_AUTH_DOMAIN --body "montanez-website.firebaseapp.com"
 gh secret set STAGING_FIREBASE_PROJECT_ID --body "montanez-website"
-gh secret set STAGING_DATABASE_URL --body "postgresql://staging-server:5432/dental_lab_staging"
+gh secret set STAGING_DATABASE_URL --body "postgresql://staging-server:5432/montanez_lab_staging"
 gh secret set STAGING_JWT_SECRET --body "staging_jwt_secret_2024"
 
 # Configurar variables de producción
-gh secret set PROD_SITE_URL --body "https://gataviejis.com"
+gh secret set PROD_SITE_URL --body "https://montanez-website.web.app"
 gh secret set PROD_FIREBASE_API_KEY --body "AIzaSyCxK9AygHIEIujQiyO5y_sSlflhaKqGbH8"
 gh secret set PROD_FIREBASE_AUTH_DOMAIN --body "montanez-website.firebaseapp.com"
 gh secret set PROD_FIREBASE_PROJECT_ID --body "montanez-website"
-gh secret set PROD_DATABASE_URL --body "postgresql://prod-server:5432/dental_lab_prod"
+gh secret set PROD_DATABASE_URL --body "postgresql://prod-server:5432/montanez_lab_prod"
 gh secret set PROD_JWT_SECRET --body "prod_jwt_secret_2024"
 ```
 

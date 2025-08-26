@@ -7,14 +7,14 @@ export const seoConfig = {
     name: 'Montañez Lab - Laboratorio Dental',
     description:
       'Laboratorio dental profesional en Huancayo, Perú con tecnología CAD/CAM avanzada. Prótesis dentales, coronas, implantes y servicios especializados con 15+ años de experiencia.',
-    url: 'https://dentallabpro.com',
+    url: 'https://montanez-website.web.app',
     language: 'es-PE',
     locale: 'es_PE',
     type: 'website',
     image: '/og-image.jpg',
     imageWidth: 1200,
     imageHeight: 630,
-    twitterHandle: '@dentallabpro',
+    twitterHandle: '@montanez-lab',
     facebookAppId: '',
   },
 
@@ -44,7 +44,7 @@ export const seoConfig = {
     title: 'Montañez Lab - Laboratorio Dental de Vanguardia',
     description:
       'Laboratorio dental profesional en Huancayo, Perú con tecnología CAD/CAM avanzada. Prótesis, implantes y tratamientos estéticos de alta calidad.',
-    url: 'https://dentallabpro.com',
+    url: 'https://montanez-website.web.app',
     image: '/og-image.jpg',
     imageWidth: 1200,
     imageHeight: 630,
@@ -56,8 +56,8 @@ export const seoConfig = {
   twitter: {
     enabled: true,
     card: 'summary_large_image',
-    site: '@dentallabpro',
-    creator: '@dentallabpro',
+    site: '@montanez-lab',
+    creator: '@montanez-lab',
     title: 'Montañez Lab - Laboratorio Dental de Vanguardia',
     description:
       'Laboratorio dental profesional en Huancayo, Perú con tecnología CAD/CAM avanzada.',
@@ -73,14 +73,14 @@ export const seoConfig = {
       name: 'Montañez Lab',
       legalName: 'Montañez Lab S.A.C.',
       description: 'Laboratorio dental profesional con tecnología CAD/CAM avanzada',
-      url: 'https://dentallabpro.com',
-      logo: 'https://dentallabpro.com/logo.png',
-      image: 'https://dentallabpro.com/og-image.jpg',
-      telephone: '+51 1 234 5678',
-      email: 'info@dentallabpro.com',
+      url: 'https://montanez-website.web.app',
+      logo: 'https://montanez-website.web.app/logo.png',
+      image: 'https://montanez-website.web.app/og-image.jpg',
+      telephone: '+51 989 253 275',
+      email: 'montzavy@gmail.com',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Av. Javier Prado Este 1234',
+        streetAddress: 'Av. Catalina de Wanka 1234',
         addressLocality: 'Huancayo',
         addressRegion: 'Junín',
         postalCode: '15001',
@@ -114,23 +114,23 @@ export const seoConfig = {
         },
       ],
       sameAs: [
-        'https://www.facebook.com/dentallabpro',
-        'https://www.instagram.com/dentallab_pro',
-        'https://www.linkedin.com/company/dentallabpro',
+        'https://www.facebook.com/montanez-lab',
+        'https://www.instagram.com/montanez-lab',
+        'https://www.linkedin.com/company/montanez-lab',
       ],
     },
     website: {
       '@type': 'WebSite',
-      url: 'https://dentallabpro.com',
+      url: 'https://montanez-website.web.app',
       name: 'Montañez Lab',
       description: 'Laboratorio dental profesional con tecnología avanzada',
       publisher: {
-        '@id': 'https://dentallabpro.com/#organization',
+        '@id': 'https://montanez-website.web.app/#organization',
       },
       inLanguage: 'es-PE',
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://dentallabpro.com/buscar?q={search_term_string}',
+        target: 'https://montanez-website.web.app/buscar?q={search_term_string}',
         'query-input': 'required name=search_term_string',
       },
     },
@@ -139,7 +139,7 @@ export const seoConfig = {
         '@type': 'Service',
         name: 'Prótesis Dentales Digitales',
         provider: {
-          '@id': 'https://dentallabpro.com/#organization',
+          '@id': 'https://montanez-website.web.app/#organization',
         },
         description:
           'Fabricación de prótesis dentales utilizando tecnología CAD/CAM de última generación',
@@ -150,7 +150,7 @@ export const seoConfig = {
         '@type': 'Service',
         name: 'Implantología Dental',
         provider: {
-          '@id': 'https://dentallabpro.com/#organization',
+          '@id': 'https://montanez-website.web.app/#organization',
         },
         description:
           'Servicios especializados en implantes dentales con materiales de alta calidad',
@@ -163,7 +163,7 @@ export const seoConfig = {
   // Configuración de sitemap
   sitemap: {
     enabled: true,
-    url: 'https://dentallabpro.com/sitemap.xml',
+    url: 'https://montanez-website.web.app/sitemap.xml',
     priority: 1.0,
     changefreq: 'weekly',
     lastmod: new Date().toISOString(),
@@ -176,8 +176,8 @@ export const seoConfig = {
     userAgent: '*',
     allow: ['/'],
     disallow: ['/api/', '/admin/', '/_next/', '/private/'],
-    sitemap: 'https://dentallabpropro.com/sitemap.xml',
-    host: 'https://dentallabpro.com',
+    sitemap: 'https://montanez-website.web.app/sitemap.xml',
+    host: 'https://montanez-website.web.app',
     crawlDelay: 1,
   },
 
@@ -208,7 +208,7 @@ export const seoConfig = {
   // Configuración de canonical URLs
   canonical: {
     enabled: true,
-    baseUrl: 'https://dentallabpro.com',
+    baseUrl: 'https://montanez-website.web.app',
     trailingSlash: false,
     www: false,
     https: true,
@@ -219,9 +219,9 @@ export const seoConfig = {
     enabled: true,
     default: 'es-PE',
     languages: [
-      { code: 'es-PE', url: 'https://dentallabpro.com' },
-      { code: 'es', url: 'https://dentallabpro.com/es' },
-      { code: 'en', url: 'https://dentallabpro.com/en' },
+      { code: 'es-PE', url: 'https://montanez-website.web.app' },
+      { code: 'es', url: 'https://montanez-website.web.app/es' },
+      { code: 'en', url: 'https://montanez-website.web.app/en' },
     ],
   },
 

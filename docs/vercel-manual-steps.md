@@ -1,4 +1,4 @@
-# 🚀 Pasos Manuales para Completar Vercel - Dental Lab
+# 🚀 Pasos Manuales para Completar Vercel - Montañez Lab
 
 Esta guía contiene **exactamente** los pasos que necesitas hacer manualmente para completar la configuración de Vercel.
 
@@ -60,39 +60,39 @@ vercel login
 
 #### **Para Staging (Preview):**
 
-| Variable               | Value                            | Environment |
-| ---------------------- | -------------------------------- | ----------- |
-| `NEXT_PUBLIC_SITE_URL` | `https://staging.gataviejis.com` | Preview     |
-| `NEXT_PUBLIC_DEBUG`    | `true`                           | Preview     |
-| `NODE_ENV`             | `staging`                        | Preview     |
+| Variable               | Value                                      | Environment |
+| ---------------------- | ------------------------------------------ | ----------- |
+| `NEXT_PUBLIC_SITE_URL` | `https://staging.montanez-website.web.app` | Preview     |
+| `NEXT_PUBLIC_DEBUG`    | `true`                                     | Preview     |
+| `NODE_ENV`             | `staging`                                  | Preview     |
 
 #### **Para Producción (Production):**
 
-| Variable               | Value                    | Environment |
-| ---------------------- | ------------------------ | ----------- |
-| `NEXT_PUBLIC_SITE_URL` | `https://gataviejis.com` | Production  |
-| `NEXT_PUBLIC_DEBUG`    | `false`                  | Production  |
-| `NODE_ENV`             | `production`             | Production  |
+| Variable               | Value                              | Environment |
+| ---------------------- | ---------------------------------- | ----------- |
+| `NEXT_PUBLIC_SITE_URL` | `https://montanez-website.web.app` | Production  |
+| `NEXT_PUBLIC_DEBUG`    | `false`                            | Production  |
+| `NODE_ENV`             | `production`                       | Production  |
 
 ## 🌍 **PASO 4: Configurar Dominios Personalizados (REQUERIDO - Manual)**
 
 ### **Configurar Dominio Principal:**
 
 1. **Vercel Dashboard** → **Project** → **Settings** → **Domains**
-2. **Add Domain** → `gataviejis.com`
+2. **Add Domain** → `montanez-website.web.app`
 3. **Configurar DNS** según las instrucciones de Vercel:
 
 #### **Registros DNS a configurar:**
 
 ```
 # Registrar A
-gataviejis.com → 76.76.19.34
+montanez-website.web.app → 76.76.19.34
 
 # Registrar CNAME
-www.gataviejis.com → cname.vercel-dns.com
+www.montanez-website.web.app → cname.vercel-dns.com
 
 # Subdominio staging
-staging.gataviejis.com → cname.vercel-dns.com
+staging.montanez-website.web.app → cname.vercel-dns.com
 ```
 
 ### **Nota sobre DNS:**
@@ -112,15 +112,16 @@ staging.gataviejis.com → cname.vercel-dns.com
    ```
 
    - ✅ Deploy automático a **Staging**
-   - ✅ URL: `https://staging.gataviejis.com`
+   - ✅ URL: `https://staging.montanez-website.web.app`
 
 2. **Hacer push a `main`**:
+
    ```bash
    git push origin main
    ```
 
    - ✅ Deploy automático a **Producción**
-   - ✅ URL: `https://gataviejis.com`
+   - ✅ URL: `https://montanez-website.web.app`
 
 ## 🔍 **Verificar que Todo Funcione:**
 
@@ -132,8 +133,8 @@ staging.gataviejis.com → cname.vercel-dns.com
 
 ### **2. Verificar URLs:**
 
-- **Staging**: `https://staging.gataviejis.com`
-- **Producción**: `https://gataviejis.com`
+- **Staging**: `https://staging.montanez-website.web.app`
+- **Producción**: `https://montanez-website.web.app`
 
 ### **3. Verificar Funcionalidades:**
 
@@ -199,7 +200,7 @@ staging.gataviejis.com → cname.vercel-dns.com
 
 ---
 
-**🎯 Objetivo**: Tener tu web funcionando en `https://gataviejis.com` con deploy automático.
+**🎯 Objetivo**: Tener tu web funcionando en `https://montanez-website.web.app` con deploy automático.
 
 **⏱️ Tiempo estimado**: 15-30 minutos (dependiendo de la configuración de DNS).
 

@@ -93,8 +93,8 @@ export const siteConfig = {
       siteName: env.company.name,
     },
     twitter: {
-      handle: '@dentallabpro',
-      site: '@dentallabpro',
+      handle: '@montanez-lab',
+      site: '@montanez-lab',
       cardType: 'summary_large_image',
     },
   },

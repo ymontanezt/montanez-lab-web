@@ -79,7 +79,7 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                     Email
                   </h3>
                   <p className="mb-1 text-xs text-gray-600 md:text-sm dark:text-gray-400">
-                    info@dentallabpro.com
+                    {env.contact.email}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-500">Respuesta en 24 horas</p>
                 </div>
@@ -93,7 +93,7 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                     Dirección
                   </h3>
                   <p className="mb-1 text-xs text-gray-600 md:text-sm dark:text-gray-400">
-                    Av. Javier Prado Este 1234
+                    {env.contact.address.street}
                   </p>
                   <p className="mb-2 text-xs text-gray-600 md:text-sm dark:text-gray-400">
                     {env.contact.address.city}, {env.contact.address.country}

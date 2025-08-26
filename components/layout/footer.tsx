@@ -64,8 +64,8 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
     },
     {
       label: 'Email',
-      value: 'info@montanezlab.com',
-      href: 'mailto:info@montanezlab.com',
+      value: env.contact.email,
+      href: `mailto:${env.contact.email}`,
       icon: Mail,
     },
     {

@@ -142,7 +142,7 @@ export class ExcelExporter {
    */
   private createSummarySheet(data: ExcelExportData): void {
     const summaryData = [
-      ['DASHBOARD DENTAL LAB PRO - RESUMEN EJECUTIVO'],
+      ['DASHBOARD MONTAÑEZ LAB - RESUMEN EJECUTIVO'],
       [''],
       ['Fecha de Exportación:', format(new Date(), 'dd/MM/yyyy HH:mm', { locale: es })],
       ['Período:', data.period || 'General'],

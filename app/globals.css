@@ -178,7 +178,7 @@
     @apply bg-background text-foreground font-sans;
   }
 
-  /* Added custom typography classes for dental lab branding */
+  /* Added custom typography classes for montanez lab branding */
   .heading-primary {
     @apply font-serif text-4xl font-black md:text-6xl lg:text-7xl;
   }

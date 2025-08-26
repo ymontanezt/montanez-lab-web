@@ -1,5 +1,5 @@
 # Robots.txt para Montañez Lab - Laboratorio Dental
-# https://dentallabpro.com
+# https://montanez-lab.com
 
 User-agent: *
 Allow: /
@@ -22,10 +22,10 @@ Allow: /manifest.json
 Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://dentallabpro.com/sitemap.xml
+Sitemap: https://montanez-lab.com/sitemap.xml
 
 # Host preferido
-Host: https://dentallabpro.com
+Host: https://montanez-lab.com
 
 # Disallow admin and private areas
 Disallow: /admin/

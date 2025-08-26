@@ -43,7 +43,7 @@ export const testingConfig = {
     use: {
       baseURL:
         process.env.NODE_ENV === 'production'
-          ? 'https://dentallabpro.com'
+          ? 'https://montanez-website.web.app'
           : 'http://localhost:3001',
       trace: 'on-first-retry',
       screenshot: 'only-on-failure',
@@ -76,7 +76,9 @@ export const testingConfig = {
   // Configuración de Cypress
   cypress: {
     baseUrl:
-      process.env.NODE_ENV === 'production' ? 'https://dentallabpro.com' : 'http://localhost:3001',
+      process.env.NODE_ENV === 'production'
+        ? 'https://montanez-website.web.app'
+        : 'http://localhost:3001',
     viewportWidth: 1280,
     viewportHeight: 720,
     video: false,

@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     'laboratorio dental cerca de mí',
     'dentistas profesionales Huancayo',
   ],
-  authors: [{ name: 'Montañez Lab', url: 'https://montanez-lab.com' }],
+  authors: [{ name: 'Montañez Lab', url: 'https://montanez-website.web.app' }],
   creator: 'Montañez Lab',
   publisher: 'Montañez Lab',
   robots: {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_PE',
-    url: 'https://montanez-lab.com',
+    url: 'https://montanez-website.web.app',
     siteName: 'Montañez Lab',
     title: 'Montañez Lab - Laboratorio Dental | Huancayo, Perú',
     description:
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     google: 'google-site-verification-code',
   },
   category: 'healthcare',
-  metadataBase: new URL('https://montanez-lab.com'),
+  metadataBase: new URL('https://montanez-website.web.app'),
   alternates: {
     canonical: '/',
     languages: {
@@ -126,10 +126,10 @@ export default function RootLayout({
         <meta name="theme-color" content="#22c55e" />
 
         {/* Canonical y Alternates */}
-        <link rel="canonical" href="https://montanez-lab.com" />
-        <link rel="alternate" hrefLang="es-pe" href="https://montanez-lab.com" />
-        <link rel="alternate" hrefLang="es" href="https://montanez-lab.com/es" />
-        <link rel="alternate" hrefLang="x-default" href="https://montanez-lab.com" />
+        <link rel="canonical" href="https://montanez-website.web.app" />
+        <link rel="alternate" hrefLang="es-pe" href="https://montanez-website.web.app" />
+        <link rel="alternate" hrefLang="es" href="https://montanez-website.web.app/es" />
+        <link rel="alternate" hrefLang="x-default" href="https://montanez-website.web.app" />
 
         {/* Preconnect para performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -21,7 +21,7 @@ export function WhatsAppWidget() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
 
-  const whatsappNumber = env.whatsapp.number // WhatsApp number for the dental lab
+  const whatsappNumber = env.whatsapp.number
   const businessHours = 'Lun-Vie: 8:00 AM - 8:00 PM | Sáb: 9:00 AM - 2:00 PM'
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -312,11 +312,11 @@ export function WhatsAppWidget() {
                 <div className="text-muted-foreground mt-3 flex items-center justify-center gap-2 text-xs">
                   <Phone className="h-3 w-3" aria-hidden="true" />
                   <a
-                    href="tel:+525512345678"
+                    href="tel:+51989253275"
                     className="hover:text-primary focus:ring-primary rounded transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none"
-                    aria-label="Llamar al teléfono +52 55 1234 5678"
+                    aria-label="Llamar al teléfono 989 253 275"
                   >
-                    También puedes llamarnos: +52 55 1234 5678
+                    También puedes llamarnos: 989 253 275
                   </a>
                 </div>
               </div>

@@ -1,6 +1,6 @@
-# 🚀 Despliegue en Vercel - Dental Lab
+# 🚀 Despliegue en Vercel - Montañez Lab
 
-Esta guía explica cómo configurar y desplegar el proyecto Dental Lab en Vercel con diferentes entornos (staging y producción).
+Esta guía explica cómo configurar y desplegar el proyecto Montañez Lab en Vercel con diferentes entornos (staging y producción).
 
 ## 📋 Prerrequisitos
 
@@ -45,7 +45,7 @@ vercel
 # Configuración del Sitio
 NEXT_PUBLIC_SITE_NAME=Montañez Lab
 NEXT_PUBLIC_SITE_DESCRIPTION=Laboratorio Dental
-NEXT_PUBLIC_SITE_URL=https://montanez-lab.com
+NEXT_PUBLIC_SITE_URL=https://montanez-website.web.app
 NEXT_PUBLIC_DEBUG=false
 
 # Firebase - Producción
@@ -58,7 +58,7 @@ NEXT_PUBLIC_FIREBASE_APP_ID=tu_app_id
 
 # Email
 RESEND_API_KEY=tu_resend_api_key
-RESEND_FROM_EMAIL=info@montanez-lab.com
+RESEND_FROM_EMAIL=montzavy@gmail.com
 RESEND_FROM_NAME=Montañez Lab
 
 # Entorno
@@ -73,7 +73,7 @@ NODE_ENV=production
 # Configuración del Sitio
 NEXT_PUBLIC_SITE_NAME=Montañez Lab (Staging)
 NEXT_PUBLIC_SITE_DESCRIPTION=Laboratorio Dental - Entorno de Pruebas
-NEXT_PUBLIC_SITE_URL=https://staging.montanez-lab.com
+NEXT_PUBLIC_SITE_URL=https://staging.montanez-website.web.app
 NEXT_PUBLIC_DEBUG=true
 
 # Firebase - Staging (mismo proyecto, diferentes configuraciones)
@@ -86,7 +86,7 @@ NEXT_PUBLIC_FIREBASE_APP_ID=tu_app_id
 
 # Email
 RESEND_API_KEY=tu_resend_api_key_staging
-RESEND_FROM_EMAIL=staging@montanez-lab.com
+RESEND_FROM_EMAIL=montzavy@gmail.com
 RESEND_FROM_NAME=Montañez Lab (Staging)
 
 # Entorno
@@ -105,13 +105,13 @@ NODE_ENV=staging
 
 - **Environment**: Production
 - **Variable**: `NEXT_PUBLIC_SITE_URL`
-- **Value**: `https://montanez-lab.com`
+- **Value**: `https://montanez-website.web.app`
 
 #### **Para Staging (develop):**
 
 - **Environment**: Preview
 - **Variable**: `NEXT_PUBLIC_SITE_URL`
-- **Value**: `https://staging.montanez-lab.com`
+- **Value**: `https://staging.montanez-website.web.app`
 
 ### **Desde CLI:**
 
@@ -139,32 +139,32 @@ vercel env ls
 
 #### **Producción:**
 
-- **Dominio principal**: `gataviejis.com`
-- **Subdominio**: `www.gataviejis.com`
+- **Dominio principal**: `montanez-website.web.app`
+- **Subdominio**: `www.montanez-website.web.app`
 
 #### **Staging:**
 
-- **Subdominio**: `staging.gataviejis.com`
+- **Subdominio**: `staging.montanez-website.web.app`
 
 ## 📱 Configuración de Dominios en Vercel
 
 ### **1. Agregar Dominio Personalizado:**
 
 1. **Vercel Dashboard** → **Settings** → **Domains**
-2. **Add Domain** → `gataviejis.com`
+2. **Add Domain** → `montanez-website.web.app`
 3. **Configurar DNS** según las instrucciones de Vercel
 
 ### **2. Configurar DNS:**
 
 ```bash
 # Registrar A
-gataviejis.com → 76.76.19.34
+montanez-website.web.app → 76.76.19.34
 
 # Registrar CNAME
-www.gataviejis.com → cname.vercel-dns.com
+www.montanez-website.web.app → cname.vercel-dns.com
 
 # Subdominio staging
-staging.gataviejis.com → cname.vercel-dns.com
+staging.montanez-website.web.app → cname.vercel-dns.com
 ```
 
 ## 🔄 Workflow de Despliegue

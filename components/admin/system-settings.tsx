@@ -80,14 +80,14 @@ interface SystemConfig {
 
 export function SystemSettings() {
   const [config, setConfig] = useState<SystemConfig>({
-    siteName: 'Dental Lab Pro',
+    siteName: 'Montañez Lab',
     siteDescription: 'Laboratorio dental',
-    siteUrl: 'https://montanez-lab.com',
+    siteUrl: 'https://montanez-website.web.app',
     timezone: 'America/Lima',
-    contactPhone: '+51 987 654 321',
-    contactWhatsApp: '+51 987 654 321',
-    contactEmail: 'info@montanez-lab.com',
-    adminEmail: 'admin@montanez-lab.com',
+    contactPhone: '+51 989 253 275',
+    contactWhatsApp: '+51 989 253 275',
+    contactEmail: 'montzavy@gmail.com',
+    adminEmail: 'mmontanezt@gmail.com',
     emailNotifications: true,
     whatsappNotifications: true,
     adminNotifications: true,
@@ -289,7 +289,7 @@ export function SystemSettings() {
                   id="contactPhone"
                   value={config.contactPhone}
                   onChange={e => handleConfigChange('contactPhone', e.target.value)}
-                  placeholder="+51 987 654 321"
+                  placeholder="+51 989 253 275"
                 />
               </div>
 
@@ -299,7 +299,7 @@ export function SystemSettings() {
                   id="contactWhatsApp"
                   value={config.contactWhatsApp}
                   onChange={e => handleConfigChange('contactWhatsApp', e.target.value)}
-                  placeholder="+51 987 654 321"
+                  placeholder="+51 989 253 275"
                 />
               </div>
 

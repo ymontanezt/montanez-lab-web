@@ -3,7 +3,7 @@
 # Script para automatizar la configuración de Vercel
 # Este script te guía paso a paso para configurar Vercel
 
-echo "🚀 Configuración Automática de Vercel para Dental Lab"
+echo "🚀 Configuración Automática de Vercel para Montañez Lab"
 echo "=================================================="
 echo ""
 
@@ -77,13 +77,13 @@ echo ""
 
 # Configurar variables de entorno para staging
 echo "📝 Configurando variables para STAGING..."
-vercel env add NEXT_PUBLIC_SITE_URL preview "https://staging.gataviejis.com"
+vercel env add NEXT_PUBLIC_SITE_URL preview "https://staging.montanez-website.web.app"
 vercel env add NEXT_PUBLIC_DEBUG preview "true"
 vercel env add NODE_ENV preview "staging"
 
 # Configurar variables de entorno para producción
 echo "📝 Configurando variables para PRODUCCIÓN..."
-vercel env add NEXT_PUBLIC_SITE_URL production "https://gataviejis.com"
+vercel env add NEXT_PUBLIC_SITE_URL production "https://montanez-website.web.app"
 vercel env add NEXT_PUBLIC_DEBUG production "false"
 vercel env add NODE_ENV production "production"
 
@@ -113,5 +113,5 @@ echo "💡 Para configurar dominios personalizados:"
 echo "   Vercel Dashboard → Project → Settings → Domains → Add Domain"
 echo ""
 echo "🔗 URLs a configurar:"
-echo "   - Producción: gataviejis.com"
-echo "   - Staging: staging.gataviejis.com"
+echo "   - Producción: montanez-website.web.app"
+echo "   - Staging: staging.montanez-website.web.app"

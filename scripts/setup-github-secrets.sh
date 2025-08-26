@@ -3,7 +3,7 @@
 # Script para configurar GitHub Secrets automáticamente
 # Requiere: gh CLI instalado y autenticado
 
-echo "🔐 Configurando GitHub Secrets para Dental Lab..."
+echo "🔐 Configurando GitHub Secrets para Montañez Lab..."
 
 # Verificar si gh CLI está instalado
 if ! command -v gh &> /dev/null; then
@@ -26,32 +26,32 @@ DEV_SECRETS=(
     "NODE_ENV=development"
     "NEXT_PUBLIC_SITE_URL=http://localhost:3000"
     "NEXT_PUBLIC_DEBUG=true"
-    "NEXT_PUBLIC_SITE_NAME=Montañez Lab Dental Lab"
+    "NEXT_PUBLIC_SITE_NAME=Montañez Lab"
     "NEXT_PUBLIC_SITE_DESCRIPTION=Laboratorio Dental de Excelencia"
     "NEXT_PUBLIC_COMPANY_NAME=Montañez Lab"
-    "NEXT_PUBLIC_CONTACT_EMAIL=info@montanez-lab.com"
-    "NEXT_PUBLIC_CONTACT_PHONE=+51 64 234 5678"
+    "NEXT_PUBLIC_CONTACT_EMAIL=montzavy@gmail.com"
+    "NEXT_PUBLIC_CONTACT_PHONE=+51 989 253 275"
     "NEXT_PUBLIC_FIREBASE_API_KEY=dev_firebase_key_here"
     "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=dev-project.firebaseapp.com"
     "NEXT_PUBLIC_FIREBASE_PROJECT_ID=dev-project-id"
-    "DATABASE_URL=postgresql://localhost:5432/dental_lab_dev"
+    "DATABASE_URL=postgresql://localhost:5432/montanez_lab_dev"
     "JWT_SECRET=dev_jwt_secret_here"
 )
 
 # Array de secrets para producción
 PROD_SECRETS=(
     "NODE_ENV=production"
-    "NEXT_PUBLIC_SITE_URL=https://montanez-lab.com"
+    "NEXT_PUBLIC_SITE_URL=https://montanez-website.web.app"
     "NEXT_PUBLIC_DEBUG=false"
-    "NEXT_PUBLIC_SITE_NAME=Montañez Lab Dental Lab"
+    "NEXT_PUBLIC_SITE_NAME=Montañez Lab"
     "NEXT_PUBLIC_SITE_DESCRIPTION=Laboratorio Dental de Excelencia"
     "NEXT_PUBLIC_COMPANY_NAME=Montañez Lab"
-    "NEXT_PUBLIC_CONTACT_EMAIL=info@montanez-lab.com"
-    "NEXT_PUBLIC_CONTACT_PHONE=+51 64 234 5678"
+    "NEXT_PUBLIC_CONTACT_EMAIL=montzavy@gmail.com"
+    "NEXT_PUBLIC_CONTACT_PHONE=+51 989 253 275"
     "NEXT_PUBLIC_FIREBASE_API_KEY=prod_firebase_key_here"
     "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=prod-project.firebaseapp.com"
     "NEXT_PUBLIC_FIREBASE_PROJECT_ID=prod-project-id"
-    "DATABASE_URL=postgresql://prod-server:5432/dental_lab_prod"
+    "DATABASE_URL=postgresql://prod-server:5432/montanez_lab_prod"
     "JWT_SECRET=prod_jwt_secret_here"
 )
 

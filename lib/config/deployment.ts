@@ -27,8 +27,8 @@ export const deploymentConfig = {
   // Entorno de staging
   staging: {
     name: 'Staging',
-    url: 'https://staging.dentallabpro.com',
-    apiUrl: 'https://staging.dentallabpro.com/api',
+    url: 'https://staging.montanez-website.web.app',
+    apiUrl: 'https://staging.montanez-website.web.app/api',
     environment: 'staging',
     debug: true,
     logging: 'info',
@@ -49,8 +49,8 @@ export const deploymentConfig = {
   // Entorno de producción
   production: {
     name: 'Production',
-    url: 'https://dentallabpro.com',
-    apiUrl: 'https://dentallabpro.com/api',
+    url: 'https://montanez-website.web.app',
+    apiUrl: 'https://montanez-website.web.app/api',
     environment: 'production',
     debug: false,
     logging: 'warn',
@@ -71,7 +71,7 @@ export const deploymentConfig = {
   // Configuración de CDN
   cdn: {
     enabled: process.env.NODE_ENV === 'production',
-    domain: 'https://cdn.dentallabpro.com',
+    domain: 'https://cdn.montanez-website.web.app',
     images: true,
     static: true,
     fonts: true,
@@ -157,7 +157,7 @@ export const deploymentConfig = {
     enabled: true,
     origin:
       process.env.NODE_ENV === 'production'
-        ? ['https://dentallabpro.com', 'https://www.dentallabpro.com']
+        ? ['https://montanez-website.web.app', 'https://www.montanez-website.web.app']
         : ['http://localhost:3000', 'http://localhost:3001'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],

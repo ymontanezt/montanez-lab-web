@@ -145,8 +145,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
                           }
                     }
                     animate={{
-                      WebkitLineClamp: isDescriptionExpanded ? 'unset' : 2,
-                      display: isDescriptionExpanded ? 'block' : '-webkit-box',
+                      opacity: isDescriptionExpanded ? 1 : 0.9,
                     }}
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                   >

@@ -315,7 +315,7 @@ Bienvenido a la guía completa de uso del sitio web de **Montañez Lab**. Esta d
 
 ### **Soporte Técnico**
 
-- **Email**: soporte@montanezlab.com
+- **Email**: montzavy@gmail.com
 - **WhatsApp**: [Número de soporte]
 - **Horario**: Lunes a Viernes 9:00 AM - 6:00 PM
 

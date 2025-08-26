@@ -2,12 +2,6 @@
 // Replaces galleryImages.json with type-safe data
 
 import { GalleryImage } from '@/types'
-
-// Reemplazando todas las imágenes placeholder con imágenes reales
-// placeholder-ao5ah.png -> modern-dental-lab.png, dental-scanner-workflow.png, dental-team-laboratory.png
-// placeholder-f9rtw.png -> professional-female-dentist.png, modern-dental-lab.png
-// placeholder-sbtz0.png -> dental-team-laboratory.png, professional-male-dentist.png
-
 export const galleryImages: GalleryImage[] = [
   {
     id: '1',

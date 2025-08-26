@@ -6,7 +6,7 @@ export const env = {
   site: {
     name: process.env.NEXT_PUBLIC_SITE_NAME || 'Montañez Lab',
     description: process.env.NEXT_PUBLIC_SITE_DESCRIPTION || 'Laboratorio Dental',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://dentallabpro.com',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://montanez-website.web.app/',
     ogImage: process.env.NEXT_PUBLIC_OG_IMAGE || '/og-image.jpg',
   },
 
@@ -14,23 +14,23 @@ export const env = {
   company: {
     name: process.env.NEXT_PUBLIC_COMPANY_NAME || 'Montañez Lab',
     legalName: process.env.NEXT_PUBLIC_COMPANY_LEGAL_NAME || 'Montañez Lab S.A.C.',
-    founded: parseInt(process.env.NEXT_PUBLIC_COMPANY_FOUNDED || '2008'),
+    founded: parseInt(process.env.NEXT_PUBLIC_COMPANY_FOUNDED || '2024'),
     industry: process.env.NEXT_PUBLIC_COMPANY_INDUSTRY || 'Odontología y Laboratorio Dental',
     type: process.env.NEXT_PUBLIC_COMPANY_TYPE || 'Privada',
-    size: process.env.NEXT_PUBLIC_COMPANY_SIZE || '10-50 empleados',
+    size: process.env.NEXT_PUBLIC_COMPANY_SIZE || '5-10 empleados',
   },
 
   // Contact information
   contact: {
-    phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || '+51 1 234 5678',
-    whatsapp: process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || '+51 1 234 5678',
-    emergency: process.env.NEXT_PUBLIC_CONTACT_EMERGENCY || '+51 1 999 8888',
-    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@dentallabpro.com',
-    adminEmail: process.env.NEXT_PUBLIC_CONTACT_ADMIN_EMAIL || 'admin@dentallabpro.com',
-    urgencyEmail: process.env.NEXT_PUBLIC_CONTACT_URGENCY_EMAIL || 'urgencias@dentallabpro.com',
+    phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || '989 253 275',
+    whatsapp: process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || '989 253 275',
+    emergency: process.env.NEXT_PUBLIC_CONTACT_EMERGENCY || '989 253 275',
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'montzavy@gmail.com',
+    adminEmail: process.env.NEXT_PUBLIC_CONTACT_ADMIN_EMAIL || 'mmontanezt@gmail.com',
+    urgencyEmail: process.env.NEXT_PUBLIC_CONTACT_URGENCY_EMAIL || 'montzavy@gmail.com',
 
     address: {
-      street: process.env.NEXT_PUBLIC_CONTACT_ADDRESS_STREET || 'Av. Javier Prado Este 1234',
+      street: process.env.NEXT_PUBLIC_CONTACT_ADDRESS_STREET || 'Av. Catalina de Wanka 1234',
       city: process.env.NEXT_PUBLIC_CONTACT_ADDRESS_CITY || 'Huancayo',
       state: process.env.NEXT_PUBLIC_CONTACT_ADDRESS_STATE || 'Junín',
       zipCode: process.env.NEXT_PUBLIC_CONTACT_ADDRESS_ZIPCODE || '15001',
@@ -83,18 +83,18 @@ export const env = {
 
   // Social media
   social: {
-    facebook: process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK || 'https://facebook.com/dentallabpro',
-    instagram: process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM || 'https://instagram.com/dentallabpro',
-    twitter: process.env.NEXT_PUBLIC_SOCIAL_TWITTER || 'https://twitter.com/dentallabpro',
+    facebook: process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK || 'https://facebook.com/montanez-lab',
+    instagram: process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM || 'https://instagram.com/montanez-lab',
+    twitter: process.env.NEXT_PUBLIC_SOCIAL_TWITTER || 'https://twitter.com/montanez-lab',
     linkedin:
-      process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN || 'https://linkedin.com/company/dentallabpro',
-    youtube: process.env.NEXT_PUBLIC_SOCIAL_YOUTUBE || 'https://youtube.com/dentallabpro',
-    whatsapp: process.env.NEXT_PUBLIC_SOCIAL_WHATSAPP || 'https://wa.me/51912345678',
+      process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN || 'https://linkedin.com/company/montanez-lab',
+    youtube: process.env.NEXT_PUBLIC_SOCIAL_YOUTUBE || 'https://youtube.com/montanez-lab',
+    whatsapp: process.env.NEXT_PUBLIC_SOCIAL_WHATSAPP || 'https://wa.me/51989253275',
   },
 
   // WhatsApp configuration
   whatsapp: {
-    number: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '51912345678',
+    number: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '51989253275',
     messageDefault:
       process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE_DEFAULT ||
       'Hola, me gustaría obtener más información sobre sus servicios dentales.',
@@ -120,7 +120,7 @@ export const env = {
   // Email configuration
   email: {
     resendApiKey: process.env.RESEND_API_KEY || '',
-    fromEmail: process.env.RESEND_FROM_EMAIL || 'noreply@dentallabpro.com',
+    fromEmail: process.env.RESEND_FROM_EMAIL || 'montzavy@gmail.com',
   },
 
   // Performance configuration
@@ -160,7 +160,7 @@ export const env = {
   // Environment
   isDevelopment: process.env.NODE_ENV === 'development',
   isProduction: process.env.NODE_ENV === 'production',
-  productionUrl: process.env.NEXT_PUBLIC_PRODUCTION_URL || 'https://dentallabpro.com',
+  productionUrl: process.env.NEXT_PUBLIC_PRODUCTION_URL || 'https://montanez-website.web.app/',
 } as const
 
 // Helper functions
