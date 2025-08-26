@@ -52,7 +52,6 @@ const nextConfig = {
   
   // Configuración de experimental features
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['@radix-ui/react-icons', 'framer-motion'],
   },
   
@@ -65,8 +64,7 @@ const nextConfig = {
   // Configuración de react strict mode
   reactStrictMode: true,
   
-  // Configuración de swc minify
-  swcMinify: true,
+
 };
 
 export default nextConfig;

@@ -236,8 +236,18 @@ export function Footer({ className, variant = 'default' }: FooterProps) {
               <span className="hidden sm:inline">Laboratorio Dental.</span>
             </div>
 
-            {/* Developed by @michcode */}
-            <div className="flex items-center gap-2 text-xs">
+            {/* Enlaces Útiles */}
+            <div className="flex items-center gap-4 text-xs">
+              <Link
+                href="/user-manual.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-1 font-semibold ${colorTokens.text.brand.primary} transition-colors hover:${colorTokens.hover.text.brand.primary} dark:${colorTokens.text.brand.primary} dark:hover:${colorTokens.hover.text.brand.primary}`}
+              >
+                <span>📖 Manual de Usuario</span>
+                <ExternalLink className="h-3 w-3" />
+              </Link>
+              <span className={`${colorTokens.text.muted} dark:${colorTokens.text.muted}`}>|</span>
               <span className={`${colorTokens.text.muted} dark:${colorTokens.text.muted}`}>
                 Desarrollado por
               </span>
