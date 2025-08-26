@@ -13,7 +13,7 @@ import {
   HelpCircle,
   ChevronRight,
   Download,
-  Print
+  Printer
 } from 'lucide-react'
 
 export default function UserManualPage() {
@@ -92,7 +92,7 @@ export default function UserManualPage() {
                   onClick={exportToPDF}
                   className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
                 >
-                  <Print className="h-4 w-4" />
+                                           <Printer className="h-4 w-4" />
                   Imprimir PDF
                 </button>
                 <button
