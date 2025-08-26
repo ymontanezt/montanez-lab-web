@@ -67,25 +67,30 @@ export default function HomePage() {
         </section>
 
         {/* About Section */}
-        <section id="nosotros" className={`py-16 md:py-20 ${colorTokens.background.secondary}`}>
+        <section
+          id="nosotros"
+          className={`py-8 md:py-16 lg:py-20 ${colorTokens.background.secondary}`}
+        >
           <div className="container mx-auto px-4">
             <motion.div
-              className="mb-12 text-center"
+              className="mb-8 text-center md:mb-12"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className={`mb-4 text-3xl font-bold md:text-4xl ${colorTokens.text.primary}`}>
+              <h2
+                className={`mb-3 text-2xl font-bold md:mb-4 md:text-3xl lg:text-4xl ${colorTokens.text.primary}`}
+              >
                 Laboratorio Dental de Excelencia
               </h2>
-              <p className={`mx-auto max-w-3xl text-lg ${colorTokens.text.secondary}`}>
+              <p className={`mx-auto max-w-3xl text-base md:text-lg ${colorTokens.text.secondary}`}>
                 Más de 10 años de experiencia en la fabricación de prótesis dentales de alta
                 calidad, utilizando tecnología de vanguardia y materiales premium para garantizar
                 resultados excepcionales.
               </p>
             </motion.div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
               {[
                 {
                   icon: ToothIcon,
@@ -113,15 +118,22 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`rounded-xl p-6 text-center transition-shadow ${utilityClasses.container.card} hover:shadow-lg`}
+                  className={`rounded-xl p-4 text-center transition-shadow sm:p-6 ${utilityClasses.container.card} hover:shadow-lg`}
                 >
-                  <div className="mb-4 flex justify-center">
-                    <item.icon size={48} className={`${colorTokens.text.brand.accent}`} />
+                  <div className="mb-3 flex justify-center sm:mb-4">
+                    <item.icon
+                      size={40}
+                      className={`${colorTokens.text.brand.accent} sm:h-12 sm:w-12`}
+                    />
                   </div>
-                  <h3 className={`mb-2 text-xl font-semibold ${colorTokens.text.primary}`}>
+                  <h3
+                    className={`mb-2 text-lg font-semibold sm:text-xl ${colorTokens.text.primary}`}
+                  >
                     {item.title}
                   </h3>
-                  <p className={colorTokens.text.secondary}>{item.desc}</p>
+                  <p className={`text-sm sm:text-base ${colorTokens.text.secondary}`}>
+                    {item.desc}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -142,19 +154,21 @@ export default function HomePage() {
         {/* Appointment Section */}
         <section
           id="citas"
-          className={`bg-gradient-to-br py-16 md:py-20 ${colorTokens.gradient.background}`}
+          className={`bg-gradient-to-br py-8 md:py-16 lg:py-20 ${colorTokens.gradient.background}`}
         >
           <div className="container mx-auto px-4">
             <motion.div
-              className="mb-12 text-center"
+              className="mb-8 text-center md:mb-12"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className={`mb-4 text-3xl font-bold md:text-4xl ${colorTokens.text.primary}`}>
+              <h2
+                className={`mb-3 text-2xl font-bold md:mb-4 md:text-3xl lg:text-4xl ${colorTokens.text.primary}`}
+              >
                 Agenda tu cita
               </h2>
-              <p className={`mx-auto max-w-2xl text-lg ${colorTokens.text.secondary}`}>
+              <p className={`mx-auto max-w-2xl text-base md:text-lg ${colorTokens.text.secondary}`}>
                 Reserva tu consulta en línea de manera fácil y rápida
               </p>
             </motion.div>
