@@ -194,7 +194,7 @@ export function AppointmentManagement() {
       case 'pending':
         return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400'
       case 'confirmed':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400'
+        return 'bg-teal-100 text-teal-800 dark:bg-teal-900/20 dark:text-teal-400'
       case 'completed':
         return 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400'
       case 'cancelled':

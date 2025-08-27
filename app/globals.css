@@ -16,37 +16,42 @@
 }
 
 .gallery-filter-button.selected {
-  @apply bg-blue-800 text-white shadow-lg shadow-blue-600/25 dark:bg-blue-200 dark:text-blue-900;
+  @apply bg-teal-800 text-white shadow-lg shadow-teal-600/25 dark:bg-teal-500 dark:text-teal-900 dark:shadow-teal-500/30;
 }
 
 .gallery-filter-button.selected:hover {
-  @apply bg-blue-700 dark:bg-blue-300;
+  @apply bg-teal-700 dark:bg-teal-400;
+}
+
+/* Mejoras para los iconos en modo oscuro */
+.dark .gallery-filter-button span:first-child {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8));
 }
 
 :root {
-  /* Updated color tokens for dental laboratory theme with health-inspired greens and professional neutrals */
-  --background: oklch(1 0 0); /* Pure white for clean, medical aesthetic */
+  /* Updated color tokens for Montañez Lab theme with teal and gold palette */
+  --background: oklch(1 0 0); /* Pure white for clean, professional aesthetic */
   --foreground: oklch(0.05 0 0); /* Prácticamente negro para texto principal - máximo contraste */
   --card: oklch(0.97 0 0); /* Light gray for cards (#f1f5f9) */
   --card-foreground: oklch(0.05 0 0); /* Prácticamente negro para texto en tarjetas */
   --popover: oklch(1 0 0); /* White popover background */
   --popover-foreground: oklch(0.05 0 0); /* Prácticamente negro para texto en popovers */
-  --primary: oklch(0.45 0.15 160); /* Emerald green for primary actions (#059669) */
+  --primary: oklch(0.35 0.15 180); /* Teal-800 for primary actions - matches business card */
   --primary-foreground: oklch(1 0 0); /* White text on primary */
-  --secondary: oklch(0.55 0.15 160); /* Bright green accent (#10b981) */
+  --secondary: oklch(0.55 0.15 180); /* Teal-400 for secondary actions */
   --secondary-foreground: oklch(1 0 0); /* White text on secondary */
   --muted: oklch(0.97 0 0); /* Light gray for muted elements */
   --muted-foreground: oklch(0.08 0 0); /* Muy oscuro para texto muted - excelente contraste */
-  --accent: oklch(0.55 0.15 160); /* Bright green for interactive elements */
+  --accent: oklch(0.65 0.2 60); /* Gold/amber for interactive elements - matches business card */
   --accent-foreground: oklch(1 0 0); /* White text on accent */
   --destructive: oklch(0.6 0.25 25); /* Red for errors */
   --destructive-foreground: oklch(1 0 0); /* White text on destructive */
   --border: oklch(0.9 0 0); /* Light border color (#e5e7eb) */
   --input: oklch(1 0 0); /* White input background */
-  --ring: oklch(0.45 0.15 160 / 0.5); /* Green focus ring with transparency */
-  --chart-1: oklch(0.55 0.15 160); /* Chart color 1 - bright green */
-  --chart-2: oklch(0.45 0.15 160); /* Chart color 2 - emerald green */
-  --chart-3: oklch(0.6 0.2 120); /* Chart color 3 - lime green */
+  --ring: oklch(0.35 0.15 180 / 0.5); /* Teal focus ring with transparency */
+  --chart-1: oklch(0.55 0.15 180); /* Chart color 1 - teal */
+  --chart-2: oklch(0.35 0.15 180); /* Chart color 2 - dark teal */
+  --chart-3: oklch(0.65 0.2 60); /* Chart color 3 - gold */
   --chart-4: oklch(0.35 0 0); /* Chart color 4 - dark gray */
   --chart-5: oklch(0.97 0 0); /* Chart color 5 - light gray */
   --radius: 0.5rem; /* Standard border radius */
@@ -56,10 +61,10 @@
   --sidebar-primary-foreground: oklch(
     0.05 0 0
   ); /* Prácticamente negro para texto primario de sidebar */
-  --sidebar-accent: oklch(0.55 0.15 160); /* Green sidebar accent */
+  --sidebar-accent: oklch(0.35 0.15 180); /* Teal sidebar accent */
   --sidebar-accent-foreground: oklch(1 0 0); /* White sidebar accent text */
   --sidebar-border: oklch(0.9 0 0); /* Light sidebar border */
-  --sidebar-ring: oklch(0.45 0.15 160 / 0.5); /* Green sidebar focus ring */
+  --sidebar-ring: oklch(0.35 0.15 180 / 0.5); /* Teal sidebar focus ring */
   --font-open-sans: 'Open Sans', sans-serif;
   --font-montserrat: 'Montserrat', serif;
 
@@ -77,51 +82,109 @@
 }
 
 .dark {
-  /* Updated dark mode tokens to maintain the health/tech aesthetic in dark theme */
-  --background: oklch(0.1 0 0); /* Very dark background */
-  --foreground: oklch(0.95 0 0); /* Light text */
-  --card: oklch(0.15 0 0); /* Dark card background */
+  /* Completely redesigned dark mode with elegant black background and improved contrast */
+  --background: oklch(0.02 0 0); /* Deep black background */
+  --foreground: oklch(0.98 0 0); /* Almost white text for maximum contrast */
+  --card: oklch(0.08 0 0); /* Very dark card background with subtle elevation */
   --card-foreground: oklch(0.95 0 0); /* Light card text */
-  --popover: oklch(0.15 0 0); /* Dark popover */
+  --popover: oklch(0.08 0 0); /* Dark popover */
   --popover-foreground: oklch(0.95 0 0); /* Light popover text */
-  --primary: oklch(0.55 0.15 160); /* Brighter green for dark mode visibility */
-  --primary-foreground: oklch(0.1 0 0); /* Dark text on primary */
-  --secondary: oklch(0.25 0 0); /* Dark secondary */
-  --secondary-foreground: oklch(0.95 0 0); /* Light secondary text */
-  --muted: oklch(0.25 0 0); /* Dark muted */
-  --muted-foreground: oklch(0.7 0 0); /* Medium gray muted text */
-  --accent: oklch(0.55 0.15 160); /* Bright green accent */
-  --accent-foreground: oklch(0.1 0 0); /* Dark accent text */
-  --destructive: oklch(0.5 0.2 25); /* Darker red for dark mode */
+  --primary: oklch(0.75 0.15 180); /* Bright teal for dark mode visibility */
+  --primary-foreground: oklch(0.02 0 0); /* Dark text on primary */
+  --secondary: oklch(0.12 0 0); /* Dark secondary */
+  --secondary-foreground: oklch(0.9 0 0); /* Light secondary text */
+  --muted: oklch(0.12 0 0); /* Dark muted */
+  --muted-foreground: oklch(0.75 0 0); /* Light muted text for better contrast */
+  --accent: oklch(0.8 0.2 60); /* Bright gold for dark mode */
+  --accent-foreground: oklch(0.02 0 0); /* Dark accent text */
+  --destructive: oklch(0.6 0.2 25); /* Bright red for dark mode */
   --destructive-foreground: oklch(0.95 0 0); /* Light destructive text */
-  --border: oklch(0.25 0 0); /* Dark border */
-  --input: oklch(0.25 0 0); /* Dark input */
-  --ring: oklch(0.55 0.15 160 / 0.5); /* Green focus ring */
-  --chart-1: oklch(0.6 0.2 264); /* Adjusted chart colors for dark mode */
-  --chart-2: oklch(0.7 0.17 162);
-  --chart-3: oklch(0.77 0.19 70);
-  --chart-4: oklch(0.63 0.27 304);
-  --chart-5: oklch(0.65 0.25 16);
-  --sidebar: oklch(0.1 0 0); /* Dark sidebar */
+  --border: oklch(0.15 0 0); /* Dark border with subtle visibility */
+  --input: oklch(0.08 0 0); /* Dark input */
+  --ring: oklch(0.75 0.15 180 / 0.5); /* Teal focus ring */
+  --chart-1: oklch(0.8 0.15 180); /* Bright teal for dark mode */
+  --chart-2: oklch(0.6 0.15 180); /* Medium teal for dark mode */
+  --chart-3: oklch(0.85 0.2 60); /* Bright gold for dark mode */
+  --chart-4: oklch(0.7 0 0); /* Light gray for dark mode */
+  --chart-5: oklch(0.4 0 0); /* Dark gray for dark mode */
+  --radius: 0.5rem; /* Standard border radius */
+  --sidebar: oklch(0.08 0 0); /* Dark sidebar */
   --sidebar-foreground: oklch(0.95 0 0); /* Light sidebar text */
-  --sidebar-primary: oklch(0.55 0.15 160); /* Green sidebar primary */
-  --sidebar-primary-foreground: oklch(0.1 0 0); /* Dark sidebar primary text */
-  --sidebar-accent: oklch(0.25 0 0); /* Dark sidebar accent */
-  --sidebar-accent-foreground: oklch(0.95 0 0); /* Light sidebar accent text */
-  --sidebar-border: oklch(0.25 0 0); /* Dark sidebar border */
-  --sidebar-ring: oklch(0.55 0.15 160 / 0.5); /* Green sidebar focus ring */
+  --sidebar-primary: oklch(0.12 0 0); /* Dark sidebar primary */
+  --sidebar-primary-foreground: oklch(0.9 0 0); /* Light sidebar primary text */
+  --sidebar-accent: oklch(0.75 0.15 180); /* Teal sidebar accent */
+  --sidebar-accent-foreground: oklch(0.08 0 0); /* Dark sidebar accent text */
+  --sidebar-border: oklch(0.15 0 0); /* Dark sidebar border */
+  --sidebar-ring: oklch(0.75 0.15 180 / 0.5); /* Teal sidebar focus ring */
+  --font-open-sans: 'Open Sans', sans-serif;
+  --font-montserrat: 'Montserrat', serif;
 
-  /* Grises específicos para modo oscuro - más claros para mejor contraste */
-  --color-gray-50: oklch(0.02 0 0);
-  --color-gray-100: oklch(0.04 0 0);
-  --color-gray-200: oklch(0.85 0 0); /* Muy claro para texto en modo oscuro */
-  --color-gray-300: oklch(0.75 0 0);
-  --color-gray-400: oklch(0.65 0 0);
-  --color-gray-500: oklch(0.55 0 0);
-  --color-gray-600: oklch(0.45 0 0);
-  --color-gray-700: oklch(0.35 0 0);
-  --color-gray-800: oklch(0.25 0 0);
-  --color-gray-900: oklch(0.15 0 0);
+  /* Grises específicos para modo oscuro - optimizados para contraste */
+  --color-gray-50: oklch(0.08 0 0); /* Muy oscuro para fondos */
+  --color-gray-100: oklch(0.12 0 0); /* Oscuro para elementos secundarios */
+  --color-gray-200: oklch(0.95 0 0); /* Prácticamente blanco para texto en modo oscuro */
+  --color-gray-300: oklch(0.9 0 0); /* Muy claro para texto secundario */
+  --color-gray-400: oklch(0.8 0 0); /* Claro para texto muted */
+  --color-gray-500: oklch(0.7 0 0); /* Medio para texto menos importante */
+  --color-gray-600: oklch(0.6 0 0); /* Medio-oscuro para bordes */
+  --color-gray-700: oklch(0.4 0 0); /* Oscuro para fondos de tarjetas */
+  --color-gray-800: oklch(0.25 0 0); /* Muy oscuro para fondos elevados */
+  --color-gray-900: oklch(0.15 0 0); /* Extremadamente oscuro para fondos principales */
+}
+
+/* Efectos especiales para modo oscuro */
+.dark body {
+  background: linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #000000 50%, #0a0a0a 75%, #000000 100%);
+  background-size: 400% 400%;
+  animation: darkModeGradient 20s ease infinite;
+}
+
+@keyframes darkModeGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Mejoras de contraste para modo oscuro */
+.dark .bg-background {
+  background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+}
+
+.dark .bg-card {
+  background: linear-gradient(135deg, #0a0a0a 0%, #111111 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.dark .text-foreground {
+  color: #f8fafc;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.dark .text-muted-foreground {
+  color: #cbd5e1;
+}
+
+/* Efectos de hover mejorados para modo oscuro */
+.dark .hover\:bg-gray-50:hover {
+  background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+}
+
+.dark .hover\:bg-gray-100:hover {
+  background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%);
+}
+
+/* Bordes sutiles para modo oscuro */
+.dark .border {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark .border-gray-200 {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .border-gray-300 {
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 @theme inline {

@@ -158,9 +158,9 @@ export const Header: React.FC<HeaderProps> = ({
   // Header variants mejorados con mejor contraste
   const headerVariants = {
     default:
-      'bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border-b-2 border-blue-200/80 dark:border-slate-600/80 shadow-sm',
+      'bg-white/95 dark:bg-black/95 backdrop-blur-md border-b-2 border-teal-200/80 dark:border-teal-400/20 shadow-sm',
     transparent: 'bg-transparent',
-    solid: 'bg-white dark:bg-slate-800 border-b-2 border-blue-200 dark:border-slate-600 shadow-md',
+    solid: 'bg-white dark:bg-black border-b-2 border-teal-200 dark:border-teal-400/20 shadow-md',
   }
 
   const isTransparent = variant === 'transparent' && !isScrolled
@@ -219,9 +219,9 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Link href="/" className="group flex items-center gap-3">
               <div
-                className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${colorTokens.gradient.brand.primary} shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl`}
+                className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${colorTokens.gradient.brand.primary} shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl dark:from-teal-500 dark:to-teal-600 dark:shadow-teal-500/30 dark:group-hover:shadow-teal-400/40`}
               >
-                <span className="text-2xl">🦷</span>
+                <span className="text-2xl drop-shadow-sm dark:drop-shadow-md">🦷</span>
               </div>
               <div>
                 <h1
@@ -282,13 +282,12 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Theme Toggle */}
             <ThemeToggle />
 
+            {/* CTA Button */}
             <Button
               size="sm"
-              onClick={() => scrollToSection('contacto')}
-              className={`group hidden rounded-full bg-gradient-to-r ${colorTokens.gradient.brand.primary} px-6 py-2.5 font-semibold text-white shadow-lg transition-all duration-300 hover:${colorTokens.hover.background.brand.primary} hover:shadow-xl focus:outline-none focus-visible:ring-2 ${colorTokens.focus.ring.brand} focus-visible:ring-offset-2 active:scale-95 md:flex`}
+              className="hidden rounded-full bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:from-teal-700 hover:to-teal-800 hover:scale-105 hover:shadow-xl dark:from-teal-500 dark:to-teal-600 dark:shadow-teal-500/25 dark:hover:from-teal-400 dark:hover:to-teal-500 dark:hover:shadow-teal-400/40 lg:flex"
             >
               Contactar
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
             </Button>
 
             {/* Mobile menu button mejorado */}
@@ -308,11 +307,11 @@ export const Header: React.FC<HeaderProps> = ({
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="border-t-2 border-blue-200/80 bg-white/95 shadow-lg backdrop-blur-md lg:hidden dark:border-slate-600/80 dark:bg-slate-800/95"
+            className="border-t-2 border-teal-200/80 bg-white/95 shadow-lg backdrop-blur-md lg:hidden dark:border-teal-400/20 dark:bg-black/95"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
             <nav
               className="container mx-auto px-4 py-4"
@@ -338,15 +337,12 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
 
               {/* Mobile CTA mejorado */}
-              <div className="mt-6 border-t-2 border-blue-200 pt-4 dark:border-slate-600">
+              <div className="mt-6 border-t-2 border-teal-200 pt-4 dark:border-teal-400/20">
                 <Button
                   size="sm"
-                  onClick={() => scrollToSection('contacto')}
-                  className={`group w-full rounded-lg bg-gradient-to-r ${colorTokens.gradient.brand.secondary} py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:${colorTokens.gradient.brand.primary} hover:shadow-xl focus:outline-none focus-visible:ring-2 ${colorTokens.focus.ring.brand} focus-visible:ring-offset-2 active:scale-95 dark:${colorTokens.gradient.brand.secondary} dark:hover:${colorTokens.gradient.brand.primary}`}
+                  className="w-full rounded-full bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:from-teal-700 hover:to-teal-800 hover:scale-105 hover:shadow-xl dark:from-teal-500 dark:to-teal-600 dark:shadow-teal-500/25 dark:hover:from-teal-400 dark:hover:to-teal-500 dark:hover:shadow-teal-400/40"
                 >
-                  <MessageCircle className="mr-2 h-4 w-4 transition-transform duration-200 group-hover:scale-110" />
                   Contactar
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </Button>
               </div>
             </nav>

@@ -149,7 +149,7 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
 
         <div className="mt-6 text-center">
           <p className="text-muted-foreground text-xs">
-            Demo: {env.contact.adminEmail} / password123
+            Demo: ymontanezt@gmail.com / password123
           </p>
         </div>
       </motion.div>

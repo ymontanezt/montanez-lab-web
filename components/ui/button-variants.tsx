@@ -30,7 +30,7 @@ export const GradientButton = forwardRef<HTMLButtonElement, GradientButtonProps>
         'bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700',
       secondary: 'bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700',
       accent:
-        'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700',
+        'bg-gradient-to-r from-teal-500 to-purple-600 hover:from-teal-600 hover:to-purple-700',
     }
 
     return (
@@ -173,11 +173,11 @@ export const SocialButton = forwardRef<HTMLButtonElement, SocialButtonProps>(
   ({ className, platform, children, ...props }, ref) => {
     const platformStyles = {
       whatsapp: 'bg-green-500 hover:bg-green-600 text-white',
-      facebook: 'bg-blue-600 hover:bg-blue-700 text-white',
+      facebook: 'bg-teal-600 hover:bg-teal-700 text-white',
       instagram:
         'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white',
-      twitter: 'bg-blue-400 hover:bg-blue-500 text-white',
-      linkedin: 'bg-blue-700 hover:bg-blue-800 text-white',
+      twitter: 'bg-teal-400 hover:bg-teal-500 text-white',
+      linkedin: 'bg-teal-700 hover:bg-teal-800 text-white',
     }
 
     const platformIcons = {

@@ -186,7 +186,7 @@ export default function AdminPage() {
   return (
     <div className="bg-background min-h-screen">
       {/* Header */}
-      <header className="border-border sticky top-0 z-40 border-b bg-gradient-to-r from-slate-50 to-blue-50 shadow-sm">
+      <header className="border-border sticky top-0 z-40 border-b bg-gradient-to-r from-slate-50 to-teal-50 shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <motion.div
@@ -196,16 +196,16 @@ export default function AdminPage() {
               transition={{ duration: 0.5 }}
             >
               <div className="flex items-center gap-2">
-                <div className="rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 p-2 shadow-lg">
+                <div className="rounded-lg bg-gradient-to-r from-teal-500 to-teal-600 p-2 shadow-lg">
                   <Microscope className="h-6 w-6 text-white" />
                 </div>
-                <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text font-serif text-lg font-bold text-transparent">
+                <span className="bg-gradient-to-r from-teal-600 to-teal-800 bg-clip-text font-serif text-lg font-bold text-transparent">
                   Montañez Lab
                 </span>
               </div>
               <Badge
                 variant="secondary"
-                className="hidden border-blue-200 bg-blue-100 text-blue-800 md:flex"
+                className="hidden border-teal-200 bg-teal-100 text-teal-800 md:flex"
               >
                 Admin Panel
               </Badge>
@@ -218,14 +218,14 @@ export default function AdminPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="hidden text-right md:block">
-                <p className="text-sm font-medium text-blue-700">Bienvenido</p>
-                <p className="text-xs text-blue-600">{user?.email}</p>
+                <p className="text-sm font-medium text-teal-700">Bienvenido</p>
+                <p className="text-xs text-teal-600">{user?.email}</p>
               </div>
 
               <Button
                 variant="outline"
                 size="sm"
-                className="border-blue-200 text-blue-700 hover:border-blue-300 hover:bg-blue-50"
+                className="border-teal-200 text-teal-700 hover:border-teal-300 hover:bg-teal-50"
               >
                 <Bell className="h-4 w-4" />
               </Button>
@@ -234,7 +234,7 @@ export default function AdminPage() {
                 onClick={handleSignOut}
                 variant="outline"
                 size="sm"
-                className="border-blue-200 text-blue-700 hover:border-blue-300 hover:bg-blue-50"
+                className="border-teal-200 text-teal-700 hover:border-teal-300 hover:bg-teal-50"
               >
                 <LogOut className="mr-2 h-4 w-4" />
                 <span className="hidden md:inline">Cerrar Sesión</span>
@@ -262,8 +262,8 @@ export default function AdminPage() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`w-full rounded-xl p-4 text-left transition-all duration-300 ${
                   activeTab === tab.id
-                    ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/25'
-                    : 'border border-gray-200 bg-white hover:border-blue-200 hover:bg-blue-50 hover:shadow-md'
+                    ? 'bg-gradient-to-r from-teal-500 to-teal-600 text-white shadow-lg shadow-teal-500/25'
+                    : 'border border-gray-200 bg-white hover:border-teal-200 hover:bg-teal-50 hover:shadow-md'
                 }`}
                 whileHover={{
                   scale: activeTab === tab.id ? 1 : 1.02,
@@ -278,7 +278,7 @@ export default function AdminPage() {
                   <div className="flex items-center gap-3">
                     <div
                       className={`rounded-lg p-2 ${
-                        activeTab === tab.id ? 'bg-white/20' : 'bg-blue-100 text-blue-600'
+                        activeTab === tab.id ? 'bg-white/20' : 'bg-teal-100 text-teal-600'
                       }`}
                     >
                       <tab.icon className="h-5 w-5" />
@@ -383,14 +383,14 @@ export default function AdminPage() {
                       Abrir Manual
                     </Button>
                   </div>
-                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3">
+                  <div className="bg-teal-50 border-l-4 border-teal-400 p-6 rounded-lg">
+                    <h3 className="text-lg font-semibold text-teal-800 mb-3">
                       📖 Manual Completo del Sistema
                     </h3>
-                    <p className="text-blue-700 mb-4">
+                    <p className="text-teal-700 mb-4">
                       Accede a la guía completa del sistema Montañez Lab. El manual incluye:
                     </p>
-                    <ul className="list-disc list-inside space-y-2 text-blue-700 mb-4">
+                    <ul className="list-disc list-inside space-y-2 text-teal-700 mb-4">
                       <li>Instalación y configuración</li>
                       <li>Uso del sistema y funcionalidades</li>
                       <li>Panel de administración</li>
@@ -399,7 +399,7 @@ export default function AdminPage() {
                     </ul>
                     <Button
                       onClick={() => window.open('/admin/manual', '_blank')}
-                      className="bg-blue-600 hover:bg-blue-700 text-white"
+                      className="bg-teal-600 hover:bg-teal-700 text-white"
                     >
                       <FileText className="mr-2 h-4 w-4" />
                       Abrir Manual Completo
