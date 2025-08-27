@@ -53,17 +53,17 @@ const selectStyles = `
   /* Dark mode */
   @media (prefers-color-scheme: dark) {
     .gallery-select option {
-      background-color: #1f2937;
-      color: #d1d5db;
+      background-color: #0a0a0a;
+      color: #f8fafc;
     }
     
     .gallery-select option:hover {
-      background-color: #374151;
+      background-color: #1a1a1a;
     }
     
     .gallery-select option:checked {
-      background: linear-gradient(135deg, #1d4ed8, #1e40af);
-      box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4);
+      background: linear-gradient(135deg, #14b8a6, #0d9488);
+      box-shadow: 0 4px 12px rgba(20, 184, 166, 0.4);
     }
   }
 `
@@ -354,8 +354,8 @@ export function Gallery({
 
                   {/* Badge de categoría */}
                   <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
-                    <span className="inline-flex items-center gap-1 rounded-full border border-white/30 bg-white/98 px-1.5 py-1 text-xs font-bold text-gray-900 shadow-xl backdrop-blur-sm sm:px-3 sm:py-1.5">
-                      <span className="text-xs sm:text-sm">{getCategoryIcon(image.category)}</span>
+                    <span className="inline-flex items-center gap-1 rounded-full border border-white/30 bg-white/98 px-1.5 py-1 text-xs font-bold text-gray-900 shadow-xl backdrop-blur-sm sm:px-3 sm:py-1.5 dark:border-teal-400/30 dark:bg-gray-800/95 dark:text-white dark:shadow-2xl">
+                      <span className="text-xs sm:text-sm drop-shadow-sm dark:drop-shadow-md">{getCategoryIcon(image.category)}</span>
                       <span className="hidden lg:inline">{getCategoryLabel(image.category)}</span>
                     </span>
                   </div>
@@ -379,7 +379,7 @@ export function Gallery({
                             key={tagIndex}
                             className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-semibold text-white shadow-lg backdrop-blur-sm ${colorTokens.border.brand.accent}/40 ${colorTokens.background.brand.accent}/98`}
                           >
-                            <Tag className="h-3 w-3 text-blue-600 dark:text-blue-400" />
+                            <Tag className="h-3 w-3 text-teal-600 dark:text-teal-400" />
                             {tag}
                           </span>
                         ))}
@@ -425,7 +425,7 @@ export function Gallery({
                 'group inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3 text-base font-semibold transition-all duration-300 sm:w-auto sm:gap-3 sm:px-8 sm:py-4 sm:text-lg',
                 isExpanded
                   ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
-                  : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg hover:scale-105 hover:from-blue-700 hover:to-blue-800 hover:shadow-xl'
+                  : 'bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-lg hover:scale-105 hover:from-teal-700 hover:to-teal-800 hover:shadow-xl'
               )}
             >
               {isExpanded ? (
@@ -476,7 +476,7 @@ export function Gallery({
                       </h2>
                       <div className="flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
                         <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                          <Calendar className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                          <Calendar className="h-4 w-4 text-teal-600 dark:text-teal-400" />
                           <span className="text-xs font-medium sm:text-sm">
                             {selectedImage.createdAt.toLocaleDateString('es-ES', {
                               year: 'numeric',
@@ -552,7 +552,7 @@ export function Gallery({
                   )}
 
                   {/* Información detallada */}
-                  <div className="bg-white p-4 md:p-6 dark:bg-gray-900">
+                  <div className="bg-white p-4 md:p-6 dark:bg-gray-800 dark:shadow-2xl">
                     {selectedImage.description && (
                       <div className="mb-6">
                         <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
@@ -579,7 +579,7 @@ export function Gallery({
                           {selectedImage.tags.map((tag, tagIndex) => (
                             <span
                               key={tagIndex}
-                              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md ${colorTokens.border.brand.light} bg-gradient-to-r from-blue-50 to-teal-50 ${colorTokens.text.brand.primary} dark:${colorTokens.border.brand.primary}/50 dark:from-blue-900/30 dark:to-teal-900/30 dark:${colorTokens.text.brand.accent}`}
+                              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md ${colorTokens.border.brand.light} bg-gradient-to-r from-teal-50 to-teal-50 ${colorTokens.text.brand.primary} dark:border-teal-400/30 dark:from-teal-900/30 dark:to-teal-900/30 dark:text-teal-300 dark:hover:from-teal-800/40 dark:hover:to-teal-800/40`}
                             >
                               {tag}
                             </span>
@@ -590,13 +590,13 @@ export function Gallery({
 
                     {/* Información técnica */}
                     <div
-                      className={`grid grid-cols-1 gap-4 rounded-xl border bg-gray-50 p-4 md:grid-cols-2 dark:border-gray-600 dark:bg-gray-800 ${colorTokens.border.brand.light}`}
+                      className={`grid grid-cols-1 gap-4 rounded-xl border bg-gray-50 p-4 md:grid-cols-2 dark:border-teal-400/20 dark:bg-gray-900/50 ${colorTokens.border.brand.light}`}
                     >
                       <div className="flex items-center gap-3">
                         <div
-                          className={`flex h-10 w-10 items-center justify-center rounded-full border dark:border-gray-700 dark:bg-gray-900/30 ${colorTokens.border.brand.light} ${colorTokens.background.brand.light}`}
+                          className={`flex h-10 w-10 items-center justify-center rounded-full border dark:border-teal-400/30 dark:bg-teal-900/30 ${colorTokens.border.brand.light} ${colorTokens.background.brand.light}`}
                         >
-                          <span className="text-lg">{getCategoryIcon(selectedImage.category)}</span>
+                          <span className="text-lg drop-shadow-sm dark:drop-shadow-md">{getCategoryIcon(selectedImage.category)}</span>
                         </div>
                         <div>
                           <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -609,8 +609,8 @@ export function Gallery({
                       </div>
 
                       <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-blue-200 bg-blue-100 dark:border-blue-700 dark:bg-blue-900/30">
-                          <Calendar className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-teal-200 bg-teal-100 dark:border-teal-400/30 dark:bg-teal-900/30">
+                          <Calendar className="h-5 w-5 text-teal-600 dark:text-teal-400" />
                         </div>
                         <div>
                           <p className="text-sm font-medium text-gray-600 dark:text-gray-400">

@@ -113,7 +113,7 @@ export function ServiceFilters({ services, onFilterChange, className }: ServiceF
                 className={cn(
                   'capitalize transition-colors duration-200',
                   selectedCategory === category
-                    ? 'bg-blue-800 text-white hover:bg-blue-700 dark:bg-blue-200 dark:text-blue-900 dark:hover:bg-blue-300'
+                    ? 'bg-teal-800 text-white hover:bg-teal-700 dark:bg-teal-200 dark:text-teal-900 dark:hover:bg-teal-300'
                     : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100'
                 )}
               >
@@ -143,7 +143,7 @@ export function ServiceFilters({ services, onFilterChange, className }: ServiceF
                 className={cn(
                   'transition-colors duration-200',
                   priceRange === range.value
-                    ? 'bg-blue-800 text-white hover:bg-blue-700 dark:bg-blue-200 dark:text-blue-900 dark:hover:bg-blue-300'
+                    ? 'bg-teal-800 text-white hover:bg-teal-700 dark:bg-teal-200 dark:text-teal-900 dark:hover:bg-teal-300'
                     : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100'
                 )}
               >
@@ -179,11 +179,11 @@ export function ServiceFilters({ services, onFilterChange, className }: ServiceF
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="rounded-lg border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-900/20"
+            className="rounded-lg border border-teal-200 bg-teal-50 p-3 dark:border-teal-800 dark:bg-teal-900/20"
           >
-            <div className="flex items-center gap-2 text-sm text-blue-800 dark:text-blue-200">
+            <div className="flex items-center gap-2 text-sm text-teal-800 dark:text-teal-200">
               <svg
-                className="h-4 w-4 text-blue-600 dark:text-blue-400"
+                className="h-4 w-4 text-teal-600 dark:text-teal-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -197,17 +197,17 @@ export function ServiceFilters({ services, onFilterChange, className }: ServiceF
               </svg>
               Filtros activos:
               {searchTerm && (
-                <span className="rounded bg-blue-200 px-2 py-1 dark:bg-blue-800">
+                <span className="rounded bg-teal-200 px-2 py-1 dark:bg-teal-800">
                   "{searchTerm}"
                 </span>
               )}
               {selectedCategory !== 'all' && (
-                <span className="rounded bg-blue-200 px-2 py-1 capitalize dark:bg-blue-800">
+                <span className="rounded bg-teal-200 px-2 py-1 capitalize dark:bg-teal-800">
                   {selectedCategory}
                 </span>
               )}
               {priceRange !== 'all' && (
-                <span className="rounded bg-blue-200 px-2 py-1 dark:bg-blue-800">
+                <span className="rounded bg-teal-200 px-2 py-1 dark:bg-teal-800">
                   {priceRange === 'low'
                     ? 'Económico'
                     : priceRange === 'medium'

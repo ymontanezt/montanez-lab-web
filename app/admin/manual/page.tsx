@@ -42,12 +42,12 @@ export default function UserManualPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-teal-50 to-indigo-100">
       {/* Header */}
       <div className="bg-white shadow-lg border-b">
         <div className="container mx-auto px-6 py-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-600 to-indigo-600 bg-clip-text text-transparent mb-4">
               🏥 Montañez Lab
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -66,7 +66,7 @@ export default function UserManualPage() {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl shadow-lg p-6 sticky top-8">
               <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                <BookOpen className="h-5 w-5 text-blue-600" />
+                <BookOpen className="h-5 w-5 text-teal-600" />
                 Navegación
               </h3>
               <nav className="space-y-2">
@@ -76,7 +76,7 @@ export default function UserManualPage() {
                     onClick={() => scrollToSection(section.id)}
                     className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 flex items-center gap-3 ${
                       activeSection === section.id
-                        ? 'bg-blue-50 text-blue-700 border-l-4 border-blue-600'
+                        ? 'bg-teal-50 text-teal-700 border-l-4 border-teal-600'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                     }`}
                   >
@@ -90,7 +90,7 @@ export default function UserManualPage() {
               <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
                 <button
                   onClick={exportToPDF}
-                  className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                  className="w-full bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors flex items-center justify-center gap-2"
                 >
                                            <Printer className="h-4 w-4" />
                   Imprimir PDF
@@ -116,7 +116,7 @@ export default function UserManualPage() {
               className="bg-white rounded-xl shadow-lg p-8"
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <BookOpen className="h-8 w-8 text-blue-600" />
+                <BookOpen className="h-8 w-8 text-teal-600" />
                 Introducción al Sistema
               </h2>
               
@@ -126,8 +126,8 @@ export default function UserManualPage() {
                 la administración del negocio.
               </p>
               
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg mb-6">
-                <p className="text-blue-800 font-medium">
+              <div className="bg-teal-50 border-l-4 border-teal-400 p-4 rounded-r-lg mb-6">
+                <p className="text-teal-800 font-medium">
                   🎯 <strong>Objetivo Principal:</strong> Proporcionar una plataforma integral que 
                   permita gestionar citas, contactos, servicios y contenido del sitio web de manera 
                   eficiente y profesional.
@@ -136,8 +136,8 @@ export default function UserManualPage() {
 
               <h3 className="text-2xl font-semibold text-gray-800 mb-4">🚀 Tecnologías Utilizadas</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
-                  <h4 className="font-semibold text-blue-800 mb-2">Frontend</h4>
+                <div className="bg-gradient-to-br from-teal-50 to-indigo-50 p-6 rounded-lg border border-teal-200">
+                  <h4 className="font-semibold text-teal-800 mb-2">Frontend</h4>
                   <p className="text-gray-700">Next.js 15, React 19, TypeScript, Tailwind CSS</p>
                 </div>
                 <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg border border-green-200">
@@ -159,7 +159,7 @@ export default function UserManualPage() {
               className="bg-white rounded-xl shadow-lg p-8"
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <BarChart3 className="h-8 w-8 text-blue-600" />
+                <BarChart3 className="h-8 w-8 text-teal-600" />
                 Características Principales
               </h2>
               
@@ -167,8 +167,8 @@ export default function UserManualPage() {
                 <div>
                   <h3 className="text-2xl font-semibold text-gray-800 mb-4">🎨 Sitio Web Profesional</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
-                      <h4 className="font-semibold text-blue-800 mb-2">Diseño Responsive</h4>
+                    <div className="bg-gradient-to-br from-teal-50 to-indigo-50 p-6 rounded-lg border border-teal-200">
+                      <h4 className="font-semibold text-teal-800 mb-2">Diseño Responsive</h4>
                       <p className="text-gray-700">Adaptable a todos los dispositivos (móvil, tablet, desktop)</p>
                     </div>
                     <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg border border-green-200">
@@ -210,7 +210,7 @@ export default function UserManualPage() {
               className="bg-white rounded-xl shadow-lg p-8"
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <Settings className="h-8 w-8 text-blue-600" />
+                <Settings className="h-8 w-8 text-teal-600" />
                 Instalación y Configuración
               </h2>
               
@@ -244,9 +244,9 @@ export default function UserManualPage() {
                     code: 'cp env.local.example .env.local\n# Edita .env.local con tus valores'
                   }
                 ].map((item) => (
-                  <div key={item.step} className="bg-gray-50 p-6 rounded-lg border-l-4 border-blue-500">
+                  <div key={item.step} className="bg-gray-50 p-6 rounded-lg border-l-4 border-teal-500">
                     <div className="flex items-start gap-4">
-                      <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm flex-shrink-0">
+                      <div className="bg-teal-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm flex-shrink-0">
                         {item.step}
                       </div>
                       <div className="flex-1">
@@ -270,7 +270,7 @@ export default function UserManualPage() {
               className="bg-white rounded-xl shadow-lg p-8"
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <Users className="h-8 w-8 text-blue-600" />
+                <Users className="h-8 w-8 text-teal-600" />
                 Uso del Sistema
               </h2>
               
@@ -287,8 +287,8 @@ export default function UserManualPage() {
                 <li>Formulario de contacto</li>
               </ul>
 
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg mb-6">
-                <p className="text-blue-800 font-medium">
+              <div className="bg-teal-50 border-l-4 border-teal-400 p-4 rounded-r-lg mb-6">
+                <p className="text-teal-800 font-medium">
                   ✅ <strong>Optimizado para Móvil:</strong> El sitio está completamente optimizado 
                   para dispositivos móviles con navegación táctil y diseño responsive.
                 </p>
@@ -303,7 +303,7 @@ export default function UserManualPage() {
               className="bg-white rounded-xl shadow-lg p-8"
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <Settings className="h-8 w-8 text-blue-600" />
+                <Settings className="h-8 w-8 text-teal-600" />
                 Panel de Administración
               </h2>
               
@@ -315,7 +315,7 @@ export default function UserManualPage() {
                   'Verificar que tienes acceso completo'
                 ].map((step, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <div className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                    <div className="bg-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
                       {index + 1}
                     </div>
                     <span className="text-gray-700">{step}</span>
@@ -341,7 +341,7 @@ export default function UserManualPage() {
               className="bg-white rounded-xl shadow-lg p-8"
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <Rocket className="h-8 w-8 text-blue-600" />
+                <Rocket className="h-8 w-8 text-teal-600" />
                 Deployment y Producción
               </h2>
               
@@ -394,14 +394,14 @@ export default function UserManualPage() {
               className="bg-white rounded-xl shadow-lg p-8"
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <HelpCircle className="h-8 w-8 text-blue-600" />
+                <HelpCircle className="h-8 w-8 text-teal-600" />
                 Soporte y Contacto
               </h2>
               
               <h3 className="text-2xl font-semibold text-gray-800 mb-4">📞 Canales de Soporte</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
-                  <h4 className="font-semibold text-blue-800 mb-2">Email de Soporte</h4>
+                <div className="bg-gradient-to-br from-teal-50 to-indigo-50 p-6 rounded-lg border border-teal-200">
+                  <h4 className="font-semibold text-teal-800 mb-2">Email de Soporte</h4>
                   <p className="text-gray-700">montzavy@gmail.com</p>
                 </div>
                 <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg border border-green-200">

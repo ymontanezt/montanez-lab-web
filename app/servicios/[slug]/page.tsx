@@ -72,7 +72,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 <Button
                   size="lg"
                   variant="outline"
-                  className={`px-8 py-3 ${componentColors.button.outline.background} ${componentColors.button.outline.text} ${componentColors.button.outline.border} ${componentColors.button.outline.focus} hover:bg-blue-100 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-100`}
+                  className={`px-8 py-3 ${componentColors.button.outline.background} ${componentColors.button.outline.text} ${componentColors.button.outline.border} ${componentColors.button.outline.focus} hover:bg-teal-100 hover:text-teal-900 dark:hover:bg-teal-800 dark:hover:text-teal-100`}
                 >
                   <Phone className="mr-2 h-5 w-5" />
                   Llamar Ahora
@@ -102,7 +102,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
 
                 {/* Características Principales */}
-                <Card className="border-0 shadow-sm">
+                <Card className="border-0 shadow-sm dark:bg-gray-800 dark:shadow-xl">
                   <CardContent className="p-6">
                     <h3 className="mb-4 text-xl font-semibold text-gray-900">
                       Características del Servicio
@@ -125,7 +125,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </Card>
 
                 {/* Beneficios */}
-                <Card className="border-0 shadow-sm">
+                <Card className="border-0 shadow-sm dark:bg-gray-800 dark:shadow-xl">
                   <CardContent className="p-6">
                     <h3 className="mb-4 text-xl font-semibold text-gray-900">Beneficios</h3>
                     <div className="space-y-3">
@@ -155,7 +155,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
 
                 {/* Proceso del Servicio */}
-                <Card className="border-0 shadow-sm">
+                <Card className="border-0 shadow-sm dark:bg-gray-800 dark:shadow-xl">
                   <CardContent className="p-6">
                     <h3 className="mb-4 text-xl font-semibold text-gray-900">Nuestro Proceso</h3>
                     <div className="space-y-4">
@@ -223,7 +223,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <a href="tel:+51989253275">
                         <Button
                           variant="outline"
-                          className={`${componentColors.button.outline.background} ${componentColors.button.outline.text} ${componentColors.button.outline.border} ${componentColors.button.outline.focus} hover:bg-blue-100 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-100`}
+                          className={`${componentColors.button.outline.background} ${componentColors.button.outline.text} ${componentColors.button.outline.border} ${componentColors.button.outline.focus} hover:bg-teal-100 hover:text-teal-900 dark:hover:bg-teal-800 dark:hover:text-teal-100`}
                         >
                           <Phone className="mr-2 h-4 w-4" />
                           Llamar

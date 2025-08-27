@@ -49,7 +49,7 @@ export function Stats({ stats, className, variant = 'default', columns = 4 }: St
             >
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-5 transition-opacity duration-500 group-hover:opacity-10">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-teal-400" />
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-400 to-teal-500 dark:from-teal-500 dark:to-teal-600" />
               </div>
 
               {/* Icon Container */}

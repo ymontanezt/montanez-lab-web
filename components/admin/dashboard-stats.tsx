@@ -31,10 +31,10 @@ const statCards = [
     id: 'contacts',
     title: 'Total Contactos',
     icon: MessageSquare,
-    color: 'from-blue-500 to-blue-600',
-    bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200',
-    iconColor: 'text-blue-600',
+    color: 'from-teal-500 to-teal-600',
+    bgColor: 'bg-teal-50',
+    borderColor: 'border-teal-200',
+    iconColor: 'text-teal-600',
   },
   {
     id: 'appointments',
@@ -295,7 +295,7 @@ export function DashboardStats({ onStatsLoad }: DashboardStatsProps) {
         <Card className="border-2 border-slate-200 bg-gradient-to-r from-slate-50 to-gray-50">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
-              <Activity className="h-5 w-5 text-blue-600" />
+              <Activity className="h-5 w-5 text-teal-600" />
               Resumen de Actividad
             </CardTitle>
           </CardHeader>
@@ -304,13 +304,13 @@ export function DashboardStats({ onStatsLoad }: DashboardStatsProps) {
               {/* Actividad de Contactos */}
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <MessageSquare className="h-4 w-4 text-blue-600" />
+                  <MessageSquare className="h-4 w-4 text-teal-600" />
                   <span className="text-sm font-medium">Contactos</span>
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Nuevos</span>
-                    <Badge variant="secondary" className="bg-blue-100 text-blue-800">
+                    <Badge variant="secondary" className="bg-teal-100 text-teal-800">
                       {stats?.contacts?.new || 0}
                     </Badge>
                   </div>
@@ -344,7 +344,7 @@ export function DashboardStats({ onStatsLoad }: DashboardStatsProps) {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Confirmadas</span>
-                    <Badge variant="secondary" className="bg-blue-100 text-blue-800">
+                    <Badge variant="secondary" className="bg-teal-100 text-teal-800">
                       {stats?.appointments?.confirmed || 0}
                     </Badge>
                   </div>
@@ -378,7 +378,7 @@ export function DashboardStats({ onStatsLoad }: DashboardStatsProps) {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Crecimiento</span>
-                    <Badge variant="secondary" className="bg-blue-100 text-blue-800">
+                    <Badge variant="secondary" className="bg-teal-100 text-teal-800">
                       +{stats?.weeklyGrowth || 0}%
                     </Badge>
                   </div>

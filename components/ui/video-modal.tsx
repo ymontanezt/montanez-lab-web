@@ -94,17 +94,17 @@ export const VideoModal: React.FC<VideoModalProps> = ({
             {/* Header */}
             <div className="relative flex items-center justify-between p-3 pb-3 md:p-8 md:pb-6">
               {/* Background gradient */}
-              <div className="absolute inset-0 rounded-t-3xl bg-gradient-to-r from-blue-50 via-white to-purple-50 dark:from-blue-900/20 dark:via-gray-900 dark:to-purple-900/20" />
+              <div className="absolute inset-0 rounded-t-3xl bg-gradient-to-r from-teal-50 via-white to-purple-50 dark:from-teal-900/20 dark:via-gray-900 dark:to-purple-900/20" />
 
               {/* Content */}
               <div className="relative z-10 min-w-0 flex-1">
                 <div className="mb-1 flex items-center gap-2 md:mb-2 md:gap-3">
-                  <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg md:h-10 md:w-10">
+                  <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-purple-600 shadow-lg md:h-10 md:w-10">
                     <Play className="h-3 w-3 text-white md:h-5 md:w-5" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <motion.h2
-                      className={`bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-lg font-bold text-transparent md:text-3xl ${colorTokens.text.primary} ${isTitleExpanded ? '' : 'overflow-hidden text-ellipsis whitespace-nowrap'} transition-opacity duration-200 hover:opacity-80`}
+                      className={`bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-lg font-bold text-transparent md:text-3xl ${colorTokens.text.primary} ${isTitleExpanded ? '' : 'overflow-hidden text-ellipsis whitespace-nowrap'} transition-all duration-300`}
                       onClick={() => setIsTitleExpanded(!isTitleExpanded)}
                       style={{ cursor: 'pointer' }}
                       animate={{
@@ -117,13 +117,13 @@ export const VideoModal: React.FC<VideoModalProps> = ({
                     >
                       {title}
                       {!isTitleExpanded && title.length > 30 && (
-                        <span className="text-blue-400 dark:text-blue-300">...</span>
+                        <span className="text-teal-400 dark:text-teal-300">...</span>
                       )}
                     </motion.h2>
                     {title.length > 30 && (
                       <motion.button
                         onClick={() => setIsTitleExpanded(!isTitleExpanded)}
-                        className="mt-1 text-xs font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                        className="mt-1 text-xs font-medium text-teal-600 transition-colors duration-200 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -151,13 +151,13 @@ export const VideoModal: React.FC<VideoModalProps> = ({
                   >
                     {description}
                     {!isDescriptionExpanded && description.length > 80 && (
-                      <span className="text-blue-400 dark:text-blue-300">...</span>
+                      <span className="text-teal-400 dark:text-teal-300">...</span>
                     )}
                   </motion.p>
                   {description.length > 80 && (
                     <motion.button
                       onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
-                      className="mt-1 text-xs font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                      className="mt-1 text-xs font-medium text-teal-600 transition-colors duration-200 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -186,8 +186,8 @@ export const VideoModal: React.FC<VideoModalProps> = ({
                       <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
                         <div className="px-4 text-center">
                           <div className="relative mx-auto mb-4 md:mb-6">
-                            <div className="h-12 w-12 animate-spin rounded-full border-4 border-blue-200 border-t-blue-600 md:h-16 md:w-16"></div>
-                            <div className="absolute inset-0 h-12 w-12 animate-ping rounded-full border-4 border-blue-400 opacity-20 md:h-16 md:w-16"></div>
+                            <div className="h-12 w-12 animate-spin rounded-full border-4 border-teal-200 border-t-teal-600 md:h-16 md:w-16"></div>
+                            <div className="absolute inset-0 h-12 w-12 animate-ping rounded-full border-4 border-teal-400 opacity-20 md:h-16 md:w-16"></div>
                           </div>
                           <div className="space-y-2">
                             <p className="text-base font-medium text-gray-700 md:text-lg dark:text-gray-300">
@@ -195,15 +195,15 @@ export const VideoModal: React.FC<VideoModalProps> = ({
                             </p>
                             <div className="flex justify-center space-x-1">
                               <div
-                                className="h-2 w-2 animate-bounce rounded-full bg-blue-600"
+                                className="h-2 w-2 animate-bounce rounded-full bg-teal-600"
                                 style={{ animationDelay: '0ms' }}
                               ></div>
                               <div
-                                className="h-2 w-2 animate-bounce rounded-full bg-blue-600"
+                                className="h-2 w-2 animate-bounce rounded-full bg-teal-600"
                                 style={{ animationDelay: '150ms' }}
                               ></div>
                               <div
-                                className="h-2 w-2 animate-bounce rounded-full bg-blue-600"
+                                className="h-2 w-2 animate-bounce rounded-full bg-teal-600"
                                 style={{ animationDelay: '300ms' }}
                               ></div>
                             </div>
@@ -255,7 +255,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
                         <Button
                           asChild
                           size="lg"
-                          className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transition-all duration-200 hover:scale-105 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl md:w-auto"
+                          className="w-full bg-gradient-to-r from-teal-600 to-purple-600 text-white shadow-lg transition-all duration-200 hover:scale-105 hover:from-teal-700 hover:to-purple-700 hover:shadow-xl md:w-auto"
                         >
                           <a
                             href={videoUrl}
@@ -290,7 +290,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
             {/* Footer */}
             <div className="relative flex flex-col items-start justify-between gap-3 p-3 pt-3 md:flex-row md:items-center md:gap-4 md:p-8 md:pt-6">
               {/* Background gradient */}
-              <div className="absolute inset-0 rounded-b-3xl bg-gradient-to-r from-gray-50 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-blue-900/20" />
+              <div className="absolute inset-0 rounded-b-3xl bg-gradient-to-r from-gray-50 via-white to-teal-50 dark:from-gray-800 dark:via-gray-900 dark:to-teal-900/20" />
 
               {/* Content */}
               <div className="relative z-10 flex items-center gap-2 md:gap-3">
@@ -309,7 +309,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
               <Button
                 asChild
                 size="sm"
-                className="relative z-10 w-full bg-gradient-to-r from-blue-600 to-purple-600 py-2 text-sm text-white shadow-lg transition-all duration-200 hover:scale-105 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl md:w-auto md:py-2 md:text-base"
+                className="relative z-10 w-full bg-gradient-to-r from-teal-600 to-purple-600 py-2 text-sm text-white shadow-lg transition-all duration-200 hover:scale-105 hover:from-teal-700 hover:to-purple-700 hover:shadow-xl md:w-auto md:py-2 md:text-base"
               >
                 <a
                   href={videoUrl}

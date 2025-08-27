@@ -282,8 +282,8 @@ export const Hero: React.FC<HeroProps> = ({
                     }}
                   />
                 ) : (
-                  <div className="from-primary-100 to-primary-200 flex h-full w-full items-center justify-center bg-gradient-to-r">
-                    <span className="text-primary-400 text-8xl">🦷</span>
+                  <div className="from-primary-100 to-primary-200 flex h-full w-full items-center justify-center bg-gradient-to-r dark:from-teal-900/30 dark:to-teal-800/30">
+                    <span className="text-primary-400 text-8xl drop-shadow-lg dark:text-teal-400 dark:drop-shadow-2xl">🦷</span>
                   </div>
                 )}
 
@@ -321,8 +321,8 @@ export const Hero: React.FC<HeroProps> = ({
                   }}
                 />
               ) : (
-                <div className="from-primary-100 to-primary-200 flex h-full w-full items-center justify-center bg-gradient-to-r">
-                  <span className="text-primary-400 text-8xl">🦷</span>
+                <div className="from-primary-100 to-primary-200 flex h-full w-full items-center justify-center bg-gradient-to-r dark:from-teal-900/30 dark:to-teal-800/30">
+                  <span className="text-primary-400 text-8xl drop-shadow-lg dark:text-teal-400 dark:drop-shadow-2xl">🦷</span>
                 </div>
               )}
 

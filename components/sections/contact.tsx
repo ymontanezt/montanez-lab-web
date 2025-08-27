@@ -16,8 +16,8 @@ interface ContactProps {
 
 export function Contact({ className, showTitle = true, variant = 'default' }: ContactProps) {
   const variants = {
-    default: `bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 border border-blue-200 dark:border-blue-800`,
-    minimal: 'bg-gray-50 dark:bg-gray-900',
+    default: `bg-gradient-to-br from-gray-50 to-white dark:from-black dark:to-gray-900 border border-teal-200 dark:border-teal-400/20`,
+    minimal: 'bg-gray-50 dark:bg-black',
   }
 
   const handleContactSubmit = (data: any) => {
@@ -55,9 +55,9 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
             >
               <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {/* Teléfono */}
-                <div className="flex flex-col items-center rounded-xl border border-blue-200 bg-white p-3 text-center shadow-sm transition-all duration-200 hover:shadow-md md:p-4 dark:border-blue-800 dark:bg-gray-800">
-                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-blue-200 bg-blue-50 md:mb-3 md:h-12 md:w-12 dark:border-blue-800 dark:bg-blue-900/30">
-                    <Phone className="h-5 w-5 text-blue-600 md:h-6 md:w-6 dark:text-blue-400" />
+                <div className="flex flex-col items-center rounded-xl border border-teal-200 bg-white p-3 text-center shadow-sm transition-all duration-200 hover:shadow-md md:p-4 dark:border-teal-400/20 dark:bg-gray-800 dark:hover:bg-gray-700">
+                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-teal-200 bg-teal-50 md:mb-3 md:h-12 md:w-12 dark:border-teal-400/30 dark:bg-teal-900/30">
+                    <Phone className="h-5 w-5 text-teal-600 md:h-6 md:w-6 dark:text-teal-400" />
                   </div>
                   <h3 className="mb-1 text-xs font-semibold text-gray-900 md:text-sm dark:text-white">
                     Teléfono
@@ -71,9 +71,9 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                 </div>
 
                 {/* Email */}
-                <div className="flex flex-col items-center rounded-xl border border-blue-200 bg-white p-3 text-center shadow-sm transition-all duration-200 hover:shadow-md md:p-4 dark:border-blue-800 dark:bg-gray-800">
-                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-blue-200 bg-blue-50 md:mb-3 md:h-12 md:w-12 dark:border-blue-800 dark:bg-blue-900/30">
-                    <Mail className="h-5 w-5 text-blue-600 md:h-6 md:w-6 dark:text-blue-400" />
+                <div className="flex flex-col items-center rounded-xl border border-teal-200 bg-white p-3 text-center shadow-sm transition-all duration-200 hover:shadow-md md:p-4 dark:border-teal-400/20 dark:bg-gray-800 dark:hover:bg-gray-700">
+                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-teal-200 bg-teal-50 md:mb-3 md:h-12 md:w-12 dark:border-teal-400/30 dark:bg-teal-900/30">
+                    <Mail className="h-5 w-5 text-teal-600 md:h-6 md:w-6 dark:text-teal-400" />
                   </div>
                   <h3 className="mb-1 text-xs font-semibold text-gray-900 md:text-sm dark:text-white">
                     Email
@@ -85,9 +85,9 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                 </div>
 
                 {/* Dirección con enlace a Maps */}
-                <div className="flex flex-col items-center rounded-xl border border-blue-200 bg-white p-3 text-center shadow-sm transition-all duration-200 hover:shadow-md md:p-4 dark:border-blue-800 dark:bg-gray-800">
-                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-blue-200 bg-blue-50 md:mb-3 md:h-12 md:w-12 dark:border-blue-800 dark:bg-blue-900/30">
-                    <MapPin className="h-5 w-5 text-blue-600 md:h-6 md:w-6 dark:text-blue-400" />
+                <div className="flex flex-col items-center rounded-xl border border-teal-200 bg-white p-3 text-center shadow-sm transition-all duration-200 hover:shadow-md md:p-4 dark:border-teal-400/20 dark:bg-gray-800 dark:hover:bg-gray-700">
+                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-teal-200 bg-teal-50 md:mb-3 md:h-12 md:w-12 dark:border-teal-400/30 dark:bg-teal-900/30">
+                    <MapPin className="h-5 w-5 text-teal-600 md:h-6 md:w-6 dark:text-teal-400" />
                   </div>
                   <h3 className="mb-1 text-xs font-semibold text-gray-900 md:text-sm dark:text-white">
                     Dirección
@@ -102,7 +102,7 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                     href={`https://maps.google.com/?q=${encodeURIComponent(env.contact.address.street)},+${encodeURIComponent(env.contact.address.city)},+${encodeURIComponent(env.contact.address.country)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-medium text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                    className="inline-flex items-center gap-1 text-xs font-medium text-teal-600 transition-colors hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
                   >
                     <MapPin className="h-3 w-3" />
                     Ver en Maps
@@ -110,9 +110,9 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                 </div>
 
                 {/* Horarios */}
-                <div className="flex flex-col items-center rounded-xl border border-blue-200 bg-white p-3 text-center shadow-sm transition-all duration-200 hover:shadow-md md:p-4 dark:border-blue-800 dark:bg-gray-800">
-                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-blue-200 bg-blue-50 md:mb-3 md:h-12 md:w-12 dark:border-blue-800 dark:bg-blue-900/30">
-                    <Clock className="h-5 w-5 text-blue-600 md:h-6 md:w-6 dark:text-blue-400" />
+                <div className="flex flex-col items-center rounded-xl border border-teal-200 bg-white p-3 text-center shadow-sm transition-all duration-200 hover:shadow-md md:p-4 dark:border-teal-400/20 dark:bg-gray-800 dark:hover:bg-gray-700">
+                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-teal-200 bg-teal-50 md:mb-3 md:h-12 md:w-12 dark:border-teal-400/30 dark:bg-teal-900/30">
+                    <Clock className="h-5 w-5 text-teal-600 md:h-6 md:w-6 dark:text-teal-400" />
                   </div>
                   <h3 className="mb-1 text-xs font-semibold text-gray-900 md:text-sm dark:text-white">
                     Horarios
@@ -123,7 +123,7 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
                   <p className="mb-1 text-xs text-gray-600 md:text-sm dark:text-gray-400">
                     Sáb: 9:00 AM - 2:00 PM
                   </p>
-                  <p className="text-xs font-medium text-blue-600 dark:text-blue-400">
+                  <p className="text-xs font-medium text-teal-600 dark:text-teal-400">
                     Urgencias 24/7
                   </p>
                 </div>
@@ -137,10 +137,10 @@ export function Contact({ className, showTitle = true, variant = 'default' }: Co
               transition={{ duration: 0.6, delay: 0.4 }}
               className="w-full"
             >
-              <div className="mx-auto max-w-4xl rounded-xl border border-blue-200 bg-white p-6 shadow-xl md:p-8 dark:border-blue-800 dark:bg-gray-900">
+              <div className="mx-auto max-w-4xl rounded-xl border border-teal-200 bg-white p-6 shadow-xl md:p-8 dark:border-teal-400/20 dark:bg-gray-800 dark:shadow-2xl">
                 <div className="mb-6 text-center">
-                  <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full border border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-900/30">
-                    <MessageCircle className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                  <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full border border-teal-200 bg-teal-50 dark:border-teal-400/30 dark:bg-teal-900/30">
+                    <MessageCircle className="h-8 w-8 text-teal-600 dark:text-teal-400" />
                   </div>
                   <h3 className="mb-2 text-xl font-bold text-gray-900 md:text-2xl dark:text-white">
                     Envíanos un mensaje
