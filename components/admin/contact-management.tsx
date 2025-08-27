@@ -355,104 +355,139 @@ export function ContactManagement() {
             animate={{ opacity: 1, y: 0 }}
             className="group"
           >
-            <Card className="p-4 transition-shadow hover:shadow-md">
-              <div className="flex items-start justify-between">
-                <div className="flex-1 space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/10 flex h-10 w-10 items-center justify-center rounded-full">
-                      <User className="text-primary h-5 w-5" />
-                    </div>
-
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-semibold">{contact.name}</h3>
-                        {getPriorityIcon(contact.priority || 'medium')}
-                        <Badge className={getStatusColor(contact.status)}>
-                          {getStatusLabel(contact.status)}
-                        </Badge>
-                      </div>
-
-                      <div className="text-muted-foreground flex items-center gap-4 text-sm">
-                        <div className="flex items-center gap-1">
-                          <Mail className="h-3 w-3" />
-                          {contact.email}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Phone className="h-3 w-3" />
-                          {contact.phone}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          {format(new Date(contact.createdAt), 'dd/MM/yyyy HH:mm', { locale: es })}
-                        </div>
-                      </div>
-                    </div>
+            <Card className="w-full max-w-full overflow-hidden transition-shadow hover:shadow-md">
+              {/* Header de la card */}
+              <div className="border-b border-gray-200 dark:border-gray-700 p-4">
+                <div className="flex items-start gap-3">
+                  {/* Avatar */}
+                  <div className="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-full flex-shrink-0">
+                    <User className="text-primary h-6 w-6" />
                   </div>
-
-                  <div>
-                    <h4 className="text-primary font-medium">{contact.subject}</h4>
-                    <p className="text-muted-foreground line-clamp-2 text-sm">{contact.message}</p>
+                  
+                  {/* Información principal */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <h3 className="font-semibold text-gray-900 dark:text-white truncate">
+                        {contact.name}
+                      </h3>
+                      {getPriorityIcon(contact.priority || 'medium')}
+                      <Badge className={getStatusColor(contact.status)}>
+                        {getStatusLabel(contact.status)}
+                      </Badge>
+                    </div>
+                    
+                    {/* Información de contacto */}
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                        <Mail className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">{contact.email}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                        <Phone className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">{contact.phone}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                        <Calendar className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">
+                          {format(new Date(contact.createdAt), 'dd/MM/yyyy HH:mm', { locale: es })}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="flex items-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
-                  <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-                    <DialogTrigger asChild>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setSelectedContact(contact)}
-                      >
-                        <Eye className="h-4 w-4" />
-                      </Button>
-                    </DialogTrigger>
-                  </Dialog>
+              {/* Contenido de la card */}
+              <div className="p-4">
+                <div className="mb-4">
+                  <h4 className="text-primary font-medium mb-2 truncate">
+                    {contact.subject}
+                  </h4>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2">
+                    {contact.message}
+                  </p>
+                </div>
 
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      setSelectedContact(contact)
-                      setIsReplyDialogOpen(true)
-                    }}
-                  >
-                    <Reply className="h-4 w-4" />
-                  </Button>
+                {/* Botones de acción */}
+                <div className="flex flex-col sm:flex-row gap-2">
+                  {/* Desktop: Botones completos */}
+                  <div className="hidden lg:flex items-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setSelectedContact(contact)
+                        setIsViewDialogOpen(true)
+                      }}
+                    >
+                      <Eye className="h-4 w-4 mr-2" />
+                      Ver
+                    </Button>
 
-                  <Select
-                    value={contact.status}
-                    onValueChange={value =>
-                      handleStatusUpdate(contact.id, value as Contact['status'])
-                    }
-                  >
-                    <SelectTrigger className="w-32">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="new">Nuevo</SelectItem>
-                      <SelectItem value="read">Leído</SelectItem>
-                      <SelectItem value="replied">Respondido</SelectItem>
-                      <SelectItem value="archived">Archivado</SelectItem>
-                    </SelectContent>
-                  </Select>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setSelectedContact(contact)
+                        setIsReplyDialogOpen(true)
+                      }}
+                    >
+                      <Reply className="h-4 w-4 mr-2" />
+                      Responder
+                    </Button>
 
-                  <ConfirmationDialog
-                    trigger={
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="text-red-600 hover:text-red-700"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    }
-                    title="Eliminar contacto"
-                    description={`¿Estás seguro de que quieres eliminar el contacto de ${contact.name}? Esta acción no se puede deshacer.`}
-                    confirmText="Sí, eliminar"
-                    cancelText="Cancelar"
-                    variant="destructive"
-                    onConfirm={() => handleDeleteContact(contact.id)}
-                  />
+                    <Select
+                      value={contact.status}
+                      onValueChange={value =>
+                        handleStatusUpdate(contact.id, value as Contact['status'])
+                      }
+                    >
+                      <SelectTrigger className="w-32">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="new">Nuevo</SelectItem>
+                        <SelectItem value="read">Leído</SelectItem>
+                        <SelectItem value="replied">Respondido</SelectItem>
+                        <SelectItem value="archived">Archivado</SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    <ConfirmationDialog
+                      trigger={
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-red-600 hover:text-red-700"
+                        >
+                          <Trash2 className="h-4 w-4 mr-2" />
+                          Eliminar
+                        </Button>
+                      }
+                      title="Eliminar contacto"
+                      description={`¿Estás seguro de que quieres eliminar el contacto de ${contact.name}? Esta acción no se puede deshacer.`}
+                      confirmText="Sí, eliminar"
+                      cancelText="Cancelar"
+                      variant="destructive"
+                      onConfirm={() => handleDeleteContact(contact.id)}
+                    />
+                  </div>
+
+                  {/* Móvil: Botón para abrir modal */}
+                  <div className="lg:hidden w-full">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setSelectedContact(contact)
+                        setIsViewDialogOpen(true)
+                      }}
+                      className="w-full bg-teal-50 hover:bg-teal-100 border-teal-200 hover:border-teal-300 text-teal-700 hover:text-teal-800"
+                    >
+                      <Eye className="h-4 w-4 mr-2" />
+                      <span className="text-sm font-medium">Ver Detalles</span>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </Card>
@@ -531,54 +566,131 @@ export function ContactManagement() {
 
       {/* Dialog para ver contacto completo */}
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>Detalles del Contacto</DialogTitle>
+        <DialogContent className="max-w-[95vw] lg:max-w-4xl max-h-[90vh] overflow-auto">
+          <DialogHeader className="text-center lg:text-left">
+            <DialogTitle className="text-xl lg:text-2xl">Detalles del Contacto</DialogTitle>
           </DialogHeader>
 
           {selectedContact && (
-            <div className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2">
-                <div>
-                  <label className="text-sm font-medium">Nombre</label>
-                  <p className="text-sm">{selectedContact.name}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium">Email</label>
-                  <p className="text-sm">{selectedContact.email}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium">Teléfono</label>
-                  <p className="text-sm">{selectedContact.phone}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium">Estado</label>
-                  <Badge className={getStatusColor(selectedContact.status)}>
-                    {getStatusLabel(selectedContact.status)}
-                  </Badge>
+            <div className="space-y-6 min-w-0">
+              {/* Header con avatar y información principal */}
+              <div className="text-center lg:text-left">
+                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4">
+                  <div className="bg-primary/10 flex h-16 w-16 items-center justify-center rounded-full">
+                    <User className="text-primary h-8 w-8" />
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                      {selectedContact.name}
+                    </h2>
+                    <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                      {getPriorityIcon(selectedContact.priority || 'medium')}
+                      <Badge className={`${getStatusColor(selectedContact.status)} text-sm`}>
+                        {getStatusLabel(selectedContact.status)}
+                      </Badge>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        {format(new Date(selectedContact.createdAt), 'dd/MM/yyyy HH:mm', { locale: es })}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <label className="text-sm font-medium">Asunto</label>
-                <p className="text-sm font-medium">{selectedContact.subject}</p>
+              {/* Grid de información de contacto */}
+              <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 min-w-0">
+                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 min-w-0">
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">Email</label>
+                  <div className="flex items-center gap-2 min-w-0">
+                    <Mail className="h-4 w-4 text-teal-500 flex-shrink-0" />
+                    <p className="text-sm font-medium truncate">{selectedContact.email}</p>
+                  </div>
+                </div>
+                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 min-w-0">
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">Teléfono</label>
+                  <div className="flex items-center gap-2 min-w-0">
+                    <Phone className="h-4 w-4 text-teal-500 flex-shrink-0" />
+                    <p className="text-sm font-medium truncate">{selectedContact.phone}</p>
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <label className="text-sm font-medium">Mensaje</label>
-                <p className="text-sm whitespace-pre-wrap">{selectedContact.message}</p>
+              {/* Asunto y mensaje */}
+              <div className="space-y-4 min-w-0">
+                <div className="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 min-w-0">
+                  <label className="text-sm font-medium text-teal-700 dark:text-teal-300 mb-2 block">Asunto</label>
+                  <p className="text-lg font-semibold text-teal-800 dark:text-teal-200 break-words">{selectedContact.subject}</p>
+                </div>
+                <div className="bg-white dark:bg-gray-800/50 rounded-lg p-4 border border-gray-200 dark:border-gray-600 min-w-0">
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">Mensaje</label>
+                  <p className="text-sm whitespace-pre-wrap leading-relaxed break-words">{selectedContact.message}</p>
+                </div>
               </div>
 
-              <div>
-                <label className="text-sm font-medium">Notas del Admin</label>
+              {/* Notas del admin */}
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+                <label className="text-sm font-medium text-blue-700 dark:text-blue-300 mb-2 block">Notas del Admin</label>
                 <Textarea
                   placeholder="Agregar notas internas..."
                   value={adminNotes}
                   onChange={e => setAdminNotes(e.target.value)}
+                  className="border-blue-200 dark:border-blue-600"
                 />
               </div>
 
-              <div className="flex justify-end gap-2">
+              {/* Botones de acción para móvil */}
+              <div className="lg:hidden space-y-3">
+                <div className="grid grid-cols-2 gap-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setIsViewDialogOpen(false)
+                      setIsReplyDialogOpen(true)
+                    }}
+                    className="w-full bg-teal-50 hover:bg-teal-100 border-teal-200 hover:border-teal-300 text-teal-700 hover:text-teal-800"
+                  >
+                    <Reply className="h-4 w-4 mr-2" />
+                    Responder
+                  </Button>
+                  <Select
+                    value={selectedContact.status}
+                    onValueChange={value =>
+                      handleStatusUpdate(selectedContact.id, value as Contact['status'])
+                    }
+                  >
+                    <SelectTrigger className="w-full bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="new">Nuevo</SelectItem>
+                      <SelectItem value="read">Leído</SelectItem>
+                      <SelectItem value="replied">Respondido</SelectItem>
+                      <SelectItem value="archived">Archivado</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="flex justify-center">
+                  <ConfirmationDialog
+                    trigger={
+                      <Button
+                        variant="outline"
+                        className="w-full bg-red-50 hover:bg-red-100 border-red-200 hover:border-red-300 text-red-600 hover:text-red-700"
+                      >
+                        <Trash2 className="h-4 w-4 mr-2" />
+                        Eliminar Contacto
+                      </Button>
+                    }
+                    title="Eliminar contacto"
+                    description={`¿Estás seguro de que quieres eliminar el contacto de ${selectedContact.name}? Esta acción no se puede deshacer.`}
+                    confirmText="Sí, eliminar"
+                    cancelText="Cancelar"
+                    variant="destructive"
+                    onConfirm={() => handleDeleteContact(selectedContact.id)}
+                  />
+                </div>
+              </div>
+
+              {/* Botones para desktop */}
+              <div className="hidden lg:flex justify-end gap-2">
                 <Button
                   onClick={() => {
                     handleStatusUpdate(selectedContact.id, selectedContact.status)
