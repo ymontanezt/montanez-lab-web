@@ -107,10 +107,17 @@ export const Hero: React.FC<HeroProps> = ({
       // Resume auto-play after manual navigation
       setTimeout(() => setIsPlaying(autoPlay), 3000)
     }
+
+    // Verificar si llegamos al final del carousel
+    const isAtEnd = scrollLeft >= (target.scrollWidth - target.clientWidth - 10)
+    if (isAtEnd) {
+      handleMobileCarouselEnd()
+    }
   }
 
   // State for swipe feedback
   const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null)
+  const [isRestarting, setIsRestarting] = useState(false)
 
   // Función para manejar gestos táctiles en móvil
   const handleMobileSwipe = (direction: 'left' | 'right') => {
@@ -125,6 +132,13 @@ export const Hero: React.FC<HeroProps> = ({
       const newSlideIndex = (currentSlide + 1) % slides.length
       setCurrentSlide(newSlideIndex)
       syncMobileCarousel(newSlideIndex)
+      
+      // Si llegamos al final, reiniciar automáticamente
+      if (newSlideIndex === 0) {
+        setTimeout(() => {
+          handleMobileCarouselEnd()
+        }, 1000) // Pequeña pausa antes de reiniciar
+      }
     } else {
       // Swipe derecha = slide anterior
       const newSlideIndex = currentSlide === 0 ? slides.length - 1 : currentSlide - 1
@@ -156,6 +170,29 @@ export const Hero: React.FC<HeroProps> = ({
 
     return () => clearInterval(interval)
   }, [autoPlay, autoPlayInterval, isPlaying, slides.length, currentSlide])
+
+  // Función para auto-reiniciar el carousel móvil cuando llegue al final
+  const handleMobileCarouselEnd = () => {
+    if (!isMobile) return
+
+    const carousel = document.querySelector('.hero-carousel-mobile') as HTMLElement
+    if (carousel) {
+      const isAtEnd = carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth - 10)
+      
+      if (isAtEnd) {
+        setIsRestarting(true)
+        // Reiniciar al inicio con animación suave
+        setTimeout(() => {
+          carousel.scrollTo({
+            left: 0,
+            behavior: 'smooth'
+          })
+          setCurrentSlide(0)
+          setIsRestarting(false)
+        }, 500) // Pequeña pausa antes de reiniciar
+      }
+    }
+  }
 
   // Sincronizar carrusel móvil cuando cambie currentSlide
   useEffect(() => {
@@ -202,6 +239,13 @@ export const Hero: React.FC<HeroProps> = ({
     setCurrentSlide(newSlideIndex)
     // Sincronizar carrusel móvil
     syncMobileCarousel(newSlideIndex)
+    
+    // Si llegamos al final, reiniciar automáticamente
+    if (newSlideIndex === 0) {
+      setTimeout(() => {
+        handleMobileCarouselEnd()
+      }, 1000) // Pequeña pausa antes de reiniciar
+    }
   }
 
   const goToPrevious = () => {
@@ -314,6 +358,12 @@ export const Hero: React.FC<HeroProps> = ({
             }}
             onScroll={handleScrollSync}
           >
+            {/* Indicador de reinicio */}
+            {isRestarting && (
+              <div className="absolute top-4 right-4 z-20 rounded-full bg-teal-500/90 px-3 py-1 text-xs font-medium text-white shadow-lg backdrop-blur-sm">
+                🔄 Reiniciando...
+              </div>
+            )}
             {slides.map((slide, index) => (
               <div
                 key={slide.id}

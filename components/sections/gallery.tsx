@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { GalleryImage } from '@/types'
 import { cn } from '@/lib/design-system/utilities'
 import { colorTokens, componentColors } from '@/lib/design-system/color-tokens'
-import { Filter, X, ChevronLeft, ChevronRight, Calendar, Tag, Eye } from 'lucide-react'
+import { Filter, X, ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Calendar, Tag, Eye } from 'lucide-react'
 import { GallerySkeleton } from '@/components/ui/skeleton'
 
 // Estilos CSS personalizados para el select
@@ -419,31 +419,67 @@ export function Gallery({
             transition={{ duration: 0.6 }}
             className="mt-8 flex justify-center"
           >
-            <button
+            <motion.button
               onClick={() => setIsExpanded(!isExpanded)}
-              className={cn(
-                'group inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3 text-base font-semibold transition-all duration-300 sm:w-auto sm:gap-3 sm:px-8 sm:py-4 sm:text-lg',
-                isExpanded
-                  ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
-                  : 'bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-lg hover:scale-105 hover:from-teal-700 hover:to-teal-800 hover:shadow-xl'
-              )}
+              className="group relative inline-flex items-center gap-3 text-lg font-medium transition-all duration-300 hover:gap-4 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
             >
-              {isExpanded ? (
-                <>
-                  <span>Ver menos</span>
-                  <motion.div animate={{ rotate: 180 }} transition={{ duration: 0.3 }}>
-                    ↑
-                  </motion.div>
-                </>
-              ) : (
-                <>
-                  <span>Ver más galería</span>
-                  <motion.div animate={{ rotate: 0 }} transition={{ duration: 0.3 }}>
-                    ↓
-                  </motion.div>
-                </>
-              )}
-            </button>
+              {/* Línea decorativa que se expande */}
+              <motion.div
+                className="h-px bg-gradient-to-r from-transparent via-teal-500 to-transparent"
+                initial={{ width: 0 }}
+                whileHover={{ width: '100%' }}
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
+              />
+              
+              {/* Contenido del enlace */}
+              <div className="flex items-center gap-2">
+                {isExpanded ? (
+                  <>
+                    <motion.span
+                      className="text-gray-600 transition-colors duration-200 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100"
+                      initial={{ opacity: 0.8 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      Ver menos
+                    </motion.span>
+                    <motion.div
+                      animate={{ rotate: 180 }}
+                      transition={{ duration: 0.4, ease: 'easeInOut' }}
+                      className="text-teal-500 transition-colors duration-200 group-hover:text-teal-600 dark:text-teal-400 dark:group-hover:text-teal-300"
+                    >
+                      <ChevronUp className="h-4 w-4" />
+                    </motion.div>
+                  </>
+                ) : (
+                  <>
+                    <motion.span
+                      className="text-teal-600 transition-colors duration-200 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
+                      initial={{ opacity: 0.8 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      Explorar galería
+                    </motion.span>
+                    <motion.div
+                      animate={{ rotate: 0 }}
+                      transition={{ duration: 0.4, ease: 'easeInOut' }}
+                      className="text-teal-500 transition-colors duration-200 group-hover:text-teal-600 dark:text-teal-400 dark:group-hover:text-teal-300"
+                    >
+                      <ChevronDown className="h-4 w-4" />
+                    </motion.div>
+                  </>
+                  )}
+              </div>
+              
+              {/* Línea decorativa que se expande */}
+              <motion.div
+                className="h-px bg-gradient-to-r from-transparent via-teal-500 to-transparent"
+                initial={{ width: 0 }}
+                whileHover={{ width: '100%' }}
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
+              />
+            </motion.button>
           </motion.div>
         )}
 

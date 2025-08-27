@@ -158,9 +158,9 @@ export const Header: React.FC<HeaderProps> = ({
   // Header variants mejorados con mejor contraste
   const headerVariants = {
     default:
-      'bg-white/95 dark:bg-black/95 backdrop-blur-md border-b-2 border-teal-200/80 dark:border-teal-400/20 shadow-sm',
+      'bg-white/90 dark:bg-black/95 backdrop-blur-md border-b-2 border-teal-300/60 dark:border-teal-400/20 shadow-lg',
     transparent: 'bg-transparent',
-    solid: 'bg-white dark:bg-black border-b-2 border-teal-200 dark:border-teal-400/20 shadow-md',
+    solid: 'bg-white/95 dark:bg-black border-b-2 border-teal-300/80 dark:border-teal-400/20 shadow-xl',
   }
 
   const isTransparent = variant === 'transparent' && !isScrolled
@@ -285,7 +285,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* CTA Button */}
             <Button
               size="sm"
-              className="hidden rounded-full bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:from-teal-700 hover:to-teal-800 hover:scale-105 hover:shadow-xl dark:from-teal-500 dark:to-teal-600 dark:shadow-teal-500/25 dark:hover:from-teal-400 dark:hover:to-teal-500 dark:hover:shadow-teal-400/40 lg:flex"
+              className="hidden rounded-full bg-gradient-to-r from-teal-500 to-teal-600 px-6 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:from-teal-600 hover:to-teal-700 hover:scale-105 hover:shadow-xl dark:from-teal-500 dark:to-teal-600 dark:shadow-teal-500/25 dark:hover:from-teal-400 dark:hover:to-teal-500 dark:hover:shadow-teal-400/40 lg:flex"
             >
               Contactar
             </Button>
@@ -293,7 +293,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Mobile menu button mejorado */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`rounded-lg p-2 ${colorTokens.text.tertiary} transition-colors hover:${colorTokens.hover.text.accent} focus:outline-none focus-visible:ring-2 ${colorTokens.focus.ring.brand} focus-visible:ring-offset-2 lg:hidden dark:${colorTokens.text.tertiary} dark:hover:${colorTokens.hover.text.accent}`}
+              className="rounded-lg p-2 text-teal-700 transition-all duration-200 hover:bg-teal-100 hover:text-teal-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 lg:hidden dark:text-teal-300 dark:hover:bg-teal-900/30 dark:hover:text-teal-200"
               aria-label="Abrir menú de navegación"
               aria-expanded={isMenuOpen}
             >
@@ -307,7 +307,7 @@ export const Header: React.FC<HeaderProps> = ({
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="border-t-2 border-teal-200/80 bg-white/95 shadow-lg backdrop-blur-md lg:hidden dark:border-teal-400/20 dark:bg-black/95"
+            className="border-t-2 border-teal-300/60 bg-white/95 shadow-xl backdrop-blur-md lg:hidden dark:border-teal-400/20 dark:bg-black/95"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -337,10 +337,10 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
 
               {/* Mobile CTA mejorado */}
-              <div className="mt-6 border-t-2 border-teal-200 pt-4 dark:border-teal-400/20">
+              <div className="mt-6 border-t-2 border-teal-300/60 pt-4 dark:border-teal-400/20">
                 <Button
                   size="sm"
-                  className="w-full rounded-full bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:from-teal-700 hover:to-teal-800 hover:scale-105 hover:shadow-xl dark:from-teal-500 dark:to-teal-600 dark:shadow-teal-500/25 dark:hover:from-teal-400 dark:hover:to-teal-500 dark:hover:shadow-teal-400/40"
+                  className="w-full rounded-full bg-gradient-to-r from-teal-500 to-teal-600 px-6 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:from-teal-600 hover:to-teal-700 hover:scale-105 hover:shadow-xl dark:from-teal-500 dark:to-teal-600 dark:shadow-teal-500/25 dark:hover:from-teal-400 dark:hover:to-teal-500 dark:hover:shadow-teal-400/40"
                 >
                   Contactar
                 </Button>
