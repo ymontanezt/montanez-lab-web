@@ -508,3 +508,35 @@
   opacity: 0;
   transform: translateY(-20px);
 }
+
+/* Custom scrollbar styles */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile carousel specific styles */
+.hero-carousel-mobile {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
+}
+
+.hero-slide-mobile {
+  flex-shrink: 0;
+}
+
+/* Ensure proper horizontal scrolling on mobile */
+@media (max-width: 768px) {
+  .hero-carousel-mobile {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  
+  .hero-slide-mobile {
+    display: block;
+  }
+}
