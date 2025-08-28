@@ -1,0 +1,11 @@
+# Configuración de Bun para forzar su uso
+[install]
+# Usar Bun como package manager por defecto
+registry = "https://registry.npmjs.org"
+save-dev = true
+save-exact = false
+
+# Configuración adicional
+[run]
+# Ejecutar scripts con Bun
+bun = true
