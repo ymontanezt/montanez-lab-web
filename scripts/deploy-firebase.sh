@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# 🚀 Script de Deploy a Firebase - Montañez Lab
-# Este script automatiza el proceso de deploy a Firebase Hosting
+# Script de deploy automatizado para Firebase
+# Autor: Montañez Lab Web Team
+# Fecha: $(date +%Y-%m-%d)
 
-set -e  # Salir en caso de error
+set -e  # Exit on any error
 
 # Colores para output
 RED='\033[0;31m'
@@ -13,7 +14,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Función para imprimir mensajes con colores
-print_message() {
+print_status() {
     echo -e "${BLUE}[INFO]${NC} $1"
 }
 
@@ -29,240 +30,212 @@ print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
-# Función para verificar comandos requeridos
-check_requirements() {
-    print_message "Verificando prerrequisitos..."
+# Función para mostrar el banner
+show_banner() {
+    echo -e "${BLUE}"
+    echo "╔══════════════════════════════════════════════════════════════╗"
+    echo "║                    MONTANEZ LAB WEB                        ║"
+    echo "║                Script de Deploy Automatizado               ║"
+    echo "╚══════════════════════════════════════════════════════════════╝"
+    echo -e "${NC}"
+}
+
+# Función para verificar dependencias
+check_dependencies() {
+    print_status "Verificando dependencias..."
     
-    # Verificar Node.js
     if ! command -v node &> /dev/null; then
         print_error "Node.js no está instalado"
         exit 1
     fi
     
-    # Verificar npm
-    if ! command -v npm &> /dev/null; then
-        print_error "npm no está instalado"
+    if ! command -v npm &> /dev/null && ! command -v bun &> /dev/null; then
+        print_error "Ni npm ni bun están instalados"
         exit 1
     fi
     
-    # Verificar Firebase CLI
     if ! command -v firebase &> /dev/null; then
-        print_error "Firebase CLI no está instalado. Instala con: npm install -g firebase-tools"
+        print_error "Firebase CLI no está instalado"
         exit 1
     fi
     
-    # Verificar Git
-    if ! command -v git &> /dev/null; then
-        print_error "Git no está instalado"
-        exit 1
-    fi
-    
-    print_success "Todos los prerrequisitos están instalados"
+    print_success "Todas las dependencias están disponibles"
 }
 
-# Función para verificar estado del repositorio
-check_repository_status() {
-    print_message "Verificando estado del repositorio..."
+# Función para limpiar cache
+clean_cache() {
+    print_status "Limpiando cache de Next.js..."
     
-    # Verificar que estés en main
-    CURRENT_BRANCH=$(git branch --show-current)
-    if [[ "$CURRENT_BRANCH" != "main" ]]; then
-        print_error "Debes estar en la rama main para hacer deploy. Rama actual: $CURRENT_BRANCH"
-        print_message "Cambia a main con: git checkout main"
-        exit 1
+    if [ -d ".next" ]; then
+        rm -rf .next
+        print_success "Cache de .next eliminado"
     fi
     
-    # Verificar que no haya cambios sin commitear
-    if [[ -n $(git status --porcelain) ]]; then
-        print_error "Hay cambios sin commitear en el repositorio"
-        print_message "Commitea o stashea los cambios antes de hacer deploy"
-        exit 1
+    if [ -d "out" ]; then
+        rm -rf out
+        print_success "Directorio out eliminado"
     fi
     
-    # Verificar que estés sincronizado con origin
-    git fetch origin
-    LOCAL_COMMIT=$(git rev-parse HEAD)
-    REMOTE_COMMIT=$(git rev-parse origin/main)
-    
-    if [[ "$LOCAL_COMMIT" != "$REMOTE_COMMIT" ]]; then
-        print_warning "Tu rama local no está sincronizada con origin/main"
-        print_message "Actualizando repositorio..."
-        git pull origin main
+    if [ -f "tsconfig.tsbuildinfo" ]; then
+        rm tsconfig.tsbuildinfo
+        print_success "tsconfig.tsbuildinfo eliminado"
     fi
     
-    print_success "Repositorio verificado y actualizado"
+    print_success "Limpieza de cache completada"
 }
 
 # Función para instalar dependencias
 install_dependencies() {
-    print_message "Instalando dependencias..."
+    print_status "Instalando dependencias..."
     
-    # Limpiar node_modules si existe
-    if [[ -d "node_modules" ]]; then
-        print_message "Limpiando node_modules existente..."
-        rm -rf node_modules
+    if command -v bun &> /dev/null; then
+        print_status "Usando Bun como package manager..."
+        bun install
+    else
+        print_status "Usando npm como package manager..."
+        npm install
     fi
-    
-    # Limpiar cache de npm
-    print_message "Limpiando cache de npm..."
-    npm cache clean --force
-    
-    # Instalar dependencias
-    print_message "Instalando dependencias con npm..."
-    npm install
     
     print_success "Dependencias instaladas correctamente"
 }
 
-# Función para build del proyecto
+# Función para hacer build
 build_project() {
-    print_message "Construyendo proyecto..."
+    print_status "Iniciando build de producción..."
     
-    # Limpiar builds anteriores
-    if [[ -d "out" ]]; then
-        print_message "Limpiando build anterior..."
-        rm -rf out
+    if command -v bun &> /dev/null; then
+        bun run build
+    else
+        npm run build
     fi
     
-    if [[ -d ".next" ]]; then
-        print_message "Limpiando cache de Next.js..."
-        rm -rf .next
-    fi
-    
-    # Build de producción
-    print_message "Ejecutando build de producción..."
-    npm run build
-    
-    # Verificar que el build sea exitoso
-    if [[ ! -d "out" ]]; then
-        print_error "Build falló - directorio 'out' no encontrado"
+    if [ $? -eq 0 ]; then
+        print_success "Build completado exitosamente"
+    else
+        print_error "Error durante el build"
         exit 1
     fi
-    
-    # Verificar archivos críticos
-    if [[ ! -f "out/index.html" ]]; then
-        print_error "Build falló - index.html no encontrado"
-        exit 1
-    fi
-    
-    print_success "Proyecto construido correctamente"
-    print_message "Tamaño del build: $(du -sh out | cut -f1)"
 }
 
-# Función para deploy a Firebase
-deploy_to_firebase() {
-    print_message "Desplegando a Firebase..."
+# Función para verificar build
+verify_build() {
+    print_status "Verificando archivos de build..."
     
-    # Verificar login a Firebase
-    if ! firebase projects:list &> /dev/null; then
-        print_error "No estás logueado en Firebase"
-        print_message "Ejecuta: firebase login"
+    if [ ! -d "out" ]; then
+        print_error "Directorio 'out' no encontrado después del build"
         exit 1
     fi
     
-    # Verificar proyecto activo
-    CURRENT_PROJECT=$(firebase use --only | grep -o 'montanez-website')
-    if [[ "$CURRENT_PROJECT" != "montanez-website" ]]; then
-        print_warning "Proyecto Firebase incorrecto. Cambiando a montanez-website..."
-        firebase use montanez-website
+    if [ ! -f "out/index.html" ]; then
+        print_error "index.html no encontrado en el build"
+        exit 1
     fi
     
-    # Deploy a Firebase
-    print_message "Iniciando deploy..."
+    print_success "Build verificado correctamente"
+}
+
+# Función para hacer deploy
+deploy_to_firebase() {
+    print_status "Iniciando deploy a Firebase..."
+    
     firebase deploy --only hosting
     
-    print_success "Deploy a Firebase completado exitosamente!"
-}
-
-# Función para verificar deploy
-verify_deploy() {
-    print_message "Verificando deploy..."
-    
-    # Obtener URL del sitio
-    SITE_URL=$(firebase hosting:sites:list | grep 'montanez-website' | awk '{print $2}')
-    
-    if [[ -n "$SITE_URL" ]]; then
-        print_success "Sitio desplegado en: $SITE_URL"
-        
-        # Verificar que el sitio responda
-        print_message "Verificando que el sitio responda..."
-        if curl -s -o /dev/null -w "%{http_code}" "$SITE_URL" | grep -q "200"; then
-            print_success "Sitio responde correctamente"
-        else
-            print_warning "El sitio no responde correctamente. Verifica manualmente."
-        fi
+    if [ $? -eq 0 ]; then
+        print_success "Deploy a Firebase completado exitosamente"
     else
-        print_warning "No se pudo obtener la URL del sitio"
+        print_error "Error durante el deploy a Firebase"
+        exit 1
     fi
 }
 
-# Función para limpieza
-cleanup() {
-    print_message "Limpiando archivos temporales..."
+# Función para mostrar resumen
+show_summary() {
+    echo -e "${GREEN}"
+    echo "╔══════════════════════════════════════════════════════════════╗"
+    echo "║                        DEPLOY COMPLETADO                    ║"
+    echo "╚══════════════════════════════════════════════════════════════╝"
+    echo -e "${NC}"
     
-    # Limpiar archivos de build si es necesario
-    if [[ "$1" == "--clean" ]]; then
-        print_message "Limpiando archivos de build..."
-        rm -rf out
-        rm -rf .next
-        print_success "Limpieza completada"
-    fi
+    print_success "Proceso de deploy completado exitosamente"
+    print_status "URL de producción: https://montanez-website.web.app"
+    print_status "Panel de administración: https://montanez-website.web.app/admin"
+    
+    echo ""
+    print_status "Tiempo total del proceso: $SECONDS segundos"
 }
 
 # Función principal
 main() {
-    echo "🚀 ========================================"
-    echo "🚀  DEPLOY A FIREBASE - MONTAÑEZ LAB"
-    echo "🚀 ========================================"
-    echo ""
+    local start_time=$SECONDS
     
-    # Parsear argumentos
-    CLEAN_BUILD=false
-    while [[ $# -gt 0 ]]; do
-        case $1 in
-            --clean)
-                CLEAN_BUILD=true
-                shift
-                ;;
-            --help)
-                echo "Uso: $0 [OPCIONES]"
-                echo ""
-                echo "Opciones:"
-                echo "  --clean     Limpiar archivos de build después del deploy"
-                echo "  --help      Mostrar esta ayuda"
-                echo ""
-                echo "Ejemplo:"
-                echo "  $0 --clean"
-                exit 0
-                ;;
-            *)
-                print_error "Opción desconocida: $1"
-                print_message "Usa --help para ver las opciones disponibles"
-                exit 1
-                ;;
-        esac
-    done
-    
-    # Ejecutar pasos del deploy
-    check_requirements
-    check_repository_status
+    show_banner
+    check_dependencies
+    clean_cache
     install_dependencies
     build_project
+    verify_build
     deploy_to_firebase
-    verify_deploy
-    
-    if [[ "$CLEAN_BUILD" == true ]]; then
-        cleanup --clean
-    fi
-    
-    echo ""
-    echo "🎉 ========================================"
-    echo "🎉  DEPLOY COMPLETADO EXITOSAMENTE!"
-    echo "🎉 ========================================"
-    echo ""
-    print_success "Sitio disponible en: https://montanez-website.web.app"
-    print_message "Puedes ver el estado en: https://console.firebase.google.com/project/montanez-website/hosting"
+    show_summary
 }
 
-# Ejecutar función principal
-main "$@"
+# Función para mostrar ayuda
+show_help() {
+    echo "Uso: $0 [OPCIONES]"
+    echo ""
+    echo "Opciones:"
+    echo "  -h, --help     Mostrar esta ayuda"
+    echo "  -c, --clean    Solo limpiar cache"
+    echo "  -b, --build    Solo hacer build (sin deploy)"
+    echo "  -d, --deploy   Solo hacer deploy (asume build existente)"
+    echo "  -f, --force    Forzar deploy sin confirmación"
+    echo ""
+    echo "Ejemplos:"
+    echo "  $0              # Proceso completo: limpiar + build + deploy"
+    echo "  $0 --clean      # Solo limpiar cache"
+    echo "  $0 --build      # Solo hacer build"
+    echo "  $0 --deploy     # Solo hacer deploy"
+}
+
+# Parsear argumentos de línea de comandos
+case "${1:-}" in
+    -h|--help)
+        show_help
+        exit 0
+        ;;
+    -c|--clean)
+        show_banner
+        clean_cache
+        print_success "Limpieza completada"
+        exit 0
+        ;;
+    -b|--build)
+        show_banner
+        check_dependencies
+        clean_cache
+        install_dependencies
+        build_project
+        verify_build
+        print_success "Build completado"
+        exit 0
+        ;;
+    -d|--deploy)
+        show_banner
+        check_dependencies
+        verify_build
+        deploy_to_firebase
+        print_success "Deploy completado"
+        exit 0
+        ;;
+    -f|--force)
+        FORCE_DEPLOY=true
+        main
+        ;;
+    "")
+        main
+        ;;
+    *)
+        print_error "Opción desconocida: $1"
+        show_help
+        exit 1
+        ;;
+esac

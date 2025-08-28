@@ -6,18 +6,14 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:static": "next build && next export",
-    "build:firebase": "next build && next export",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "clean": "rm -rf .next out",
-    "analyze": "ANALYZE=true next build",
-    "deploy": "chmod +x scripts/deploy-firebase.sh && ./scripts/deploy-firebase.sh",
-    "deploy:clean": "chmod +x scripts/deploy-firebase.sh && ./scripts/deploy-firebase.sh --clean",
-    "rollback": "chmod +x scripts/emergency-rollback.sh && ./scripts/emergency-rollback.sh --auto",
-    "rollback:list": "chmod +x scripts/emergency-rollback.sh && ./scripts/emergency-rollback.sh --list",
-    "firebase:status": "chmod +x scripts/emergency-rollback.sh && ./scripts/emergency-rollback.sh --status"
+    "clean": "rm -rf .next out tsconfig.tsbuildinfo",
+    "deploy": "./scripts/deploy-firebase.sh",
+    "deploy:clean": "./scripts/deploy-firebase.sh --clean",
+    "deploy:build": "./scripts/deploy-firebase.sh --build",
+    "deploy:only": "./scripts/deploy-firebase.sh --deploy"
   },
   "dependencies": {
     "@hookform/resolvers": "latest",
