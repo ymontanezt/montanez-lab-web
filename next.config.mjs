@@ -1,33 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configuración para export estático (Firebase)
-  output: 'export',
+  // Configuración para export estático (Firebase) - TEMPORALMENTE COMENTADO PARA DEPLOY
+  // output: 'export',
   trailingSlash: true,
   images: {
     unoptimized: true,
-  },
-  
-  // Headers de seguridad
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-        ],
-      },
-    ];
   },
   
   // Configuración de webpack para optimización
@@ -63,8 +40,6 @@ const nextConfig = {
   
   // Configuración de react strict mode
   reactStrictMode: true,
-  
-
 };
 
 export default nextConfig;

@@ -1,15 +1,12 @@
 import type React from 'react'
 import type { Metadata } from 'next'
-import { Montserrat } from 'next/font/google'
-import { Open_Sans } from 'next/font/google'
+import { Montserrat, Open_Sans } from 'next/font/google'
 import './globals.css'
 import { AuthProvider } from '@/contexts/auth-context'
 import { Toaster } from '@/components/ui/toaster'
 import { ThemeProvider } from '@/contexts/theme-context'
 import { Suspense } from 'react'
-import { ErrorBoundary } from '@/components/error-boundary'
 import { PWAInstallPrompt } from '@/components/pwa-install-prompt'
-import { GoogleAnalytics } from '@next/third-parties/google'
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -111,56 +108,91 @@ export default function RootLayout({
       <head>
         {/* SEO y Meta Tags */}
         <meta name="geo.region" content="PE-JUN" />
-        <meta name="geo.placename" content="Huancayo" />
-        <meta name="geo.position" content="-12.0667;-75.2167" />
-        <meta name="ICBM" content="-12.0667, -75.2167" />
-
-        {/* Mobile y PWA */}
-        <meta name="format-detection" content="telephone=yes" />
-        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="geo.placename" content="Junín, Perú" />
+        <meta name="geo.position" content="-11.1589;-75.9934" />
+        <meta name="ICBM" content="-11.1589, -75.9934" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Montañez Lab" />
+        <meta property="og:locale" content="es_PE" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@montanezlab" />
+        
+        {/* PWA */}
+        <meta name="theme-color" content="#0ea5e9" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Montañez Lab" />
-        <meta name="application-name" content="Montañez Lab" />
-        <meta name="msapplication-TileColor" content="#22c55e" />
-        <meta name="theme-color" content="#22c55e" />
-
-        {/* Canonical y Alternates */}
-        <link rel="canonical" href="https://montanez-website.web.app" />
-        <link rel="alternate" hrefLang="es-pe" href="https://montanez-website.web.app" />
-        <link rel="alternate" hrefLang="es" href="https://montanez-website.web.app/es" />
-        <link rel="alternate" hrefLang="x-default" href="https://montanez-website.web.app" />
-
-        {/* Preconnect para performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-
+        
+        {/* Preload critical resources */}
+        <link rel="preload" href="/fonts/montserrat-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/opensans-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        
         {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-
-        {/* Favicons */}
+        
+        {/* Preconnect */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        
+        {/* Manifest */}
+        <link rel="manifest" href="/manifest.json" />
+        
+        {/* Icons */}
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        
+        {/* Microsoft */}
+        <meta name="msapplication-TileColor" content="#0f172a" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "DentalLaboratory",
+              "name": "Montañez Lab",
+              "description": "Laboratorio Dental Moderno en Junín, Perú",
+              "url": "https://montanez-lab.com",
+              "telephone": "+51 989 253 275",
+              "email": "montzavy@gmail.com",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Junín",
+                "addressRegion": "Junín",
+                "addressCountry": "PE"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": -11.1589,
+                "longitude": -75.9935
+              },
+              "openingHours": "Mo-Fr 08:00-18:00",
+              "priceRange": "$$"
+            })
+          }}
+        />
       </head>
-      <body className="font-sans antialiased">
-        <ErrorBoundary>
-          <Suspense fallback={null}>
-            <AuthProvider>
-              <ThemeProvider>
-                {children}
-                <Toaster />
-                <PWAInstallPrompt />
-              </ThemeProvider>
-            </AuthProvider>
-          </Suspense>
-        </ErrorBoundary>
-        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
+      <body className="antialiased">
+        <Suspense fallback={null}>
+          <AuthProvider>
+            <ThemeProvider>
+              {children}
+              <Toaster />
+              <PWAInstallPrompt />
+            </ThemeProvider>
+          </AuthProvider>
+        </Suspense>
       </body>
     </html>
   )
