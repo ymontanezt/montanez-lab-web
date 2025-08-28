@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configuración para export estático (Firebase) - TEMPORALMENTE COMENTADO PARA DEPLOY
-  // output: 'export',
+  // Configuración para export estático (Firebase)
+  output: 'export',
   trailingSlash: true,
   images: {
     unoptimized: true,
