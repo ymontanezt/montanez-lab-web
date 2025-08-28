@@ -24,42 +24,39 @@ export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
     const resendApiKey = process.env.RESEND_API_KEY
 
     if (!resendApiKey || resendApiKey === 'your_resend_api_key_here') {
+      console.warn('⚠️ RESEND_API_KEY no configurado, usando modo fallback')
       // Fallback: simular envío de email
-      console.log('📧 [FALLBACK] Email simulado:', {
-        to: emailData.to,
-        subject: emailData.subject,
-        preview: emailData.text?.substring(0, 100) + '...',
-      })
-
-      // Simular delay de API
       await new Promise(resolve => setTimeout(resolve, 500))
-
-      console.log('✅ [FALLBACK] Email "enviado" exitosamente')
       return true
     }
 
-    // En producción, usar Resend real
-    console.log('📧 [RESEND] Enviando email real...')
+    // Enviar email usando Resend
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'montzavy@gmail.com'
+    const fromName = process.env.RESEND_FROM_NAME || 'Montañez Lab'
 
-    // Aquí iría el código real de Resend
-    // const response = await fetch('https://api.resend.com/emails', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Authorization': `Bearer ${resendApiKey}`,
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     from: 'Montañez Lab <montzavy@gmail.com>',
-    //     to: emailData.to,
-    //     subject: emailData.subject,
-    //     html: emailData.html,
-    //     text: emailData.text,
-    //   }),
-    // })
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${resendApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: `${fromName} <${fromEmail}>`,
+        to: emailData.to,
+        subject: emailData.subject,
+        html: emailData.html,
+        text: emailData.text,
+      }),
+    })
 
-    // Simular envío exitoso por ahora
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    console.log('✅ [RESEND] Email enviado exitosamente')
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(`Resend API error: ${response.status} - ${errorData.message || 'Unknown error'}`)
+    }
+
+    const result = await response.json()
+    console.log('✅ Email enviado exitosamente via Resend:', result.id)
+    
     return true
   } catch (error) {
     console.error('❌ Error al enviar email:', error)

@@ -370,8 +370,8 @@ export function Reports() {
           <div className="grid gap-6 md:grid-cols-4">
             <Card className="p-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/20">
-                  <MessageSquare className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-100 dark:bg-teal-900/20">
+                  <MessageSquare className="h-5 w-5 text-teal-600 dark:text-teal-400" />
                 </div>
                 <div>
                   <p className="text-muted-foreground text-sm">Total Contactos</p>
@@ -441,7 +441,7 @@ export function Reports() {
                           status === 'new'
                             ? 'bg-yellow-500'
                             : status === 'read'
-                              ? 'bg-blue-500'
+                              ? 'bg-teal-500'
                               : status === 'replied'
                                 ? 'bg-green-500'
                                 : 'bg-gray-500'
@@ -467,7 +467,7 @@ export function Reports() {
                           status === 'pending'
                             ? 'bg-yellow-500'
                             : status === 'confirmed'
-                              ? 'bg-blue-500'
+                              ? 'bg-teal-500'
                               : status === 'completed'
                                 ? 'bg-green-500'
                                 : 'bg-red-500'
@@ -525,7 +525,7 @@ export function Reports() {
             <div className="grid gap-4 md:grid-cols-3">
               <div className="text-center">
                 <p className="text-muted-foreground text-sm">Contactos por Día</p>
-                <p className="text-2xl font-bold text-blue-600">
+                <p className="text-2xl font-bold text-teal-600">
                   {reportData.contacts.length > 0
                     ? Math.round(
                         reportData.contacts.length /

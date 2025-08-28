@@ -44,10 +44,10 @@ const variantConfig = {
   },
   info: {
     icon: Info,
-    iconColor: 'text-blue-500',
+    iconColor: 'text-teal-500',
     confirmVariant: 'default' as const,
-    bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200',
+    bgColor: 'bg-teal-50',
+    borderColor: 'border-teal-200',
   },
   success: {
     icon: CheckCircle,
@@ -90,7 +90,7 @@ export function ConfirmationDialog({
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
 
-      <AlertDialogContent className="sm:max-w-md">
+      <AlertDialogContent className="max-w-[95vw] sm:max-w-md">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -202,9 +202,9 @@ export function useConfirmation() {
       },
       info: {
         icon: Info,
-        iconColor: 'text-blue-500',
-        bgColor: 'bg-blue-50',
-        borderColor: 'border-blue-200',
+        iconColor: 'text-teal-500',
+        bgColor: 'bg-teal-50',
+        borderColor: 'border-teal-200',
       },
       success: {
         icon: CheckCircle,

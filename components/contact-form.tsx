@@ -62,7 +62,7 @@ export function ContactForm() {
   const urgency = watch('urgency')
 
   const onSubmit = async (data: ContactFormData) => {
-    console.log('la data enviada-> ', data)
+    
     setIsSubmitting(true)
 
     try {
@@ -70,7 +70,7 @@ export function ContactForm() {
 
       // Save to Firebase
       const contactId = await addContactSubmission(data)
-      console.log('[v0] Contact form submitted and saved to Firebase:', contactId)
+
 
       // Prepare email data
       const emailData = {
@@ -84,10 +84,7 @@ export function ContactForm() {
         sendContactConfirmation(emailData),
       ])
 
-      console.log('[v0] Email notifications:', {
-        notification: notificationSent.status === 'fulfilled' ? 'sent' : 'failed',
-        confirmation: confirmationSent.status === 'fulfilled' ? 'sent' : 'failed',
-      })
+      
 
       setIsSubmitted(true)
       reset()

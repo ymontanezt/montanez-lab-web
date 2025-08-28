@@ -128,17 +128,13 @@ export const createAppointment = async (data: CreateAppointmentData): Promise<st
       updatedAt: serverTimestamp() as Timestamp,
     }
 
-    console.log('🚀 Intentando crear cita en Firebase...')
-
     // Guardar en Firestore
     const docRef = await addDoc(collection(db, 'appointments'), appointmentData)
     const appointmentId = docRef.id
 
-    console.log('✅ Cita creada exitosamente con ID:', appointmentId)
-
     // Enviar emails de confirmación (en paralelo para no bloquear)
     try {
-      console.log('📧 Enviando emails de confirmación...')
+
 
       // Email al cliente
       const clientEmailPromise = sendAppointmentConfirmation({
@@ -161,13 +157,13 @@ export const createAppointment = async (data: CreateAppointmentData): Promise<st
       ])
 
       if (clientEmailSent.status === 'fulfilled' && clientEmailSent.value) {
-        console.log('✅ Email de confirmación enviado al cliente')
+
       } else if (clientEmailSent.status === 'rejected') {
         console.warn('⚠️ Error enviando email al cliente:', clientEmailSent.reason)
       }
 
       if (adminEmailSent.status === 'fulfilled' && adminEmailSent.value) {
-        console.log('✅ Email de notificación enviado al admin')
+
       } else if (adminEmailSent.status === 'rejected') {
         console.warn('⚠️ Error enviando email al admin:', adminEmailSent.reason)
       }
@@ -322,7 +318,7 @@ export const updateAppointmentStatus = async (
       updatedAt: serverTimestamp(),
     })
 
-    console.log('✅ Estado de cita actualizado:', appointmentId, status)
+
   } catch (error) {
     console.error('❌ Error al actualizar estado de cita:', error)
     throw error
@@ -341,7 +337,7 @@ export const updateAppointment = async (
       updatedAt: serverTimestamp(),
     })
 
-    console.log('✅ Cita actualizada:', appointmentId)
+
   } catch (error) {
     console.error('❌ Error al actualizar cita:', error)
     throw error
@@ -354,7 +350,7 @@ export const deleteAppointment = async (appointmentId: string): Promise<void> =>
     const appointmentRef = doc(db, 'appointments', appointmentId)
     await deleteDoc(appointmentRef)
 
-    console.log('✅ Cita eliminada:', appointmentId)
+
   } catch (error) {
     console.error('❌ Error al eliminar cita:', error)
     throw error

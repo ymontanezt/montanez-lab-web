@@ -133,7 +133,7 @@ export function PageLoading({ className }: { className?: string }) {
           <div className="relative mx-auto mb-6 h-20 w-20">
             <div className="absolute inset-0 animate-pulse rounded-full bg-gradient-to-br from-green-500 to-green-600" />
             <div className="absolute inset-2 flex items-center justify-center rounded-full bg-white dark:bg-gray-900">
-              <span className="text-3xl">🦷</span>
+              <span className="text-3xl drop-shadow-sm dark:drop-shadow-md dark:text-teal-400">🦷</span>
             </div>
           </div>
 

@@ -176,15 +176,6 @@ export function RechartsDashboard({ contacts, appointments, stats }: DashboardCh
     )
   }
 
-  console.log('📊 RECHARTS: Datos preparados:', {
-    contactsCount: contacts.length,
-    appointmentsCount: appointments.length,
-    contactsData: contactsData(),
-    appointmentsData: appointmentsData(),
-    servicesData: servicesData(),
-    trendsData: trendsData(),
-  })
-
   return (
     <div className="space-y-6">
       {/* Métricas Rápidas */}
@@ -363,7 +354,7 @@ export function RechartsDashboard({ contacts, appointments, stats }: DashboardCh
             <CardContent>
               <div className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">
+                  <div className="text-2xl font-bold text-teal-600">
                     {contacts.filter(c => c.status === 'new').length}
                   </div>
                   <div className="text-muted-foreground text-sm">Nuevos</div>
@@ -429,7 +420,7 @@ export function RechartsDashboard({ contacts, appointments, stats }: DashboardCh
                   <div className="text-muted-foreground text-sm">Pendientes</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">
+                  <div className="text-2xl font-bold text-teal-600">
                     {appointments.filter(a => a.status === 'confirmed').length}
                   </div>
                   <div className="text-muted-foreground text-sm">Confirmadas</div>

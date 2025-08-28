@@ -139,8 +139,7 @@ export const createAdmin = async (data: CreateAdminData, createdBy: string): Pro
       createdBy,
     }
 
-    const docRef = await addDoc(collection(db, 'admins'), adminData)
-    console.log('✅ Administrador creado exitosamente con ID:', docRef.id)
+    const docRef = await addDoc(collection(db, 'admins'), adminData)   
 
     return docRef.id
   } catch (error) {
@@ -208,7 +207,7 @@ export const updateAdmin = async (adminId: string, updates: Partial<AdminData>):
       updatedAt: new Date().toISOString(),
     })
 
-    console.log('✅ Administrador actualizado exitosamente')
+    
   } catch (error) {
     console.error('❌ Error al actualizar administrador:', error)
     throw new Error('No se pudo actualizar el administrador.')
@@ -252,7 +251,7 @@ export const deleteAdmin = async (adminId: string): Promise<void> => {
   try {
     // Solo eliminar de Firestore (no de Auth por seguridad)
     await deleteDoc(doc(db, 'admins', adminId))
-    console.log('✅ Administrador eliminado exitosamente')
+    
   } catch (error) {
     console.error('❌ Error al eliminar administrador:', error)
     throw new Error('No se pudo eliminar el administrador.')
@@ -297,7 +296,6 @@ export const getAdminStats = async () => {
 
     return stats
   } catch (error) {
-    console.error('❌ Error al obtener estadísticas:', error)
     return {
       total: 0,
       active: 0,

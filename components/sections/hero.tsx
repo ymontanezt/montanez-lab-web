@@ -15,6 +15,7 @@ import { ChevronLeft, ChevronRight, Play, ExternalLink, ArrowRight, Sparkles } f
 import { VideoModal } from '@/components/ui/video-modal'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { useCarouselGestures } from '@/hooks/use-touch-gestures'
+import Link from 'next/link'
 
 // Estilos CSS para el carrusel horizontal móvil
 const mobileCarouselStyles = `
@@ -75,7 +76,21 @@ export const Hero: React.FC<HeroProps> = ({
     undefined // Deshabilitar auto-play del hook para evitar conflictos
   )
 
-  // Función para sincronizar scroll horizontal con slide actual
+  // Función para sincronizar el carrusel móvil con el auto-play
+  const syncMobileCarousel = (slideIndex: number) => {
+    if (!isMobile || typeof window === 'undefined') return
+
+    const carousel = document.querySelector('.hero-carousel-mobile') as HTMLElement
+    if (carousel) {
+      const slideWidth = carousel.clientWidth
+      const targetScrollLeft = slideIndex * slideWidth
+      
+      // Scroll instantáneo para evitar problemas de sincronización
+      carousel.scrollLeft = targetScrollLeft
+    }
+  }
+
+  // Función para sincronizar el scroll horizontal con el estado del carousel
   const handleScrollSync = (event: React.UIEvent<HTMLDivElement>) => {
     if (!isMobile) return
 
@@ -84,32 +99,59 @@ export const Hero: React.FC<HeroProps> = ({
     const slideWidth = target.clientWidth
     const newSlideIndex = Math.round(scrollLeft / slideWidth)
 
+    // Solo actualizar si el índice cambió y es válido
     if (newSlideIndex !== currentSlide && newSlideIndex >= 0 && newSlideIndex < slides.length) {
       setCurrentSlide(newSlideIndex)
       setIsPlaying(false)
+      
       // Resume auto-play after manual navigation
       setTimeout(() => setIsPlaying(autoPlay), 3000)
     }
-  }
 
-  // Función para sincronizar el carrusel móvil con el auto-play
-  const syncMobileCarousel = (slideIndex: number) => {
-    if (!isMobile || typeof window === 'undefined') return
-
-    const carousel = document.querySelector('.hero-carousel-mobile') as HTMLElement
-    if (carousel) {
-      const slideWidth = carousel.clientWidth
-      carousel.scrollTo({
-        left: slideIndex * slideWidth,
-        behavior: 'smooth',
-      })
+    // Verificar si llegamos al final del carousel
+    const isAtEnd = scrollLeft >= (target.scrollWidth - target.clientWidth - 10)
+    if (isAtEnd) {
+      handleMobileCarouselEnd()
     }
   }
 
   // State for swipe feedback
   const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null)
+  const [isRestarting, setIsRestarting] = useState(false)
 
-  // Auto-advance carousel
+  // Función para manejar gestos táctiles en móvil
+  const handleMobileSwipe = (direction: 'left' | 'right') => {
+    if (!isMobile) return
+
+    setSwipeDirection(direction)
+    setTimeout(() => setSwipeDirection(null), 1000)
+    triggerHapticFeedback()
+
+    if (direction === 'left') {
+      // Swipe izquierda = siguiente slide
+      const newSlideIndex = (currentSlide + 1) % slides.length
+      setCurrentSlide(newSlideIndex)
+      syncMobileCarousel(newSlideIndex)
+      
+      // Si llegamos al final, reiniciar automáticamente
+      if (newSlideIndex === 0) {
+        setTimeout(() => {
+          handleMobileCarouselEnd()
+        }, 1000) // Pequeña pausa antes de reiniciar
+      }
+    } else {
+      // Swipe derecha = slide anterior
+      const newSlideIndex = currentSlide === 0 ? slides.length - 1 : currentSlide - 1
+      setCurrentSlide(newSlideIndex)
+      syncMobileCarousel(newSlideIndex)
+    }
+
+    // Pausar auto-play temporalmente
+    setIsPlaying(false)
+    setTimeout(() => setIsPlaying(autoPlay), 3000)
+  }
+
+  // Auto-advance carousel with auto-restart
   useEffect(() => {
     if (!autoPlay || !isPlaying) return
 
@@ -118,10 +160,39 @@ export const Hero: React.FC<HeroProps> = ({
       setCurrentSlide(newSlideIndex)
       // Sincronizar con el carrusel móvil
       syncMobileCarousel(newSlideIndex)
+      
+      // Si llegamos al final, pausar brevemente antes de reiniciar
+      if (newSlideIndex === 0) {
+        setIsPlaying(false)
+        setTimeout(() => setIsPlaying(true), 1000) // Pausa de 1 segundo antes de reiniciar
+      }
     }, autoPlayInterval)
 
     return () => clearInterval(interval)
   }, [autoPlay, autoPlayInterval, isPlaying, slides.length, currentSlide])
+
+  // Función para auto-reiniciar el carousel móvil cuando llegue al final
+  const handleMobileCarouselEnd = () => {
+    if (!isMobile) return
+
+    const carousel = document.querySelector('.hero-carousel-mobile') as HTMLElement
+    if (carousel) {
+      const isAtEnd = carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth - 10)
+      
+      if (isAtEnd) {
+        setIsRestarting(true)
+        // Reiniciar al inicio con animación suave
+        setTimeout(() => {
+          carousel.scrollTo({
+            left: 0,
+            behavior: 'smooth'
+          })
+          setCurrentSlide(0)
+          setIsRestarting(false)
+        }, 500) // Pequeña pausa antes de reiniciar
+      }
+    }
+  }
 
   // Sincronizar carrusel móvil cuando cambie currentSlide
   useEffect(() => {
@@ -130,9 +201,23 @@ export const Hero: React.FC<HeroProps> = ({
     }
   }, [currentSlide, isMobile])
 
-  // Pause auto-play on hover
-  const handleMouseEnter = () => setIsPlaying(false)
-  const handleMouseLeave = () => setIsPlaying(autoPlay)
+  // Inicializar el carrusel móvil en la posición correcta
+  useEffect(() => {
+    if (isMobile && typeof window !== 'undefined') {
+      // Asegurar que el carrusel esté en la posición inicial
+      const carousel = document.querySelector('.hero-carousel-mobile') as HTMLElement
+      if (carousel) {
+        // Pequeño delay para asegurar que el DOM esté listo
+        setTimeout(() => {
+          carousel.scrollLeft = 0
+        }, 100)
+      }
+    }
+  }, [isMobile])
+
+  // Pause auto-play on hover (solo en desktop)
+  const handleMouseEnter = () => !isMobile && setIsPlaying(false)
+  const handleMouseLeave = () => !isMobile && setIsPlaying(autoPlay)
 
   // Navigation functions
   const goToSlide = (index: number) => {
@@ -154,6 +239,13 @@ export const Hero: React.FC<HeroProps> = ({
     setCurrentSlide(newSlideIndex)
     // Sincronizar carrusel móvil
     syncMobileCarousel(newSlideIndex)
+    
+    // Si llegamos al final, reiniciar automáticamente
+    if (newSlideIndex === 0) {
+      setTimeout(() => {
+        handleMobileCarouselEnd()
+      }, 1000) // Pequeña pausa antes de reiniciar
+    }
   }
 
   const goToPrevious = () => {
@@ -259,8 +351,19 @@ export const Hero: React.FC<HeroProps> = ({
         {isMobile ? (
           <div
             className="hero-carousel-mobile scrollbar-hide flex h-full w-full overflow-x-auto"
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch',
+            }}
             onScroll={handleScrollSync}
           >
+            {/* Indicador de reinicio */}
+            {isRestarting && (
+              <div className="absolute top-4 right-4 z-20 rounded-full bg-teal-500/90 px-3 py-1 text-xs font-medium text-white shadow-lg backdrop-blur-sm">
+                🔄 Reiniciando...
+              </div>
+            )}
             {slides.map((slide, index) => (
               <div
                 key={slide.id}
@@ -282,16 +385,18 @@ export const Hero: React.FC<HeroProps> = ({
                     }}
                   />
                 ) : (
-                  <div className="from-primary-100 to-primary-200 flex h-full w-full items-center justify-center bg-gradient-to-r">
-                    <span className="text-primary-400 text-8xl">🦷</span>
+                  <div className="from-primary-100 to-primary-200 flex h-full w-full items-center justify-center bg-gradient-to-r dark:from-teal-900/30 dark:to-teal-800/30">
+                    <span className="text-primary-400 text-8xl drop-shadow-lg dark:text-teal-400 dark:drop-shadow-2xl">🦷</span>
                   </div>
                 )}
 
                 {/* Fondo oscuro mejorado para mayor contraste de textos */}
                 <div
-                  className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"
+                  className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 dark:from-black/50 dark:via-black/40 dark:to-black/60"
                   aria-hidden="true"
                 />
+
+                {/* Solo imagen y overlay - sin contenido duplicado */}
               </div>
             ))}
           </div>
@@ -321,14 +426,14 @@ export const Hero: React.FC<HeroProps> = ({
                   }}
                 />
               ) : (
-                <div className="from-primary-100 to-primary-200 flex h-full w-full items-center justify-center bg-gradient-to-r">
-                  <span className="text-primary-400 text-8xl">🦷</span>
+                <div className="from-primary-100 to-primary-200 flex h-full w-full items-center justify-center bg-gradient-to-r dark:from-teal-900/30 dark:to-teal-800/30">
+                  <span className="text-primary-400 text-8xl drop-shadow-lg dark:text-teal-400 dark:drop-shadow-2xl">🦷</span>
                 </div>
               )}
 
               {/* Fondo oscuro mejorado para mayor contraste de textos */}
               <div
-                className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"
+                className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 dark:from-black/50 dark:via-black/40 dark:to-black/60"
                 aria-hidden="true"
               />
             </motion.div>
@@ -347,84 +452,147 @@ export const Hero: React.FC<HeroProps> = ({
       >
         <div className="relative flex w-full flex-col items-center gap-2 text-center md:w-auto md:gap-4">
           <div className="relative flex w-full flex-col items-center gap-2 px-4 py-4 text-center md:w-auto md:gap-3 md:px-6 md:py-8">
-            <AnimatePresence>
-              <motion.h2
-                key={`title-${currentSlide}`}
-                className="mb-2 text-2xl font-bold text-white md:mb-4 md:text-4xl lg:text-5xl"
-                style={{
-                  textShadow: '0 2px 8px rgba(0,0,0,0.4)',
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-              >
-                {slides[currentSlide].title}
-              </motion.h2>
-            </AnimatePresence>
-
-            <AnimatePresence>
-              <motion.p
-                key={`subtitle-${currentSlide}`}
-                className="mb-2 text-base font-semibold text-white md:mb-4 md:text-xl lg:text-2xl"
-                style={{
-                  textShadow: '0 1px 4px rgba(0,0,0,0.3)',
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                {slides[currentSlide].subtitle}
-              </motion.p>
-            </AnimatePresence>
-
-            <AnimatePresence>
-              <motion.p
-                key={`description-${currentSlide}`}
-                className="mb-4 hidden text-sm leading-relaxed text-white sm:inline-block md:mb-8 md:text-lg"
-                style={{
-                  textShadow: '0 1px 3px rgba(0,0,0,0.2)',
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                {slides[currentSlide].description}
-              </motion.p>
-            </AnimatePresence>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col items-center justify-center gap-4 sm:flex-row"
-            >
-              <Button
-                size="lg"
-                className={`group px-8 py-3 text-base font-bold text-white shadow-lg transition-all duration-200 md:text-lg ${componentColors.button.primary.background} ${componentColors.button.primary.text} ${componentColors.button.primary.border} ${componentColors.button.primary.focus}`}
-                onClick={scrollToServices}
-              >
-                <Sparkles className="mr-2 h-5 w-5 transition-transform duration-200 group-hover:rotate-12" />
-                {slides[currentSlide].cta}
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-              </Button>
-
-              {/* Botón de video mejorado con mejor contraste */}
-              {showPlayButton && slides[currentSlide].videoUrl && (
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="group h-14 w-14 rounded-full border-2 border-white/60 bg-transparent p-0 text-white shadow-lg backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white/30 focus:ring-2 focus:ring-white focus:ring-offset-2"
-                  onClick={openYouTubeVideo}
-                  aria-label="Ver video en YouTube"
-                  title="Ver video promocional"
+            {isMobile ? (
+              // Versión sin animaciones para móvil
+              <>
+                <h2
+                  className="mb-2 text-2xl font-bold text-white md:mb-4 md:text-4xl lg:text-5xl"
+                  style={{
+                    textShadow: '0 2px 8px rgba(0,0,0,0.4)',
+                  }}
                 >
-                  <Play className="ml-1 h-6 w-6 transition-transform duration-200 group-hover:scale-110" />
-                </Button>
-              )}
-            </motion.div>
+                  {slides[currentSlide].title}
+                </h2>
+
+                <p
+                  className="mb-2 text-base font-semibold text-white md:mb-4 md:text-xl lg:text-2xl"
+                  style={{
+                    textShadow: '0 1px 4px rgba(0,0,0,0.3)',
+                  }}
+                >
+                  {slides[currentSlide].subtitle}
+                </p>
+
+                {slides[currentSlide].description && (
+                  <p
+                    className="mb-4 hidden text-sm leading-relaxed text-white sm:inline-block md:mb-8 md:text-lg"
+                    style={{
+                      textShadow: '0 1px 3px rgba(0,0,0,0.2)',
+                    }}
+                  >
+                    {slides[currentSlide].description}
+                  </p>
+                )}
+
+                <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                  <Button
+                    size="lg"
+                    className={`group px-8 py-3 text-base font-bold text-white shadow-lg md:text-lg ${componentColors.button.primary.background} ${componentColors.button.primary.text} ${componentColors.button.primary.border} ${componentColors.button.primary.focus}`}
+                    onClick={scrollToServices}
+                  >
+                    <Sparkles className="mr-2 h-5 w-5" />
+                    {slides[currentSlide].cta}
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+
+                  {/* Botón de video mejorado con mejor contraste */}
+                  {showPlayButton && slides[currentSlide].videoUrl && (
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="group h-14 w-14 rounded-full border-2 border-white/60 bg-transparent p-0 text-white shadow-lg focus:ring-2 focus:ring-white focus:ring-offset-2"
+                      onClick={openYouTubeVideo}
+                      aria-label="Ver video en YouTube"
+                      title="Ver video promocional"
+                    >
+                      <Play className="ml-1 h-6 w-6" />
+                    </Button>
+                  )}
+                </div>
+              </>
+            ) : (
+              // Versión con animaciones para desktop
+              <>
+                <AnimatePresence>
+                  <motion.h2
+                    key={`title-${currentSlide}`}
+                    className="mb-2 text-2xl font-bold text-white md:mb-4 md:text-4xl lg:text-5xl"
+                    style={{
+                      textShadow: '0 2px 8px rgba(0,0,0,0.4)',
+                    }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    {slides[currentSlide].title}
+                  </motion.h2>
+                </AnimatePresence>
+
+                <AnimatePresence>
+                  <motion.p
+                    key={`subtitle-${currentSlide}`}
+                    className="mb-2 text-base font-semibold text-white md:mb-4 md:text-xl lg:text-2xl"
+                    style={{
+                      textShadow: '0 1px 4px rgba(0,0,0,0.3)',
+                    }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                  >
+                    {slides[currentSlide].subtitle}
+                  </motion.p>
+                </AnimatePresence>
+
+                <AnimatePresence>
+                  <motion.p
+                    key={`description-${currentSlide}`}
+                    className="mb-4 hidden text-sm leading-relaxed text-white sm:inline-block md:mb-8 md:text-lg"
+                    style={{
+                      textShadow: '0 1px 3px rgba(0,0,0,0.2)',
+                    }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                  >
+                    {slides[currentSlide].description}
+                  </motion.p>
+                </AnimatePresence>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+                >
+                  <Button
+                    size="lg"
+                    className={`group px-8 py-3 text-base font-bold text-white shadow-lg transition-all duration-200 md:text-lg ${componentColors.button.primary.background} ${componentColors.button.primary.text} ${componentColors.button.primary.border} ${componentColors.button.primary.focus}`}
+                    onClick={scrollToServices}
+                  >
+                    <Sparkles className="mr-2 h-5 w-5 transition-transform duration-200 group-hover:rotate-12" />
+                    {slides[currentSlide].cta}
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+                  </Button>
+
+                  {/* Botón de video mejorado con mejor contraste */}
+                  {showPlayButton && slides[currentSlide].videoUrl && (
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="group h-14 w-14 rounded-full border-2 border-white/60 bg-transparent p-0 text-white shadow-lg backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white/30 focus:ring-2 focus:ring-white focus:ring-offset-2"
+                      onClick={openYouTubeVideo}
+                      aria-label="Ver video en YouTube"
+                      title="Ver video promocional"
+                    >
+                      <Play className="ml-1 h-6 w-6 transition-transform duration-200 group-hover:scale-110" />
+                    </Button>
+                  )}
+                </motion.div>
+              </>
+            )}
 
             {/* Stats - only on desktop */}
             {showStats && slides[currentSlide].stats && (
@@ -476,6 +644,25 @@ export const Hero: React.FC<HeroProps> = ({
           />
         ))}
       </div>
+
+      {/* Indicador de swipe en móvil */}
+      {isMobile && swipeDirection && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          className="absolute top-1/2 left-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
+        >
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
+            <ChevronRight 
+              className={cn(
+                "h-8 w-8 text-white transition-transform",
+                swipeDirection === 'left' ? "rotate-0" : "rotate-180"
+              )} 
+            />
+          </div>
+        </motion.div>
+      )}
 
       {/* Navigation buttons - Hidden on mobile for touch gestures */}
       {/* 

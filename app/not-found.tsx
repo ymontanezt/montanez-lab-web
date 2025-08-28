@@ -6,16 +6,16 @@ import { Home, ArrowLeft, AlertTriangle } from 'lucide-react'
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50 p-4 dark:from-slate-900 dark:to-slate-800">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-teal-50 p-4 dark:from-black dark:to-gray-900">
       <div className="mx-auto max-w-2xl text-center">
         {/* Icono animado */}
         <motion.div
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ duration: 0.8, type: 'spring', stiffness: 200 }}
-          className="mx-auto mb-8 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-blue-200 shadow-2xl dark:from-slate-700 dark:to-slate-600"
+          className="mx-auto mb-8 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-teal-100 to-teal-200 shadow-2xl dark:from-teal-900/30 dark:to-teal-800/30"
         >
-          <AlertTriangle className="h-16 w-16 text-blue-600 dark:text-blue-400" />
+          <AlertTriangle className="h-16 w-16 text-teal-600 dark:text-teal-400" />
         </motion.div>
 
         {/* Título principal */}
@@ -60,7 +60,7 @@ export default function NotFound() {
           {/* Botón principal - Ir al inicio */}
           <Link
             href="/"
-            className="group inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-blue-800 hover:shadow-xl focus:ring-4 focus:ring-blue-500/30 focus:outline-none dark:from-blue-500 dark:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-700"
+            className="group inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-teal-600 to-teal-700 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-teal-700 hover:to-teal-800 hover:shadow-xl focus:ring-4 focus:ring-teal-500/30 focus:outline-none dark:from-teal-500 dark:to-teal-600 dark:hover:from-teal-600 dark:hover:to-teal-700"
           >
             <Home className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
             Ir al Inicio
@@ -82,7 +82,7 @@ export default function NotFound() {
           </p>
           <a
             href="tel:+51969960969"
-            className="inline-flex items-center gap-2 font-medium text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+            className="inline-flex items-center gap-2 font-medium text-teal-600 transition-colors hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300"
           >
             <ArrowLeft className="h-4 w-4" />
             Llamar a Soporte
@@ -91,7 +91,7 @@ export default function NotFound() {
 
         {/* Decoración de fondo */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-blue-100/30 blur-3xl dark:bg-blue-900/20"></div>
+          <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-teal-100/30 blur-3xl dark:bg-teal-900/20"></div>
           <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-slate-100/30 blur-3xl dark:bg-slate-800/20"></div>
         </div>
       </div>

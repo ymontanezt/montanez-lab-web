@@ -176,7 +176,7 @@ export default function HomePage() {
             <div className="mx-auto max-w-4xl">
               <LazyAppointmentSchedulerWrapper
                 onSubmit={data => {
-                  console.log('Cita agendada:', data)
+          
                   // Aquí se va a manejar la lógica de agendamiento
                 }}
               />

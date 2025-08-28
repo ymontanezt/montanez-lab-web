@@ -90,10 +90,10 @@ export function Testimonials({
                 className="relative"
               >
                 {/* Card principal */}
-                <div className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-xl md:p-12 dark:bg-gray-900">
+                <div className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-xl md:p-12 dark:bg-gray-800 dark:shadow-2xl">
                   {/* Fondo decorativo */}
-                  <div className="absolute -top-4 -right-4 h-32 w-32 rounded-full bg-gradient-to-br from-blue-100 to-teal-200 opacity-50 dark:from-blue-900/20 dark:to-teal-800/20" />
-                  <div className="absolute -bottom-4 -left-4 h-24 w-24 rounded-full bg-gradient-to-tr from-blue-100 to-blue-200 opacity-50 dark:from-blue-900/20 dark:to-blue-800/20" />
+                  <div className="absolute -top-4 -right-4 h-32 w-32 rounded-full bg-gradient-to-br from-teal-100 to-teal-200 opacity-50 dark:from-teal-900/20 dark:to-teal-800/20" />
+                  <div className="absolute -bottom-4 -left-4 h-24 w-24 rounded-full bg-gradient-to-tr from-teal-100 to-teal-200 opacity-50 dark:from-teal-900/20 dark:to-teal-800/20" />
 
                   {/* Icono de comillas */}
                   <div className="relative mb-6 flex justify-center">

@@ -29,6 +29,7 @@ import {
   deleteAppointment,
   type AppointmentData,
 } from '@/lib/firebase/appointments'
+import { AppointmentStatusSelector, StatusDisplay, appointmentStatusConfig } from '@/components/admin/status-selector'
 import {
   Search,
   Filter,
@@ -194,7 +195,7 @@ export function AppointmentManagement() {
       case 'pending':
         return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400'
       case 'confirmed':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400'
+        return 'bg-teal-100 text-teal-800 dark:bg-teal-900/20 dark:text-teal-400'
       case 'completed':
         return 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400'
       case 'cancelled':
@@ -342,10 +343,10 @@ export function AppointmentManagement() {
           </div>
 
           <div className="flex items-end">
-            <Badge variant="secondary" className="text-sm">
+            <Badge variant="secondary" className="text-xs px-2 py-1">
               {filteredAppointments.length} de {appointments.length} citas
               {totalPages > 1 && (
-                <span className="ml-2 text-xs">
+                <span className="ml-2 text-xs opacity-75">
                   • Página {currentPage} de {totalPages}
                 </span>
               )}
@@ -363,100 +364,134 @@ export function AppointmentManagement() {
             animate={{ opacity: 1, y: 0 }}
             className="group"
           >
-            <Card className="p-4 transition-shadow hover:shadow-md">
-              <div className="flex items-start justify-between">
-                <div className="flex-1 space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/10 flex h-10 w-10 items-center justify-center rounded-full">
-                      <Calendar className="text-primary h-5 w-5" />
-                    </div>
-
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-semibold">{appointment.name}</h3>
-                        <Badge className={getStatusColor(appointment.status)}>
-                          {getStatusLabel(appointment.status)}
-                        </Badge>
-                      </div>
-
-                      <div className="text-muted-foreground flex items-center gap-4 text-sm">
-                        <div className="flex items-center gap-1">
-                          <Mail className="h-3 w-3" />
-                          {appointment.email}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Phone className="h-3 w-3" />
-                          {appointment.phone}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Clock className="h-3 w-3" />
-                          {format(new Date(appointment.date), 'dd/MM/yyyy', { locale: es })} -{' '}
-                          {appointment.time}
-                        </div>
-                      </div>
-                    </div>
+                        <Card className="w-full max-w-full overflow-hidden transition-shadow hover:shadow-md">
+              {/* Header de la card */}
+              <div className="border-b border-gray-200 dark:border-gray-700 p-4">
+                <div className="flex items-start gap-3">
+                  {/* Icono de cita */}
+                  <div className="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-full flex-shrink-0">
+                    <Calendar className="text-primary h-6 w-6" />
                   </div>
-
-                  <div>
-                    <div className="flex items-center gap-2">
-                      {getServiceIcon(appointment.service)}
-                      <h4 className="text-primary font-medium">{appointment.service}</h4>
+                  
+                  {/* Información principal */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <h3 className="font-semibold text-gray-900 dark:text-white truncate">
+                        {appointment.name}
+                      </h3>
+                      <StatusDisplay
+                        status={appointment.status}
+                        statusConfig={appointmentStatusConfig}
+                        showIcon={true}
+                        showDescription={false}
+                      />
                     </div>
-                    {appointment.notes && (
-                      <p className="text-muted-foreground mt-1 line-clamp-2 text-sm">
-                        {appointment.notes}
-                      </p>
-                    )}
+                    
+                    {/* Información de contacto */}
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                        <Mail className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">{appointment.email}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                        <Phone className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">{appointment.phone}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                        <Clock className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">
+                          {format(new Date(appointment.date), 'dd/MM/yyyy', { locale: es })} - {appointment.time}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="flex items-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
-                  <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-                    <DialogTrigger asChild>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setSelectedAppointment(appointment)}
-                      >
-                        <Eye className="h-4 w-4" />
-                      </Button>
-                    </DialogTrigger>
-                  </Dialog>
+              {/* Contenido de la card */}
+              <div className="p-4">
+                <div className="mb-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    {getServiceIcon(appointment.service)}
+                    <h4 className="text-primary font-medium truncate">
+                      {appointment.service}
+                    </h4>
+                  </div>
+                  {appointment.notes && (
+                    <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2">
+                      {appointment.notes}
+                    </p>
+                  )}
+                </div>
 
-                  <Select
-                    value={appointment.status}
-                    onValueChange={value =>
-                      handleStatusUpdate(appointment.id!, value as AppointmentData['status'])
-                    }
-                  >
-                    <SelectTrigger className="w-32">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="pending">Pendiente</SelectItem>
-                      <SelectItem value="confirmed">Confirmada</SelectItem>
-                      <SelectItem value="completed">Completada</SelectItem>
-                      <SelectItem value="cancelled">Cancelada</SelectItem>
-                    </SelectContent>
-                  </Select>
+                {/* Botones de acción */}
+                <div className="flex flex-col sm:flex-row gap-2">
+                  {/* Desktop: Botones completos */}
+                  <div className="hidden lg:flex items-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setSelectedAppointment(appointment)
+                        setIsViewDialogOpen(true)
+                      }}
+                    >
+                      <Eye className="h-4 w-4 mr-2" />
+                      Ver
+                    </Button>
 
-                  <ConfirmationDialog
-                    trigger={
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="text-red-600 hover:text-red-700"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    }
-                    title="Eliminar cita"
-                    description={`¿Estás seguro de que quieres eliminar la cita de ${appointment.name} para el ${appointment.date}? Esta acción no se puede deshacer.`}
-                    confirmText="Sí, eliminar"
-                    cancelText="Cancelar"
-                    variant="destructive"
-                    onConfirm={() => handleDeleteAppointment(appointment.id!)}
-                  />
+                    <Select
+                      value={appointment.status}
+                      onValueChange={value =>
+                        handleStatusUpdate(appointment.id!, value as AppointmentData['status'])
+                      }
+                    >
+                      <SelectTrigger className="w-32">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="pending">Pendiente</SelectItem>
+                        <SelectItem value="confirmed">Confirmada</SelectItem>
+                        <SelectItem value="completed">Completada</SelectItem>
+                        <SelectItem value="canceled">Cancelada</SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    <ConfirmationDialog
+                      trigger={
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-red-600 hover:text-red-700"
+                        >
+                          <Trash2 className="h-4 w-4 mr-2" />
+                          Eliminar
+                        </Button>
+                      }
+                      title="Eliminar cita"
+                      description={`¿Estás seguro de que quieres eliminar la cita de ${appointment.name} para el ${appointment.date}? Esta acción no se puede deshacer.`}
+                      confirmText="Sí, eliminar"
+                      cancelText="Cancelar"
+                      variant="destructive"
+                      onConfirm={() => handleDeleteAppointment(appointment.id!)}
+                    />
+                  </div>
+
+                  {/* Móvil: Botón para abrir modal */}
+                  <div className="lg:hidden w-full">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setSelectedAppointment(appointment)
+                        setIsViewDialogOpen(true)
+                      }}
+                      className="w-full bg-teal-50 hover:bg-teal-100 border-teal-200 hover:border-teal-300 text-teal-700 hover:text-teal-800"
+                    >
+                      <Eye className="h-4 w-4 mr-2" />
+                      <span className="text-sm font-medium">Ver Detalles</span>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </Card>
@@ -535,14 +570,14 @@ export function AppointmentManagement() {
 
       {/* Dialog para ver cita completa */}
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-[95vw] lg:max-w-4xl max-h-[90vh] overflow-auto">
           <DialogHeader>
             <DialogTitle>Detalles de la Cita</DialogTitle>
           </DialogHeader>
 
           {selectedAppointment && (
-            <div className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-4 min-w-0">
+              <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 min-w-0">
                 <div>
                   <label className="text-sm font-medium">Nombre</label>
                   <p className="text-sm">{selectedAppointment.name}</p>
@@ -557,9 +592,12 @@ export function AppointmentManagement() {
                 </div>
                 <div>
                   <label className="text-sm font-medium">Estado</label>
-                  <Badge className={getStatusColor(selectedAppointment.status)}>
-                    {getStatusLabel(selectedAppointment.status)}
-                  </Badge>
+                  <StatusDisplay
+                    status={selectedAppointment.status}
+                    statusConfig={appointmentStatusConfig}
+                    showIcon={true}
+                    showDescription={false}
+                  />
                 </div>
                 <div>
                   <label className="text-sm font-medium">Servicio</label>
@@ -592,15 +630,28 @@ export function AppointmentManagement() {
                 />
               </div>
 
-              <div className="flex justify-end gap-2">
-                <Button
-                  onClick={() => {
-                    // Aquí podrías implementar la actualización de notas
-                    setIsViewDialogOpen(false)
-                  }}
-                >
-                  Guardar Notas
-                </Button>
+              <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 min-w-0">
+                <div>
+                  <label className="text-sm font-medium">Cambiar Estado</label>
+                  <AppointmentStatusSelector
+                    value={selectedAppointment.status}
+                    onValueChange={(newStatus) => 
+                      handleStatusUpdate(selectedAppointment.id!, newStatus as AppointmentData['status'])
+                    }
+                    className="w-full"
+                  />
+                </div>
+                <div className="flex items-end">
+                  <Button
+                    onClick={() => {
+                      // Aquí podrías implementar la actualización de notas
+                      setIsViewDialogOpen(false)
+                    }}
+                    className="w-full"
+                  >
+                    Guardar Cambios
+                  </Button>
+                </div>
               </div>
             </div>
           )}

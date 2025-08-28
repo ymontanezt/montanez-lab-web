@@ -54,11 +54,13 @@ export const siteConfig = {
   navigation: {
     main: [
       { id: 'inicio', label: 'Inicio', href: '#inicio' },
+      { id: 'nosotros', label: 'Nosotros', href: '#nosotros' },
       { id: 'servicios', label: 'Servicios', href: '#servicios' },
       { id: 'citas', label: 'Citas', href: '#citas' },
-      { id: 'galeria', label: 'Galería', href: '#galeria' },
       { id: 'testimonios', label: 'Testimonios', href: '#testimonios' },
+      { id: 'galeria', label: 'Galería', href: '#galeria' },
       { id: 'team', label: 'Equipo', href: '#team' },
+      { id: 'contacto', label: 'Contacto', href: '#contacto' },
     ],
     footer: [
       { label: 'Servicios', href: '/servicios' },
