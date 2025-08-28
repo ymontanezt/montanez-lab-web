@@ -25,21 +25,16 @@ export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
 
     if (!resendApiKey || resendApiKey === 'your_resend_api_key_here') {
       // Fallback: simular envío de email
-      console.log('📧 [FALLBACK] Email simulado:', {
-        to: emailData.to,
-        subject: emailData.subject,
-        preview: emailData.text?.substring(0, 100) + '...',
-      })
 
       // Simular delay de API
       await new Promise(resolve => setTimeout(resolve, 500))
 
-      console.log('✅ [FALLBACK] Email "enviado" exitosamente')
+
       return true
     }
 
     // En producción, usar Resend real
-    console.log('📧 [RESEND] Enviando email real...')
+    
 
     // Aquí iría el código real de Resend
     // const response = await fetch('https://api.resend.com/emails', {
@@ -59,7 +54,7 @@ export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
 
     // Simular envío exitoso por ahora
     await new Promise(resolve => setTimeout(resolve, 1000))
-    console.log('✅ [RESEND] Email enviado exitosamente')
+    
     return true
   } catch (error) {
     console.error('❌ Error al enviar email:', error)

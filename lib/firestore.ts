@@ -46,7 +46,6 @@ export const addContactSubmission = async (
       updatedAt: now,
     })
 
-    console.log('[v0] Contact submission added with ID:', docRef.id)
     return docRef.id
   } catch (error) {
     console.error('[v0] Error adding contact submission:', error)
@@ -122,8 +121,6 @@ export const updateContactStatus = async (
       status,
       updatedAt: Timestamp.now(),
     })
-
-    console.log('[v0] Contact status updated:', contactId, status)
   } catch (error) {
     console.error('[v0] Error updating contact status:', error)
     throw new Error('Error al actualizar el estado de la consulta')
@@ -137,7 +134,6 @@ export const deleteContactSubmission = async (contactId: string): Promise<void> 
       throw new Error('Firebase no está configurado')
     }
     await deleteDoc(doc(db, CONTACTS_COLLECTION, contactId))
-    console.log('[v0] Contact submission deleted:', contactId)
   } catch (error) {
     console.error('[v0] Error deleting contact submission:', error)
     throw new Error('Error al eliminar la consulta')

@@ -59,7 +59,7 @@ export const createContact = async (data: CreateContactData): Promise<string> =>
 
     const docRef = await addDoc(collection(db, 'contacts'), contactData)
     const contactId = docRef.id
-    console.log('✅ Contacto creado exitosamente con ID:', contactId)
+
 
     return contactId
   } catch (error) {
@@ -141,13 +141,13 @@ Equipo Montañez Lab
     ])
 
     if (adminEmailSent.status === 'fulfilled' && adminEmailSent.value) {
-      console.log('✅ Email de notificación enviado al admin')
+
     } else if (adminEmailSent.status === 'rejected') {
       console.warn('⚠️ Error enviando email al admin:', adminEmailSent.reason)
     }
 
     if (userEmailSent.status === 'fulfilled' && userEmailSent.value) {
-      console.log('✅ Email de confirmación enviado al usuario')
+
     } else if (userEmailSent.status === 'rejected') {
       console.warn('⚠️ Error enviando email al usuario:', userEmailSent.reason)
     }
@@ -249,7 +249,7 @@ export const updateContactStatus = async (
       updatedAt: new Date().toISOString(),
     })
 
-    console.log('✅ Estado de contacto actualizado:', id, status)
+
   } catch (error) {
     console.error('❌ Error al actualizar estado de contacto:', error)
     throw new Error('No se pudo actualizar el estado del contacto.')
@@ -263,8 +263,6 @@ export const deleteContact = async (id: string): Promise<void> => {
   try {
     const docRef = doc(db, 'contacts', id)
     await deleteDoc(docRef)
-
-    console.log('✅ Contacto eliminado:', id)
   } catch (error) {
     console.error('❌ Error al eliminar contacto:', error)
     throw new Error('No se pudo eliminar el contacto.')

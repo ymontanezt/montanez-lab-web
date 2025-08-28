@@ -27,6 +27,14 @@ export const Header: React.FC<HeaderProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isConfigReady, setIsConfigReady] = useState(false)
+
+  // Verificar que la configuración esté lista
+  useEffect(() => {
+    if (siteConfig?.navigation?.main) {
+      setIsConfigReady(true)
+    }
+  }, [])
 
   // Handle scroll events
   useEffect(() => {
@@ -34,30 +42,35 @@ export const Header: React.FC<HeaderProps> = ({
       const scrollPosition = window.scrollY
       setIsScrolled(scrollPosition > 50)
 
+      // Verificar que siteConfig esté disponible
+      if (!siteConfig?.navigation?.main) {
+        return
+      }
+
       // Update active section based on scroll position - Mejorada
       const sections = siteConfig.navigation.main.map(item => item.id)
-      const headerHeight = 80 // Altura del header fijo
-      const scrollPositionWithOffset = scrollPosition + headerHeight + 50 // Offset más preciso
+      const headerHeight = 120 // Altura del header fijo + margen extra
+      const scrollPositionWithOffset = scrollPosition + headerHeight
 
-      // Buscar la sección más cercana al viewport
-      let closestSection = 'inicio'
-      let minDistance = Infinity
-
-      for (const section of sections) {
-        const element = document.getElementById(section)
+      // Buscar la sección activa basada en la posición del viewport
+      let activeSection = 'inicio'
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const sectionId = sections[i]
+        const element = document.getElementById(sectionId)
+        
         if (element) {
-          const { offsetTop, offsetHeight } = element
-          const sectionCenter = offsetTop + offsetHeight / 2
-          const distance = Math.abs(scrollPositionWithOffset - sectionCenter)
-
-          if (distance < minDistance) {
-            minDistance = distance
-            closestSection = section
+          const { offsetTop } = element
+          
+          // Si el scroll está por encima de esta sección, esta es la activa
+          if (scrollPositionWithOffset >= offsetTop) {
+            activeSection = sectionId
+            break
           }
         }
       }
 
-      setActiveSection(closestSection)
+      setActiveSection(activeSection)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -66,7 +79,10 @@ export const Header: React.FC<HeaderProps> = ({
 
   // Scroll to section - Mejorada para móvil
   const scrollToSection = (sectionId: string) => {
-    console.log('🚀 Navegando a:', sectionId)
+    // Verificar que siteConfig esté disponible
+    if (!siteConfig?.navigation?.main) {
+      return
+    }
 
     // Cerrar menú móvil primero
     setIsMenuOpen(false)
@@ -76,8 +92,6 @@ export const Header: React.FC<HeaderProps> = ({
       const element = document.getElementById(sectionId)
 
       if (element) {
-        console.log('✅ Elemento encontrado:', sectionId, element)
-
         // Calcular offset para el header fijo
         const headerHeight = 120 // Altura del header + margen extra
         const elementPosition = Math.max(0, element.offsetTop - headerHeight)
@@ -90,7 +104,7 @@ export const Header: React.FC<HeaderProps> = ({
           })
         }
 
-        // Actualizar el estado activo
+        // Actualizar el estado activo inmediatamente
         setActiveSection(sectionId)
 
         // Focus en el elemento para accesibilidad (opcional)
@@ -100,14 +114,6 @@ export const Header: React.FC<HeaderProps> = ({
           // Ignorar errores de focus si el elemento no es focusable
         }
       } else {
-        console.log('❌ Elemento NO encontrado para:', sectionId)
-        // Debug: mostrar todas las secciones disponibles
-        const allElements = document.querySelectorAll('section[id], [id*="' + sectionId + '"]')
-        console.log(
-          '📍 Elementos disponibles:',
-          Array.from(allElements).map(el => ({ id: el.id, tag: el.tagName }))
-        )
-
         // Fallback: buscar por variaciones del nombre
         const fallbackSelectors = [
           `#${sectionId}`,
@@ -120,7 +126,6 @@ export const Header: React.FC<HeaderProps> = ({
         for (const selector of fallbackSelectors) {
           fallbackElement = document.querySelector(selector) as HTMLElement
           if (fallbackElement) {
-            console.log('🔄 Elemento encontrado con fallback:', selector, fallbackElement)
             break
           }
         }
@@ -137,8 +142,6 @@ export const Header: React.FC<HeaderProps> = ({
           }
 
           setActiveSection(sectionId)
-        } else {
-          console.log('🚫 No se pudo encontrar la sección:', sectionId)
         }
       }
     }
@@ -244,7 +247,7 @@ export const Header: React.FC<HeaderProps> = ({
             role="navigation"
             aria-label="Navegación principal"
           >
-            {siteConfig.navigation.main.map(item => (
+            {isConfigReady && siteConfig.navigation.main.map(item => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
@@ -319,7 +322,7 @@ export const Header: React.FC<HeaderProps> = ({
               aria-label="Navegación móvil"
             >
               <div className="space-y-2">
-                {siteConfig.navigation.main.map(item => (
+                {isConfigReady && siteConfig.navigation.main.map(item => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}

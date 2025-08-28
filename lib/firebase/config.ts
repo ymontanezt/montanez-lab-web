@@ -43,10 +43,9 @@ try {
       // Configuración adicional para evitar cargar scripts innecesarios
       measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
     })
-    console.log('✅ Firebase inicializado correctamente')
   } else {
     app = getApp()
-    console.log('✅ Firebase app existente recuperada')
+    
   }
 } catch (error) {
   console.error('❌ Error al inicializar Firebase:', error)
@@ -73,7 +72,7 @@ if (process.env.NODE_ENV === 'development') {
       // Auth emulator
       if (process.env.NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_HOST) {
         connectAuthEmulator(auth, `http://${process.env.NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_HOST}`)
-        console.log('🔧 Firebase Auth Emulator conectado')
+
       }
 
       // Firestore emulator
@@ -83,7 +82,7 @@ if (process.env.NODE_ENV === 'development') {
           'localhost',
           parseInt(process.env.NEXT_PUBLIC_FIREBASE_FIRESTORE_EMULATOR_HOST)
         )
-        console.log('🔧 Firebase Firestore Emulator conectado')
+
       }
 
       // Storage emulator
@@ -93,7 +92,7 @@ if (process.env.NODE_ENV === 'development') {
           'localhost',
           parseInt(process.env.NEXT_PUBLIC_FIREBASE_STORAGE_EMULATOR_HOST)
         )
-        console.log('🔧 Firebase Storage Emulator conectado')
+
       }
     } catch (error) {
       console.warn('⚠️ Error conectando a emuladores:', error)
@@ -164,7 +163,7 @@ export const cleanupFirebase = async () => {
     // Cerrar conexiones de Storage
     // Storage no tiene método de limpieza específico
 
-    console.log('🧹 Firebase resources cleaned up')
+
   } catch (error) {
     console.warn('⚠️ Error cleaning up Firebase:', error)
   }

@@ -100,14 +100,9 @@ export default function AdminPage() {
 
   const loadDashboardData = async () => {
     try {
-      console.log('🔄 Cargando datos del dashboard...')
+
       const [contacts, appointments] = await Promise.all([getAllContacts(), getAllAppointments()])
-      console.log('✅ Datos cargados:', {
-        contactsCount: contacts.length,
-        appointmentsCount: appointments.length,
-        contacts: contacts.slice(0, 2), // Solo los primeros 2 para debug
-        appointments: appointments.slice(0, 2), // Solo los primeros 2 para debug
-      })
+      
       setDashboardData({ contacts, appointments })
     } catch (error) {
       console.error('❌ Error cargando datos del dashboard:', error)

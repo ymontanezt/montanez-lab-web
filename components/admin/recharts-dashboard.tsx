@@ -176,15 +176,6 @@ export function RechartsDashboard({ contacts, appointments, stats }: DashboardCh
     )
   }
 
-  console.log('📊 RECHARTS: Datos preparados:', {
-    contactsCount: contacts.length,
-    appointmentsCount: appointments.length,
-    contactsData: contactsData(),
-    appointmentsData: appointmentsData(),
-    servicesData: servicesData(),
-    trendsData: trendsData(),
-  })
-
   return (
     <div className="space-y-6">
       {/* Métricas Rápidas */}
