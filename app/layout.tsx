@@ -128,8 +128,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Montañez Lab" />
         
         {/* Preload critical resources */}
-        <link rel="preload" href="/fonts/montserrat-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/opensans-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        {/* Las fuentes se cargan automáticamente con next/font/google */}
         
         {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />

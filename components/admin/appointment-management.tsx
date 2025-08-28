@@ -29,6 +29,7 @@ import {
   deleteAppointment,
   type AppointmentData,
 } from '@/lib/firebase/appointments'
+import { AppointmentStatusSelector, StatusDisplay, appointmentStatusConfig } from '@/components/admin/status-selector'
 import {
   Search,
   Filter,
@@ -342,10 +343,10 @@ export function AppointmentManagement() {
           </div>
 
           <div className="flex items-end">
-            <Badge variant="secondary" className="text-sm">
+            <Badge variant="secondary" className="text-xs px-2 py-1">
               {filteredAppointments.length} de {appointments.length} citas
               {totalPages > 1 && (
-                <span className="ml-2 text-xs">
+                <span className="ml-2 text-xs opacity-75">
                   • Página {currentPage} de {totalPages}
                 </span>
               )}
@@ -378,9 +379,12 @@ export function AppointmentManagement() {
                       <h3 className="font-semibold text-gray-900 dark:text-white truncate">
                         {appointment.name}
                       </h3>
-                      <Badge className={getStatusColor(appointment.status)}>
-                        {getStatusLabel(appointment.status)}
-                      </Badge>
+                      <StatusDisplay
+                        status={appointment.status}
+                        statusConfig={appointmentStatusConfig}
+                        showIcon={true}
+                        showDescription={false}
+                      />
                     </div>
                     
                     {/* Información de contacto */}
@@ -588,9 +592,12 @@ export function AppointmentManagement() {
                 </div>
                 <div>
                   <label className="text-sm font-medium">Estado</label>
-                  <Badge className={getStatusColor(selectedAppointment.status)}>
-                    {getStatusLabel(selectedAppointment.status)}
-                  </Badge>
+                  <StatusDisplay
+                    status={selectedAppointment.status}
+                    statusConfig={appointmentStatusConfig}
+                    showIcon={true}
+                    showDescription={false}
+                  />
                 </div>
                 <div>
                   <label className="text-sm font-medium">Servicio</label>
@@ -623,15 +630,28 @@ export function AppointmentManagement() {
                 />
               </div>
 
-              <div className="flex justify-end gap-2">
-                <Button
-                  onClick={() => {
-                    // Aquí podrías implementar la actualización de notas
-                    setIsViewDialogOpen(false)
-                  }}
-                >
-                  Guardar Notas
-                </Button>
+              <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 min-w-0">
+                <div>
+                  <label className="text-sm font-medium">Cambiar Estado</label>
+                  <AppointmentStatusSelector
+                    value={selectedAppointment.status}
+                    onValueChange={(newStatus) => 
+                      handleStatusUpdate(selectedAppointment.id!, newStatus as AppointmentData['status'])
+                    }
+                    className="w-full"
+                  />
+                </div>
+                <div className="flex items-end">
+                  <Button
+                    onClick={() => {
+                      // Aquí podrías implementar la actualización de notas
+                      setIsViewDialogOpen(false)
+                    }}
+                    className="w-full"
+                  >
+                    Guardar Cambios
+                  </Button>
+                </div>
               </div>
             </div>
           )}

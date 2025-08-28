@@ -8,6 +8,7 @@ import { DashboardStats } from '@/components/admin/dashboard-stats'
 import { RechartsDashboard } from '@/components/admin/recharts-dashboard'
 import { ContactManagement } from '@/components/admin/contact-management'
 import { AppointmentManagement } from '@/components/admin/appointment-management'
+import { CorporateSidebar } from '@/components/admin/corporate-sidebar'
 
 import { Reports } from '@/components/admin/reports'
 import { SystemSettings } from '@/components/admin/system-settings'
@@ -27,11 +28,13 @@ import {
   Bell,
   Download,
   Calendar,
+  Menu,
 } from 'lucide-react'
 import { getAllContacts } from '@/lib/firebase/contacts'
 import { getAllAppointments } from '@/lib/firebase/appointments'
 
 import { ExcelExporter } from '@/lib/excel-export'
+import { cn } from '@/lib/design-system/utilities'
 
 type ActiveTab = 'dashboard' | 'contacts' | 'appointments' | 'reports' | 'settings' | 'manual'
 
@@ -40,6 +43,7 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard')
   const [stats, setStats] = useState<any>(null)
   const [exporting, setExporting] = useState(false)
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
   const [dashboardData, setDashboardData] = useState<{ contacts: any[]; appointments: any[] }>({
     contacts: [],
     appointments: [],
@@ -181,46 +185,41 @@ export default function AdminPage() {
   return (
     <div className="bg-background min-h-screen">
       {/* Header */}
-      <header className="border-border sticky top-0 z-40 border-b bg-gradient-to-r from-slate-50 to-teal-50 shadow-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+      <header className="sticky top-0 z-40 border-b border-teal-100 bg-white shadow-sm">
+        <div className="px-6 py-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <motion.div
               className="flex items-center gap-4"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="flex items-center gap-2">
-                <div className="rounded-lg bg-gradient-to-r from-teal-500 to-teal-600 p-2 shadow-lg">
-                  <Microscope className="h-6 w-6 text-white" />
+              <div className="flex items-center gap-3">
+                <div className="rounded-lg bg-gradient-to-br from-teal-600 to-teal-700 p-2.5 shadow-sm">
+                  <Microscope className="h-5 w-5 text-white" />
                 </div>
-                <span className="bg-gradient-to-r from-teal-600 to-teal-800 bg-clip-text font-serif text-lg font-bold text-transparent">
-                  Montañez Lab
-                </span>
+                <div>
+                  <h1 className="text-xl font-semibold text-teal-800">Montañez Lab</h1>
+                  <p className="text-sm text-teal-600">Panel Administrativo</p>
+                </div>
               </div>
-              <Badge
-                variant="secondary"
-                className="hidden border-teal-200 bg-teal-100 text-teal-800 md:flex"
-              >
-                Admin Panel
-              </Badge>
             </motion.div>
 
             <motion.div
-              className="flex items-center gap-4"
+              className="flex items-center gap-2 sm:gap-4"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="hidden text-right md:block">
-                <p className="text-sm font-medium text-teal-700">Bienvenido</p>
-                <p className="text-xs text-teal-600">{user?.email}</p>
+                <p className="text-sm font-medium text-slate-700">Bienvenido</p>
+                <p className="text-xs text-slate-500">{user?.email}</p>
               </div>
 
               <Button
                 variant="outline"
                 size="sm"
-                className="border-teal-200 text-teal-700 hover:border-teal-300 hover:bg-teal-50"
+                className="border-slate-200 text-slate-600 hover:border-teal-300 hover:bg-teal-50 hover:text-teal-700 transition-colors"
               >
                 <Bell className="h-4 w-4" />
               </Button>
@@ -229,7 +228,7 @@ export default function AdminPage() {
                 onClick={handleSignOut}
                 variant="outline"
                 size="sm"
-                className="border-teal-200 text-teal-700 hover:border-teal-300 hover:bg-teal-50"
+                className="border-slate-200 text-slate-600 hover:border-teal-300 hover:bg-teal-50 hover:text-teal-700 transition-colors"
               >
                 <LogOut className="mr-2 h-4 w-4" />
                 <span className="hidden md:inline">Cerrar Sesión</span>
@@ -239,73 +238,22 @@ export default function AdminPage() {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex flex-col gap-6 lg:flex-row">
-          {/* Sidebar Navigation */}
-          <div className="space-y-3 lg:w-64">
-            <motion.h2
-              className="mb-4 px-2 text-lg font-semibold text-gray-700"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              Navegación
-            </motion.h2>
-            {tabs.map((tab, index) => (
-              <motion.button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`w-full rounded-xl p-4 text-left transition-all duration-300 ${
-                  activeTab === tab.id
-                    ? 'bg-gradient-to-r from-teal-500 to-teal-600 text-white shadow-lg shadow-teal-500/25'
-                    : 'border border-gray-200 bg-white hover:border-teal-200 hover:bg-teal-50 hover:shadow-md'
-                }`}
-                whileHover={{
-                  scale: activeTab === tab.id ? 1 : 1.02,
-                  y: activeTab === tab.id ? 0 : -2,
-                }}
-                whileTap={{ scale: 0.98 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.3 }}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`rounded-lg p-2 ${
-                        activeTab === tab.id ? 'bg-white/20' : 'bg-teal-100 text-teal-600'
-                      }`}
-                    >
-                      <tab.icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <div className="font-medium">{tab.label}</div>
-                      <div
-                        className={`text-xs ${
-                          activeTab === tab.id ? 'text-white/80' : 'text-gray-500'
-                        }`}
-                      >
-                        {tab.description}
-                      </div>
-                    </div>
-                  </div>
-                  {tab.badge && tab.badge > 0 && (
-                    <Badge
-                      variant={activeTab === tab.id ? 'secondary' : 'destructive'}
-                      className={`text-xs ${
-                        activeTab === tab.id ? 'border-white/30 bg-white/20 text-white' : ''
-                      }`}
-                    >
-                      {tab.badge}
-                    </Badge>
-                  )}
-                </div>
-              </motion.button>
-            ))}
-          </div>
+      <div className="flex">
+        {/* Corporate Sidebar */}
+        <CorporateSidebar
+          activeTab={activeTab}
+          onTabChange={(tab: string) => setActiveTab(tab as ActiveTab)}
+          stats={stats}
+          isCollapsed={isSidebarCollapsed}
+          onToggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+        />
 
-          {/* Main Content */}
-          <div className="flex-1">
+        {/* Main Content */}
+        <div className={cn(
+          "flex-1 transition-all duration-300 ease-in-out lg:ml-0",
+          isSidebarCollapsed ? "lg:ml-20" : "lg:ml-72"
+        )}>
+          <div className="p-3 lg:p-4">
             <motion.div
               key={activeTab}
               initial={{ opacity: 0, x: 20 }}
@@ -314,13 +262,14 @@ export default function AdminPage() {
             >
               {activeTab === 'dashboard' && (
                 <div className="space-y-6">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <h1 className="heading-secondary">Dashboard Principal</h1>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={handleExportData}
                       disabled={exporting}
+                      className="w-full sm:w-auto"
                     >
                       {exporting ? (
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -341,14 +290,12 @@ export default function AdminPage() {
 
               {activeTab === 'contacts' && (
                 <div className="space-y-6">
-                  <h1 className="heading-secondary">Gestión de Contactos</h1>
                   <ContactManagement />
                 </div>
               )}
 
               {activeTab === 'appointments' && (
                 <div className="space-y-6">
-                  <h1 className="heading-secondary">Gestión de Citas</h1>
                   <AppointmentManagement />
                 </div>
               )}

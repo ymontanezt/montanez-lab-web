@@ -24,6 +24,7 @@ import {
 import { ConfirmationDialog } from '@/components/ui/confirmation-dialog'
 import { useToast } from '@/hooks/use-toast'
 import { getAllContacts, updateContactStatus, deleteContact } from '@/lib/firebase/contacts'
+import { ContactStatusSelector, StatusDisplay, contactStatusConfig } from '@/components/admin/status-selector'
 import {
   Search,
   Filter,
@@ -334,10 +335,10 @@ export function ContactManagement() {
           </div>
 
           <div className="flex items-end">
-            <Badge variant="secondary" className="text-sm">
+            <Badge variant="secondary" className="text-xs px-2 py-1">
               {filteredContacts.length} de {contacts.length} contactos
               {totalPages > 1 && (
-                <span className="ml-2 text-xs">
+                <span className="ml-2 text-xs opacity-75">
                   • Página {currentPage} de {totalPages}
                 </span>
               )}
@@ -371,9 +372,12 @@ export function ContactManagement() {
                         {contact.name}
                       </h3>
                       {getPriorityIcon(contact.priority || 'medium')}
-                      <Badge className={getStatusColor(contact.status)}>
-                        {getStatusLabel(contact.status)}
-                      </Badge>
+                      <StatusDisplay
+                        status={contact.status}
+                        statusConfig={contactStatusConfig}
+                        showIcon={true}
+                        showDescription={false}
+                      />
                     </div>
                     
                     {/* Información de contacto */}
@@ -585,7 +589,7 @@ export function ContactManagement() {
                     </h2>
                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
                       {getPriorityIcon(selectedContact.priority || 'medium')}
-                      <Badge className={`${getStatusColor(selectedContact.status)} text-sm`}>
+                      <Badge className={`${getStatusColor(selectedContact.status)} text-xs px-2 py-1`}>
                         {getStatusLabel(selectedContact.status)}
                       </Badge>
                       <span className="text-sm text-gray-500 dark:text-gray-400">
@@ -651,22 +655,13 @@ export function ContactManagement() {
                     <Reply className="h-4 w-4 mr-2" />
                     Responder
                   </Button>
-                  <Select
+                  <ContactStatusSelector
                     value={selectedContact.status}
                     onValueChange={value =>
                       handleStatusUpdate(selectedContact.id, value as Contact['status'])
                     }
-                  >
-                    <SelectTrigger className="w-full bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="new">Nuevo</SelectItem>
-                      <SelectItem value="read">Leído</SelectItem>
-                      <SelectItem value="replied">Respondido</SelectItem>
-                      <SelectItem value="archived">Archivado</SelectItem>
-                    </SelectContent>
-                  </Select>
+                    className="w-full"
+                  />
                 </div>
                 <div className="flex justify-center">
                   <ConfirmationDialog

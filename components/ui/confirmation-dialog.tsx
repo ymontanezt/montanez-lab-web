@@ -90,7 +90,7 @@ export function ConfirmationDialog({
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
 
-      <AlertDialogContent className="sm:max-w-md">
+      <AlertDialogContent className="max-w-[95vw] sm:max-w-md">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}

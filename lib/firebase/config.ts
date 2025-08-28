@@ -30,8 +30,8 @@ const requiredEnvVars = [
 // Validar variables de entorno
 const missingVars = requiredEnvVars.filter(varName => !process.env[varName])
 if (missingVars.length > 0) {
-  console.warn('⚠️ Variables de Firebase faltantes:', missingVars)
-  console.warn('📝 Configura las variables en tu archivo .env.local')
+  // console.warn('⚠️ Variables de Firebase faltantes:', missingVars)
+  // console.warn('📝 Configura las variables en tu archivo .env.local')
 }
 
 // Inicializar Firebase
